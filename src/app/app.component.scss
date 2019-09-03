@@ -1,3 +1,5 @@
+@import "../theme/variables.scss";
+
 .page-centered-element {
     position: absolute;
     left: 0;
@@ -8,7 +10,9 @@
     align-items: center;
     justify-content: center;
   }
-  
+  .h1-text{
+    font-family: 'Exmouth';
+  }
   .content {
     text-align: center;
     color: white;

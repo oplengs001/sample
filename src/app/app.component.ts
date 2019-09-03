@@ -18,11 +18,26 @@ export class AppComponent {
       title: 'Home',
       url: '/home',
       icon: 'home'
+    }, 
+    {
+      title: 'Ceremony',
+      url: '/ceremony',
+      icon: 'easel'
     },
     {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
+      title: 'Guest List',
+      url: '/guestlist',
+      icon: 'contacts'
+    },
+    {
+      title: 'Itenerary',
+      url: '/itenerary',
+      icon: 'paper'
+    },
+    {
+      title: 'Reception',
+      url: '/reception',
+      icon: 'wine'
     },
     {
       title: 'Locator',

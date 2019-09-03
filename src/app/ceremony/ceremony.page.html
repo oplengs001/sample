@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Ceremony
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card [hidden]="CardHide">
+      <img src="/assets/images/church.jpg" alt="" />
+      <ion-card-header>
+        <ion-card-subtitle>Batulao, Nasugbu, Batangas</ion-card-subtitle>
+        <ion-card-title >Caleruega Church</ion-card-title>
+      </ion-card-header>    
+      <ion-card-content>
+        Keep close to Nature's heart... and break clear away, once in awhile,
+        and climb a mountain or spend a week in the woods. Wash your spirit clean. <a href="https://www.thepoortraveler.net/2018/12/caleruega-church-tagaytay-wedding-batangas-nasugbu/">more details </a>
+      </ion-card-content>
+    </ion-card>
+    <ion-card [hidden]="MapHide">
+        <ion-card-header>
+          <ion-card-subtitle>Batulao, Nasugbu, Batangas</ion-card-subtitle>
+          <ion-card-title >Destination to Church</ion-card-title>
+        </ion-card-header>           
+      </ion-card>
+    <div [hidden]="MapHide" #mapElement class="map"></div>
+    <ion-card>
+        <ion-item (click)="ShowChurch()">
+            <ion-icon name="map" slot="start"  color="medium" ></ion-icon>
+            <ion-label>Calueruga church</ion-label>
+          </ion-item>
+        <ion-item>
+          <ion-icon name="calendar" slot="start"  color="medium"></ion-icon>
+          <ion-label>December 8 2019</ion-label>
+        </ion-item>   
+        <ion-item >
+          <ion-icon name="shirt" slot="start"  color="medium"></ion-icon>
+          <ion-label>Formal</ion-label>
+        </ion-item>
+        <ion-item (click)="ShowMap()">
+          <ion-icon name="walk"  slot="start"  color="medium"></ion-icon>
+          <ion-label>Get me there </ion-label>
+        </ion-item>
+    </ion-card>     
+    <!-- <form [formGroup]="directionForm" (ngSubmit)="calculateAndDisplayRoute(directionForm.value)">
+        <ion-item>
+          <ion-label position="floating">Destination</ion-label>
+          <ion-input formControlName="destination"></ion-input>
+        </ion-item>
+        <ion-button expand="full" type="submit" [disabled]="!directionForm.valid">Get Direction</ion-button>
+      </form> -->
+     
+        
+</ion-content>

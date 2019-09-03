@@ -75,6 +75,7 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+ 
   $colors: (
   primary:    #488aff,
   secondary:  #aad42a,
@@ -82,5 +83,13 @@
   light:      #f4f4f4,
   dark:       #222
 );
+
+
+@font-face {
+  font-family: 'Exmouth';
+  src: url("../../resources/font-styles/exmouth.ttf");    
+  font-weight: normal;
+  font-style: normal;
+}
 }
 
