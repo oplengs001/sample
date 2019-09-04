@@ -2,6 +2,7 @@ import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { AngularFireModule } from '@angular/fire';
+import { FirestoreSettingsToken ,AngularFirestore  } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -13,7 +14,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from "../environments/environment"
 import { FormsModule } from '@angular/forms';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { CommonModule } from '@angular/common';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
@@ -42,7 +43,9 @@ import 'gl-ionic-background-video';
     Geolocation,
     NativeGeocoder,
     AppVersion,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    AngularFirestore,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: FirestoreSettingsToken, useValue: {} }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
