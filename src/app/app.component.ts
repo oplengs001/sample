@@ -43,6 +43,11 @@ export class AppComponent {
       title: 'Locator',
       url: '/locator',
       icon: 'walk'
+    },
+    {
+      title: 'Announcements',
+      url: '/announcements',
+      icon: 'megaphone'
     }
   ];
 

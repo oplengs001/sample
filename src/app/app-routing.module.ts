@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'guestlist', loadChildren: './guestlist/guestlist.module#GuestlistPageModule' },
   { path: 'ceremony', loadChildren: './ceremony/ceremony.module#CeremonyPageModule' },
   { path: 'guestadd', loadChildren: './guestadd/guestadd.module#GuestaddPageModule' },
+  { path: 'announcements', loadChildren: './announcements/announcements.module#AnnouncementsPageModule' },
 ];
 
 @NgModule({

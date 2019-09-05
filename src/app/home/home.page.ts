@@ -28,7 +28,7 @@ export class HomePage {
       })
   }
   subscribeToTopic() {
-    this.fcm.subscribeToTopic('enappd');
+    this.fcm.subscribeToTopic('enappd');  
   }
   getToken() {
     this.fcm.getToken().then(token => {
