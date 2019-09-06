@@ -48,6 +48,16 @@ export class AppComponent {
       title: 'Announcements',
       url: '/announcements',
       icon: 'megaphone'
+    },
+    {
+      title: 'Admin-Announcements',
+      url: '/admin-announcement',
+      icon: 'megaphone'
+    },
+    {
+      title: 'Guest Add',
+      url: '/guestadd',
+      icon: 'megaphone'
     }
   ];
 
@@ -56,6 +66,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
+    
   ) {
     this.initializeApp();
   }

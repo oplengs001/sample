@@ -7,6 +7,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { HttpClientModule } from '@angular/common/http';
 import {FCM} from '@ionic-native/fcm/ngx';
 
 
@@ -34,6 +35,7 @@ import 'gl-ionic-background-video';
     AngularFireAuthModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,

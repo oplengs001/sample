@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Guest List
+      Guest Add Form
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -29,6 +29,10 @@
   <ion-item>
     <ion-label position="stacked">Dedicated Password</ion-label>
     <ion-input [(ngModel)]="password"></ion-input>
+  </ion-item> 
+  <ion-item>
+    <ion-label>Admin Functions</ion-label>
+    <ion-toggle [(ngModel)]="guest.isAdmin" slot="start" name="blueberry" checked></ion-toggle>
   </ion-item>
 </ion-content>
  

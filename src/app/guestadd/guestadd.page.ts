@@ -16,6 +16,7 @@ export class GuestaddPage implements OnInit {
     position: '',  
     number: '',
     email: '',    
+    isAdmin: false
   };
   password : string;
   constructor(  
@@ -26,16 +27,22 @@ export class GuestaddPage implements OnInit {
 
   ngOnInit() {
   }
-  addGuest() {
-    this.guestService.addGuest(this.guest).then(() => {
-      this.authService.signup(this.guest.email, this.password);
-      this.showToast('Guest added');
-    }, err => {
-      this.showToast('There was a problem adding your Guest :(');
-    });
+  addGuest() {      
+  
+    this.authService.signup(this.guest.email, this.password).then((value)=>{        
+      if(value){
+        this.guest.uid = value.user.uid
+        this.guestService.addGuest(this.guest).then(() => {
+          this.showToast('Guest added');
+        }, err => {
+          this.showToast('There was a problem adding your Guest :(');
+        });
+      }
+    })
+   
   }
   deleteGuest() {
-    this.guestService.deleteGuest(this.guest.id).then(() => {   
+    this.guestService.deleteGuest(this.guest.uid).then(() => {   
       this.showToast('Guest deleted');
     }, err => {
       this.showToast('There was a problem deleting your Guest :(');

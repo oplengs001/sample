@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'ceremony', loadChildren: './ceremony/ceremony.module#CeremonyPageModule' },
   { path: 'guestadd', loadChildren: './guestadd/guestadd.module#GuestaddPageModule' },
   { path: 'announcements', loadChildren: './announcements/announcements.module#AnnouncementsPageModule' },
+  { path: 'admin-announcement', loadChildren: './admin-announcement/admin-announcement.module#AdminAnnouncementPageModule' },
 ];
 
 @NgModule({

@@ -4,12 +4,13 @@ import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 export interface Guest {
-  id?: string,
+  uid?: string,
   first_name: string,
   last_name: string,
   position: string,  
   number: string,
   email: string,
+  isAdmin : boolean
 }
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,7 @@ export class GuestAddService {
     return this.GuestCollection.doc<Guest>(id).valueChanges().pipe(
       take(1),
       map(guest => {
-        guest.id = id;
+        guest.uid = id;
         return guest
       })
     );
@@ -50,7 +51,7 @@ export class GuestAddService {
   }
  
   updateGuest(guest: Guest): Promise<void> {
-    return this.GuestCollection.doc(guest.id).update(
+    return this.GuestCollection.doc(guest.uid).update(
       {       
         first_name: guest.first_name,
         last_name: guest.last_name,

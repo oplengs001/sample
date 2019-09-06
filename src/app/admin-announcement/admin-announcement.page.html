@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+     Admin Announcement
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked">Title</ion-label>
+    <ion-input [(ngModel)]="message_body.title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">body</ion-label>
+    <ion-input [(ngModel)]="message_body.body"></ion-input>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="success">
+    <ion-button expand="full" fill="clear" color="light" (click)="sendMessage()">
+      <ion-icon name="checkmark" slot="start"></ion-icon>
+      Send Message
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

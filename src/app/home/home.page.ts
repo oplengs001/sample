@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { Platform } from '@ionic/angular';
 @Component({
@@ -40,5 +40,8 @@ export class HomePage {
   }
   unsubscribeFromTopic() {
     this.fcm.unsubscribeFromTopic('enappd');
+  }
+  ngOnInit() {
+    this.subscribeToTopic()
   }
 }
