@@ -1,9 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>announcements</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Announcements
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-</ion-content>
+<ion-content>  
+  <ion-list>
+    <ion-item *ngFor="let announcement of (announcements | async)">
+        <ion-icon slot="start" name="megaphone"  color="medium"></ion-icon>    
+      <ion-label>
+        <h2>{{ announcement.title }} </h2>
+        <p>{{ announcement.body }} </p>
+      </ion-label>
+    </ion-item>    
+  </ion-list>
+</ion-content> 

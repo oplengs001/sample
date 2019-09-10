@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AnnouncementSaveService, Announcement } from "../services/announcement-save.service"
 interface NotifMessage  {
   title : string,
   body : string
@@ -16,11 +17,17 @@ export class AdminAnnouncementPage implements OnInit {
     title : '',
     body : ''
   }
+  announcement_body : Announcement
  
-  constructor( public http: HttpClient) { }
+  constructor( 
+    public http: HttpClient,
+    private announcementService : AnnouncementSaveService
+    
+    
+    ) { }
 
   ngOnInit() {
-
+    
     
     // admin.messaging().
   }
@@ -45,6 +52,15 @@ export class AdminAnnouncementPage implements OnInit {
     })
 
     .subscribe(data => {
+
+      if(data.statusText === "OK"){
+        var a_data = {
+          title : this.message_body.title,
+          body : this.message_body.body,
+          date_posted : Date.now()
+        }
+        this.announcementService.saveAnnouncement(a_data)
+      }
       console.log(data);
 
      }, error => {
