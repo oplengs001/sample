@@ -12,8 +12,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   email: string;
   password: string;
-
-  public appPages = [
+  appPages = [
     {
       title: 'Home',
       url: '/home',
@@ -38,27 +37,12 @@ export class AppComponent {
       title: 'Reception',
       url: '/reception',
       icon: 'wine'
-    },
-    {
-      title: 'Locator',
-      url: '/locator',
-      icon: 'walk'
-    },
+    },   
     {
       title: 'Announcements',
       url: '/announcements',
       icon: 'megaphone'
-    },
-    {
-      title: 'Admin-Announcements',
-      url: '/admin-announcement',
-      icon: 'megaphone'
-    },
-    {
-      title: 'Guest Add',
-      url: '/guestadd',
-      icon: 'megaphone'
-    }
+    }   
   ];
 
   constructor(
@@ -70,20 +54,57 @@ export class AppComponent {
   ) {
     this.initializeApp();
   }
+
   signup() {
     this.authService.signup(this.email, this.password);
     this.email = this.password = '';
   }
-
+  
   login() {
-    this.authService.login(this.email, this.password);
+    this.authService.login(this.email, this.password)    
     this.email = this.password = '';    
-  }
-
+  } 
   logout() {
     this.authService.logout();
   }
-  initializeApp() {
+  isAdmin(){
+    var currentUser = this.authService.user
+    currentUser.subscribe((user) => {
+      if (user) {     
+        this.authService.currentUserData(user.uid).then(profile =>{
+          if(profile.isAdmin){
+            this.appPages.push(
+              {
+                title: 'Guest Locator',
+                url: '/locator',
+                icon: 'walk'
+              },
+              {
+                title: 'Admin-Announcements',
+                url: '/admin-announcement',
+                icon: 'megaphone'
+              },
+              {
+                title: 'Guest Add',
+                url: '/guestadd',
+                icon: 'megaphone'
+              }
+            )
+          }
+        })  
+      }
+      else {
+        console.log("no user")
+      }
+   });
+  }
+  ngOnInit(){
+    this.isAdmin()
+   
+  }
+  initializeApp() {   
+    
+
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
