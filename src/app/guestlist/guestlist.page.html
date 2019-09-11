@@ -9,18 +9,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>  
+<ion-content> 
   <ion-list>
-    <ion-item *ngFor="let guest of (guests | async)">
-      <ion-avatar slot="start">
-        <img src="../../assets/icon/iconM.png">
-      </ion-avatar>
-      <ion-label>
-        <h2>{{ guest.first_name }}  {{guest.last_name}}</h2>
-        <h3>{{ guest.position }} </h3>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-      </ion-label>
-    </ion-item>
-    
+    <div *ngFor="let guest of (guests | async)">
+      <ion-item *ngIf="(guest.isAdmin == false)" >
+        <ion-avatar slot="start">
+          <img src="../../assets/icon/iconM.png">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ guest.first_name }}  {{guest.last_name}}</h2>
+          <h3>{{ guest.position }} </h3>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        </ion-label>
+      </ion-item>
+    </div>
   </ion-list>
 </ion-content> 

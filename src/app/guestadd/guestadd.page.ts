@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GuestAddService, Guest } from "../services/guest-add.service"
 import { ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
- 
+import { ToastService } from '../services/toast-service';
 @Component({
   selector: 'app-guestadd',
   templateUrl: './guestadd.page.html',
@@ -22,7 +22,7 @@ export class GuestaddPage implements OnInit {
   constructor(  
     private guestService : GuestAddService,
     private authService : AuthService,
-    private toastCtrl: ToastController,
+    private toastService: ToastService,
     ) { }
 
   ngOnInit() {
@@ -33,9 +33,9 @@ export class GuestaddPage implements OnInit {
       if(value){
         this.guest.uid = value.user.uid
         this.guestService.addGuest(this.guest).then(() => {
-          this.showToast('Guest added');
+          this.toastService.showToast('Guest added');
         }, err => {
-          this.showToast('There was a problem adding your Guest :(');
+          this.toastService.showToast('There was a problem adding your Guest :(');
         });
       }
     })
@@ -43,22 +43,16 @@ export class GuestaddPage implements OnInit {
   }
   deleteGuest() {
     this.guestService.deleteGuest(this.guest.uid).then(() => {   
-      this.showToast('Guest deleted');
+      this.toastService.showToast('Guest deleted');
     }, err => {
-      this.showToast('There was a problem deleting your Guest :(');
+      this.toastService.showToast('There was a problem deleting your Guest :(');
     });
   }
   updateGuest() {
     this.guestService.updateGuest(this.guest).then(() => {
-      this.showToast('Guest updated');
+      this.toastService.showToast('Guest updated');
     }, err => {
-      this.showToast('There was a problem updating your Guest :(');
+      this.toastService.showToast('There was a problem updating your Guest :(');
     });
-  }
-  showToast(msg) {
-    this.toastCtrl.create({
-      message: msg,
-      duration: 2000
-    }).then(toast => toast.present());
-  }
+  } 
 }

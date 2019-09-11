@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AnnouncementSaveService, Announcement } from "../services/announcement-save.service"
+import { ToastService } from '../services/toast-service';
 interface NotifMessage  {
   title : string,
   body : string
@@ -21,8 +22,8 @@ export class AdminAnnouncementPage implements OnInit {
  
   constructor( 
     public http: HttpClient,
-    private announcementService : AnnouncementSaveService
-    
+    private announcementService : AnnouncementSaveService,
+    private toastService : ToastService
     
     ) { }
 
@@ -60,6 +61,7 @@ export class AdminAnnouncementPage implements OnInit {
           date_posted : Date.now()
         }
         this.announcementService.saveAnnouncement(a_data)
+        this.toastService.showToast("Announcement Broadcasted!")
       }
       console.log(data);
 

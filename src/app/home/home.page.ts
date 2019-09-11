@@ -1,6 +1,7 @@
 import { Component , OnInit} from '@angular/core';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { Platform } from '@ionic/angular';
+import { ToastService } from '../services/toast-service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -8,13 +9,20 @@ import { Platform } from '@ionic/angular';
 })
 export class HomePage {
   pushes: any = [];
-  constructor(private fcm: FCM, public plt: Platform) {
+  constructor(
+    private fcm: FCM,
+    public plt: Platform,
+    private toastService: ToastService,
+    
+    ) {
     this.plt.ready()
       .then(() => {
         this.fcm.onNotification().subscribe(data => {
           if (data.wasTapped) {
+            this.toastService.showToast("New Notification!")
             console.log("Received in background");
-          } else {
+          } else {         
+            this.toastService.showNotif("glgl");
             console.log("Received in foreground");
           };
         });
@@ -42,6 +50,8 @@ export class HomePage {
     this.fcm.unsubscribeFromTopic('enappd');
   }
   ngOnInit() {
+
     this.subscribeToTopic()
+    
   }
 }
