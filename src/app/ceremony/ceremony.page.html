@@ -25,7 +25,7 @@
     <ion-card [hidden]="MapHide">
         <ion-card-header>
           <ion-card-subtitle>Batulao, Nasugbu, Batangas</ion-card-subtitle>
-          <ion-card-title >Destination to Church</ion-card-title>
+          <ion-card-title >Direction to Church</ion-card-title>
         </ion-card-header>           
       </ion-card>
     <div [hidden]="MapHide" #mapElement class="map"></div>
@@ -46,14 +46,22 @@
           <ion-icon name="walk"  slot="start"  color="medium"></ion-icon>
           <ion-label>Get me there </ion-label>
         </ion-item>
-    </ion-card>     
-    <!-- <form [formGroup]="directionForm" (ngSubmit)="calculateAndDisplayRoute(directionForm.value)">
-        <ion-item>
-          <ion-label position="floating">Destination</ion-label>
-          <ion-input formControlName="destination"></ion-input>
+        <ion-item (click)="calculateAndDisplayRouteToChurch()">
+          <ion-icon name="walk"  slot="start"  color="medium"></ion-icon>
+          <ion-label>Retrack Destination </ion-label>
         </ion-item>
-        <ion-button expand="full" type="submit" [disabled]="!directionForm.valid">Get Direction</ion-button>
-      </form> -->
+    </ion-card>     
+    <form [formGroup]="directionForm"  [hidden]="MapHide" (ngSubmit)="calculateAndDisplayRoute(directionForm.value)">
+      <ion-item>
+        <ion-label position="floating">Source</ion-label>
+        <ion-input formControlName="source"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Destination</ion-label>
+        <ion-input formControlName="destination" placeholder="Calueruga"></ion-input>
+      </ion-item>
+      <ion-button expand="full" type="submit" [disabled]="directionForm.invalid">Get Direction</ion-button>
+    </form>
      
         
 </ion-content>

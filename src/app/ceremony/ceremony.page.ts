@@ -42,6 +42,7 @@ export class CeremonyPage implements OnInit, AfterViewInit {
   }
   createDirectionForm() {
     this.directionForm = this.fb.group({
+      source: ['', Validators.required],
       destination: ['', Validators.required]
     });
   }
@@ -55,12 +56,31 @@ export class CeremonyPage implements OnInit, AfterViewInit {
       zoom: 13,
       center: {lat: 14.560521, lng: 121.025996}
     });
-    this.directionsDisplay.setMap(map);
+    this.directionsDisplay.setMap(map);    
+    // this.calculateAndDisplayRouteToChurch()
+  }
+  calculateAndDisplayRouteToChurch() {
+    const destination =  {lat:14.071402, lng:120.835937}
+    const that = this;
+    this.directionsService.route({
+      origin: this.currentLocation,
+      destination: destination,    
+      travelMode: 'DRIVING'
+    }, (response, status) => {
+      if (status === 'OK') {
+        that.directionsDisplay.setOptions({ preserveViewport: true });
+        that.directionsDisplay.setDirections(response);
+       
+      } else {
+        
+        window.alert('Directions request failed due to ' + status);
+      }
+    });
   }
   calculateAndDisplayRoute(formValues) {
     const that = this;
     this.directionsService.route({
-      origin: this.currentLocation,
+      origin: formValues.source,
       destination: formValues.destination,
       travelMode: 'DRIVING'
     }, (response, status) => {
