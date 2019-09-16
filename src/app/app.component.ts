@@ -19,15 +19,10 @@ export class AppComponent {
       icon: 'home'
     }, 
     {
-      title: 'Ceremony',
+      title: 'Wedding Program',
       url: '/ceremony',
       icon: 'easel'
-    },
-    {
-      title: 'Guest List',
-      url: '/guestlist',
-      icon: 'contacts'
-    },
+    },    
     {
       title: 'Itenerary',
       url: '/itenerary',
@@ -42,8 +37,13 @@ export class AppComponent {
       title: 'Announcements',
       url: '/announcements',
       icon: 'megaphone'
-    }   
-  ];
+    },
+    {
+      title: 'Messages',
+      url: '/messages',
+      icon: 'megaphone'
+    },
+  ]; 
 
   constructor(
     public authService: AuthService,
@@ -73,23 +73,26 @@ export class AppComponent {
       if (user) {     
         this.authService.currentUserData(user.uid).then(profile =>{
           if(profile.isAdmin){
-            this.appPages.push(
-              {
-                title: 'Guest Locator',
-                url: '/locator',
-                icon: 'walk'
-              },
-              {
-                title: 'Admin-Announcements',
-                url: '/admin-announcement',
-                icon: 'megaphone'
-              },
-              {
-                title: 'Guest Add',
-                url: '/guestadd',
-                icon: 'megaphone'
-              }
-            )
+            this.appPages.push({
+              title: 'Guest List',
+              url: '/guestlist',
+              icon: 'contacts'
+            },
+            {
+              title: 'Admin Chat',
+              url: '/admin-messaging',
+              icon: 'megaphone'
+            },
+            {
+              title: 'Admin-Announcements',
+              url: '/admin-announcement',
+              icon: 'megaphone'
+            },
+            {
+              title: 'Guest Add',
+              url: '/guestadd',
+              icon: 'megaphone'
+            },)
           }
         })  
       }

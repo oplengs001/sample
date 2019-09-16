@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AnnouncementSaveService, Announcement } from "../services/announcement-save.service"
+import { AnnouncementSaveService, Announcement } from "../services/announcements/announcement-save.service"
 import { ToastService } from '../services/toast-service';
 interface NotifMessage  {
   title : string,

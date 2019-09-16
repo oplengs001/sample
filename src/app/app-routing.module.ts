@@ -19,6 +19,9 @@ const routes: Routes = [
   { path: 'guestadd', loadChildren: './guestadd/guestadd.module#GuestaddPageModule' },
   { path: 'announcements', loadChildren: './announcements/announcements.module#AnnouncementsPageModule' },
   { path: 'admin-announcement', loadChildren: './admin-announcement/admin-announcement.module#AdminAnnouncementPageModule' },
+  { path: 'admin-messaging', loadChildren: './admin-messaging/admin-messaging.module#AdminMessagingPageModule' },
+  { path: 'messages', loadChildren: './messages/messages.module#MessagesPageModule' },
+  { path: 'gallery', loadChildren: './gallery/gallery.module#GalleryPageModule' },
 ];
 
 @NgModule({

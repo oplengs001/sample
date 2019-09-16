@@ -12,6 +12,7 @@ import {FCM} from '@ionic-native/fcm/ngx';
 
 
 import { AppComponent } from './app.component';
+// import { FooterComponent } from './footer/footer.component'
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from "../environments/environment"
 import { FormsModule } from '@angular/forms';
@@ -49,6 +50,7 @@ import 'gl-ionic-background-video';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: FirestoreSettingsToken, useValue: {} }
   ],
+ 
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

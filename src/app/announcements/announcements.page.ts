@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AnnouncementSaveService , Announcement } from "../services/announcement-save.service"
+import { AnnouncementSaveService , Announcement } from "../services/announcements/announcement-save.service"
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-announcements',

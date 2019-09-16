@@ -10,7 +10,7 @@ declare var google;
 })
 
 export class CeremonyPage implements OnInit, AfterViewInit {
-
+  
   @ViewChild('mapElement', {static: false}) mapNativeElement: ElementRef;
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
@@ -29,6 +29,7 @@ export class CeremonyPage implements OnInit, AfterViewInit {
     this.createDirectionForm();
   }
   ngOnInit() {
+    
     this.CardHide = false
     this.MapHide = true
   }
