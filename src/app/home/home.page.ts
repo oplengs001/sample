@@ -1,7 +1,7 @@
 import { Component , OnInit} from '@angular/core';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { Platform } from '@ionic/angular';
-import { ToastService } from '../services/toast-service';
+import { ToastService } from '../services/toaster/toast-service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',

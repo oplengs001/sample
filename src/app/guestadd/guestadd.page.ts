@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GuestAddService, Guest } from "../services/guest-add.service"
+import { GuestAddService, Guest } from "../services/guest-add/guest-add.service"
 import { ToastController } from '@ionic/angular';
-import { AuthService } from '../services/auth.service';
-import { ToastService } from '../services/toast-service';
+import { AuthService } from '../services/auth/auth.service';
+import { ToastService } from '../services/toaster/toast-service';
 @Component({
   selector: 'app-guestadd',
   templateUrl: './guestadd.page.html',

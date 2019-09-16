@@ -16,7 +16,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from "../environments/environment"
 import { FormsModule } from '@angular/forms';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './services/auth/auth.service'
 import { CommonModule } from '@angular/common';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
