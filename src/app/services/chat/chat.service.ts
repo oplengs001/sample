@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { firestore } from 'firebase/app';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable, combineLatest, of } from 'rxjs';
+import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class ChatService {
       .snapshotChanges()
       .pipe(
         map(doc => {
+          
           return { id: doc.payload.id, ...doc.payload.data() };
         })
       );
@@ -70,10 +72,17 @@ export class ChatService {
         const uids = Array.from(new Set(c.messages.map(v => v.uid)));
   
         // Firestore User Doc Reads
-        const userDocs = uids.map(u =>
-          this.afs.doc(`users/${u}`).valueChanges()
-        );
-  
+        const userDocs = uids.map(u => 
+            // this.afs.doc(`guest/${u}`).valueChanges()
+          firestore().collection("guests").where("uid","==",u).get().then( userGuestProfile=>{
+              var profile 
+                userGuestProfile.forEach( function(doc) {
+                  // doc.data() is never undefined for query doc snapshots      
+                  profile = doc.data()             
+                });
+              return profile
+            })
+        );        
         return userDocs.length ? combineLatest(userDocs) : of([]);
       }),
       map(arr => {

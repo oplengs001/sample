@@ -9,7 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import {FCM} from '@ionic-native/fcm/ngx';
-
+import { AutosizeModule } from 'ngx-autosize';
 
 import { AppComponent } from './app.component';
 // import { FooterComponent } from './footer/footer.component'
@@ -36,7 +36,8 @@ import 'gl-ionic-background-video';
     AngularFireAuthModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AutosizeModule
   ],
   providers: [
     StatusBar,
