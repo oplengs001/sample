@@ -39,7 +39,7 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="chat$ | async as chat">
   <ion-toolbar color="light">
     <ion-row no-padding align-items-center>
       <ion-col size="10">
