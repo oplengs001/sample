@@ -12,16 +12,23 @@ export class MessagesPage implements OnInit {
   chat$: Observable<any>;
   newMsg: string; 
   currentUser :string;
+  id: any;
   constructor(
     public cs: ChatService,
     public auth : AuthService,
     private route: ActivatedRoute,
-  ) {}
+  ) {
+    this.route.queryParams.subscribe(params => {
+      this.id = params["group_id"];      
+  });
+  }
 
   ngOnInit() {
     // this.cs.create()
+  
     this.currentUser = this.auth.currentUserId()
-    const source = this.cs.get("x4lDbvzmwi5WHKgEQfQo");
+    // const source = this.cs.get("Entourage");
+    const source = this.cs.get(this.id);
     this.chat$ = this.cs.joinUsers(source);
     
   }
@@ -31,7 +38,7 @@ export class MessagesPage implements OnInit {
     this.newMsg = '';
   }
 
-  trackByCreated(i, msg) {
+  trackByCreated(i, msg) {    
     return msg.createdAt;
   }
 

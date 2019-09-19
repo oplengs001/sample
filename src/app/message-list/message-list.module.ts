@@ -5,11 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AdminMessagingPage } from './admin-messaging.page';
+import { MessageListPage } from './message-list.page';
+
 const routes: Routes = [
   {
     path: '',
-    component: AdminMessagingPage
+    component: MessageListPage
   }
 ];
 
@@ -18,10 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),    
-    
+    RouterModule.forChild(routes)
   ],
-  declarations: [AdminMessagingPage],
-  // entryComponents: [ CreateGroupPage ]
+  declarations: [MessageListPage]
 })
-export class AdminMessagingPageModule {}
+export class MessageListPageModule {}

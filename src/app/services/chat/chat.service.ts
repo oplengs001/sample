@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { firestore } from 'firebase/app';
@@ -7,16 +7,40 @@ import { map, switchMap } from 'rxjs/operators';
 import { Observable, combineLatest, of } from 'rxjs';
 import { async } from '@angular/core/testing';
 
+export interface GroupChat {
+  count: number,
+  createdAt : number,
+  group_name : string,
+  message:[]
+}
 @Injectable({
   providedIn: 'root'
 })
+
 export class ChatService {
+  private group_chats: Observable<GroupChat[]>;
+  private gcCollection: AngularFirestoreCollection<GroupChat>;
   constructor(
     private afs: AngularFirestore,
     private auth: AuthService,
     private router: Router
-  ) {}
+  ){
 
+    this.gcCollection = this.afs.collection<GroupChat>('chats');
+    this.group_chats = this.gcCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+
+  }
+  getAllChat(): Observable<GroupChat[]> {
+    return this.group_chats;
+  }
   get(chatId) {
     return this.afs
       .collection<any>('chats')
@@ -29,20 +53,18 @@ export class ChatService {
         })
       );
   }
-
-  async create() {
-    const uid  = await this.auth.currentUserId();
-
+ 
+  async create(group_details : any) {    
+    const  uid  = await this.auth.currentUserId();
+    var {group_name,group_id} = group_details    
     const data = {
       uid,
+      group_name : group_name, 
       createdAt: Date.now(),
       count: 0,
       messages: []
     };
-
-    const docRef = await this.afs.collection('chats').add(data);
-
-    return this.router.navigate(['chats', docRef.id]);
+    return await this.afs.collection('chats').doc(group_id).set(data)        
   }
 
   async sendMessage(chatId, content) {
@@ -61,6 +83,7 @@ export class ChatService {
       });
     }
   }
+  
   joinUsers(chat$: Observable<any>) {
     let chat;
     const joinKeys = {};

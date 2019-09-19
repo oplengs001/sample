@@ -4,7 +4,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { AngularFireModule } from '@angular/fire';
 import { FirestoreSettingsToken ,AngularFirestore  } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy  } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
+import { CreateGroupPageModule } from '../app/modals/create-group/create-group.module'
 import 'gl-ionic-background-video';
 
 @NgModule({
@@ -37,7 +38,8 @@ import 'gl-ionic-background-video';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    AutosizeModule
+    AutosizeModule,
+    CreateGroupPageModule
   ],
   providers: [
     StatusBar,

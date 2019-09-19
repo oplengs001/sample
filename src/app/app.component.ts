@@ -40,7 +40,7 @@ export class AppComponent {
     },
     {
       title: 'Messages',
-      url: '/messages',
+      url: '/message-list',
       icon: 'megaphone'
     },
   ]; 
@@ -79,7 +79,7 @@ export class AppComponent {
               icon: 'contacts'
             },
             {
-              title: 'Admin Chat',
+              title: 'Group Chat',
               url: '/admin-messaging',
               icon: 'megaphone'
             },

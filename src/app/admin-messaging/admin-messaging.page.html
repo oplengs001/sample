@@ -4,14 +4,34 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Admin Message
+      Group Chat List
     </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="openModal()">Create</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+      <div *ngFor="let gc of (group_chats | async)">
+          <ion-item (click)="presentActionSheet(gc)">
+              <ion-avatar slot="start">
+                  <img src="../../assets/icon/iconM.png">
+              </ion-avatar>
+              <ion-label>
+                <h2>{{gc.group_name}}</h2>
+                <h3>{{gc.createdAt | date: 'dd/MM/yyyy hh:hh a'}}</h3>
+                <p></p>
+              </ion-label>
+            </ion-item>
+      </div>
+  </ion-list>  
 </ion-content>
+
 <ion-footer>
  
 </ion-footer>
+
+
+

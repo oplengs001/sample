@@ -22,6 +22,8 @@ const routes: Routes = [
   { path: 'admin-messaging', loadChildren: './admin-messaging/admin-messaging.module#AdminMessagingPageModule' },
   { path: 'messages', loadChildren: './messages/messages.module#MessagesPageModule' },
   { path: 'gallery', loadChildren: './gallery/gallery.module#GalleryPageModule' },
+  { path: 'create-group', loadChildren: './modals/create-group/create-group.module#CreateGroupPageModule' },
+  { path: 'message-list', loadChildren: './message-list/message-list.module#MessageListPageModule' },
 ];
 
 @NgModule({

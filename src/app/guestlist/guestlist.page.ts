@@ -10,10 +10,10 @@ import { Observable } from 'rxjs';
 export class GuestlistPage implements OnInit {
   private guests: Observable<Guest[]>;
  
-  constructor(private ideaService: GuestAddService) { }
+  constructor(private guestServ: GuestAddService) { }
  
   ngOnInit() {
-    this.guests = this.ideaService.getGuests();
+    this.guests = this.guestServ.getGuests();
   }
 
 }

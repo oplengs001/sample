@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable} from 'rxjs';
-import { AppComponent} from "../../app.component"
-import { async } from 'q';
-import { promise } from 'protractor';
+
 
 @Injectable()
 export class AuthService {

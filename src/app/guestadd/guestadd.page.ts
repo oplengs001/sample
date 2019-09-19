@@ -16,6 +16,7 @@ export class GuestaddPage implements OnInit {
     position: '',  
     number: '',
     email: '',    
+    chat_id : [],
     isAdmin: false
   };
   password : string;

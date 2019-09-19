@@ -1,27 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AdminMessagingPage } from './admin-messaging.page';
+import { CreateGroupPage } from './create-group.page';
+
 const routes: Routes = [
   {
     path: '',
-    component: AdminMessagingPage
+    component: CreateGroupPage
   }
 ];
 
 @NgModule({
+  declarations: [CreateGroupPage],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),    
-    
+    ReactiveFormsModule,
+    RouterModule.forChild(routes)
   ],
-  declarations: [AdminMessagingPage],
-  // entryComponents: [ CreateGroupPage ]
+  entryComponents: [ CreateGroupPage ]
 })
-export class AdminMessagingPageModule {}
+export class CreateGroupPageModule {}

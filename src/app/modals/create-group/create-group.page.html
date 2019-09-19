@@ -1,0 +1,36 @@
+
+  <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Group Form</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">Cancel</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content fullscreen>
+        <form [formGroup]="GroupForm" (ngSubmit)="addGroup(GroupForm)">
+        <ion-list>           
+              <ion-item>
+                  <ion-label position="stacked">Group ID</ion-label>
+                  <ion-input formControlName="group_id"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label position="stacked">Group Name</ion-label>
+                  <ion-input formControlName="group_name"></ion-input>
+              </ion-item>                    
+              <ion-item>
+                  <ion-label>Group Members</ion-label>
+                  <ion-select multiple="true" cancelText="Cancel" okText="Save!"  formControlName="group_members">
+                    <div *ngFor="let guest of (guests | async)">
+                    <ion-select-option  *ngIf="(guest.isAdmin == false)"
+                    value={{guest.uid}}
+                    >{{guest.first_name}} {{guest.last_name}}
+                      </ion-select-option>
+                    </div>            
+                  </ion-select>
+                </ion-item>
+                   
+        </ion-list>
+        <ion-button expand="full" type="submit" [disabled]="GroupForm.invalid">Save Group</ion-button>
+      </form>
+      </ion-content>
