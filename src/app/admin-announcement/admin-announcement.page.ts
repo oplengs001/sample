@@ -29,15 +29,11 @@ export class AdminAnnouncementPage implements OnInit {
 
   ngOnInit() {
     
-    
-    // admin.messaging().
   }
   sendMessage() {
     let headers = new HttpHeaders()
     .set('Content-Type', 'application/json' )
     .set('Authorization' , 'key=AIzaSyDSNAyyH5RbR6bQaOQ6O26t-iUw0_GCVYA')   
-
-
     let postData =  {
         "notification" :{
             "title": this.message_body.title,

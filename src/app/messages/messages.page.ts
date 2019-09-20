@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth/auth.service';
 export class MessagesPage implements OnInit {
   chat$: Observable<any>;
   newMsg: string; 
-  currentUser :string;
+  currentUser :string;  
   id: any;
   constructor(
     public cs: ChatService,

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AuthService } from '../auth/auth.service';
+import { NotificationService } from '../alerts/notification.service';
 import { Router } from '@angular/router';
 import { firestore } from 'firebase/app';
 import { map, switchMap } from 'rxjs/operators';
@@ -23,7 +24,8 @@ export class ChatService {
   constructor(
     private afs: AngularFirestore,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private notif : NotificationService
   ){
 
     this.gcCollection = this.afs.collection<GroupChat>('chats');
@@ -80,6 +82,12 @@ export class ChatService {
       const ref = this.afs.collection('chats').doc(chatId);
       return ref.update({
         messages: firestore.FieldValue.arrayUnion(data)
+      }).then(()=>{
+        this.notif.createNotif(chatId)
+        console.log(data)
+      }).catch(function(error) {
+        // The document probably doesn't exist.
+        console.error("Error updating document: ", error);
       });
     }
   }
