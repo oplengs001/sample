@@ -15,7 +15,7 @@ export class FooterComponent   {
     this.router.navigateByUrl('/announcements');
   }
   goToMessages() {
-    this.router.navigateByUrl('/messages');
+    this.router.navigateByUrl('/message-list');
   }
   goToHome() {
     this.router.navigateByUrl('/home');

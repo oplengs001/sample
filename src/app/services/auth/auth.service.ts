@@ -35,8 +35,8 @@ export class AuthService {
   currentUserDisplayName(): string {
     return this.userDetails.displayName || this.userDetails.email; 
   }
-  currentUserData(user_id : string):Promise<any> {   
-    return firebase.firestore().collection("guests").where("uid","==",user_id).get()
+  currentUserData():Promise<any> {   
+    return firebase.firestore().collection("guests").where("uid","==",this.currentUserId()).get()
       .then( userGuestProfile=>{
         var profile 
           userGuestProfile.forEach( function(doc) {

@@ -1,31 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { ChatService , GroupChat} from '../services/chat/chat.service';
-import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth/auth.service'
 import { NavController } from '@ionic/angular';
 import { NavigationExtras  } from '@angular/router';
+import { debug } from 'util';
 @Component({
   selector: 'app-message-list',
   templateUrl: './message-list.page.html',
   styleUrls: ['./message-list.page.scss'],
 })
 export class MessageListPage implements OnInit {
-  private group_chats: Observable<GroupChat[]>;
-  constructor(
-    private ChatServ : ChatService,
+  
+  private currentChats : any
+  constructor( 
+    private authServ : AuthService,
     private navCtrl : NavController,
 
   ) {
-    this.group_chats = this.ChatServ.getAllChat();
-   
+
+    this.authServ.currentUserData().then((data)=>{   
+      this.currentChats = data.chat_id  
+    })
    }
 
   ngOnInit() {
-
+    
   }
-  goToChat (group) {
+  goToChat (group_name) {
     let navigationExtras: NavigationExtras = {
         queryParams: {
-            group_id: group.id,
+            group_id: group_name,
         }
     };
     this.navCtrl.navigateForward(['messages'], navigationExtras);

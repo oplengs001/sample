@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController,ActionSheetController  } from '@ionic/angular';
 import { CreateGroupPage } from '../modals/create-group/create-group.page';
 import { ChatService , GroupChat} from '../services/chat/chat.service';
+import { NavController } from '@ionic/angular';
+import { NavigationExtras  } from '@angular/router';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-admin-messaging',
@@ -14,6 +16,7 @@ export class AdminMessagingPage implements OnInit {
     public modalController: ModalController,
     private actionSheetController : ActionSheetController,
     private ChatServ : ChatService,
+    private navCtrl : NavController,
     ) {
       this.group_chats = this.ChatServ.getAllChat();
   }
@@ -30,6 +33,11 @@ export class AdminMessagingPage implements OnInit {
   }
   async presentActionSheet(group) {
     const {id} = group
+    let navigationExtras: NavigationExtras = {
+        queryParams: {
+            group_id: group.id,
+        }
+    };
     const actionSheet = await this.actionSheetController.create({
       header: 'Actions',
       buttons: [
@@ -37,7 +45,7 @@ export class AdminMessagingPage implements OnInit {
         text: 'Go to Chat',
         icon: 'arrow-dropright-circle',
         handler: () => {
-          
+          this.navCtrl.navigateForward(['messages'], navigationExtras);
           console.log('Play clicked');
         }      
       },

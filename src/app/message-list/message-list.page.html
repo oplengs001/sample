@@ -11,17 +11,17 @@
   
 <ion-content>
     <ion-list>
-        <div *ngFor="let gc of (group_chats | async)">
-            <ion-item (click)="goToChat(gc)">
+        <div *ngFor="let gc of currentChats">
+            <ion-item (click)="goToChat(gc)" ngI>
                 <ion-avatar slot="start">
                     <img src="../../assets/icon/iconM.png">
                 </ion-avatar>
                 <ion-label>
-                  <h2>{{gc.group_name}}</h2>
-                  <h3>{{gc.createdAt | date: 'dd/MM/yyyy hh:hh a'}}</h3>
+                  <h2>{{gc}}</h2>
+                  <h3>Lorem Ipsum</h3>
                   <p></p>
                 </ion-label>
-              </ion-item>
+            </ion-item>
         </div>
     </ion-list> 
 </ion-content>

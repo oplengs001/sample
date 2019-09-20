@@ -71,7 +71,7 @@ export class AppComponent {
     var currentUser = this.authService.user
     currentUser.subscribe((user) => {
       if (user) {     
-        this.authService.currentUserData(user.uid).then(profile =>{
+        this.authService.currentUserData().then(profile =>{
           if(profile.isAdmin){
             this.appPages.push({
               title: 'Guest List',
