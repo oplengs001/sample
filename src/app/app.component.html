@@ -21,11 +21,12 @@
         </ion-list>
       </ion-content>
     </ion-menu>
-    <ion-router-outlet main></ion-router-outlet>   
+    <!-- <ion-router-outlet main></ion-router-outlet>    -->
   </ion-split-pane>
-
+  <app-footer></app-footer>     
 </ion-app>
-  <ion-app *ngIf="!(authService.user | async)">
+
+<ion-app *ngIf="!(authService.user | async)">
       <ion-content force-overscroll="false">
       <gl-background-video src="../assets/video/background-video.mp4" poster="../assets/video/background-video-image.png"></gl-background-video>
       <div class="page-centered-element">

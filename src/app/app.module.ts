@@ -23,6 +23,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { CreateGroupPageModule } from '../app/modals/create-group/create-group.module'
+import { ComponentsModule } from "../app/componenthandler/components.module"
 import 'gl-ionic-background-video';
 
 @NgModule({
@@ -31,6 +32,7 @@ import 'gl-ionic-background-video';
   imports: [
     BrowserModule,
     CommonModule,
+    ComponentsModule,
     FormsModule, 
     IonicModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),

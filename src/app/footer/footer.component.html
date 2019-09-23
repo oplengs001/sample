@@ -1,17 +1,30 @@
-<ion-footer>
-  <ion-toolbar>
-    <ion-buttons slot="secondary">
-      <ion-button (click)="goToNotifications()">
-        <ion-icon slot="icon-only" name="md-notifications"></ion-icon>
-      </ion-button>
-    </ion-buttons>
 
-    <ion-title (click)="goToHome()">Home</ion-title>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+      <!-- <ion-badge>6</ion-badge> -->
+    </ion-tab-button>
 
-    <ion-buttons slot="primary">
-      <ion-button (click)="goToMessages()">
-        <ion-icon slot="icon-only" name="md-chatboxes"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>
+    <ion-tab-button tab="announcements">
+      <ion-icon name="notifications"></ion-icon>
+      <ion-label>Notifications</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="images">
+      <ion-icon name="images"></ion-icon>
+      <ion-label>Images</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="itenerary">
+      <ion-icon name="list-box"></ion-icon>
+      <ion-label>Itenerary</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="message-list">
+      <ion-icon name="chatboxes"></ion-icon>
+      <ion-label>Chat</ion-label>
+    </ion-tab-button>
+    
+  </ion-tab-bar>
+</ion-tabs>
