@@ -3,7 +3,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth/auth.service'
-
+import {  Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -12,6 +12,7 @@ import { AuthService } from './services/auth/auth.service'
 export class AppComponent {
   email: string;
   password: string;
+  adminUser : boolean;
   appPages = [
     {
       title: 'Home',
@@ -49,7 +50,8 @@ export class AppComponent {
     public authService: AuthService,
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private router : Router
     
   ) {
     this.initializeApp();
@@ -73,6 +75,7 @@ export class AppComponent {
       if (user) {     
         this.authService.currentUserData().then(profile =>{
           if(profile.isAdmin){
+            this.adminUser = true
             this.appPages.push({
               title: 'Guest List',
               url: '/guestlist',
@@ -97,13 +100,17 @@ export class AppComponent {
         })  
       }
       else {
-        console.log("no user")
+        this.adminUser = false
       }
    });
   }
   ngOnInit(){
     this.isAdmin()
    
+  }
+  reRoute(page:string){
+    console.log(page)
+    this.router.navigateByUrl(page);
   }
   initializeApp() {   
     

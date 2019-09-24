@@ -67,7 +67,7 @@ export class HomePage {
   unsubscribeFromTopic() {
     this.fcm.unsubscribeFromTopic('enappd');
   }
-  ReRoute(page:string){
+  reRoute(page:string){
     console.log(page)
     this.router.navigateByUrl(page);
   }

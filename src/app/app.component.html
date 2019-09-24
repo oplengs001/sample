@@ -21,8 +21,25 @@
         </ion-list>
       </ion-content>
     </ion-menu>
+    
     <!-- <ion-router-outlet main></ion-router-outlet>    -->
   </ion-split-pane>
+  <ion-fab horizontal="end" vertical="top" slot="fixed" *ngIf=this.adminUser>
+    <ion-fab-button color="dark">
+      <ion-icon name="bowtie"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list>
+      <ion-fab-button (click)="reRoute('guestadd')"color="light" data-desc="Add User">
+        <ion-icon name="person-add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="reRoute('admin-announcement')"color="light" data-desc="Create Announcement">
+        <ion-icon name="megaphone"></ion-icon>     
+      </ion-fab-button>
+      <ion-fab-button (click)="reRoute('admin-messaging')" color="light" data-desc="Create Group">
+        <ion-icon name="contacts"></ion-icon>        
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
   <app-footer></app-footer>     
 </ion-app>
 
