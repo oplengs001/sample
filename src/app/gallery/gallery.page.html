@@ -1,9 +1,61 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>gallery</ion-title>
+    <ion-title>Gallery</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-</ion-content>
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed" >
+        <ion-fab-button color="primary">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+          <ion-fab-button (click)="reRoute('guestadd')"color="primary" data-desc="Upload Image">
+            <ion-icon name="image"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button (click)="reRoute('admin-announcement')"color="primary" data-desc="My Uploads">
+            <ion-icon name="photos"></ion-icon>     
+          </ion-fab-button>        
+        </ion-fab-list>
+      </ion-fab>
+    <ion-segment [(ngModel)]="galleryType" color="primary">
+      <ion-segment-button value="regular">
+            <ion-icon name="image"></ion-icon>
+        </ion-segment-button>  
+      <ion-segment-button value="pinterest">
+          <ion-icon name="grid"></ion-icon>
+        </ion-segment-button>        
+    </ion-segment>
+    <br>
+    <div [ngSwitch]="galleryType">
+      <!-- Responsive Layout with Ion Grid-->
+        <div class="images-single" *ngSwitchCase="'regular'">
+          <div class="single-count-image" *ngFor="let image of [1,2,3,4,5]">
+              <ion-card no-padding> 
+                <ion-card-header>               
+                    <ion-item lines="none" no-padding >
+                        <ion-avatar slot="start">
+                            <img class="profile-img" src="assets/images/avatar.svg">
+                        </ion-avatar>
+                        <ion-label>
+                          Tom Misch                     
+                        </ion-label>                 
+                        <ion-icon name="more" slot="end"></ion-icon>         
+                    </ion-item>   
+                  </ion-card-header>
+                  <ion-card-content>
+                    <img src="assets/images/g{{image}}.jpg">
+                  </ion-card-content>
+                  
+              </ion-card>
+          </div>
+        </div>     
+        <div class="images" *ngSwitchCase="'pinterest'">    
+            <div class="one-image" *ngFor="let image of [1,2,3,4,5]">
+              <img src="assets/images/g{{image}}.jpg">
+            </div>
+        </div>   
+      <br>       
+      <!-- More Pinterest floating gallery style -->   
+    </div>
+  </ion-content>
