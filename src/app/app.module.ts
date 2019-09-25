@@ -18,7 +18,8 @@ import { environment } from "../environments/environment"
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth/auth.service'
 import { CommonModule } from '@angular/common';
-
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
@@ -49,7 +50,9 @@ import 'gl-ionic-background-video';
     FCM,
     AuthService,
     Geolocation,
+    WebView,
     NativeGeocoder,
+    ImagePicker,
     AppVersion,
     AngularFirestore,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
