@@ -103,16 +103,10 @@ export class ChatService {
         const uids = Array.from(new Set(c.messages.map(v => v.uid)));
   
         // Firestore User Doc Reads
-        const userDocs = uids.map(u => 
-            // this.afs.doc(`guest/${u}`).valueChanges()
-          firestore().collection("guests").where("uid","==",u).get().then( userGuestProfile=>{
-              var profile 
-                userGuestProfile.forEach( function(doc) {
-                  // doc.data() is never undefined for query doc snapshots      
-                  profile = doc.data()             
-                });
-              return profile
-            })
+        const userDocs = uids.map(u =>         
+          firestore().collection("guests").doc(`${u}`).get().then( userGuestProfile=>{
+            return userGuestProfile.data()
+          })
         );        
         return userDocs.length ? combineLatest(userDocs) : of([]);
       }),

@@ -16,6 +16,9 @@
           <ion-fab-button (click)="openImagePicker()"color="primary" data-desc="My Uploads">
             <ion-icon name="photos"></ion-icon>     
           </ion-fab-button>        
+          <ion-fab-button (click)="imageUploadTest()"color="primary" data-desc="Test Upload">
+            <ion-icon name="photos"></ion-icon>     
+          </ion-fab-button>   
         </ion-fab-list>
       </ion-fab>
     <ion-segment [(ngModel)]="galleryType" color="primary">
@@ -30,21 +33,21 @@
     <div [ngSwitch]="galleryType">
       <!-- Responsive Layout with Ion Grid-->
         <div class="images-single" *ngSwitchCase="'regular'">
-          <div class="single-count-image" *ngFor="let image of [1,2,3,4,5]">
+          <div class="single-count-image" *ngFor="let post of (posts | async)">
               <ion-card no-padding> 
                 <ion-card-header>               
                     <ion-item lines="none" no-padding >
                         <ion-avatar slot="start">
-                            <img class="profile-img" src="assets/images/avatar.svg">
+                            <img class="profile-img" src="[assets/images/avatar.svg]">
                         </ion-avatar>
                         <ion-label>
-                          Tom Misch                     
+                          {{post.uploaded_by}}
                         </ion-label>                 
                         <ion-icon name="more" slot="end"></ion-icon>         
                     </ion-item>   
                   </ion-card-header>
                   <ion-card-content>
-                    <img src="assets/images/g{{image}}.jpg">
+                    <img src="{{post.url}}">
                   </ion-card-content>
                   
               </ion-card>

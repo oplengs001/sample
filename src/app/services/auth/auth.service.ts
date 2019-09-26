@@ -36,20 +36,20 @@ export class AuthService {
     return this.userDetails.displayName || this.userDetails.email; 
   }
   currentUserData():Promise<any> {   
-    return firebase.firestore().collection("guests").where("uid","==",this.currentUserId()).get()
-      .then( userGuestProfile=>{
-        var profile 
-          userGuestProfile.forEach( function(doc) {
-            // doc.data() is never undefined for query doc snapshots      
-            profile = doc.data()             
-          });
-        return profile
+    return firebase.firestore().collection("guests").doc(this.currentUserId()).get()
+      .then( userGuestProfile=>{      
+        return userGuestProfile.data()
       })
   }
   currentUserObservable(): any {
     return this.firebaseAuth.idTokenResult
   }
-  
+  getUserDataByID(id):Promise<any> {   
+    return firebase.firestore().collection("guests").doc(id).get()
+      .then( userGuestProfile=>{      
+        return userGuestProfile.data()
+      })
+  }
   signup(email: string, password: string) :Promise<any>  {
     return this.firebaseAuth
       .auth
