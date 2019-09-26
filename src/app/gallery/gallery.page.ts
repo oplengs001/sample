@@ -19,6 +19,7 @@ export class GalleryPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.imageService.getFiles()
   }
 
   openImagePicker(){
