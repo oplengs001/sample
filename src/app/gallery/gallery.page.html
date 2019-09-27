@@ -25,9 +25,9 @@
           <ion-fab-button (click)="openImagePicker()"color="primary" data-desc="My Uploads">
             <ion-icon name="photos"></ion-icon>     
           </ion-fab-button>        
-          <ion-fab-button (click)="imageUploadTest()"color="primary" data-desc="Test Upload">
+          <!-- <ion-fab-button (click)="imageUploadTest()"color="primary" data-desc="Test Upload">
             <ion-icon name="photos"></ion-icon>     
-          </ion-fab-button>   
+          </ion-fab-button>    -->
         </ion-fab-list>
       </ion-fab>
    
@@ -35,24 +35,24 @@
     <div [ngSwitch]="galleryType">
       <!-- Responsive Layout with Ion Grid-->
         <div class="images-single" *ngSwitchCase="'regular'">
-          <div class="single-count-image" *ngFor="let post of (posts | async) trackBy: trackByCreated">
+          <div class="single-count-image" *ngFor="let post of (posts | async); trackBy: trackByCreated" >
               <ion-card no-padding> 
                 <ion-card-header>               
                     <ion-item lines="none" no-padding >
                         <ion-avatar slot="start">
-                            <img class="profile-img" src="[assets/images/avatar.svg]">
+                            <img class="profile-img" src="assets/images/avatar.svg">
                         </ion-avatar>
                         <ion-label>
                           <!-- {{post.uploaded_by}} -->
                           {{post.user.first_name}} {{post.user.last_name}} 
+                          <p>{{ post.date_uploaded | date:'short' }}</p>
                         </ion-label>                 
-                        <ion-icon name="more" slot="end"></ion-icon>         
+                        <ion-icon name="more" slot="end" (click)="presentActionSheet(post)"></ion-icon>         
                     </ion-item>   
                   </ion-card-header>
                   <ion-card-content>
                     <img src="{{post.url}}">
-                  </ion-card-content>
-                  
+                  </ion-card-content>                  
               </ion-card>
           </div>
         </div>     
@@ -60,7 +60,7 @@
             <div class="one-image"  *ngFor="let post of (posts | async) trackBy: trackByCreated">
               <img src="{{post.url}}">
             </div>
-        </div>   
+        </div>        
       <br>       
       <!-- More Pinterest floating gallery style -->   
     </div>

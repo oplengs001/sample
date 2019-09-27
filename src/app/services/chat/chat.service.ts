@@ -107,8 +107,7 @@ export class ChatService {
           firestore().collection("guests").doc(`${u}`).get().then( userGuestProfile=>{
             return userGuestProfile.data()
           })
-        );     
-        debugger   
+        );
         return userDocs.length ? combineLatest(userDocs) : of([]);
       }),
       map(arr => {

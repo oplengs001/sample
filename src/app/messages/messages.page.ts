@@ -39,6 +39,7 @@ export class MessagesPage implements OnInit {
   }
 
   trackByCreated(i, msg) {    
+    
     return msg.createdAt;
   }
 

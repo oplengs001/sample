@@ -57,6 +57,41 @@ export class ImagesService {
   }
   addImageRef(imageRef: ImageItem[]): Promise<any> {
     return this.ImageCollection.doc(this.itemRef.file_name).set(imageRef);
+  } 
+  uploadImage(imageURI){
+    return new Promise<any>((resolve, reject) => {
+      var uid = this.makeid(10)
+      var itemRef = this.itemRef
+      var cUID = this.authServ.currentUserId()
+      
+      let imageRef = this.storageRef.child('image').child(uid);  
+      this.encodeImageUri(imageURI, function(image64){
+        imageRef.putString(image64, 'data_url')
+        .then(async snapshot => {
+          console.log(snapshot)
+          var item_path = snapshot.metadata.fullPath        
+          var file_name = snapshot.metadata.name
+          await snapshot.ref.getDownloadURL().then((downloadURL) => {    
+            itemRef.url = downloadURL
+            itemRef.item_path = item_path       
+            itemRef.uploaded_by = cUID
+            itemRef.file_name  = file_name
+          })
+          resolve(itemRef)
+        }, err => {
+          console.log(err)
+          reject(err);
+        })
+      })
+    
+    })
+  }
+  deleteImageRef(id: string): Promise<any> {    
+    return this.ImageCollection.doc(id).delete();
+  }
+  deleteImageStorage(imageName:string){
+    this.storageRef.child("image").child(imageName).delete()
+    console.log("deleted")
   }
   getImage() :any{
     var storage = firebase.storage();
@@ -86,35 +121,7 @@ export class ImagesService {
       console.log(error)
       // Uh-oh, an error occurred!
     });
-  }
-  uploadImage(imageURI){
-    return new Promise<any>((resolve, reject) => {
-      var uid = this.makeid(10)
-      var itemRef = this.itemRef
-      var cUID = this.authServ.currentUserId()
-      
-      let imageRef = this.storageRef.child('image').child(uid);  
-      this.encodeImageUri(imageURI, function(image64){
-        imageRef.putString(image64, 'data_url')
-        .then(async snapshot => {
-          console.log(snapshot)
-          var item_path = snapshot.metadata.fullPath        
-          var file_name = snapshot.metadata.name
-          await snapshot.ref.getDownloadURL().then((downloadURL) => {    
-            itemRef.url = downloadURL
-            itemRef.item_path = item_path       
-            itemRef.uploaded_by = cUID
-            itemRef.file_name  = file_name
-          })
-          resolve(itemRef)
-        }, err => {
-          console.log(err)
-          reject(err);
-        })
-      })
-    
-    })
-  }
+  }  
   saveImageRef (imageURI):Promise <any>{      
      return this.uploadImage(imageURI).then((itemRef) => {            
         this.addImageRef(itemRef).then((added) => {
@@ -126,6 +133,14 @@ export class ImagesService {
         });  
     })
    
+  }  
+  removeImageRef (post:any){
+    const {file_name} = post
+    this.deleteImageRef(file_name)
+    .then(()=>{
+     return this.deleteImageStorage(file_name)
+    })
+    // .catch(err=>{ console.log(err) return err})
   }
   encodeImageUri(imageUri, callback) {
     var c = document.createElement('canvas');
@@ -177,6 +192,6 @@ export class ImagesService {
        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
- }
+  }
  
 }

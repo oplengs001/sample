@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActionSheetController} from '@ionic/angular';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { ImagesService ,ImageItem } from "../services/uploads/images.service"
+import { AuthService } from "../services/auth/auth.service"
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { ToastService } from '../services/toaster/toast-service';
 import { Observable } from 'rxjs';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.page.html',
@@ -14,17 +17,21 @@ export class GalleryPage implements OnInit {
   private posts: Observable<ImageItem[]>;
   fileUploads: any[];
   galleryType = 'regular';
-  imagePath : string
+  imagePath : string;
+  currentUser :string;  
   constructor(
     private imagePicker : ImagePicker,
     private imageService : ImagesService,
     private toaster : ToastService,
-    private webview : WebView
+    private authServ : AuthService,
+    private actionSheetController : ActionSheetController,
+    private webview : WebView,
+    private alertController : AlertController
   ) { }
 
   ngOnInit() {      
    const source = this.imageService.getReferences();
-   
+   this.currentUser = this.authServ.currentUserId()
    this.posts = this.imageService.joinUsers(source);
 
   }
@@ -59,13 +66,120 @@ export class GalleryPage implements OnInit {
   trackByCreated(i, post) {
     return post.date_uploaded;
   }
-  imageUploadTest(){
-    // var image = this.webview.convertFileSrc("../../assets/images/g1.jpg");
-    var image = "../../assets/images/g1.jpg";
-    //uploads img to firebase storage
-    this.imageService.saveImageRef(image).then(photoURL => {    
-        this.toaster.showToast("image uploaded")
-    })
-    
+  async DeleteConfirm(post) {
+    const alert = await this.alertController.create({
+      header: 'Are You Sure?',
+      message: 'This Photo will be deleted',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+           console.log("canceled")
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.imageService.removeImageRef(post)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
+  async presentActionSheet(post) {
+    
+    console.log(post)
+    const {id,uploaded_by} = post
+    var buttons = [
+      {
+        text: 'Share',
+        icon: 'share',
+        handler: () => {
+          this.sharingActionSheet(post)
+          console.log('Play clicked');
+        }      
+      },      
+      {
+        text: 'Delete',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+          this.DeleteConfirm(post)
+        }
+      },{
+        text: 'Cancel',
+        icon: 'close',   
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }
+    ]
+    if(this.currentUser !== uploaded_by){
+      buttons.splice(1,1)
+    }
+    const actionSheet = await this.actionSheetController.create({
+      buttons: buttons
+    });
+ 
+    await actionSheet.present();
+  }
+  async sharingActionSheet(post) {
+    const {id} = post
+    const actionSheet = await this.actionSheetController.create({  
+      buttons: [
+      {
+        text: 'Facebook',
+        icon: 'logo-facebook',
+        handler: () => {  
+          console.log('Play clicked');
+        }      
+      },      
+      {
+        text: 'Twitter',     
+        icon: 'logo-twitter',
+        handler: () => {
+          console.log(id)
+          console.log('Delete clicked');
+        }
+      }, {
+        text: 'Instagram',     
+        icon: 'logo-instagram',
+        handler: () => {
+          console.log(id)
+          console.log('Delete clicked');
+        }
+      },{
+        text: 'WhatsApp',     
+        icon: 'logo-whatsapp',
+        handler: () => {
+          console.log(id)
+          console.log('Delete clicked');
+        }
+      },{
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+ 
+    await actionSheet.present();
+  }
+
+
+  
+  // imageUploadTest(){
+  //   // var image = this.webview.convertFileSrc("../../assets/images/g1.jpg");
+  //   var image = "../../assets/images/g4.jpg";
+  //   //uploads img to firebase storage
+  //   this.imageService.saveImageRef(image).then(photoURL => {    
+  //       this.toaster.showToast("image uploaded")
+  //   })
+    
+  // }
 }
