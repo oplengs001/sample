@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
 import { AuthService } from "../../services/auth/auth.service"
-import { Observable } from 'rxjs';
+import { Observable ,combineLatest, of } from 'rxjs';
 import 'firebase/storage';
-import { map } from 'rxjs/operators';
+
+import { map ,switchMap } from 'rxjs/operators';
 
 export interface ImageItem {
   uid?: string,
@@ -140,7 +141,34 @@ export class ImagesService {
     };
     img.src = imageUri;
   };
-
+  joinUsers(post$: Observable<any>) {
+    let post;
+    const joinKeys = {};
+  
+    return post$.pipe(
+      switchMap(c => {
+        // Unique User IDs
+        post = c;
+        const uids = Array.from(new Set(c.map(v => v.uploaded_by)));
+  
+        // Firestore User Doc Reads
+        const userDocs = uids.map(u =>         
+          firebase.firestore().collection("guests").doc(`${u}`).get().then( userGuestProfile=>{
+            return userGuestProfile.data()
+          })
+        );                       
+        return userDocs.length ? combineLatest(userDocs) : of([]);
+      }),
+      map(arr => {        
+        arr.forEach(v => (joinKeys[(<any>v).uid] = v));
+        post = post.map(v => {          
+          return { ...v, user: joinKeys[v.uploaded_by] };
+        });
+  
+        return post;
+      })
+    );
+  }
   makeid(length) {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

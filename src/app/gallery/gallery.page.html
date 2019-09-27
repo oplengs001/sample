@@ -1,7 +1,16 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Gallery</ion-title>
+    
   </ion-toolbar>
+  <ion-segment [(ngModel)]="galleryType" color="primary">
+    <ion-segment-button value="regular">
+          <ion-icon name="image"></ion-icon>
+      </ion-segment-button>  
+    <ion-segment-button value="pinterest">
+        <ion-icon name="grid"></ion-icon>
+      </ion-segment-button>        
+  </ion-segment>
 </ion-header>
 
 <ion-content>
@@ -21,19 +30,12 @@
           </ion-fab-button>   
         </ion-fab-list>
       </ion-fab>
-    <ion-segment [(ngModel)]="galleryType" color="primary">
-      <ion-segment-button value="regular">
-            <ion-icon name="image"></ion-icon>
-        </ion-segment-button>  
-      <ion-segment-button value="pinterest">
-          <ion-icon name="grid"></ion-icon>
-        </ion-segment-button>        
-    </ion-segment>
+   
     <br>
     <div [ngSwitch]="galleryType">
       <!-- Responsive Layout with Ion Grid-->
         <div class="images-single" *ngSwitchCase="'regular'">
-          <div class="single-count-image" *ngFor="let post of (posts | async)">
+          <div class="single-count-image" *ngFor="let post of (posts | async) trackBy: trackByCreated">
               <ion-card no-padding> 
                 <ion-card-header>               
                     <ion-item lines="none" no-padding >
@@ -41,7 +43,8 @@
                             <img class="profile-img" src="[assets/images/avatar.svg]">
                         </ion-avatar>
                         <ion-label>
-                          {{post.uploaded_by}}
+                          <!-- {{post.uploaded_by}} -->
+                          {{post.user.first_name}} {{post.user.last_name}} 
                         </ion-label>                 
                         <ion-icon name="more" slot="end"></ion-icon>         
                     </ion-item>   
@@ -54,8 +57,8 @@
           </div>
         </div>     
         <div class="images" *ngSwitchCase="'pinterest'">    
-            <div class="one-image" *ngFor="let image of [1,2,3,4,5]">
-              <img src="assets/images/g{{image}}.jpg">
+            <div class="one-image"  *ngFor="let post of (posts | async) trackBy: trackByCreated">
+              <img src="{{post.url}}">
             </div>
         </div>   
       <br>       

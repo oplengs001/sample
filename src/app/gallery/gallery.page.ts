@@ -23,7 +23,10 @@ export class GalleryPage implements OnInit {
   ) { }
 
   ngOnInit() {      
-    this.posts = this.imageService.getReferences();
+   const source = this.imageService.getReferences();
+   
+   this.posts = this.imageService.joinUsers(source);
+
   }
   openImagePicker(){
     this.imagePicker.hasReadPermission().then(
@@ -53,7 +56,10 @@ export class GalleryPage implements OnInit {
       this.toaster.showToast("image uploaded")
     })
   }
-  imageUploadTest(){      
+  trackByCreated(i, post) {
+    return post.date_uploaded;
+  }
+  imageUploadTest(){
     // var image = this.webview.convertFileSrc("../../assets/images/g1.jpg");
     var image = "../../assets/images/g1.jpg";
     //uploads img to firebase storage
