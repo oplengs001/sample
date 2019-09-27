@@ -35,7 +35,7 @@
     <div [ngSwitch]="galleryType">
       <!-- Responsive Layout with Ion Grid-->
         <div class="images-single" *ngSwitchCase="'regular'">
-          <div class="single-count-image" *ngFor="let post of (posts | async); trackBy: trackByCreated" >
+          <div class="single-count-image" *ngFor="let post of (GalleryPosts | async); trackBy: trackByCreated" >
               <ion-card no-padding> 
                 <ion-card-header>               
                     <ion-item lines="none" no-padding >
@@ -57,7 +57,7 @@
           </div>
         </div>     
         <div class="images" *ngSwitchCase="'pinterest'">    
-            <div class="one-image"  *ngFor="let post of (posts | async) trackBy: trackByCreated">
+            <div class="one-image"  *ngFor="let post of (GalleryPosts | async) trackBy: trackByCreated">
               <img src="{{post.url}}">
             </div>
         </div>        

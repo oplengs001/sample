@@ -23,6 +23,7 @@ export interface ImageItem {
 
 export class ImagesService {
   private imageItem: Observable<ImageItem[]>;
+  private imageItemHome: Observable<ImageItem[]>;
   private ImageCollection: AngularFirestoreCollection<ImageItem>;
   storageRef = firebase.storage().ref();
   itemRef : ImageItem =
@@ -49,11 +50,25 @@ export class ImagesService {
           return { id, ...data};
         });
       })
-    ) 
+    )
+    this.imageItemHome = this.ImageCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          
+          const data = a.payload.doc.data();                  
+          const id = a.payload.doc.id;
+              
+          return { id, ...data};
+        });
+      })
+    )
   }
 
   getReferences(): Observable<ImageItem[]> {
     return this.imageItem
+  }
+  getRefHome(): Observable<ImageItem[]> {
+    return this.imageItemHome
   }
   addImageRef(imageRef: ImageItem[]): Promise<any> {
     return this.ImageCollection.doc(this.itemRef.file_name).set(imageRef);

@@ -14,7 +14,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./gallery.page.scss'],
 })
 export class GalleryPage implements OnInit {
-  private posts: Observable<ImageItem[]>;
+  private GalleryPosts: Observable<ImageItem[]>;
   fileUploads: any[];
   galleryType = 'regular';
   imagePath : string;
@@ -31,9 +31,7 @@ export class GalleryPage implements OnInit {
 
   ngOnInit() {      
    const source = this.imageService.getReferences();
-   this.currentUser = this.authServ.currentUserId()
-   this.posts = this.imageService.joinUsers(source);
-
+   this.GalleryPosts = this.imageService.joinUsers(source);
   }
   openImagePicker(){
     this.imagePicker.hasReadPermission().then(
