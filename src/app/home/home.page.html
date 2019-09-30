@@ -10,21 +10,62 @@
 </ion-header>
 
 <ion-content class="card-background-page">
+    <ion-card (click)="reRoute('weather')">    
+        <img class="card-image" src="/assets/images/weather.jpg"/>
+        <div class="card-title">          
+            <ion-row class="home-weather">
+              <ion-col>
+                  <ion-row>
+                    <ion-icon class="home-label-icon" name="partly-sunny"></ion-icon>
+                  </ion-row>
+                  <ion-row>
+                    <ion-label class="home-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEATHER</ion-label>
+                  </ion-row>
+              </ion-col>
+              <ion-col>
+                  <ion-row>
+                    <ion-label class="home-title">18 &deg;</ion-label>
+                  </ion-row>
+                  <ion-row>
+                    <ion-label class="home-label">TEMPERATURE</ion-label>
+                  </ion-row>
+              </ion-col>
+              <ion-col>
+                  <ion-row>
+                    <ion-label class="home-title">55</ion-label>
+                    </ion-row>
+                    <ion-row>
+                      <ion-label class="home-label">CM DEPTH</ion-label>
+                    </ion-row>
+              </ion-col>
+            </ion-row>       
+          <ion-button color="primary" class="home_buttons">SNOW REPORT</ion-button>
+        </div>
+        
+    </ion-card>
   <ion-card (click)="reRoute('home-tab')">    
       <img class="card-image" src="/assets/images/home.jpg"/>
-      <div class="card-title">HOME</div>
+      <div class="card-title">NOW<br>
+        <ion-button color="primary" class="home_buttons">LIVE FEED</ion-button>
+      </div>
   </ion-card>
   <ion-card>
     <img class="card-image" src="/assets/images/events.jpg"/>
-    <div class="card-title">EVENTS</div>
+    <div class="card-title">EVENTS<br>
+      <ion-button color="primary" class="home_buttons">CALENDAR</ion-button>
+    </div>
   </ion-card>
   <ion-card>
     <img class="card-image" src="/assets/images/activities.jpg"/>
-    <div class="card-title">ACTIVITIES</div>
+    <div class="card-title">ACTIVITIES<br>
+      <ion-button color="primary" class="home_buttons">THINGS TO DO</ion-button>
+    </div>
   </ion-card>
   <ion-card>
     <img class="card-image" src="/assets/images/dining2.jpg"/>
-    <div class="card-title">DINING</div>
+    <div class="card-title">DINING<br>
+      <ion-button color="primary" class="home_buttons">VENUES</ion-button>
+    </div>
   </ion-card>
   <ion-card>
     <img class="card-image" src="/assets/images/geninfo.jpg"/>

@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'create-group', loadChildren: './modals/create-group/create-group.module#CreateGroupPageModule' },
   { path: 'message-list', loadChildren: './message-list/message-list.module#MessageListPageModule' },
   { path: 'home-tab', loadChildren: './home-tab/home-tab.module#HomeTabPageModule' },
+  { path: 'weather', loadChildren: './weather/weather.module#WeatherPageModule' },
 ];
 
 @NgModule({
