@@ -2,7 +2,10 @@
   max-height: 35vh;
   overflow: hidden;
 }
-
+.h1-text{
+  text-align: center !important;
+  font-weight: bold
+}
 .card-background-page {
 
   ion-card {
@@ -50,7 +53,7 @@
     border: #ffffff 1px solid;
   }
   
-  
+ 
   .home-label{
     font-size:10px
   }

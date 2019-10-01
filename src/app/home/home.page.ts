@@ -3,6 +3,8 @@ import { FCM } from '@ionic-native/fcm/ngx';
 import { Platform } from '@ionic/angular';
 import { AuthService } from '../services/auth/auth.service';
 import { ToastService } from '../services/toaster/toast-service';
+import { TransitionsService } from '../services/native/transitions.service';
+
 import {  Router } from '@angular/router';
 @Component({
   selector: 'app-home',
@@ -16,7 +18,8 @@ export class HomePage {
     public plt: Platform,
     private toastService: ToastService,
     private authServ : AuthService,
-    private router: Router
+    private router: Router,
+    private transition : TransitionsService
     ) {
     this.plt.ready()
       .then(() => {
@@ -67,9 +70,9 @@ export class HomePage {
   unsubscribeFromTopic() {
     this.fcm.unsubscribeFromTopic('enappd');
   }
-  reRoute(page:string){
-    console.log(page)
-    this.router.navigateByUrl(page);
+  reRoute(page:string){    
+    this.transition.reRoute(page)
+    // this.router.navigateByUrl(page);
   }
   ngOnInit() {
 

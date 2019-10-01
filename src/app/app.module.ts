@@ -23,6 +23,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions/ngx';
 import { CreateGroupPageModule } from '../app/modals/create-group/create-group.module'
 import { ComponentsModule } from "../app/componenthandler/components.module"
 import 'gl-ionic-background-video';
@@ -49,6 +50,7 @@ import 'gl-ionic-background-video';
     SplashScreen,
     FCM,
     AuthService,
+    NativePageTransitions,
     Geolocation,
     WebView,
     NativeGeocoder,
