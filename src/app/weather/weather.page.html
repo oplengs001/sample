@@ -1,12 +1,9 @@
 <ion-header>
-    <ion-toolbar>     
+    <ion-toolbar>         
         <ion-buttons slot="start">
-          <ion-back-button 
-          color="dark"
-          defaultHref="home"
-          text=" "
-          icon="arrow-round-back">
-          </ion-back-button>
+            <ion-button (click)="this.transServe.backButtonTrans()">
+                <ion-icon slot="start" name="arrow-round-back"></ion-icon>            
+            </ion-button>     
         </ion-buttons>
       <ion-title>Weather</ion-title>    
     </ion-toolbar>

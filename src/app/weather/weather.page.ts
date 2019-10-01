@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { TransitionsService } from '../services/native/transitions.service';
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.page.html',
@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherPage implements OnInit {
 
-  constructor() { }
-
+  constructor(
+    private transServe: TransitionsService,
+  ) { }
   ngOnInit() {
   }
-
 }

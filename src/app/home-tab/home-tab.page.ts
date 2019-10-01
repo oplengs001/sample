@@ -3,6 +3,7 @@ import { IonSlides } from '@ionic/angular';
 import {  Router } from '@angular/router';
 import { ImagesService ,ImageItem } from "../services/uploads/images.service"
 import { Observable, Subscription } from 'rxjs';
+import { TransitionsService } from '../services/native/transitions.service';
 @Component({
   selector: 'app-home-tab',
   templateUrl: './home-tab.page.html',
@@ -17,7 +18,8 @@ export class HomeTabPage implements OnInit, OnDestroy {
   };
   constructor(
     private router: Router,
-    private imageService : ImagesService
+    private imageService : ImagesService,
+    private transServe : TransitionsService
   ) { 
 
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { TransitionsService } from '../services/native/transitions.service';
 @Component({
   selector: 'app-itenerary',
   templateUrl: './itenerary.page.html',
@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IteneraryPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private transServe : TransitionsService
+  ) { }
 
   ngOnInit() {
   }

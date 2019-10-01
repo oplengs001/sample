@@ -39,6 +39,7 @@ export class TransitionsService {
        }
     
       this.nativePageTransitions.slide(options)
+      this.router.navigateByUrl("home");
       
     }
 }

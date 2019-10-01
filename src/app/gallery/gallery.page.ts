@@ -7,6 +7,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { ToastService } from '../services/toaster/toast-service';
 import { Observable } from 'rxjs';
 import { AlertController } from '@ionic/angular';
+import { TransitionsService } from '../services/native/transitions.service';
 
 @Component({
   selector: 'app-gallery',
@@ -26,7 +27,8 @@ export class GalleryPage implements OnInit {
     private authServ : AuthService,
     private actionSheetController : ActionSheetController,
     private webview : WebView,
-    private alertController : AlertController
+    private alertController : AlertController,
+    private transServe : TransitionsService
   ) { }
 
   ngOnInit() {      
