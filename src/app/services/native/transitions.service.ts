@@ -10,9 +10,35 @@ export class TransitionsService {
     private nativePageTransitions: NativePageTransitions,
     private router : Router
     ) { }
-
+    
     reRoute(location : string){
-      this.nativePageTransitions.fade(null);
+      let options: NativeTransitionOptions = {
+        direction: 'left',
+        duration: 400,
+        // slowdownfactor: -1,
+        // slidePixels: 20,
+        // iosdelay: 100,
+        // androiddelay: 150,
+        // fixedPixelsTop: 0,
+        // fixedPixelsBottom: 60
+       }
+    
+      this.nativePageTransitions.slide(options)
       this.router.navigateByUrl(location);
+    }
+    backButtonTrans(){
+      let options: NativeTransitionOptions = {
+        direction: 'right',
+        duration: 400,
+        // slowdownfactor: -1,
+        // slidePixels: 20,
+        // iosdelay: 100,
+        // androiddelay: 150,
+        // fixedPixelsTop: 0,
+        // fixedPixelsBottom: 60
+       }
+    
+      this.nativePageTransitions.slide(options)
+      
     }
 }
