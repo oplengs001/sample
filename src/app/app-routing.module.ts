@@ -12,7 +12,6 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   { path: 'locator', loadChildren: './locator/locator.module#LocatorPageModule' },
-  { path: 'reception', loadChildren: './reception/reception.module#ReceptionPageModule' },
   { path: 'itenerary', loadChildren: './itenerary/itenerary.module#IteneraryPageModule' },
   { path: 'guestlist', loadChildren: './guestlist/guestlist.module#GuestlistPageModule' },
   { path: 'ceremony', loadChildren: './ceremony/ceremony.module#CeremonyPageModule' },
@@ -26,6 +25,8 @@ const routes: Routes = [
   { path: 'message-list', loadChildren: './message-list/message-list.module#MessageListPageModule' },
   { path: 'home-tab', loadChildren: './home-tab/home-tab.module#HomeTabPageModule' },
   { path: 'weather', loadChildren: './weather/weather.module#WeatherPageModule' },
+  { path: 'slidingcontent', loadChildren: './slidingcontent/slidingcontent.module#SlidingcontentPageModule' },
+  { path: 'viewingcontent', loadChildren: './viewingcontent/viewingcontent.module#ViewingcontentPageModule' },
 ];
 
 @NgModule({

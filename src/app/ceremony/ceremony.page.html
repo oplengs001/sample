@@ -1,16 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Ceremony
-    </ion-title>
+      <ion-buttons slot="start">
+          <ion-button (click)="this.transServe.backButtonTrans()">
+              <ion-icon slot="start" name="arrow-round-back"></ion-icon>            
+          </ion-button>     
+      </ion-buttons>
+    <ion-title>Wedding Schedule</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
+  <ion-card class="welcome-card">
+      <img src="/assets/images/events.jpg" alt="" />
+      <ion-card-header>
+        <ion-card-subtitle>Whats Happening?</ion-card-subtitle>
+        <ion-card-title>Party Time!</ion-card-title>    
+      </ion-card-header>
+      <ion-card-content >
+        Will be followed by: <b>After Party Dance</b>
+      </ion-card-content>
+  </ion-card>
   <ion-card [hidden]="CardHide">
       <img src="/assets/images/church.jpg" alt="" />
       <ion-card-header>

@@ -20,7 +20,7 @@ export class MessagesPage implements OnInit {
   ) {
     this.route.queryParams.subscribe(params => {
       this.id = params["group_id"];      
-  });
+    });
   }
 
   ngOnInit() {

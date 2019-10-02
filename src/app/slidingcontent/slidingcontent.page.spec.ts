@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReceptionPage } from './reception.page';
+import { SlidingcontentPage } from './slidingcontent.page';
 
-describe('ReceptionPage', () => {
-  let component: ReceptionPage;
-  let fixture: ComponentFixture<ReceptionPage>;
+describe('SlidingcontentPage', () => {
+  let component: SlidingcontentPage;
+  let fixture: ComponentFixture<SlidingcontentPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReceptionPage ],
+      declarations: [ SlidingcontentPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReceptionPage);
+    fixture = TestBed.createComponent(SlidingcontentPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

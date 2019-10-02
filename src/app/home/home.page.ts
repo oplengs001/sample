@@ -74,6 +74,9 @@ export class HomePage {
     this.transition.reRoute(page)
     // this.router.navigateByUrl(page);
   }
+  reRouteActivity (activity:string){
+    this.transition.reRouteActivity(activity)
+  }
   ngOnInit() {
 
     this.subscribeToTopic()

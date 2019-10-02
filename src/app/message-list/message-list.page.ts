@@ -14,7 +14,7 @@ export class MessageListPage implements OnInit {
   constructor( 
     private authServ : AuthService,
     private navCtrl : NavController,
-
+    
   ) {
 
     this.authServ.currentUserData().then((data)=>{   

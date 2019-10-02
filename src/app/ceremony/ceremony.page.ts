@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder,NativeGeocoderOptions,NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
+import { TransitionsService } from '../services/native/transitions.service';
 declare var google;
 @Component({
   selector: 'app-ceremony',
@@ -24,7 +25,8 @@ export class CeremonyPage implements OnInit, AfterViewInit {
   constructor(
      private fb: FormBuilder,
      private geolocation: Geolocation,
-     private nativeGeocoder: NativeGeocoder     
+     private nativeGeocoder: NativeGeocoder,
+     private transServe : TransitionsService
   ) {
     this.createDirectionForm();
   }
