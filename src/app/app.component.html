@@ -7,8 +7,8 @@
         <ion-toolbar>
           <ion-title>Menu</ion-title>
         </ion-toolbar>
-      </ion-header> -->
-      <!-- <ion-content>
+      </ion-header>
+      <ion-content>
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages" id="menu-toggle">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
@@ -19,10 +19,10 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-      </ion-content> -->
-    <!-- </ion-menu> -->   
-    <!-- <ion-router-outlet main></ion-router-outlet>    -->
-  <!-- </ion-split-pane> -->
+      </ion-content>
+    </ion-menu>   
+    <ion-router-outlet main></ion-router-outlet>   
+  </ion-split-pane> -->
   <ion-fab horizontal="end" vertical="top" slot="fixed" *ngIf=this.adminUser>
     <ion-fab-button color="dark">
       <ion-icon name="bowtie"></ion-icon>

@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'weather', loadChildren: './weather/weather.module#WeatherPageModule' },
   { path: 'slidingcontent', loadChildren: './slidingcontent/slidingcontent.module#SlidingcontentPageModule' },
   { path: 'viewingcontent', loadChildren: './viewingcontent/viewingcontent.module#ViewingcontentPageModule' },
+  { path: 'home-menu', loadChildren: './modals/menu/home-menu.module#HomeMenuPageModule' },
 ];
 
 @NgModule({

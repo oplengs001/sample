@@ -12,40 +12,7 @@ import {  Router } from '@angular/router';
 export class AppComponent {
   email: string;
   password: string;
-  adminUser : boolean;
-  appPages = [
-    {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
-    }, 
-    {
-      title: 'Wedding Program',
-      url: '/ceremony',
-      icon: 'easel'
-    },    
-    {
-      title: 'Itenerary',
-      url: '/itenerary',
-      icon: 'paper'
-    },
-    {
-      title: 'Reception',
-      url: '/reception',
-      icon: 'wine'
-    },   
-    {
-      title: 'Announcements',
-      url: '/announcements',
-      icon: 'megaphone'
-    },
-    {
-      title: 'Messages',
-      url: '/message-list',
-      icon: 'megaphone'
-    },
-  ]; 
-
+  adminUser : boolean;  
   constructor(
     public authService: AuthService,
     private platform: Platform,
@@ -75,27 +42,7 @@ export class AppComponent {
       if (user) {     
         this.authService.currentUserData().then(profile =>{
           if(profile.isAdmin){
-            this.adminUser = true
-            this.appPages.push({
-              title: 'Guest List',
-              url: '/guestlist',
-              icon: 'contacts'
-            },
-            {
-              title: 'Group Chat',
-              url: '/admin-messaging',
-              icon: 'megaphone'
-            },
-            {
-              title: 'Admin-Announcements',
-              url: '/admin-announcement',
-              icon: 'megaphone'
-            },
-            {
-              title: 'Guest Add',
-              url: '/guestadd',
-              icon: 'megaphone'
-            },)
+            this.adminUser = true         
           }
         })  
       }

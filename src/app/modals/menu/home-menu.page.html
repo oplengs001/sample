@@ -1,0 +1,17 @@
+<ion-header translucent>
+    <ion-toolbar>
+      <ion-title>PRE-WEDDING MENU</ion-title>      
+    </ion-toolbar>
+  </ion-header>
+<ion-content fullscreen >  
+    <ion-list class="modal-content">
+      <div *ngFor="let p of appPages" >
+        <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" (click)="closeModal()">
+          <ion-icon slot="start" [name]="p.icon"  color="medium"></ion-icon>
+          <ion-label>
+            {{p.title}}
+          </ion-label>
+        </ion-item>
+      </div>
+    </ion-list>   
+</ion-content>
