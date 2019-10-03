@@ -9,27 +9,27 @@ export class HomeMenuPage implements OnInit {
   appPages = [
     {
       title: 'VISAS',
-      url: '/home',
+      url: '/visas',
       icon: 'card'
     }, 
     {
       title: 'Getting There',
-      url: '/ceremony',
+      url: '/getting-there',
       icon: 'airplane'
     },    
     {
       title: 'Accommodation',
-      url: '/itenerary',
+      url: '/accomodation',
       icon: 'bed'
     },
     {
       title: 'Rentals',
-      url: '/reception',
+      url: '/rental',
       icon: 'pricetag'
     },   
     {
       title: 'Wedding Weather',
-      url: '/announcements',
+      url: '/wedding-weather',
       icon: 'rainy'
     }  
   ]; 

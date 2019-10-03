@@ -28,6 +28,11 @@ const routes: Routes = [
   { path: 'slidingcontent', loadChildren: './slidingcontent/slidingcontent.module#SlidingcontentPageModule' },
   { path: 'viewingcontent', loadChildren: './viewingcontent/viewingcontent.module#ViewingcontentPageModule' },
   { path: 'home-menu', loadChildren: './modals/menu/home-menu.module#HomeMenuPageModule' },
+  { path: 'visas', loadChildren: './pre-wedding/visas/visas.module#VisasPageModule' },
+  { path: 'getting-there', loadChildren: './pre-wedding/getting-there/getting-there.module#GettingTherePageModule' },
+  { path: 'accomodations', loadChildren: './pre-wedding/accomodations/accomodations.module#AccomodationsPageModule' },
+  { path: 'rentals', loadChildren: './pre-wedding/rentals/rentals.module#RentalsPageModule' },
+  { path: 'wedding-weather', loadChildren: './pre-wedding/wedding-weather/wedding-weather.module#WeddingWeatherPageModule' },
 ];
 
 @NgModule({
