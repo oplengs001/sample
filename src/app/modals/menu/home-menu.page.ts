@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Injectable } from '@angular/core';
 import { ModalController, } from '@ionic/angular';
+import { myEnterAnimation, myLeaveAnimation } from "../../animations/animations"
+
 @Component({
   selector: 'app-home-menu',
   templateUrl: './home-menu.page.html',
   styleUrls: ['./home-menu.page.scss'],
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class HomeMenuPage implements OnInit {
   appPages = [
@@ -19,12 +24,12 @@ export class HomeMenuPage implements OnInit {
     },    
     {
       title: 'Accommodation',
-      url: '/accomodation',
+      url: '/accomodations',
       icon: 'bed'
     },
     {
       title: 'Rentals',
-      url: '/rental',
+      url: '/rentals',
       icon: 'pricetag'
     },   
     {
@@ -35,12 +40,21 @@ export class HomeMenuPage implements OnInit {
   ]; 
 
   constructor(
-    private modalController: ModalController,
+    private modalctrl: ModalController,
   ) { }
 
   ngOnInit() {
   }
   async closeModal() {  
-    await this.modalController.dismiss();
+    await this.modalctrl.dismiss();
+  }
+  async openModal() {
+    const modal: HTMLIonModalElement =
+       await this.modalctrl.create({
+          component: HomeMenuPage,     
+          enterAnimation: myEnterAnimation,
+          leaveAnimation: myLeaveAnimation
+    });          
+    await modal.present();
   }
 }

@@ -6,8 +6,8 @@ import { AuthService } from '../services/auth/auth.service';
 import { ToastService } from '../services/toaster/toast-service';
 import { TransitionsService } from '../services/native/transitions.service';
 import { ModalController  } from '@ionic/angular';
-import { Animation } from '@ionic/core';
 import {  Router } from '@angular/router';
+import { myEnterAnimation, myLeaveAnimation} from '../animations/animations'
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -84,61 +84,11 @@ export class HomePage {
     const modal: HTMLIonModalElement =
        await this.modalctrl.create({
           component: HomeMenuPage,     
-          enterAnimation: this.myEnterAnimation,
-          leaveAnimation: this.myLeaveAnimation
+          enterAnimation: myEnterAnimation,
+          leaveAnimation: myLeaveAnimation
     });          
     await modal.present();
   }
-  myEnterAnimation(AnimationC: Animation, baseEl: HTMLElement): Promise<Animation> {
-
-    const baseAnimation = new AnimationC();
-
-    const backdropAnimation = new AnimationC();
-    backdropAnimation.addElement(baseEl.querySelector('ion-backdrop'));
-
-    const wrapperAnimation = new AnimationC();
-    wrapperAnimation.addElement(baseEl.querySelector('.modal-wrapper'));
-
-    wrapperAnimation.beforeStyles({ 'opacity': 1 })
-        .fromTo('translateX', '-100%', '-20%');
-
-    backdropAnimation.fromTo('opacity', 0.01, 0.4);
-
-    return Promise.resolve(baseAnimation
-        .addElement(baseEl)
-        .easing('cubic-bezier(0.36,0.66,0.04,1)')
-        .duration(400)
-        .beforeAddClass('show-modal')
-        .add(backdropAnimation)
-        .add(wrapperAnimation));
-
-  }
-  myLeaveAnimation(AnimationC: Animation, baseEl: HTMLElement): Promise<Animation> {
-
-    const baseAnimation = new AnimationC();
-
-    const backdropAnimation = new AnimationC();
-    backdropAnimation.addElement(baseEl.querySelector('ion-backdrop'));
-
-    const wrapperAnimation = new AnimationC();
-    const wrapperEl = baseEl.querySelector('.modal-wrapper');
-    wrapperAnimation.addElement(wrapperEl);
-    const wrapperElRect = wrapperEl!.getBoundingClientRect();
-
-    wrapperAnimation.beforeStyles({ 'opacity': 1 })
-                    .fromTo('translateX', '-20%', '-100%');
-                    // .fromTo('translateX', '-100%', `${window.innerHeight - wrapperElRect.left}px`);
-                    
-
-    backdropAnimation.fromTo('opacity', 0.4, 0.0);
-
-    return Promise.resolve(baseAnimation
-      .addElement(baseEl)
-      .easing('ease-out')
-      .duration(400)
-      .add(backdropAnimation)
-      .add(wrapperAnimation));
-}
   ngOnInit() {
 
     this.subscribeToTopic()

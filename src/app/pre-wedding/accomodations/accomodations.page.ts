@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HomeMenuPage } from '../../modals/menu/home-menu.page'
 @Component({
   selector: 'app-accomodations',
   templateUrl: './accomodations.page.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccomodationsPage implements OnInit {
 
-  constructor() { }
+  constructor(private homeMenu: HomeMenuPage) { }
 
   ngOnInit() {
   }

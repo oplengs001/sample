@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HomeMenuPage } from '../../modals/menu/home-menu.page'
 @Component({
   selector: 'app-wedding-weather',
   templateUrl: './wedding-weather.page.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeddingWeatherPage implements OnInit {
 
-  constructor() { }
+  constructor(private homeMenu: HomeMenuPage) { }
 
   ngOnInit() {
   }
