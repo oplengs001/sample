@@ -11,5 +11,7 @@ export class RentalsPage implements OnInit {
 
   ngOnInit() {
   }
-
+  openLink(url){
+    window.open(url, '_system');
+  }
 }

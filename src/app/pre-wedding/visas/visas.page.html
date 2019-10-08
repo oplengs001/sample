@@ -6,10 +6,20 @@
         </ion-button>
         <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>visas</ion-title>
+    <ion-title>VISAS</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card>     
+    <ion-card-header>
+      <ion-card-title  class="ion-text-center">Hello There!</ion-card-title>
+      <img src="../../assets/images/visas.jpg" />
+    </ion-card-header>
+    <ion-card-content  class="ion-text-center">
+      If you are a Filipino Citizen visiting New Zealand you will need a Visa.
+      <a (click)="openLink('https://www.immigration.govt.nz/contact/offices/philippines')"> Click Here </a> <br><br>
+      Other countries please visit <a (click)="openLink('www.immigration.govt.nz')">www.immigration.govt.nz </a> for more information or contact your local consulate
+    </ion-card-content>
+  </ion-card>  
 </ion-content>

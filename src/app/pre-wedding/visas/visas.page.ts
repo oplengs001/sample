@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeMenuPage } from '../../modals/menu/home-menu.page'
-
 @Component({
   selector: 'app-visas',
   templateUrl: './visas.page.html',
@@ -13,6 +12,9 @@ export class VisasPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    
   }
-
+  openLink(url){
+    window.open(url, '_system');
+  }
 }

@@ -28,6 +28,7 @@
     "@ionic-native/firebase": "^5.12.0",
     "@ionic-native/geolocation": "^5.12.0",
     "@ionic-native/image-picker": "^5.14.0",
+    "@ionic-native/in-app-browser": "^5.15.0",
     "@ionic-native/ionic-webview": "^5.14.0",
     "@ionic-native/native-geocoder": "^5.12.0",
     "@ionic-native/native-page-transitions": "^5.14.0",
@@ -41,6 +42,7 @@
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-fcm-with-dependecy-updated": "^3.0.0",
     "cordova-plugin-geolocation": "^4.0.2",
+    "cordova-plugin-inappbrowser": "^3.1.0",
     "cordova-plugin-nativegeocoder": "^3.2.2",
     "cordova-plugin-telerik-imagepicker": "^2.3.3",
     "cordova-support-google-services": "^1.3.1",
@@ -108,7 +110,8 @@
       "cordova-plugin-telerik-imagepicker": {
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": "to choose photos"
       },
-      "com.telerik.plugins.nativepagetransitions": {}
+      "com.telerik.plugins.nativepagetransitions": {},
+      "cordova-plugin-inappbrowser": {}
     },
     "platforms": [
       "ios",

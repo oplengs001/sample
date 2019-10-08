@@ -26,6 +26,7 @@ import { AppVersion } from '@ionic-native/app-version/ngx';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions/ngx';
 import { CreateGroupPageModule } from '../app/modals/create-group/create-group.module'
 import { HomeMenuPageModule } from '../app/modals/menu/home-menu.module'
+import { FlightMapPageModule } from '../app/modals/map/flight-map.module'
 import { ComponentsModule } from "../app/componenthandler/components.module"
 import 'gl-ionic-background-video';
 
@@ -45,9 +46,11 @@ import 'gl-ionic-background-video';
     HttpClientModule,
     AutosizeModule,
     CreateGroupPageModule,
-    HomeMenuPageModule
+    HomeMenuPageModule,
+    FlightMapPageModule
   ],
   providers: [
+
     StatusBar,
     SplashScreen,
     FCM,
