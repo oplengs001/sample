@@ -8,6 +8,7 @@ import { ToastService } from '../services/toaster/toast-service';
 import { Observable } from 'rxjs';
 import { AlertController } from '@ionic/angular';
 import { TransitionsService } from '../services/native/transitions.service';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-gallery',
@@ -34,6 +35,7 @@ export class GalleryPage implements OnInit {
   ngOnInit() {      
    const source = this.imageService.getReferences();
    this.GalleryPosts = this.imageService.joinUsers(source);
+   this.currentUser = this.authServ.currentUserId();
   }
   openImagePicker(){
     this.imagePicker.hasReadPermission().then(
@@ -117,7 +119,7 @@ export class GalleryPage implements OnInit {
         }
       }
     ]
-    if(this.currentUser !== uploaded_by){
+    if(this.currentUser !== uploaded_by){      
       buttons.splice(1,1)
     }
     const actionSheet = await this.actionSheetController.create({
