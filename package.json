@@ -51,7 +51,7 @@
     "gl-ionic-background-video": "0.0.5",
     "ngx-autosize": "^1.6.4",
     "rxjs": "^6.5.2",
-    "rxjs-observable": "0.0.7",
+    "rxjs-observable": "0.0.7",    
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },
