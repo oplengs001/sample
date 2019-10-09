@@ -3,16 +3,20 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder,NativeGeocoderOptions,NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
 import { TransitionsService } from '../services/native/transitions.service';
+import { IonSlides } from '@ionic/angular';
+import { Observable, Subscription } from 'rxjs';
+import { ImagesService ,ImageItem } from "../services/uploads/images.service"
 declare var google;
 @Component({
   selector: 'app-ceremony',
   templateUrl: './ceremony.page.html',
   styleUrls: ['./ceremony.page.scss'],
 })
-
 export class CeremonyPage implements OnInit, AfterViewInit {
-  
+  private posts: Observable<ImageItem[]>;
+  private subscription : Subscription;
   @ViewChild('mapElement', {static: false}) mapNativeElement: ElementRef;
+  
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
   directionForm: FormGroup;
@@ -25,13 +29,19 @@ export class CeremonyPage implements OnInit, AfterViewInit {
   constructor(
      private fb: FormBuilder,
      private geolocation: Geolocation,
+     private imageService : ImagesService,
      private nativeGeocoder: NativeGeocoder,
      private transServe : TransitionsService
   ) {
     this.createDirectionForm();
   }
+  slidesDidLoad(
+    slides: IonSlides,
+    ) {
+    slides.startAutoplay();
+  }
   ngOnInit() {
-    
+    this.posts = this.imageService.getRefHome();
     this.CardHide = false
     this.MapHide = true
   }

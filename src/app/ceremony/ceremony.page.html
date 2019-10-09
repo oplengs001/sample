@@ -72,6 +72,20 @@
       </ion-item>
       <ion-button expand="full" type="submit" [disabled]="directionForm.invalid">Get Direction</ion-button>
     </form>
-     
+    <ion-card class="welcome-card"> 
+        <ion-card-header>
+          <ion-card-subtitle>Gallery</ion-card-subtitle>
+          <ion-card-title>Live Photo Sharing</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-slides [options]="slideOptions" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)" >
+            <ion-slide *ngFor="let post of (posts | async)">
+              <img src="{{post.url}}">
+            </ion-slide>          
+          </ion-slides>
+          <br>
+          <ion-button fill="outline" expand="block" (click)="reRoute('gallery')"><ion-ripple-effect></ion-ripple-effect>View Album</ion-button>
+        </ion-card-content>
+    </ion-card> 
         
 </ion-content>
