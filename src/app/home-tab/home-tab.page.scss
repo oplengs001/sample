@@ -20,7 +20,16 @@ ion-slide img{
 }
 .item-card{
     margin-top: 0px !important;
-    margin-bottom: 0px !important
+    margin-bottom: 0px !important;
+    margin-left: unset;
+    margin-right: unset;
+    -webkit-margin-start: 0px;
+    margin-inline-start: 0px;
+    -webkit-margin-end: 0px;
+    margin-inline-end: 0px;
+    border-radius: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 .img-container{
     height: 40vh;
@@ -28,3 +37,15 @@ ion-slide img{
     -o-object-fit: cover;
     object-fit: cover;
   }
+
+//   .content-card{
+//     margin-left: unset;
+//     margin-right: unset;
+//     -webkit-margin-start: 0px;
+//     margin-inline-start: 0px;
+//     -webkit-margin-end: 0px;
+//     margin-inline-end: 0px;
+//     border-radius: 0;
+//     margin-top: 0;
+//     margin-bottom: 0;
+// }

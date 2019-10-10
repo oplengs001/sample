@@ -10,42 +10,127 @@
   </ion-header>
 
 <ion-content>
-    <ion-card class="welcome-card">
-        <img src="/assets/images/weather.jpg" alt="" />
-        <ion-card-header>
-          <ion-card-subtitle>Weather Today</ion-card-subtitle>
-          <ion-card-title>18 &deg;</ion-card-title>
-          <span><ion-icon name="partly-sunny"></ion-icon> Partly Sunny</span>
-        </ion-card-header>
-        <ion-card-content>
-          Weather Forecast
-          <ion-list lines="full" class="weather-card-list">
-            <ion-item>
-              <ion-label item-start>Today</ion-label>
-              <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>18 &deg;</ion-label>
-              <ion-label item-end side="left"> Sunny</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label item-start>Tue</ion-label>
-              <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>16 &deg;</ion-label>
-              <ion-label item-end side="left"> Sunny</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label item-start>Wed</ion-label>
-              <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>7 &deg;</ion-label>
-              <ion-label item-end side="left">Frost </ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label item-start>Thu</ion-label>
-              <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>6 &deg;</ion-label>
-              <ion-label item-end edge>Frost </ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label item-start>Fri</ion-label>
-              <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>5 &deg;</ion-label>
-              <ion-label item-end edge>Frost </ion-label>
-            </ion-item>
-          </ion-list>      
-        </ion-card-content>
-      </ion-card>
+    <ion-slides [options]="{pagination: true}">
+        <ion-slide >
+            <ion-card class="welcome-card">
+                <img src="/assets/images/weather.jpg" alt="" />
+                <ion-card-header>
+                  <ion-card-subtitle>Queenstown</ion-card-subtitle>
+                  <ion-card-title>18 &deg;</ion-card-title>
+                  <span><ion-icon name="partly-sunny"></ion-icon> Partly Sunny</span>
+                </ion-card-header>
+                <ion-card-content>
+                  Weather Forecast
+                  <ion-list lines="full" class="weather-card-list">
+                    <ion-item>
+                      <ion-label item-start>Today</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>18 &deg;</ion-label>
+                      <ion-label item-end side="left"> Sunny</ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label item-start>Tue</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>16 &deg;</ion-label>
+                      <ion-label item-end side="left"> Sunny</ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label item-start>Wed</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>7 &deg;</ion-label>
+                      <ion-label item-end side="left">Frost </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label item-start>Thu</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>6 &deg;</ion-label>
+                      <ion-label item-end edge>Frost </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label item-start>Fri</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>5 &deg;</ion-label>
+                      <ion-label item-end edge>Frost </ion-label>
+                    </ion-item>
+                  </ion-list>      
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+        <ion-slide >
+            <ion-card class="welcome-card">
+                <img src="/assets/images/weather.jpg" alt="" />
+                <ion-card-header>
+                  <ion-card-subtitle>Remarkables </ion-card-subtitle>
+                  <ion-card-title>18 &deg;</ion-card-title>
+                  <span><ion-icon name="partly-sunny"></ion-icon> Partly Sunny</span>
+                </ion-card-header>
+                <ion-card-content>
+                  Weather Forecast
+                  <ion-list lines="full" class="weather-card-list">
+                    <ion-item>
+                      <ion-label item-start>Today</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>18 &deg;</ion-label>
+                      <ion-label item-end side="left"> Sunny</ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label item-start>Tue</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>16 &deg;</ion-label>
+                      <ion-label item-end side="left"> Sunny</ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label item-start>Wed</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>7 &deg;</ion-label>
+                      <ion-label item-end side="left">Frost </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label item-start>Thu</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>6 &deg;</ion-label>
+                      <ion-label item-end edge>Frost </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label item-start>Fri</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>5 &deg;</ion-label>
+                      <ion-label item-end edge>Frost </ion-label>
+                    </ion-item>
+                  </ion-list>      
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+        <ion-slide >
+            <ion-card class="welcome-card">
+                <img src="/assets/images/weather.jpg" alt="" />
+                <ion-card-header>
+                  <ion-card-subtitle>Coronet's Peak</ion-card-subtitle>
+                  <ion-card-title>18 &deg;</ion-card-title>
+                  <span><ion-icon name="partly-sunny"></ion-icon> Partly Sunny</span>
+                </ion-card-header>
+                <ion-card-content>
+                  Weather Forecast
+                  <ion-list lines="full" class="weather-card-list">
+                    <ion-item>
+                      <ion-label item-start>Today</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>18 &deg;</ion-label>
+                      <ion-label item-end side="left"> Sunny</ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label item-start>Tue</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>16 &deg;</ion-label>
+                      <ion-label item-end side="left"> Sunny</ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label item-start>Wed</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>7 &deg;</ion-label>
+                      <ion-label item-end side="left">Frost </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label item-start>Thu</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>6 &deg;</ion-label>
+                      <ion-label item-end edge>Frost </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label item-start>Fri</ion-label>
+                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>5 &deg;</ion-label>
+                      <ion-label item-end edge>Frost </ion-label>
+                    </ion-item>
+                  </ion-list>      
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+
 </ion-content>

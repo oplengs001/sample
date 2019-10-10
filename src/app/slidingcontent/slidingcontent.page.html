@@ -11,26 +11,22 @@
     </ion-toolbar>
   </ion-header>
 
-<ion-content>
+<ion-content >
     <ion-card class="content-card">
-        <img src="/assets/images/events.jpg" alt="" />
+        <ion-card-header > 
+          <ion-card-title  class="ion-text-center"> Tom & Ingga's <br>Top Recommended Restaurants</ion-card-title>              
+        </ion-card-header>   
+    </ion-card>   
+    <ion-card class="content-card" *ngFor="let resto of topResto">
+        <img src="{{resto.image_url}}"/>
         <ion-card-header> 
-          <ion-card-title>Place Name</ion-card-title>    
-          <ion-card-subtitle>Place Location</ion-card-subtitle>
+          <ion-card-title>{{resto.name}}</ion-card-title>    
+          <ion-card-subtitle>{{resto.location}}</ion-card-subtitle>
         </ion-card-header>   
-    </ion-card>
+    </ion-card>     
     <ion-card class="content-card">
-        <img src="/assets/images/events.jpg" alt="" />
-        <ion-card-header>       
-          <ion-card-title>Place Name</ion-card-title>    
-          <ion-card-subtitle>Place Location</ion-card-subtitle>
+        <ion-card-header> 
+          <ion-card-subtitle class="ion-text-center">see more at <br><a href="https://www.queenstownnz.co.nz/places-to-eat-and-drink/">queenstown places to Eat & Drink </a></ion-card-subtitle>
         </ion-card-header>   
-    </ion-card>
-    <ion-card class="content-card">
-        <img src="/assets/images/events.jpg" alt="" />
-        <ion-card-header>       
-          <ion-card-title>Place Name</ion-card-title>    
-          <ion-card-subtitle>Place Location</ion-card-subtitle>
-        </ion-card-header>   
-    </ion-card>
+    </ion-card> 
 </ion-content>
