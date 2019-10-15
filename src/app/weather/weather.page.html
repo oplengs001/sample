@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header  translucent="true" no-border>
     <ion-toolbar>         
         <ion-buttons slot="start">
             <ion-button (click)="this.transServe.backButtonTrans()">
@@ -11,87 +11,71 @@
 
 <ion-content>
     <ion-slides [options]="{pagination: true}">
-        <ion-slide >
-            <ion-card class="welcome-card">
-                <img src="/assets/images/weather.jpg" alt="" />
-                <ion-card-header>
-                  <ion-card-subtitle>Queenstown</ion-card-subtitle>
-                  <ion-card-title>18 &deg;</ion-card-title>
-                  <span><ion-icon name="partly-sunny"></ion-icon> Partly Sunny</span>
+        <ion-slide *ngIf="cpeak_today" [hidden]="cpeak_slide">
+          <ion-card class="content-card"> 
+                <!-- <img src="/assets/images/weather/clear.jpg" alt="" /> -->
+                <ion-card-header class="weather-head">
+                  <ion-card-subtitle class="location ion-text-center">Coronet's Peak</ion-card-subtitle>
+                  <ion-card-title class="temp_class ion-text-center">{{cpeak_today.base.temp_c}}&deg;</ion-card-title>
+                  <!-- <img class="weather-icon" src="/assets/icon/set/{{extensionChange(cpeak_today.base.wx_icon)}}.png">  -->
+                  <span class="today_weather ion-text-center">{{cpeak_today.base.wx_desc}}</span><br>
+                  <span class="today_weather ion-text-center">{{cpeak_today.base.feelslike_c}}&deg; / {{cpeak_today.upper.feelslike_c}}&deg;</span>
                 </ion-card-header>
-                <ion-card-content>
-                  Weather Forecast
-                  <ion-list lines="full" class="weather-card-list">
-                    <ion-item>
-                      <ion-label item-start>Today</ion-label>
-                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>18 &deg;</ion-label>
-                      <ion-label item-end side="left"> Sunny</ion-label>
-                    </ion-item>
-                    <ion-item>
-                      <ion-label item-start>Tue</ion-label>
-                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>16 &deg;</ion-label>
-                      <ion-label item-end side="left"> Sunny</ion-label>
-                    </ion-item>
-                    <ion-item>
-                      <ion-label item-start>Wed</ion-label>
-                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>7 &deg;</ion-label>
-                      <ion-label item-end side="left">Frost </ion-label>
-                    </ion-item>
-                    <ion-item>
-                      <ion-label item-start>Thu</ion-label>
-                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>6 &deg;</ion-label>
-                      <ion-label item-end edge>Frost </ion-label>
-                    </ion-item>
-                    <ion-item>
-                      <ion-label item-start>Fri</ion-label>
-                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>5 &deg;</ion-label>
-                      <ion-label item-end edge>Frost </ion-label>
-                    </ion-item>
+                <ion-card-content no-padding class="content-no-background">
+                  <ion-slides [options]="{slidesPerView: 5}"  *ngIf="cpeak_hourly" class="hourly-slides">
+                        <ion-slide *ngFor="let weather of cpeak_hourly">                                      
+                            <ion-item lines="none">                              
+                                <ion-label class="slider-font ion-text-center">
+                                  <h2 class="slide-time">{{converTime(weather.time)}}</h2>
+                                  <h3><img  class="image-small" src="/assets/icon/set/{{extensionChange(weather.base.wx_icon)}}.png"/></h3>
+                                  <h2>{{weather.base.feelslike_c}}&deg;</h2>                            
+                                </ion-label>
+                              </ion-item>                         
+                      </ion-slide>
+                  </ion-slides>               
+                  <ion-list lines="full" class="weather-card-list " *ngIf="cpeak_daily">
+                    <ion-item *ngFor="let weather of cpeak_daily" class="slider-font ion-text-center ion-align-items-center">
+                      <ion-label item-start>{{convertDate(weather.date)}}</ion-label>
+                      <ion-label item-center class="image-label"><img  class="image-smaller ion-align-self-center" src="/assets/icon/set/{{extensionChange(weather.base.wx_icon)}}.png"/></ion-label>
+                      <ion-label item-end side="left">{{weather.base.feelslike_c}}&deg;/{{weather.upper.feelslike_c}}&deg;</ion-label>
+                    </ion-item>            
                   </ion-list>      
                 </ion-card-content>
             </ion-card>
         </ion-slide>
-        <ion-slide >
-            <ion-card class="welcome-card">
-                <img src="/assets/images/weather.jpg" alt="" />
-                <ion-card-header>
-                  <ion-card-subtitle>Remarkables </ion-card-subtitle>
-                  <ion-card-title>18 &deg;</ion-card-title>
-                  <span><ion-icon name="partly-sunny"></ion-icon> Partly Sunny</span>
-                </ion-card-header>
-                <ion-card-content>
-                  Weather Forecast
-                  <ion-list lines="full" class="weather-card-list">
-                    <ion-item>
-                      <ion-label item-start>Today</ion-label>
-                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>18 &deg;</ion-label>
-                      <ion-label item-end side="left"> Sunny</ion-label>
-                    </ion-item>
-                    <ion-item>
-                      <ion-label item-start>Tue</ion-label>
-                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>16 &deg;</ion-label>
-                      <ion-label item-end side="left"> Sunny</ion-label>
-                    </ion-item>
-                    <ion-item>
-                      <ion-label item-start>Wed</ion-label>
-                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>7 &deg;</ion-label>
-                      <ion-label item-end side="left">Frost </ion-label>
-                    </ion-item>
-                    <ion-item>
-                      <ion-label item-start>Thu</ion-label>
-                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>6 &deg;</ion-label>
-                      <ion-label item-end edge>Frost </ion-label>
-                    </ion-item>
-                    <ion-item>
-                      <ion-label item-start>Fri</ion-label>
-                      <ion-label item-center><ion-icon name="partly-sunny"></ion-icon>5 &deg;</ion-label>
-                      <ion-label item-end edge>Frost </ion-label>
-                    </ion-item>
-                  </ion-list>      
-                </ion-card-content>
+        <ion-slide *ngIf="rmark_today" [hidden]="rmark_slide">
+            <ion-card class="content-card"> 
+                  <!-- <img src="/assets/images/weather/clear.jpg" alt="" /> -->
+                  <ion-card-header class="weather-head">
+                    <ion-card-subtitle class="location ion-text-center">Remarkables</ion-card-subtitle>
+                    <ion-card-title class="temp_class ion-text-center">{{rmark_today.base.temp_c}}&deg;</ion-card-title>
+                    <!-- <img class="weather-icon" src="/assets/icon/set/{{extensionChange(rmark_today.base.wx_icon)}}.png">  -->
+                    <span class="today_weather ion-text-center">{{rmark_today.base.wx_desc}}</span><br>
+                    <span class="today_weather ion-text-center">{{rmark_today.base.feelslike_c}}&deg; / {{rmark_today.upper.feelslike_c}}&deg;</span>
+                  </ion-card-header>
+                  <ion-card-content no-padding class="content-no-background">
+                    <ion-slides [options]="{slidesPerView: 5}"  *ngIf="rmark_hourly" class="hourly-slides">
+                          <ion-slide *ngFor="let weather of rmark_hourly">                                      
+                              <ion-item lines="none">                              
+                                  <ion-label class="slider-font ion-text-center">
+                                    <h2 class="slide-time">{{converTime(weather.time)}}</h2>
+                                    <h3><img  class="image-small" src="/assets/icon/set/{{extensionChange(weather.base.wx_icon)}}.png"/></h3>
+                                    <h2>{{weather.base.feelslike_c}}&deg;</h2>                            
+                                  </ion-label>
+                                </ion-item>                         
+                        </ion-slide>
+                    </ion-slides>               
+                    <ion-list lines="full" class="weather-card-list " *ngIf="rmark_daily">
+                      <ion-item *ngFor="let weather of rmark_daily" class="slider-font ion-text-center ion-align-items-center">
+                        <ion-label item-start>{{convertDate(weather.date)}}</ion-label>
+                        <ion-label item-center class="image-label"><img  class="image-smaller ion-align-self-center" src="/assets/icon/set/{{extensionChange(weather.base.wx_icon)}}.png"/></ion-label>
+                        <ion-label item-end side="left">{{weather.base.feelslike_c}}&deg;/{{weather.upper.feelslike_c}}&deg;</ion-label>
+                      </ion-item>            
+                    </ion-list>      
+                  </ion-card-content>
             </ion-card>
         </ion-slide>
-        <ion-slide >
+        <!-- <ion-slide >
             <ion-card class="welcome-card">
                 <img src="/assets/images/weather.jpg" alt="" />
                 <ion-card-header>
@@ -130,7 +114,7 @@
                   </ion-list>      
                 </ion-card-content>
             </ion-card>
-        </ion-slide>
+        </ion-slide> -->
     </ion-slides>
 
 </ion-content>

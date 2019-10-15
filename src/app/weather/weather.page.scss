@@ -1,0 +1,74 @@
+
+ion-content{
+    --background: url("/assets/images/weather/blue.jpg");
+    --background-repeat: no-repeat !important;
+    --background-size: cover;  
+}
+.temp_class {
+    font-size: 10vh;
+    color: aliceblue;
+    font-weight: 400; 
+    margin-top: 8vh ;
+    margin-left: 35px;
+}
+.slide-time{
+    font-size: 10px
+}
+.weather-head{
+    margin-bottom: 6vh !important;
+}
+.today_weather{
+    font-size: 2vh;
+    color: aliceblue;
+    font-weight: 400
+}
+.location{
+    font-size: 2.5vh;
+    color: aliceblue;
+    font-weight: 400
+}
+.slider-font{
+    color:aliceblue
+}
+.weather-icon{    
+    
+}
+.hourly-slides{
+    border-top: 1px solid #ffffff4d;
+    border-bottom: 1px solid #ffffff4d;
+}
+.content-no-background{
+    --ion-background-color: #111d1200; 
+}
+.image-small{
+    height: 35px;
+    width: 35px;
+}
+.image-smaller{
+    height: 50px;
+    width:  50px;    
+    display: unset !important;
+}
+.image-label{
+    margin:0px !important;
+}
+ion-card{
+    h2{
+        margin-top: 0px;
+    }
+}
+.content-card{
+    
+    background: rgba(0, 0, 0, 0.27);
+    margin-left: unset;
+    margin-right: unset;
+    -webkit-margin-start: 0px;
+    margin-inline-start: 0px;
+    -webkit-margin-end: 0px;
+    margin-inline-end: 0px;
+    border-radius: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+    height:100%
+}
