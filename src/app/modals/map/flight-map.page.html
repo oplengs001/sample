@@ -8,5 +8,34 @@
 </ion-header>
 
 <ion-content>
- <img src="../../assets/images/world-bg.jpg" class="img-container"/>
+ <img scrollX="true" src="../../assets/images/world-bg.jpg" class="img-container"/>
+    <ion-button class="map_button europe" (click)="changeLocation(0)"></ion-button>
+    <ion-button class="map_button africa" (click)="changeLocation(1)"></ion-button>
+    <ion-button class="map_button asia" (click)="changeLocation(2)"></ion-button>
+    <ion-button class="map_button n_america" (click)="changeLocation(3)"></ion-button>
+    <ion-button class="map_button s_america" (click)="changeLocation(4)"></ion-button>
+    <ion-button class="map_button australia" (click)="changeLocation(5)"></ion-button>
+ <ion-card>     
+  <ion-card-header  [hidden]="selection" >
+    <ion-card-title  class="ion-text-center">Select Your Location</ion-card-title>  
+  </ion-card-header>
+  <ion-card-content>
+    <div class="ion-text-center" [hidden]="selection" >
+       Queenstown is located in the southwest corner of the South Island of New Zealand and is very accessible with multiple daily direct flights from all of New Zealand’s
+       main centres as well as direct scheduled services from Sydney, Brisbane, Melbourne and Coolangatta in Australia
+    </div>
+    <div [hidden]="continent">
+      <ion-card-header no-padding>
+          <ion-card-subtitle >Location</ion-card-subtitle>
+          <ion-card-title >{{current_location}}</ion-card-title>
+        </ion-card-header>
+        <br>
+        <ion-card-subtitle>Flight Time</ion-card-subtitle>
+        <p>{{flight_time}}</p><br>
+        <p >{{details}}</p>
+    </div>
+
+</ion-card-content>
+</ion-card>  
+
 </ion-content>
