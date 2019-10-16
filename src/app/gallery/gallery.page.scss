@@ -36,7 +36,7 @@ ion-fab-button[data-desc] {
   }
   
 ion-fab-button[data-desc]::after {
-position: absolute;
+    position: absolute;
     content: attr(data-desc);
     z-index: 1;
     right: 55px;

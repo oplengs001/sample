@@ -9,7 +9,7 @@
     </ion-toolbar>
   </ion-header>
 
-<ion-content>
+<ion-content [ngClass]="checkTime()">
     <ion-slides [options]="{pagination: true}">
         <ion-slide *ngIf="cpeak_today" [hidden]="cpeak_slide">
           <ion-card class="content-card"> 
@@ -19,7 +19,9 @@
                   <ion-card-title class="temp_class ion-text-center">{{cpeak_today.base.temp_c}}&deg;</ion-card-title>
                   <!-- <img class="weather-icon" src="/assets/icon/set/{{extensionChange(cpeak_today.base.wx_icon)}}.png">  -->
                   <span class="today_weather ion-text-center">{{cpeak_today.base.wx_desc}}</span><br>
-                  <span class="today_weather ion-text-center">{{cpeak_today.base.feelslike_c}}&deg; / {{cpeak_today.upper.feelslike_c}}&deg;</span>
+                  <span class="today_weather ion-text-center">{{cpeak_today.base.feelslike_c}}&deg; / {{cpeak_today.upper.feelslike_c}}&deg;</span><br><br>
+                  <span class="today_weather ion-text-center">Snow Fall Depth</span><br>
+                  <span class="today_weather ion-text-center">{{cpeak_today.snow_mm}}mm</span>
                 </ion-card-header>
                 <ion-card-content no-padding class="content-no-background">
                   <ion-slides [options]="{slidesPerView: 5}"  *ngIf="cpeak_hourly" class="hourly-slides">
@@ -51,7 +53,9 @@
                     <ion-card-title class="temp_class ion-text-center">{{rmark_today.base.temp_c}}&deg;</ion-card-title>
                     <!-- <img class="weather-icon" src="/assets/icon/set/{{extensionChange(rmark_today.base.wx_icon)}}.png">  -->
                     <span class="today_weather ion-text-center">{{rmark_today.base.wx_desc}}</span><br>
-                    <span class="today_weather ion-text-center">{{rmark_today.base.feelslike_c}}&deg; / {{rmark_today.upper.feelslike_c}}&deg;</span>
+                    <span class="today_weather ion-text-center">{{rmark_today.base.feelslike_c}}&deg; / {{rmark_today.upper.feelslike_c}}&deg;</span><br>
+                    <span class="today_weather ion-text-center">Snow Fall Depth</span><br>
+                    <span class="today_weather ion-text-center">{{rmark_today.snow_mm}}mm</span>
                   </ion-card-header>
                   <ion-card-content no-padding class="content-no-background">
                     <ion-slides [options]="{slidesPerView: 5}"  *ngIf="rmark_hourly" class="hourly-slides">

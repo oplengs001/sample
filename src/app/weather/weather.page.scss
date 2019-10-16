@@ -1,5 +1,11 @@
 
-ion-content{
+ 
+.morningUI{
+    --background: url("/assets/images/weather/day.jpg");
+    --background-repeat: no-repeat !important;
+    --background-size: cover;  
+}
+.eveningUI{
     --background: url("/assets/images/weather/blue.jpg");
     --background-repeat: no-repeat !important;
     --background-size: cover;  

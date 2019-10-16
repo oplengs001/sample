@@ -4,6 +4,7 @@ import { WeatherService}  from "../services/weather/weather.service"
 import { LoadingController } from '@ionic/angular';
 import * as moment from 'moment';
 import 'moment/locale/pt-br';
+import { min } from 'rxjs/operators';
 
 @Component({
   selector: 'app-weather',
@@ -71,5 +72,33 @@ export class WeatherPage implements OnInit {
   }
   convertDate(time){
     return moment(time, "DD/MM/YYYY").lang("en").format("ddd, DD, MMM")
+  }
+  checkTime(){
+    // var currentTime = moment().lang("en").utcOffset("+12:00").format("a")    
+    var currentTime = moment(),
+    // sunrise = moment().utcOffset("+12:00").set({
+    //     hour: 6,          
+    //     minute:30         
+    // }),
+    // sunset  = moment().utcOffset("+12:00").set({
+    //     hour: 18,    
+    //     minute:30               
+    // }),
+    sunrise = moment().set({
+      hour: 6,          
+      minute:30         
+    }),
+    sunset  = moment().set({
+        hour: 18,    
+        minute:30               
+    })
+    if(currentTime.isBetween(sunrise,sunset)){
+      
+      return "morningUI"
+    }else{
+
+      return "eveningUI"
+    }
+
   }
 }
