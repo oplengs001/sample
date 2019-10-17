@@ -10,24 +10,20 @@
         </ion-back-button>
       </ion-buttons>
       <ion-title>
-        Messages List
+        My Groups
       </ion-title>
     </ion-toolbar>
   </ion-header>
   
 <ion-content>
     <ion-list>
-        <div *ngFor="let gc of currentChats">
-            <ion-item (click)="goToChat(gc)" ngI>
-                <ion-avatar slot="start">
-                    <img src="../../assets/icon/iconM.png">
-                </ion-avatar>
-                <ion-label>
-                  <h2>{{gc}}</h2>
-                  <h3>Lorem Ipsum</h3>
-                  <p></p>
-                </ion-label>
-            </ion-item>
+        <div *ngFor="let gc of currentChats">           
+            <ion-card (click)="goToChat(gc)">
+              <ion-item lines="none">                
+                <h2 class="ion-text-center">{{gc}}</h2>  
+                <ion-button  slot="end">View Chat</ion-button>
+              </ion-item>  
+            </ion-card>
         </div>
     </ion-list> 
 </ion-content>

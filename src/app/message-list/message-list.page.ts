@@ -18,6 +18,7 @@ export class MessageListPage implements OnInit {
   ) {
 
     this.authServ.currentUserData().then((data)=>{   
+      console.log(data)
       this.currentChats = data.chat_id  
     })
    }

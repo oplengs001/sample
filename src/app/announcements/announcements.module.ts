@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { ComponentsModule } from "../componenthandler/components.module"
 import { AnnouncementsPage } from './announcements.page';
-
+import { PipesModule } from '../pipe/sort/sort.pipe.module'
 const routes: Routes = [
   {
     path: '',
@@ -19,8 +19,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    PipesModule,
     ComponentsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),    
   ],
   declarations: [AnnouncementsPage]
 })

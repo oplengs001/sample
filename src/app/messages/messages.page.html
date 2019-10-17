@@ -1,25 +1,16 @@
-<ion-header>
+<ion-header translucent="true" no-border>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Messages
+    <ion-title *ngIf="chat$ | async as chat">
+      {{ chat.id }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content>
-  <ng-container *ngIf="chat$ | async as chat">
-    <div class="top">
-      Group Name
-      <p>
-         {{ chat.id }}
-      </p>
-    </div>    
-  </ng-container>
-
+<ion-content> 
   <ion-grid *ngIf="chat$ | async as chat">
     
     <ion-row *ngFor="let msg of chat.messages; trackBy: trackByCreated">
