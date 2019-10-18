@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="header-bg">
       <ion-buttons slot="start">
           <ion-button (click)="this.transServe.backButtonTrans()">
               <ion-icon slot="start" name="arrow-round-back"></ion-icon>            
@@ -11,7 +11,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>  
+<ion-content class="content-bg">  
   <ion-list>
     <!-- <ion-item *ngFor="let announcement of (announcements | async)">
         <ion-icon slot="start" name="megaphone"  color="medium"></ion-icon>    
@@ -21,10 +21,10 @@
         <p>{{ announcement.body }} </p>
       </ion-label>
     </ion-item>    -->
-    <div *ngFor="let announcement of (announcements | async | sort :'asc':'date_posted' ); ">
+    <div *ngFor="let announcement of (announcements | async | sort :'asc':'date_posted' );">
 
-        <ion-card >      
-            <ion-item>
+        <ion-card class="card-class">      
+            <ion-item class="item-class">
               <ion-icon name="megaphone" slot="start"></ion-icon>
               <ion-label>{{ announcement.title }} </ion-label> 
             </ion-item>          
@@ -33,7 +33,7 @@
             </ion-card-content>
             <ion-item>
             
-              <h4 class="ion-text-center time-format">{{announcement.date_posted | date: 'MMM dd hh:mm a'}}</h4>
+              <div class="ion-text-center time-format">{{announcement.date_posted | date: 'MMM dd hh:mm a'}}</div>
             </ion-item> 
           </ion-card> 
     </div>

@@ -3,7 +3,7 @@
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 4px;
-  white-space: pre-wrap;
+  white-space: pre-wrap;  
 }
 .header-bg{
   --background: var( --ion-color-primary);
@@ -14,7 +14,8 @@
 }
 .my-message {
   background: var( --ion-color-primary);
-  color:#ffffff
+  color:#ffffff;
+  
 }
  
 .other-message {

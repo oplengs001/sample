@@ -1,4 +1,5 @@
-import { Component, OnInit ,ViewChild , ElementRef} from '@angular/core';
+import { Component, OnInit ,ViewChild , ViewChildren ,QueryList} from '@angular/core';
+import { IonContent,IonInfiniteScroll   } from '@ionic/angular';
 import { ChatService } from '../services/chat/chat.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -11,7 +12,8 @@ import { AuthService } from '../services/auth/auth.service';
 })
 
 export class MessagesPage implements OnInit {  
-  @ViewChild("content", { read: ElementRef,static:false }) content: ElementRef;
+  @ViewChild(IonContent, {static: false}) content: IonContent;
+  @ViewChildren('messages') things: QueryList<any>;
   chat$: Observable<any>;
   newMsg: string; 
   currentUser :string;  
@@ -32,9 +34,16 @@ export class MessagesPage implements OnInit {
   ngOnInit(){
 
   }
-  scrollToBottomOnInit() {
-    console.log("socococo")
-    this.content.nativeElement.scrollToBottom(300);
+  ngAfterViewInit(){  
+    this.things.changes.subscribe(t => {
+      console.log("changes")
+      if(t.length >0){
+        this.scrollToBottom()
+      }
+    })  
+  }  
+  scrollToBottom() {
+    this.content.scrollToBottom(1500);
   }
   ionViewDidEnter (){
     
@@ -42,8 +51,7 @@ export class MessagesPage implements OnInit {
     // const source = this.cs.get("Entourage");
     const source = this.cs.get(this.id);
     this.cs.joinUsers(source).then(data=>{
-      this.chat$ = data
-      // this.scrollToBottomOnInit()
+      this.chat$ = data      
     });
     
     

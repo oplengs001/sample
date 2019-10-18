@@ -1,3 +1,20 @@
 .time-format{
     font-size: 15px
 }
+
+.header-bg{
+    --background: var( --ion-color-primary);
+    color:#ffffff
+}
+.content-bg{
+    --ion-background-color:#DEEEEF;
+}
+
+.card-class {
+    background: #ffffff
+    
+}
+.item-class{
+    --background: var( --ion-color-primary);
+    color:#ffffff
+}
