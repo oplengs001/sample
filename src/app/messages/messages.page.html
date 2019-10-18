@@ -1,28 +1,29 @@
-<ion-header translucent="true" no-border>
-  <ion-toolbar>
+<ion-header translucent="true" no-border >
+  <ion-toolbar class="header-bg">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title *ngIf="chat$ | async as chat">
+    <ion-title *ngIf="chat$ | async as chat" >
       {{ chat.id }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content> 
+<ion-content class="message-bg" #content> 
   <ion-grid *ngIf="chat$ | async as chat">
     
     <ion-row *ngFor="let msg of chat.messages; trackBy: trackByCreated">
       
-      <ion-col size="9" *ngIf="msg.user.uid !== currentUser" class="message other-message">
-        <b>{{ msg.user.first_name }} {{ msg.user.last_name }}</b><br>
+      <ion-col size="9" *ngIf="msg.user.uid !== currentUser" class="message other-message">   
+        <b class="username">{{ msg.user.first_name}} {{ msg.user.last_name }}</b><br>
         <span>{{ msg.content }}</span>
         <div class="time" text-right><br>{{ msg.createdAt | date:'short' }}</div>
+       
       </ion-col>
  
       <ion-col offset="3" size="9" *ngIf="msg.user.uid === currentUser" class="message my-message">
-        <b>{{ msg.user.first_name}} {{ msg.user.last_name }}</b><br>
+        <b class="username">{{ msg.user.first_name}} {{ msg.user.last_name }}</b><br>
         <span>{{ msg.content }}</span>
         <div class="time" text-right><br>{{ msg.createdAt | date:'short' }}</div>
       </ion-col>

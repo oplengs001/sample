@@ -1,19 +1,25 @@
 
 .message {
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-bottom: 4px;
   white-space: pre-wrap;
 }
- 
+.header-bg{
+  --background: var( --ion-color-primary);
+  color:#ffffff
+}
+.message-bg{
+  --ion-background-color:#DEEEEF;
+}
 .my-message {
-  background: var(--ion-color-tertiary);
-  color: #fff;
+  background: var( --ion-color-primary);
+  color:#ffffff
 }
  
 .other-message {
-  background: var(--ion-color-secondary);
-  color: #fff;
+  background: #fff;
+  color: var(--ion-color-dark);
 }
  
 .time {
@@ -21,7 +27,9 @@
   float: right;
   font-size: small;
 }
- 
+.username{
+  font-size: 10px;
+ }
 .message-input {
   width: 100%;
   border: 1px solid var(--ion-color-medium);

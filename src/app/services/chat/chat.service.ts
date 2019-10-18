@@ -7,6 +7,7 @@ import { firestore } from 'firebase/app';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable, combineLatest, of } from 'rxjs';
 import { async } from '@angular/core/testing';
+import { promise } from 'protractor';
 
 export interface GroupChat {
   count: number,
@@ -92,10 +93,10 @@ export class ChatService {
     }
   }
   
-  joinUsers(chat$: Observable<any>) {
+  async joinUsers(chat$: Observable<any>) {
     let chat;
     const joinKeys = {};
-  
+    
     return chat$.pipe(
       switchMap(c => {
         // Unique User IDs
