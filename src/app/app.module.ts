@@ -27,7 +27,9 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 import { CreateGroupPageModule } from '../app/modals/create-group/create-group.module'
 import { HomeMenuPageModule } from '../app/modals/menu/home-menu.module'
 import { FlightMapPageModule } from '../app/modals/map/flight-map.module'
+import { ImagePageModule } from '../app/modals/photos/image/image.module'
 import { ComponentsModule } from "../app/componenthandler/components.module"
+
 import 'gl-ionic-background-video';
 
 @NgModule({
@@ -47,7 +49,8 @@ import 'gl-ionic-background-video';
     AutosizeModule,
     CreateGroupPageModule,
     HomeMenuPageModule,
-    FlightMapPageModule
+    FlightMapPageModule,
+    ImagePageModule
   ],
   providers: [
 

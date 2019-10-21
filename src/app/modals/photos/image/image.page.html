@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+        <ion-button (click)="closeModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="single-count-image" >
+        <ion-card no-padding> 
+          <ion-card-header>               
+              <ion-item lines="none" no-padding >
+                  <ion-avatar slot="start">
+                      <img class="profile-img" src="assets/images/avatar.svg">
+                  </ion-avatar>
+                  <ion-label>
+                    <!-- {{post.uploaded_by}} -->
+                    {{image_post.user.first_name}} {{image_post.user.last_name}} 
+                    <p>{{ image_post.date_uploaded | date:'short' }}</p>
+                  </ion-label>                 
+                  <ion-icon name="more" slot="end" (click)="actions.presentActionSheet(image_post)"></ion-icon>         
+              </ion-item>   
+            </ion-card-header>
+            <ion-card-content>
+              <img src="{{image_post.url}}">
+            </ion-card-content>                  
+        </ion-card>
+    </div>
+</ion-content>

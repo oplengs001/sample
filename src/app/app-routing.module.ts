@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: 'rentals', loadChildren: './pre-wedding/rentals/rentals.module#RentalsPageModule' },
   { path: 'wedding-weather', loadChildren: './pre-wedding/wedding-weather/wedding-weather.module#WeddingWeatherPageModule' },
   { path: 'flight-map', loadChildren: './modals/map/flight-map.module#FlightMapPageModule' },
+  { path: 'image', loadChildren: './modals/photos/image/image.module#ImagePageModule' },
 ];
 
 @NgModule({

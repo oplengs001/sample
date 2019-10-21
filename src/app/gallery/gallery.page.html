@@ -62,8 +62,11 @@
           </div>
         </div>     
         <div class="images" *ngSwitchCase="'pinterest'">    
-            <div class="one-image"  *ngFor="let post of (GalleryPosts | async) trackBy: trackByCreated">
-              <img src="{{post.url}}">
+            <div class="one-image" *ngFor="let post of (GalleryPosts | async) trackBy: trackByCreated">
+              <div  (click)="imageClick(post)">
+                  <img src="{{post.url}}">
+              </div>
+              
             </div>
         </div>        
       <br>       

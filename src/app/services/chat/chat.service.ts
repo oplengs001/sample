@@ -44,18 +44,13 @@ export class ChatService {
   getAllChat(): Observable<GroupChat[]> {
     return this.group_chats;
   }
-  // get(chatId){
-  //   return this.afs
-  //         .collection<any>('chats')
-  //         .doc(chatId)
-          // .snapshotChanges()
-          // .pipe(
-          //   map(doc => {          
-          //     return { id: doc.payload.id, ...doc.payload.data() };
-          //   })
-          // );
-  // }
-  // , ref => ref.orderBy("createdAt").limit(10)
+  // ref.parent.orderBy("messages.createdBy").limit(10).get()
+  getV(chatId){
+    return firestore().collection("chats").doc(chatId).get()
+      .then( chat=>{              
+        return chat
+      })
+  }  
   
   get(chatId) {
     return this.afs
@@ -63,10 +58,14 @@ export class ChatService {
       .doc(chatId)
       .snapshotChanges()
       .pipe(
-        map(doc => {          
-          return { id: doc.payload.id, ...doc.payload.data() };
+        map(doc => {                       
+          return { id: doc.payload.id, ...doc.payload.data()};
         })
       );
+  }
+  limitData(documentData,limit){
+
+
   }
  
   async create(group_details : any) {    
