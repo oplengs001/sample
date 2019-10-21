@@ -44,14 +44,26 @@ export class ChatService {
   getAllChat(): Observable<GroupChat[]> {
     return this.group_chats;
   }
+  // get(chatId){
+  //   return this.afs
+  //         .collection<any>('chats')
+  //         .doc(chatId)
+          // .snapshotChanges()
+          // .pipe(
+          //   map(doc => {          
+          //     return { id: doc.payload.id, ...doc.payload.data() };
+          //   })
+          // );
+  // }
+  // , ref => ref.orderBy("createdAt").limit(10)
+  
   get(chatId) {
     return this.afs
       .collection<any>('chats')
       .doc(chatId)
       .snapshotChanges()
       .pipe(
-        map(doc => {
-          
+        map(doc => {          
           return { id: doc.payload.id, ...doc.payload.data() };
         })
       );

@@ -38,7 +38,10 @@ export class MessagesPage implements OnInit {
     this.things.changes.subscribe(t => {
       console.log("changes")
       if(t.length >0){
-        this.scrollToBottom()
+        setTimeout(()=>{
+          this.scrollToBottom()
+        },500)
+ 
       }
     })  
   }  
