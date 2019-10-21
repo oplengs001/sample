@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
-
+import { TransitionsService } from '../services/native/transitions.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent   {
-  constructor(private router: Router ) {
+  constructor(
+    private router: Router,
+    private transServe : TransitionsService
+     ) {
     
    }
 
@@ -20,5 +23,8 @@ export class FooterComponent   {
   }
   goToHome() {
     this.router.navigateByUrl('/home');
+  }
+  goToItenerary (){
+    this.transServe.reRouteActivity("Itenerary")
   }
 }

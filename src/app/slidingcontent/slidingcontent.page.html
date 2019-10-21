@@ -11,22 +11,38 @@
     </ion-toolbar>
   </ion-header>
 
-<ion-content >
-    <ion-card class="content-card">
-        <ion-card-header > 
-          <ion-card-title  class="ion-text-center"> Tom & Ingga's <br>Top Recommended Restaurants</ion-card-title>              
-        </ion-card-header>   
-    </ion-card>   
-    <ion-card class="content-card" *ngFor="let resto of topResto">
-        <img src="{{resto.image_url}}"/>
-        <ion-card-header> 
-          <ion-card-title>{{resto.name}}</ion-card-title>    
-          <ion-card-subtitle>{{resto.location}}</ion-card-subtitle>
-        </ion-card-header>   
-    </ion-card>     
-    <ion-card class="content-card">
-        <ion-card-header> 
-          <ion-card-subtitle class="ion-text-center">see more at <br><a href="https://www.queenstownnz.co.nz/places-to-eat-and-drink/">queenstown places to Eat & Drink </a></ion-card-subtitle>
-        </ion-card-header>   
-    </ion-card> 
+<ion-content > 
+    <div *ngIf="Dining">
+      <ion-card class="content-card">
+          <ion-card-header > 
+            <ion-card-title  class="ion-text-center"> Tom & Ingga's <br>Top Recommended Restaurants</ion-card-title>              
+          </ion-card-header>   
+      </ion-card>   
+      <ion-card class="content-card" *ngFor="let resto of topResto">
+          <img src="{{resto.image_url}}"/>
+          <ion-card-header> 
+            <ion-card-title>{{resto.name}}</ion-card-title>    
+            <ion-card-subtitle>{{resto.location}}</ion-card-subtitle>
+          </ion-card-header>   
+      </ion-card>     
+      <ion-card class="content-card">
+          <ion-card-header> 
+            <ion-card-subtitle class="ion-text-center">see more at <br><a href="https://www.queenstownnz.co.nz/places-to-eat-and-drink/">queenstown places to Eat & Drink </a></ion-card-subtitle>
+          </ion-card-header>   
+      </ion-card> 
+    </div>
+    <div *ngIf="Itenerary">  
+      <ion-card class="content-card">
+          <ion-card-header > 
+            <ion-card-title  class="ion-text-center">Wedding Itenerary</ion-card-title>
+          </ion-card-header>   
+      </ion-card>   
+      <ion-card class="content-card" *ngFor="let event of event_it">
+          <img src="{{event.image_url}}"/>
+          <ion-card-header> 
+            <ion-card-title>{{event.name}}</ion-card-title>    
+            <ion-card-subtitle>{{event.location}}</ion-card-subtitle>
+          </ion-card-header>   
+      </ion-card>            
+    </div>
 </ion-content>
