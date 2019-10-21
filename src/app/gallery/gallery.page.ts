@@ -21,7 +21,8 @@ export class GalleryPage implements OnInit {
   fileUploads: any[];
   galleryType = 'regular';
   imagePath : string;
-  currentUser :string;  
+  currentUser :string; 
+  OwnImages: boolean; 
   constructor(
     private imagePicker : ImagePicker,
     private imageService : ImagesService,
@@ -72,6 +73,12 @@ export class GalleryPage implements OnInit {
   }
   imageClick(post){
     this.imageModal.openModal(post)
+  }
+  postFilter(){
+    this.OwnImages = true
+  }
+  seeAll(){
+    this.OwnImages = false
   }
   async DeleteConfirm(post) {
     const alert = await this.alertController.create({
