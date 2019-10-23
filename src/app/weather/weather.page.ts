@@ -31,9 +31,9 @@ export class WeatherPage implements OnInit {
     this.cpeak_slide  = true
   }
   async ngOnInit() {
-    // this.showLoader()
+    this.showLoader()
     this.cpeak_data = await this.weatherServ.getWeather("4424660").then(data=>{
-      // this.hideLoader();
+      this.hideLoader();
       console.log(data)
       this.cpeak_slide  = false
       this.cpeak_today = data.today
@@ -41,7 +41,7 @@ export class WeatherPage implements OnInit {
       this.cpeak_daily = data.daily
     })
     this.rmark_data = await this.weatherServ.getWeather("615013").then(data=>{
-      // this.hideLoader();
+      this.hideLoader();
       console.log(data)
       this.rmark_slide  = false
       this.rmark_today = data.today
@@ -65,7 +65,7 @@ export class WeatherPage implements OnInit {
   hideLoader() {
     setTimeout(() => {
       this.loadingController.dismiss();
-    }, 4000);
+    }, 2000);
   }
   converTime (time) {
     return moment(time,"HH:mm").format("hh:mm a")

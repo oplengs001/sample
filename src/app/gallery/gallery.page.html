@@ -58,7 +58,7 @@
                                 {{post.user.first_name}} {{post.user.last_name}} 
                                 <p>{{ post.date_uploaded | date:'short' }}</p>
                               </ion-label>                 
-                              <ion-icon name="more" slot="end" (click)="presentActionSheet(post)"></ion-icon>         
+                              <ion-icon name="more" slot="end" (click)="actions.presentActionSheet(post)"></ion-icon>         
                           </ion-item>   
                       </ion-card-header>
                       <ion-card-content>
@@ -78,7 +78,7 @@
                                 {{post.user.first_name}} {{post.user.last_name}} 
                                 <p>{{ post.date_uploaded | date:'short' }}</p>
                               </ion-label>                 
-                              <ion-icon name="more" slot="end" (click)="presentActionSheet(post)"></ion-icon>         
+                              <ion-icon name="more" slot="end" (click)="actions.presentActionSheet(post)"></ion-icon>         
                           </ion-item>   
                       </ion-card-header>
                       <ion-card-content>

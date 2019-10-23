@@ -10,7 +10,8 @@ import { AlertController } from '@ionic/angular';
 import { TransitionsService } from '../services/native/transitions.service';
 import { ImagePage } from '../modals/photos/image/image.page'
 import { debug } from 'util';
-
+import { ActionClass} from '../gallery-action-sheet/actionsheet'
+import { LoadingController } from '@ionic/angular';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.page.html',
@@ -28,11 +29,11 @@ export class GalleryPage implements OnInit {
     private imageService : ImagesService,
     private toaster : ToastService,
     private authServ : AuthService,
-    private actionSheetController : ActionSheetController,
     private webview : WebView,
-    private alertController : AlertController,
     private transServe : TransitionsService,
-    private imageModal: ImagePage
+    private imageModal: ImagePage,
+    private loadingCtrl : LoadingController,
+    private actions : ActionClass
   ) { }
 
   ngOnInit() {      
@@ -80,113 +81,6 @@ export class GalleryPage implements OnInit {
   seeAll(){
     this.OwnImages = false
   }
-  async DeleteConfirm(post) {
-    const alert = await this.alertController.create({
-      header: 'Are You Sure?',
-      message: 'This Photo will be deleted',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-           console.log("canceled")
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-            this.imageService.removeImageRef(post)
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
-  async presentActionSheet(post) {
-    
-    console.log(post)
-    const {id,uploaded_by} = post
-    var buttons = [
-      {
-        text: 'Share',
-        icon: 'share',
-        handler: () => {
-          this.sharingActionSheet(post)
-          console.log('Play clicked');
-        }      
-      },      
-      {
-        text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          this.DeleteConfirm(post)
-        }
-      },{
-        text: 'Cancel',
-        icon: 'close',   
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }
-    ]
-    if(this.currentUser !== uploaded_by){      
-      buttons.splice(1,1)
-    }
-    const actionSheet = await this.actionSheetController.create({
-      buttons: buttons
-    });
- 
-    await actionSheet.present();
-  }
-  async sharingActionSheet(post) {
-    const {id} = post
-    const actionSheet = await this.actionSheetController.create({  
-      buttons: [
-      {
-        text: 'Facebook',
-        icon: 'logo-facebook',
-        handler: () => {  
-          console.log('Play clicked');
-        }      
-      },      
-      {
-        text: 'Twitter',     
-        icon: 'logo-twitter',
-        handler: () => {
-          console.log(id)
-          console.log('Delete clicked');
-        }
-      }, {
-        text: 'Instagram',     
-        icon: 'logo-instagram',
-        handler: () => {
-          console.log(id)
-          console.log('Delete clicked');
-        }
-      },{
-        text: 'WhatsApp',     
-        icon: 'logo-whatsapp',
-        handler: () => {
-          console.log(id)
-          console.log('Delete clicked');
-        }
-      },{
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
-    });
- 
-    await actionSheet.present();
-  }
-
-
-  
   // imageUploadTest(){
   //   // var image = this.webview.convertFileSrc("../../assets/images/g1.jpg");
   //   var image = "../../assets/images/g4.jpg";

@@ -175,7 +175,7 @@ export class ImagesService {
   joinUsers(post$: Observable<any>) {
     let post;
     const joinKeys = {};
-  
+    
     return post$.pipe(
       switchMap(c => {
         // Unique User IDs
@@ -189,16 +189,15 @@ export class ImagesService {
           })
         );                       
         return userDocs.length ? combineLatest(userDocs) : of([]);
-      }),
-      map(arr => {        
+      }),map(arr => {        
         arr.forEach(v => (joinKeys[(<any>v).uid] = v));
         post = post.map(v => {          
           return { ...v, user: joinKeys[v.uploaded_by] };
         });
-  
+        
         return post;
       })
-    );
+    )
   }
   makeid(length) {
     var result           = '';
