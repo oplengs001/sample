@@ -37,12 +37,22 @@
             <ion-card-title  class="ion-text-center">Wedding Itenerary</ion-card-title>
           </ion-card-header>   
       </ion-card>   
-      <ion-card class="content-card" *ngFor="let event of event_it">
+      <div *ngIf="(events|async)?.length === 0">
+        <img src="/assets/images/itenerary/slide.png"/>
+        <h2 class="ion-text-center">To Be Announce!</h2>
+        <p class="ion-text-center"><b>Wait for further Announcement</b><br>
+           you will be notified when Events are added in this Itenerary!</p>
+
+      </div>
+      <div *ngIf="(events|async)?.length > 0">
+        <ion-card class="content-card" *ngFor="let event of (events | async)">
           <img src="{{event.image_url}}"/>
           <ion-card-header> 
             <ion-card-title>{{event.name}}</ion-card-title>    
             <ion-card-subtitle>{{event.location}}</ion-card-subtitle>
           </ion-card-header>   
-      </ion-card>            
+        </ion-card> 
+      </div>   
+
     </div>
 </ion-content>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TransitionsService } from '../services/native/transitions.service';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { SlidingContentService, Itenerary } from "../services/content/sliding-content.service"
 @Component({
   selector: 'app-slidingcontent',
   templateUrl: './slidingcontent.page.html',
@@ -12,9 +14,11 @@ export class SlidingcontentPage implements OnInit {
   event_it : any = []
   Dining: boolean
   Itenerary :boolean
+  events: Observable<Itenerary[]>;
   constructor(
     private transServe : TransitionsService,
-    private route : ActivatedRoute
+    private route : ActivatedRoute,
+    private contentServe : SlidingContentService
   ) { 
     this.Dining = false
     this.Itenerary = false
@@ -65,6 +69,7 @@ export class SlidingcontentPage implements OnInit {
         location: "3 Searle Ln, Queenstown 9300"
       }
     ]
+
     this.topResto = [
       {
         image_url: "/assets/images/dining/botswana.jpg",
@@ -112,10 +117,11 @@ export class SlidingcontentPage implements OnInit {
         location: "36 Ballarat St, Queenstown 9300"
       },      
     ]
+    
   }
     
   ngOnInit() {
-    
+    this.events = this.contentServe.getEvents()
   }
 
 }
