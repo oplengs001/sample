@@ -36,7 +36,7 @@
   <ion-toolbar color="light">
     <ion-row no-padding align-items-center>
       <ion-col size="10">
-        <textarea autosize class="message-input" maxRows="4" [(ngModel)]="newMsg"(keydown.enter)="submit(chat.id)" ></textarea>
+        <ion-textarea autosize class="message-input" maxRows="4" [(ngModel)]="newMsg" (keydown.enter)="submit(chat.id)" ></ion-textarea>
       </ion-col>
       <ion-col size="2">
         <ion-button expand="block" fill="clear" color="primary" [disabled]="newMsg === ''"  class="msg-btn"

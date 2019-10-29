@@ -24,15 +24,24 @@ export class HomePage {
     private transition : TransitionsService,
     public modalctrl: ModalController,
     ) {
+      
     this.plt.ready()
       .then(() => {
-        this.fcm.onNotification().subscribe(data => {
+        this.fcm.onNotification().subscribe( async data => {
           console.log(data)
           if (data.wasTapped) {
-            this.toastService.showToast("New Notification!")
-            console.log("Received in background");
-          } else {         
-            this.toastService.showNotif("");
+
+          } else {
+            if(data.type === "chat"){
+              var uid = await this.authServ.currentUserId();        
+              if (data.sender_id === uid){
+                
+              }else{
+                this.toastService.showNotif("New Message From!", data);
+              }       
+            }else if(data.type === "announcement"){
+              this.toastService.showNotif("New Announcement!",data)
+            }
             console.log("Received in foreground");
           };
         });

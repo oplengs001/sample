@@ -39,6 +39,10 @@ export class AdminAnnouncementPage implements OnInit {
             "title": this.message_body.title,
             "text": this.message_body.body
         },
+        "data": 
+        {
+          "type":"announcement",
+        },
         "priority" : "high",
         "to" : "/topics/enappd"
     }

@@ -5,7 +5,11 @@ import {  Router } from '@angular/router';
   providedIn: 'root'
 })
 export class ToastService {
-  
+  private url_links = {
+    announcement:"/announcement",
+    chat:"/messages"
+    }
+    
   constructor( 
     private toastCtrl: ToastController,
     private router: Router
@@ -19,16 +23,21 @@ export class ToastService {
       duration: 2000
     }).then(toast => toast.present());
   }
-  showNotif(msg){
+  showNotif(msg:string,chat_data:any){
    this.toastCtrl.create({
-      header: "New Notification Message!",     
+      header: msg,     
       position: 'top',
       buttons: [
         {
           side: 'start',        
           text: 'Show',
           handler: () => {
-            this.router.navigateByUrl('/announcements');
+            var url = this.url_links[chat_data.type]
+            if(chat_data.type ==="chat"){
+             url = url+`?group_id=${chat_data.group}`
+            }
+            console.log(url)
+            this.router.navigateByUrl(url);
           }
         }, {
           text: 'Close',

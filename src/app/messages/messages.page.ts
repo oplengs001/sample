@@ -15,7 +15,7 @@ export class MessagesPage implements OnInit {
   @ViewChild(IonContent, {static: false}) content: IonContent;
   @ViewChildren('messages') things: QueryList<any>;
   chat$: Observable<any>;
-  newMsg: string; 
+  public newMsg: string; 
   currentUser :string;  
   id: any;
 
@@ -60,9 +60,10 @@ export class MessagesPage implements OnInit {
     
   }
 
-  submit(chatId) {
+  submit(chatId) {   
     this.cs.sendMessage(chatId, this.newMsg);
-    this.newMsg = '';
+    this.newMsg = ''
+    this.newMsg = this.newMsg.trim();
   }
 
   trackByCreated(i, msg) {    

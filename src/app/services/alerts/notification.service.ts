@@ -16,13 +16,19 @@ export class NotificationService {
     ) { }
 
     
-    createNotif(topic:string){
+    createNotif(topic:string,sender_id:string){
       
       var object_returns : any
       let postData =  {
           "notification" :{
               "title": topic,
-              "text": "New Message From"
+              "text": `New Message From ${topic}`
+          },
+          "data": 
+          {
+            "type":"chat",
+            "group": topic,
+            "sender_id" : sender_id 
           },
           "priority" : "high",
           "to" : `/topics/${topic}`

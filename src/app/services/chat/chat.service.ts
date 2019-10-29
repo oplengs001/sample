@@ -95,7 +95,7 @@ export class ChatService {
       return ref.update({
         messages: firestore.FieldValue.arrayUnion(data)
       }).then(()=>{
-        this.notif.createNotif(chatId)
+        this.notif.createNotif(chatId,uid)
         console.log(data)
       }).catch(function(error) {
         // The document probably doesn't exist.
