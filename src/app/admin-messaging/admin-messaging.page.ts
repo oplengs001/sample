@@ -25,8 +25,29 @@ export class AdminMessagingPage implements OnInit {
        await this.modalController.create({
           component: CreateGroupPage,
           componentProps: {
-             aParameter: true,
-             otherParameter: new Date()
+            group_details:{
+              group_name:"",
+              group_id:""
+            },
+            SavingModal : false,
+            EditingModal : true,
+            aParameter: true,
+            otherParameter: new Date()
+          }
+    });          
+    await modal.present();
+  }
+  async editGroup(group_details:any) {
+    console.log(group_details)
+    const modal: HTMLIonModalElement =
+       await this.modalController.create({
+          component: CreateGroupPage,
+          componentProps: {
+            group_details :group_details, 
+            SavingModal : true,
+            EditingModal : false,
+            aParameter: true,
+            otherParameter: new Date()
           }
     });          
     await modal.present();
@@ -53,6 +74,7 @@ export class AdminMessagingPage implements OnInit {
         text: 'Edit',
         icon: 'md-create',
         handler: () => {
+          this.editGroup(group)
           console.log('Share clicked');
         }
       },

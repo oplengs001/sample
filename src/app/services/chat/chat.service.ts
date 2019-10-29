@@ -67,16 +67,31 @@ export class ChatService {
 
 
   }
- 
-  async create(group_details : any) {    
+  group_members_format (members){
+    return new Promise<any>((resolve, reject) => {
+      
+      var inbox_format = members.map((item)=>{
+        return {
+          user_id : item,
+          message_count : 0
+        }
+      })
+      resolve(inbox_format)
+    })
+  }
+  async create(group_details : any,group_members:any) {    
+
     const  uid  = await this.auth.currentUserId();
+    
+    var members_format = await this.group_members_format(group_members)
     var {group_name,group_id} = group_details    
     const data = {
       uid,
       group_name : group_name, 
       createdAt: Date.now(),
       count: 0,
-      messages: []
+      messages: [],
+      inbox: members_format
     };
     return await this.afs.collection('chats').doc(group_id).set(data)        
   }

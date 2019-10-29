@@ -4,6 +4,7 @@ import { ChatService} from '../../services/chat/chat.service'
 import {FormBuilder,FormGroup, Validators} from '@angular/forms';
 import { GuestAddService ,Guest} from '../../services/guest-add/guest-add.service'
 import { Observable } from 'rxjs';
+import { debug } from 'util';
 @Component({
   selector: 'app-create-group',
   templateUrl: './create-group.page.html',
@@ -16,6 +17,8 @@ export class CreateGroupPage implements OnInit {
     group_name : string,
     group_members : []
   }
+  SavingModal : boolean
+  EditingModal : boolean
   private guests: Observable<Guest[]>;
   
   constructor(
@@ -28,7 +31,6 @@ export class CreateGroupPage implements OnInit {
   }
   ngOnInit() {
     this.guests = this.GuestServ.getGuests();
-
   }
   createGroupForm() {
     this.GroupForm = this.fb.group({
@@ -45,10 +47,11 @@ export class CreateGroupPage implements OnInit {
       group_id : group_id,
       group_name : group_name
     }    
-    this.GuestServ.addGroupToGuestMultiple(group_id , group_members).then(data=>{
-      this.ChatServ.create(chat_group)
-    })
     
+    this.GuestServ.addGroupToGuestMultiple(group_id , group_members).then(
+      data=>{
+        this.ChatServ.create(chat_group,group_members)
+      }) 
   }
   async closeModal() {  
     await this.modalController.dismiss();

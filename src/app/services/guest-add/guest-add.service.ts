@@ -50,12 +50,12 @@ export class GuestAddService {
   addGuest(guest: Guest): Promise<any> {
     return this.GuestCollection.doc(guest.uid).set(guest);
   }
-  async addGroupToGuest (uid:string,group_id:string){    
+  async addGroupToGuest (uid:string,group_id:any){    
     return  await this.afs.firestore.collection('guests')
     .doc(uid)
     .update(
       {
-        "chat_id":[group_id]
+        "chat_id":group_id
       }
     )
     .then(res =>{
@@ -70,8 +70,16 @@ export class GuestAddService {
       const snapshot = await this.afs.firestore.collection('guests').get()
       snapshot.docs.map(doc => {
         var guest = doc.data()                
+        
           if(guest_ids.includes(guest.uid)){
-            this.addGroupToGuest(guest.uid,group_id)
+            var ids =[];
+            if(guest.chat_id.length < 1){
+                ids.push(group_id)
+            }else{
+                guest.chat_id.push(group_id)   
+                ids = guest.chat_id
+            }                               
+            this.addGroupToGuest(guest.uid,ids) 
           }            
         }
       );  

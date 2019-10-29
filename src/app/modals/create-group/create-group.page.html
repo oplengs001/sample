@@ -12,25 +12,31 @@
       <ion-list>           
             <ion-item>
                 <ion-label position="stacked">Group ID</ion-label>
-                <ion-input formControlName="group_id"></ion-input>
+                <ion-input formControlName="group_id" value={{group_details.id}}></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label position="stacked">Group Name</ion-label>
-                <ion-input formControlName="group_name"></ion-input>
+                <ion-input formControlName="group_name" value={{group_details.group_name}}></ion-input>
             </ion-item>                    
             <ion-item>
                 <ion-label>Group Members</ion-label>
                 <ion-select multiple="true" cancelText="Cancel" okText="Save!"  formControlName="group_members">
                   <div *ngFor="let guest of (guests | async)">
-                  <ion-select-option  *ngIf="(guest.isAdmin == false)"
-                  value={{guest.uid}}
-                  >{{guest.first_name}} {{guest.last_name}}
-                    </ion-select-option>
+                    <ion-select-option  *ngIf="(guest.isAdmin == false)"
+                    value={{guest.uid}}
+                    >{{guest.first_name}} {{guest.last_name}}
+                      </ion-select-option>
                   </div>            
                 </ion-select>
               </ion-item>
                   
       </ion-list>
-      <ion-button expand="full" type="submit" [disabled]="GroupForm.invalid">Save Group</ion-button>
+      <div [hidden]="SavingModal">
+          <ion-button expand="full" type="submit" [disabled]="GroupForm.invalid">Save Group</ion-button>
+      </div>
+      <div [hidden]="EditingModal">
+          <ion-button expand="full" type="submit" [disabled]="GroupForm.invalid">Save Changes</ion-button>
+      </div>
+    
     </form>
   </ion-content>
