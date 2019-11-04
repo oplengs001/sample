@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'itenerary', loadChildren: './itenerary/itenerary.module#IteneraryPageModule' },
   { path: 'guestlist', loadChildren: './guestlist/guestlist.module#GuestlistPageModule' },
   { path: 'ceremony', loadChildren: './ceremony/ceremony.module#CeremonyPageModule' },
-  { path: 'guestadd', loadChildren: './guestadd/guestadd.module#GuestaddPageModule' },
+  { path: 'guestadd', loadChildren: './guestadd/guestadd.module#GuestaddPageModule' }, 
   { path: 'announcements', loadChildren: './announcements/announcements.module#AnnouncementsPageModule' },
   { path: 'admin-announcement', loadChildren: './admin-announcement/admin-announcement.module#AdminAnnouncementPageModule' },
   { path: 'admin-messaging', loadChildren: './admin-messaging/admin-messaging.module#AdminMessagingPageModule' },

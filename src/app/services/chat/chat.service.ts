@@ -14,6 +14,7 @@ export interface GroupChat {
   createdAt : number,
   group_name : string,
   message:[]
+  inbox:[]
 }
 @Injectable({
   providedIn: 'root'
@@ -45,8 +46,6 @@ export class ChatService {
     return this.group_chats;
   }
   // ref.parent.orderBy("messages.createdBy").limit(10).get()
-
-  
   get(chatId) {  
     return this.afs
       .collection<any>('chats')
@@ -58,11 +57,7 @@ export class ChatService {
           return { id: doc.payload.id, ...doc.payload.data()};
         })
       );
-  }
-  limitData(documentData,limit){
-
-
-  }
+  }  
   group_members_format (members){
     return new Promise<any>((resolve, reject) => {
     
@@ -116,7 +111,18 @@ export class ChatService {
          }
       )
    })
-  }  
+  }
+  get_inbox (chat_id){
+    return new Promise<any>((resolve, reject) => { 
+    const chat_data = this.afs.collection('chats').doc(chat_id);  
+    chat_data.ref.get().then( async(doc) =>{    
+      const  uid  = await this.auth.currentUserId();   
+      var {inbox} = doc.data()        
+      resolve(inbox.find(({user_id})=> user_id === uid).message_count) 
+    }) 
+  })
+
+  }
   async create(group_details : any,group_members:any) {
     const  uid  = await this.auth.currentUserId();    
     var members_format = await this.group_members_format(group_members)
@@ -131,7 +137,6 @@ export class ChatService {
     };
     return await this.afs.collection('chats').doc(group_id).set(data)        
   }
-  
   async sendMessage(chatId, content) {
     const  uid  = await this.auth.currentUserId();
     const data = {
@@ -155,7 +160,6 @@ export class ChatService {
       });
     }
   }
-  
   async joinUsers(chat$: Observable<any>,limit) {    
     let chat;
     const joinKeys = {};

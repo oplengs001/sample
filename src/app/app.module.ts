@@ -29,7 +29,6 @@ import { HomeMenuPageModule } from '../app/modals/menu/home-menu.module'
 import { FlightMapPageModule } from '../app/modals/map/flight-map.module'
 import { ImagePageModule } from '../app/modals/photos/image/image.module'
 import { ComponentsModule } from "../app/componenthandler/components.module"
-
 import 'gl-ionic-background-video';
 
 @NgModule({
@@ -39,7 +38,7 @@ import 'gl-ionic-background-video';
     BrowserModule,
     CommonModule,
     ComponentsModule,
-    FormsModule, 
+    FormsModule,   
     IonicModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,

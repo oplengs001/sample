@@ -1,20 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Injectable} from '@angular/core';
 import {  Router } from '@angular/router';
 import { TransitionsService } from '../services/native/transitions.service';
+import { FCM } from '@ionic-native/fcm/ngx';
+import { AuthService } from '../services/auth/auth.service';
+import { ChatService } from '../services/chat/chat.service';
+
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
+@Injectable({
+  providedIn: 'root'
+})
 export class FooterComponent   {
+  inbox_count : number = 0
+  inbox_hide :boolean
   constructor(
+    private fcm: FCM, 
     private router: Router,
-    private transServe : TransitionsService
-     ) {
-    
+    private transServe : TransitionsService,
+    private chatServ : ChatService,
+    private authServ : AuthService,
+    ) {
+    this.inbox_hide = true
    }
 
 
+  ngOnInit() {
+    this.SubrcibeToOwnTopics()    
+  }
+  SubrcibeToOwnTopics():void {
+    this.authServ.currentUserData().then( async(data)=>{
+      let {chat_id} = data
+      var inbox_count = 0
+      for(var i in chat_id ){
+        inbox_count += await this.chatServ.get_inbox(chat_id[i]) 
+        this.fcm.subscribeToTopic(chat_id[i]);  
+      }
+      if(inbox_count !== 0){
+        this.inbox_hide = false
+      }
+      this.inbox_count = inbox_count;
+    })
+    
+  }
   goToNotifications() {
     this.router.navigateByUrl('/announcements');
   }

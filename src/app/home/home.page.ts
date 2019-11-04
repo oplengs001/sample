@@ -1,4 +1,4 @@
-import { Component , OnInit} from '@angular/core';
+import { Component , OnInit,Injectable} from '@angular/core';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { Platform } from '@ionic/angular';
 import { HomeMenuPage } from '../modals/menu/home-menu.page'
@@ -8,6 +8,7 @@ import { TransitionsService } from '../services/native/transitions.service';
 import { ModalController  } from '@ionic/angular';
 import {  Router } from '@angular/router';
 import { myEnterAnimation, myLeaveAnimation} from '../animations/animations'
+import { FooterComponent} from '../footer/footer.component'
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -15,6 +16,7 @@ import { myEnterAnimation, myLeaveAnimation} from '../animations/animations'
 })
 export class HomePage {
   pushes: any = [];
+  public inbox_count : number
   constructor(
     private fcm: FCM, 
     public plt: Platform,
@@ -23,6 +25,7 @@ export class HomePage {
     private router: Router,
     private transition : TransitionsService,
     public modalctrl: ModalController,
+    private footerFunc : FooterComponent
     ) {
       
     this.plt.ready()
@@ -37,6 +40,7 @@ export class HomePage {
               if (data.sender_id === uid){
                 
               }else{
+                this.footerFunc.SubrcibeToOwnTopics()
                 this.toastService.showNotif("New Message From!", data);
               }       
             }else if(data.type === "announcement"){
@@ -57,19 +61,7 @@ export class HomePage {
       })
   }
   subscribeToTopic() {
-    this.fcm.subscribeToTopic('enappd');  
-    this.SubrcibeToOwnTopics()
-  
-  }
-  SubrcibeToOwnTopics():void {
-    this.authServ.currentUserData().then((data)=>{   
-      console.log(data)
-      let {chat_id} = data
-      for(var i in chat_id ){
-        console.log(chat_id[i])      
-        this.fcm.subscribeToTopic(chat_id[i]);  
-      }
-    })
+    this.fcm.subscribeToTopic('enappd');    
   }
   getToken() {
     this.fcm.getToken().then(token => {
@@ -99,7 +91,7 @@ export class HomePage {
     await modal.present();
   }
   ngOnInit() {
-
+    
     this.subscribeToTopic()
     
   }
