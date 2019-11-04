@@ -45,20 +45,16 @@ export class ChatService {
     return this.group_chats;
   }
   // ref.parent.orderBy("messages.createdBy").limit(10).get()
-  getV(chatId){
-    return firestore().collection("chats").doc(chatId).get()
-      .then( chat=>{              
-        return chat
-      })
-  }  
+
   
-  get(chatId) {
+  get(chatId) {  
     return this.afs
       .collection<any>('chats')
       .doc(chatId)
       .snapshotChanges()
       .pipe(
-        map(doc => {                       
+        map(doc => {        
+              
           return { id: doc.payload.id, ...doc.payload.data()};
         })
       );
@@ -69,7 +65,7 @@ export class ChatService {
   }
   group_members_format (members){
     return new Promise<any>((resolve, reject) => {
-      
+    
       var inbox_format = members.map((item)=>{
         return {
           user_id : item,
@@ -79,10 +75,50 @@ export class ChatService {
       resolve(inbox_format)
     })
   }
-  async create(group_details : any,group_members:any) {    
-
-    const  uid  = await this.auth.currentUserId();
-    
+  update_inbox (chat_data){
+    return new Promise<any>((resolve, reject) => {
+       chat_data.ref.get().then( doc =>{           
+            var {inbox} = doc.data()            
+            var inbox_ = inbox.map((item)=>{
+              return {
+                user_id : item.user_id,
+                message_count : item.message_count+1
+              }
+            })            
+            resolve(inbox_)
+          }
+       )
+    })
+  }
+  seen_chat (chat_id){
+    return new Promise<any>((resolve, reject) => {      
+      const chat_data = this.afs.collection('chats').doc(chat_id);  
+      chat_data.ref.get().then( async(doc) =>{       
+           var {inbox} = doc.data()          
+           var  uid  = await this.auth.currentUserId();                
+           if(inbox.find(({user_id})=> user_id === uid) === undefined){
+             resolve(inbox)
+           }else{
+             if(inbox.find(({user_id})=> user_id === uid).message_count == 0){
+               resolve(inbox)
+             }else{
+                inbox.find(({user_id})=> user_id === uid).message_count = 0     
+                chat_data.update({              
+                "inbox" : inbox,
+              }).then(()=>{
+                console.log("chat seen")
+              }).catch(function(error) {
+                console.log(error)
+              });
+             }            
+            resolve(inbox)
+           }      
+         }
+      )
+   })
+  }  
+  async create(group_details : any,group_members:any) {
+    const  uid  = await this.auth.currentUserId();    
     var members_format = await this.group_members_format(group_members)
     var {group_name,group_id} = group_details    
     const data = {
@@ -95,20 +131,21 @@ export class ChatService {
     };
     return await this.afs.collection('chats').doc(group_id).set(data)        
   }
-
+  
   async sendMessage(chatId, content) {
     const  uid  = await this.auth.currentUserId();
-
     const data = {
       uid,
       content,
       createdAt: Date.now()
     };
 
-    if (uid) {
-      const ref = this.afs.collection('chats').doc(chatId);
+    if (uid) {      
+      const ref = this.afs.collection('chats').doc(chatId);    
+      const inbox_value = await this.update_inbox(ref)      
       return ref.update({
-        messages: firestore.FieldValue.arrayUnion(data)
+        messages: firestore.FieldValue.arrayUnion(data),
+        "inbox" : inbox_value,
       }).then(()=>{
         this.notif.createNotif(chatId,uid)
         console.log(data)
@@ -119,7 +156,7 @@ export class ChatService {
     }
   }
   
-  async joinUsers(chat$: Observable<any>) {
+  async joinUsers(chat$: Observable<any>,limit) {    
     let chat;
     const joinKeys = {};
     
@@ -139,10 +176,19 @@ export class ChatService {
       }),
       map(arr => {
         arr.forEach(v => (joinKeys[(<any>v).uid] = v));
-        chat.messages = chat.messages.map(v => {
+        // chat.messages = chat.messages.map(v => {
+        //   return { ...v, user: joinKeys[v.uid] };
+        // });
+        var messages_length = chat.messages.length
+        var starting_index = chat.messages.length - limit
+        if(limit >= messages_length){
+          starting_index = 0
+        } 
+        chat.messages_length = messages_length
+        chat.messages = chat.messages.slice(starting_index,chat.messages.length).map(v => {
           return { ...v, user: joinKeys[v.uid] };
         });
-  
+        
         return chat;
       })
     );
