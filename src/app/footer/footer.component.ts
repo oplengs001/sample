@@ -4,7 +4,7 @@ import { TransitionsService } from '../services/native/transitions.service';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { AuthService } from '../services/auth/auth.service';
 import { ChatService } from '../services/chat/chat.service';
-
+import { Badge } from '@ionic-native/badge/ngx';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -22,6 +22,7 @@ export class FooterComponent   {
     private transServe : TransitionsService,
     private chatServ : ChatService,
     private authServ : AuthService,
+    private badge: Badge
     ) {
     this.inbox_hide = true
    }
@@ -43,6 +44,8 @@ export class FooterComponent   {
       }else{
         this.inbox_hide = true
       }
+      this.badge.set(inbox_count);
+      this.badge.increase(inbox_count);
       this.inbox_count = inbox_count;
     })
     
