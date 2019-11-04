@@ -85,10 +85,11 @@ export class MessagesPage implements OnInit {
    
   }
   seen_chat(){
-    this.cs.seen_chat(this.id).then(seen =>{
+    this.cs.seen_chat(this.id).then(seen =>{  
       console.log(seen)
-      if(seen){
+      if(seen.continue){
         this.footerFunc.SubrcibeToOwnTopics()
+        this.footerFunc.ClearNotifs(seen.count)
       }else{
 
       }

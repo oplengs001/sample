@@ -45,10 +45,11 @@ export class FooterComponent   {
         this.inbox_hide = true
       }
       this.badge.set(inbox_count);
-      this.badge.increase(inbox_count);
       this.inbox_count = inbox_count;
     })
-    
+  }
+  ClearNotifs(notifs:number):void{
+    this.badge.decrease(notifs)
   }
   goToNotifications() {
     this.router.navigateByUrl('/announcements');

@@ -104,12 +104,15 @@ export class ChatService {
              if(inbox.find(({user_id})=> user_id === uid).message_count == 0){//no message
                resolve(false)
              }else{//seen chat
-
+                var inbox_count = inbox.find(({user_id})=> user_id === uid).message_count 
                 inbox.find(({user_id})=> user_id === uid).message_count = 0     
                 chat_data.update({              
                 "inbox" : inbox,
                 }).then(()=>{
-                  resolve(true)
+                  resolve({
+                   continue: true,
+                   count : inbox_count
+                  })
                 }).catch((error)=>{
                   reject(error)
                 });
