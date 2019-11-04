@@ -72,13 +72,21 @@ export class ChatService {
   }
   update_inbox (chat_data){
     return new Promise<any>((resolve, reject) => {
-       chat_data.ref.get().then( doc =>{           
-            var {inbox} = doc.data()            
+       chat_data.ref.get().then( async doc =>{           
+            var {inbox} = doc.data()           
+            const  uid  = await this.auth.currentUserId();    
             var inbox_ = inbox.map((item)=>{
-              return {
-                user_id : item.user_id,
-                message_count : item.message_count+1
-              }
+              if(item.user_id === uid){
+                return{
+                  user_id : item.user_id,
+                  message_count : item.message_count
+                }
+              }else{
+                return {
+                  user_id : item.user_id,
+                  message_count : item.message_count+1
+                }
+              }             
             })            
             resolve(inbox_)
           }
@@ -184,12 +192,14 @@ export class ChatService {
         //   return { ...v, user: joinKeys[v.uid] };
         // });
         var messages_length = chat.messages.length
-        var starting_index = chat.messages.length - limit
+        let starting_index = chat.messages.length - limit
+    
         if(limit >= messages_length){
           starting_index = 0
-        } 
+        }          
         chat.messages_length = messages_length
-        chat.messages = chat.messages.slice(starting_index,chat.messages.length).map(v => {
+        chat.starting_index = starting_index
+        chat.messages = chat.messages.slice(starting_index,messages_length).map(v => {
           return { ...v, user: joinKeys[v.uid] };
         });
         

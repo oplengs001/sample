@@ -11,9 +11,9 @@
 
 
 <ion-content class="message-bg" [scrollEvents]="true" > 
-  <div class="ion-text-center" [hidden]="SeeMore"> Scroll to See more </div>
+  <!-- <div class="ion-text-center" [hidden]="SeeMore" >{{Scroll_Message}} </div> -->
   <ion-infinite-scroll threshold="20px"  (ionInfinite)="loadData($event)"  position="top">
-    <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more chat...">
+    <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="bubbles" loading-text="Loading more chat...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
   <ion-grid *ngIf="chat$ | async as chat">

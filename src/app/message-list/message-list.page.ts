@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service'
 import { NavController } from '@ionic/angular';
 import { NavigationExtras  } from '@angular/router';
-import { debug } from 'util';
+import { ChatService } from '../services/chat/chat.service';
+import { async } from '@angular/core/testing';
 @Component({
   selector: 'app-message-list',
   templateUrl: './message-list.page.html',
@@ -10,16 +11,24 @@ import { debug } from 'util';
 })
 export class MessageListPage implements OnInit {
   
-  private currentChats : any
+  private currentChats : any = []
   constructor( 
     private authServ : AuthService,
     private navCtrl : NavController,
-    
+    private chatServ : ChatService
   ) {
 
-    this.authServ.currentUserData().then((data)=>{   
+    this.authServ.currentUserData().then( async(data)=>{   
       console.log(data)
-      this.currentChats = data.chat_id  
+      let {chat_id} = data
+ 
+      for(var i in chat_id ){
+        this.currentChats.push({
+          name :chat_id[i],
+          notifs : await this.chatServ.get_inbox(chat_id[i]) 
+        })
+        
+      }
     })
    }
 

@@ -22,15 +22,14 @@ export class MessagesPage implements OnInit {
   currentUser :string;  
   id: any;
   limit:number
-  current_length :number
-  SeeMore: boolean
+  current_length :number  
+  hide_scroll:boolean
   constructor(
     public cs: ChatService,
     public auth : AuthService,
     private route: ActivatedRoute,
 
-  ) {
-    this.SeeMore = false
+  ) {    
     this.route.queryParams.subscribe(params => {
       this.id = params["group_id"];      
     });
@@ -40,42 +39,46 @@ export class MessagesPage implements OnInit {
 
   }
   ngAfterViewInit(){  
-    this.things.changes.subscribe(t => {
-      console.log("changes")
-      if(t.length >0){
-        setTimeout(()=>{
-          // this.scrollToBottom()
-        },500)
+    // this.things.changes.subscribe(t => {
+    //   console.log("changes")
+    //   if(t.length >0){
+    //     setTimeout(()=>{
+    //       this.Scroll_Message = " "
+    //     },500)
  
-      }
-    })  
-   
+    //   }
+    // })     
   }  
-  loadData(event) {
-    setTimeout(() => {
-      console.log('Done'); 
-      console.log(this.current_length)
-      console.log(this.limit)
-      if (this.current_length <= this.limit) {
-        this.cs.joinUsers(this.cs.get(this.id),this.current_length).then(data=>{     
-          this.chat$ = data
-        });
-        this.SeeMore = true
-        event.target.disabled = true;
+  loadData(event) {      
+    setTimeout(() => {       
+      console.table({
+        currentLength : this.current_length,
+        limit : this.limit
+      })
+      if(this.current_length !== undefined){
+        if ( this.limit >= this.current_length) {
+          this.cs.joinUsers(this.cs.get(this.id),this.current_length).then(data=>{     
+            this.chat$ = data            
+            this.infiniteScroll.disabled = true
+            this.hide_scroll = true
+          });      
+        }else{
+          this.limit = this.limit + 8
+          this.cs.joinUsers(this.cs.get(this.id),this.limit).then(data=>{     
+            this.chat$ = data           
+            this.content.scrollToPoint(0,95,1500)            
+            this.infiniteScroll.complete()
+            
+          });    
+        }
       }else{
-        
-        this.limit = this.limit + 8
-        this.cs.joinUsers(this.cs.get(this.id),this.limit).then(data=>{     
-          this.chat$ = data
-          
-        });
-        event.target.complete(); 
-      }
-    }, 500);
+        this.infiniteScroll.complete()
+      }    
+    }, 250);
   }
-  scrollToBottom() {
-    setTimeout(()=>{
-      this.content.scrollToBottom(1500);
+  scrollToBottom(value) {
+    setTimeout(()=>{   
+      this.content.scrollToBottom(value);
     },500)
   }
   ionViewWillEnter() {
@@ -84,19 +87,25 @@ export class MessagesPage implements OnInit {
   seen_chat(){
     this.cs.seen_chat(this.id)
   }
+  ionViewDidLeave(){
+    this.current_length
+  }
   ionViewDidEnter (){    
-    this.seen_chat()  
+    this.seen_chat()      
     this.currentUser = this.auth.currentUserId()
     // const source = this.cs.get("Entourage");
     // const source = this.cs.get(this.id);
-    this.limit = 8
-
+    this.hide_scroll = false
+    this.limit = 8    
     this.cs.joinUsers(this.cs.get(this.id),this.limit).then(data=>{
       this.chat$ = data
-      data.subscribe(data=>{ 
-        this.scrollToBottom()
-        
-        this.current_length = data.messages_length
+      data.subscribe(data=>{                    
+        this.infiniteScroll.disabled = false      
+        this.current_length = data.messages_length       
+        this.scrollToBottom(1500)
+        if(this.current_length < 8){
+          this.hide_scroll = true
+        }
       })
     });
   
@@ -107,7 +116,7 @@ export class MessagesPage implements OnInit {
     this.cs.sendMessage(chatId, this.newMsg);
     this.newMsg = ''
     this.newMsg = this.newMsg.trim();
-      this.scrollToBottom()
+      this.scrollToBottom(1500)
   }
 
   trackByCreated(i, msg) {    
