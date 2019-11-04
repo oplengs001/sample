@@ -16,8 +16,13 @@ export class MessageListPage implements OnInit {
     private authServ : AuthService,
     private navCtrl : NavController,
     private chatServ : ChatService
-  ) {
+  ) { }
 
+  ngOnInit() {
+   
+  }
+  ionViewDidEnter(){
+    this.currentChats = []
     this.authServ.currentUserData().then( async(data)=>{   
       console.log(data)
       let {chat_id} = data
@@ -30,10 +35,6 @@ export class MessageListPage implements OnInit {
         
       }
     })
-   }
-
-  ngOnInit() {
-    
   }
   goToChat (group_name) {
     let navigationExtras: NavigationExtras = {

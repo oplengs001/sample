@@ -40,6 +40,8 @@ export class FooterComponent   {
       }
       if(inbox_count !== 0){
         this.inbox_hide = false
+      }else{
+        this.inbox_hide = true
       }
       this.inbox_count = inbox_count;
     })

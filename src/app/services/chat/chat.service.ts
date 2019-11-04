@@ -8,7 +8,6 @@ import { map, switchMap } from 'rxjs/operators';
 import { Observable, combineLatest, of } from 'rxjs';
 import { async } from '@angular/core/testing';
 import { promise } from 'protractor';
-
 export interface GroupChat {
   count: number,
   createdAt : number,
@@ -27,7 +26,7 @@ export class ChatService {
     private afs: AngularFirestore,
     private auth: AuthService,
     private router: Router,
-    private notif : NotificationService
+    private notif : NotificationService,    
   ){
 
     this.gcCollection = this.afs.collection<GroupChat>('chats');
@@ -93,28 +92,28 @@ export class ChatService {
        )
     })
   }
-  seen_chat (chat_id){
+  async seen_chat (chat_id){
     return new Promise<any>((resolve, reject) => {      
       const chat_data = this.afs.collection('chats').doc(chat_id);  
       chat_data.ref.get().then( async(doc) =>{       
            var {inbox} = doc.data()          
            var  uid  = await this.auth.currentUserId();                
-           if(inbox.find(({user_id})=> user_id === uid) === undefined){
-             resolve(inbox)
+           if(inbox.find(({user_id})=> user_id === uid) === undefined){// admin
+             resolve(false) 
            }else{
-             if(inbox.find(({user_id})=> user_id === uid).message_count == 0){
-               resolve(inbox)
-             }else{
+             if(inbox.find(({user_id})=> user_id === uid).message_count == 0){//no message
+               resolve(false)
+             }else{//seen chat
+
                 inbox.find(({user_id})=> user_id === uid).message_count = 0     
                 chat_data.update({              
                 "inbox" : inbox,
-              }).then(()=>{
-                console.log("chat seen")
-              }).catch(function(error) {
-                console.log(error)
-              });
-             }            
-            resolve(inbox)
+                }).then(()=>{
+                  resolve(true)
+                }).catch((error)=>{
+                  reject(error)
+                });
+             }
            }      
          }
       )

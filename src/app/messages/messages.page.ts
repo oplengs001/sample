@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 import { debug } from 'util';
-
+import { FooterComponent} from '../footer/footer.component'
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.page.html',
@@ -28,7 +28,7 @@ export class MessagesPage implements OnInit {
     public cs: ChatService,
     public auth : AuthService,
     private route: ActivatedRoute,
-
+    private footerFunc : FooterComponent
   ) {    
     this.route.queryParams.subscribe(params => {
       this.id = params["group_id"];      
@@ -85,10 +85,17 @@ export class MessagesPage implements OnInit {
    
   }
   seen_chat(){
-    this.cs.seen_chat(this.id)
+    this.cs.seen_chat(this.id).then(seen =>{
+      console.log(seen)
+      if(seen){
+        this.footerFunc.SubrcibeToOwnTopics()
+      }else{
+
+      }
+    })
   }
   ionViewDidLeave(){
-    this.current_length
+    // this.current_length
   }
   ionViewDidEnter (){    
     this.seen_chat()      
