@@ -9,7 +9,7 @@ import { ModalController  } from '@ionic/angular';
 import {  Router } from '@angular/router';
 import { myEnterAnimation, myLeaveAnimation} from '../animations/animations'
 import { FooterComponent} from '../footer/footer.component'
-import { Badge } from '@ionic-native/badge/ngx';
+// import { Badge } from '@ionic-native/badge/ngx';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -27,15 +27,17 @@ export class HomePage {
     private transition : TransitionsService,
     public modalctrl: ModalController,
     private footerFunc : FooterComponent,
-    private badge: Badge
+    // private badge: Badge
     ) {
       
     this.plt.ready()
       .then(() => {
         this.fcm.onNotification().subscribe( async data => {
           console.log(data)
+          // this.badge.increase(1);
+          this.footerFunc.addBadge()
           if (data.wasTapped) {
-            this.badge.increase(1);
+        
           } else {
             if(data.type === "chat"){
               var uid = await this.authServ.currentUserId();        

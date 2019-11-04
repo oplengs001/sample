@@ -48,6 +48,9 @@ export class FooterComponent   {
       this.inbox_count = inbox_count;
     })
   }
+  addBadge():void{
+    this.badge.increase(1)
+  }
   ClearNotifs(notifs:number):void{
     this.badge.decrease(notifs)
   }
