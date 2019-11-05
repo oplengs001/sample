@@ -5,8 +5,9 @@ import {FormBuilder,FormGroup, Validators} from '@angular/forms';
 import { GuestAddService ,Guest} from '../../services/guest-add/guest-add.service'
 import { Observable } from 'rxjs';
 import {ActionClass} from '../../gallery-action-sheet/actionsheet'
+import { AuthService } from '../../services/auth/auth.service';
+import { IonicSelectableComponent } from 'ionic-selectable';
 import { debug } from 'util';
-import { invalid } from '@angular/compiler/src/render3/view/util';
 @Component({
   selector: 'app-create-group',
   templateUrl: './create-group.page.html',
@@ -15,7 +16,9 @@ import { invalid } from '@angular/compiler/src/render3/view/util';
 export class CreateGroupPage implements OnInit {
   GroupForm: FormGroup;
   group_details :any
-  group_array = []
+  group_array = [];
+  original_array = [];
+  guests_array = [];
   SavingModal : boolean
   EditingModal : boolean
   private guests: Observable<Guest[]>;
@@ -25,47 +28,87 @@ export class CreateGroupPage implements OnInit {
     private modalController: ModalController,
     private ChatServ : ChatService,
     private GuestServ : GuestAddService,
+    private AuthServ : AuthService,
     private actions : ActionClass
 ) {   
       this.createGroupForm();
+    
   }
   ngOnInit() {
-    this.guests = this.GuestServ.getGuests(); 
-    if(!this.EditingModal){  
-      let {inbox} = this.group_details
-      this.group_array = inbox.map(user=>{
-        return user.user_id      
-      })   
       
-      this.GroupForm.controls['group_id'].setValue(this.group_details.id);
-      this.GroupForm.controls['group_name'].setValue(this.group_details.group_name);      
-      this.GroupForm.controls['group_members'].setValue(this.group_array);      
-    } 
   } 
+  ionViewDidEnter (){     
+    this.AuthServ.getAllUsers().then(data=>{
+      this.guests_array = data
+    })
+    if(!this.EditingModal){     
+      let {inbox} = this.group_details
+      for(var i in inbox){            
+        let user = inbox[i]            
+         this.AuthServ.getUserDataByID(user.user_id).then((data=>{
+          this.group_array.push(data)
+          this.original_array.push(data)
+        }))         
+      }
+      this.GroupForm.controls['group_id'].setValue(this.group_details.id);
+      this.GroupForm.controls['group_name'].setValue(this.group_details.group_name);
+    } 
+  }
+  membersChange(
+  event: {
+    component: IonicSelectableComponent,
+    value: any 
+  }){console.log('guests:', event.value);}
   createGroupForm() {
     this.GroupForm = this.fb.group({
       group_id: ['', Validators.required],
       group_name: ['', Validators.required],
-      group_members:[[],Validators.required]
     });
   }
 
-  addGroup (formValues){  
-    var {value}= formValues    
-    var {group_name , group_id , group_members} = value
-    var chat_group = {
+  addGroup (formValues){      
+    if(this.group_array.length===0){
+      this.actions.customAlert("Warning","Please Add Guests In the Group")
+      return null
+    }
+    let original = this.original_array,
+        new_array = this.group_array,
+        reduced_array =[]
+    var {value}= formValues,
+    {group_name , group_id } = value,    
+     chat_group = {
       group_id : group_id,
       group_name : group_name
-    } 
-    this.GuestServ.addGroupToGuestMultiple(group_id , group_members).then(
-      data=>{
-        this.ChatServ.create(chat_group,group_members)
+    },group_members = this.group_array.map(data=>{
+      return data.uid
     })
     
-   
+    if(!this.EditingModal){ 
+      let unique = original.filter((o)=> new_array.indexOf(o) === -1),
+      removed_chat_ids = unique.map(item=>{
+        var {chat_id} = item;
+        item.chat_id = this.remItem(chat_id,group_name)
+        return item    
+      })
+      reduced_array = removed_chat_ids.map(item => {
+        return {
+          uid : item.uid,
+          chat_id : item.chat_id
+        }
+      })
+    }
+    
+    this.GuestServ.addGroupToGuestMultiple(group_id , group_members,reduced_array).then(data=>{
+      this.ChatServ.create(chat_group,group_members)
+    })    
   }
   async closeModal() {  
     await this.modalController.dismiss();
   }
+  remItem(arr, val) {
+    for (var i = 0; i < arr.length; i++) if (arr[i] === val) arr.splice(i, 1);
+    return arr;
+  }
+
 
 }

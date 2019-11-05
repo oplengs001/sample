@@ -40,10 +40,12 @@ export class GuestAddService {
   }
   
   getGuest(id: string): Observable<Guest> {
+    console.log(id)
     return this.GuestCollection.doc<Guest>(id).valueChanges().pipe(
       take(1),
       map(guest => {
         guest.uid = id;
+
         return guest
       })
     );
@@ -67,21 +69,7 @@ export class GuestAddService {
       console.log(err)
     })
   }
-  async addGroupToGuestMultiple (group_id: string, guest_ids:any):Promise<any> {    
-      
-      // const snapshot = await this.afs.firestore.collection('guests').get()
-      // snapshot.docs.map(doc => {
-      //   var guest = doc.data()                
-        
-      //     if(guest_ids.includes(guest.uid)){
-      //       var ids =[];          
-      //       guest.chat_id.push(group_id)   
-      //       ids = guest.chat_id                            
-      //       this.addGroupToGuest(guest.uid,ids) 
-      //     }
-      //   }
-      // );           
-      
+  async addGroupToGuestMultiple (group_id: string, guest_ids:any , forUpdate : any):Promise<any> {                          
     guest_ids.map(async (user)=>{
       await this.afs.firestore.collection('guests').doc(user).get().then(guestData=>{
         let {chat_id} = guestData.data()
@@ -89,9 +77,11 @@ export class GuestAddService {
           chat_id.push(group_id)
         }
         this.addGroupToGuest(user,chat_id) 
-      })
-      
-    })   
+      })      
+    })
+    forUpdate.map(user=>{
+      this.addGroupToGuest(user.uid,user.chat_id)
+    })
   }
 
   updateGuest(guest: Guest): Promise<void> {

@@ -50,6 +50,16 @@ export class AuthService {
         return userGuestProfile.data()
       })
   }
+  getAllUsers():Promise<any> {   
+    return firebase.firestore().collection("guests").get()
+      .then( userGuestProfile=>{      
+        let {docs} = userGuestProfile
+        let items = docs.map(doc=>{
+          return doc.data()
+        })      
+        return  items
+      })
+  }
   signup(email: string, password: string) :Promise<any>  {
     return this.firebaseAuth.auth
       .createUserWithEmailAndPassword(email, password)

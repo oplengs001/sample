@@ -29,6 +29,7 @@ import { CreateGroupPageModule } from '../app/modals/create-group/create-group.m
 import { HomeMenuPageModule } from '../app/modals/menu/home-menu.module'
 import { FlightMapPageModule } from '../app/modals/map/flight-map.module'
 import { ImagePageModule } from '../app/modals/photos/image/image.module'
+import { IonicSelectableModule } from 'ionic-selectable';
 import { ComponentsModule } from "../app/componenthandler/components.module"
 import 'gl-ionic-background-video';
 
@@ -50,7 +51,8 @@ import 'gl-ionic-background-video';
     CreateGroupPageModule,
     HomeMenuPageModule,
     FlightMapPageModule,
-    ImagePageModule
+    ImagePageModule,   
+    IonicSelectableModule,
   ],
   providers: [
 

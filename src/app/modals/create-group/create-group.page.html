@@ -19,25 +19,27 @@
                 <ion-input formControlName="group_name" value={{group_details.group_name}}></ion-input>
             </ion-item>                    
             <ion-item>
-                <ion-label>Group Members</ion-label>
-                <ion-select multiple="true" cancelText="Cancel" okText="Save!"  formControlName="group_members">
-                  <div *ngFor="let guest of (guests | async)">
-                    <ion-select-option 
-                    *ngIf="(guest.isAdmin == false)"
-                    value={{guest.uid}}
-                    >{{guest.first_name}} {{guest.last_name}}
-                      </ion-select-option>
-                  </div>            
-                </ion-select>
-              </ion-item>
+              <ion-label>Guests</ion-label>
+              <ionic-selectable
+                [ngModelOptions]="{standalone: true}"
+                item-content
+                [(ngModel)]="group_array"
+                itemValueField="uid"
+                itemTextField="first_name"
+                [items]="guests_array"
+                [canSearch]="true"
+                [isMultiple]="true"
+                (onChange)="membersChange($event)">            
+              </ionic-selectable>
+            </ion-item>
                   
       </ion-list>
       <div [hidden]="SavingModal">
-          <ion-button expand="full" type="submit" [disabled]="GroupForm.invalid">Create Group</ion-button>
+          <ion-button expand="full" type="submit" [disabled]="GroupForm.invalid || (group_array.length === 0)">Create Group</ion-button>
       </div>
       <div [hidden]="EditingModal">
-          <ion-button expand="full" type="submit" [disabled]="GroupForm.invalid">Save Changes</ion-button>
+          <ion-button expand="full" type="submit" [disabled]="GroupForm.invalid || (group_array.length === 0)">Save Changes</ion-button>
       </div>
     
-    </form>
+    </form>   
   </ion-content>
