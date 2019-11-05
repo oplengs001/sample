@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable} from 'rxjs';
-
+import { environment } from "../../../environments/environment"
 
 @Injectable()
 export class AuthService {
@@ -37,7 +37,7 @@ export class AuthService {
   }
   currentUserData():Promise<any> {   
     return firebase.firestore().collection("guests").doc(this.currentUserId()).get()
-      .then( userGuestProfile=>{      
+      .then( userGuestProfile=>{              
         return userGuestProfile.data()
       })
   }
@@ -51,10 +51,10 @@ export class AuthService {
       })
   }
   signup(email: string, password: string) :Promise<any>  {
-    return this.firebaseAuth
-      .auth
+    return this.firebaseAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
+        
         return value
         
       })
@@ -63,7 +63,21 @@ export class AuthService {
         return err
       });    
   }
-
+  workAroundSignUp(email: string, password: string) :Promise<any>  {    
+    var secondaryApp = firebase.initializeApp(environment.firebase, "Secondary");
+    return secondaryApp.auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(value => {
+        secondaryApp.auth().signOut();
+        secondaryApp.delete()
+        return value
+        
+      })
+      .catch(err => {
+        console.log('Something went wrong:',err.message);
+        return err
+      });    
+  }
   login(email: string, password: string) : Promise<any> {
     return this.firebaseAuth
       .auth

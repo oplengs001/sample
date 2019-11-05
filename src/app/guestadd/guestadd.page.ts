@@ -73,7 +73,7 @@ export class GuestaddPage implements OnInit {
       this.actions.confirmationMessage(message).then(res=>{
       
         if(res){      
-          this.authService.signup(this.guest.email, this.password).then((value)=>{
+          this.authService.workAroundSignUp(this.guest.email, this.password).then((value)=>{
             if(value){
               this.guest.uid = value.user.uid
               this.guestService.addGuest(this.guest).then(() => {
