@@ -12,7 +12,7 @@
       <ion-list>           
             <ion-item>
                 <ion-label position="stacked">Group ID</ion-label>
-                <ion-input formControlName="group_id" value={{group_details.id}}></ion-input>
+                <ion-input formControlName="group_id" [readonly]="SavingModal" value={{group_details.id}}></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label position="stacked">Group Name</ion-label>
@@ -22,7 +22,8 @@
                 <ion-label>Group Members</ion-label>
                 <ion-select multiple="true" cancelText="Cancel" okText="Save!"  formControlName="group_members">
                   <div *ngFor="let guest of (guests | async)">
-                    <ion-select-option  *ngIf="(guest.isAdmin == false)"
+                    <ion-select-option 
+                    *ngIf="(guest.isAdmin == false)"
                     value={{guest.uid}}
                     >{{guest.first_name}} {{guest.last_name}}
                       </ion-select-option>
@@ -32,7 +33,7 @@
                   
       </ion-list>
       <div [hidden]="SavingModal">
-          <ion-button expand="full" type="submit" [disabled]="GroupForm.invalid">Save Group</ion-button>
+          <ion-button expand="full" type="submit" [disabled]="GroupForm.invalid">Create Group</ion-button>
       </div>
       <div [hidden]="EditingModal">
           <ion-button expand="full" type="submit" [disabled]="GroupForm.invalid">Save Changes</ion-button>

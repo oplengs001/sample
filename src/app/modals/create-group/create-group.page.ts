@@ -4,7 +4,9 @@ import { ChatService} from '../../services/chat/chat.service'
 import {FormBuilder,FormGroup, Validators} from '@angular/forms';
 import { GuestAddService ,Guest} from '../../services/guest-add/guest-add.service'
 import { Observable } from 'rxjs';
+import {ActionClass} from '../../gallery-action-sheet/actionsheet'
 import { debug } from 'util';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 @Component({
   selector: 'app-create-group',
   templateUrl: './create-group.page.html',
@@ -12,11 +14,8 @@ import { debug } from 'util';
 })
 export class CreateGroupPage implements OnInit {
   GroupForm: FormGroup;
-  group_details :{
-    group_id : string,
-    group_name : string,
-    group_members : []
-  }
+  group_details :any
+  group_array = []
   SavingModal : boolean
   EditingModal : boolean
   private guests: Observable<Guest[]>;
@@ -25,13 +24,24 @@ export class CreateGroupPage implements OnInit {
     private fb: FormBuilder,
     private modalController: ModalController,
     private ChatServ : ChatService,
-    private GuestServ : GuestAddService
-  ) {   
+    private GuestServ : GuestAddService,
+    private actions : ActionClass
+) {   
       this.createGroupForm();
   }
   ngOnInit() {
-    this.guests = this.GuestServ.getGuests();
-  }
+    this.guests = this.GuestServ.getGuests(); 
+    if(!this.EditingModal){  
+      let {inbox} = this.group_details
+      this.group_array = inbox.map(user=>{
+        return user.user_id      
+      })   
+      
+      this.GroupForm.controls['group_id'].setValue(this.group_details.id);
+      this.GroupForm.controls['group_name'].setValue(this.group_details.group_name);      
+      this.GroupForm.controls['group_members'].setValue(this.group_array);      
+    } 
+  } 
   createGroupForm() {
     this.GroupForm = this.fb.group({
       group_id: ['', Validators.required],
@@ -40,18 +50,19 @@ export class CreateGroupPage implements OnInit {
     });
   }
 
-  addGroup (formValues){
+  addGroup (formValues){  
     var {value}= formValues    
     var {group_name , group_id , group_members} = value
     var chat_group = {
       group_id : group_id,
       group_name : group_name
-    }    
-    
+    } 
     this.GuestServ.addGroupToGuestMultiple(group_id , group_members).then(
       data=>{
         this.ChatServ.create(chat_group,group_members)
-      }) 
+    })
+    
+   
   }
   async closeModal() {  
     await this.modalController.dismiss();

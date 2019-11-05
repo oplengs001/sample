@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { debug } from 'util';
 
 export interface Guest {
   uid?: string,
@@ -34,6 +35,7 @@ export class GuestAddService {
   }
 
   getGuests(): Observable<Guest[]> {
+  
     return this.guests;
   }
   
@@ -66,24 +68,30 @@ export class GuestAddService {
     })
   }
   async addGroupToGuestMultiple (group_id: string, guest_ids:any):Promise<any> {    
-   
-      const snapshot = await this.afs.firestore.collection('guests').get()
-      snapshot.docs.map(doc => {
-        var guest = doc.data()                
+      
+      // const snapshot = await this.afs.firestore.collection('guests').get()
+      // snapshot.docs.map(doc => {
+      //   var guest = doc.data()                
         
-          if(guest_ids.includes(guest.uid)){
-            var ids =[];
-            if(guest.chat_id.length < 1){
-                ids.push(group_id)
-            }else{
-                guest.chat_id.push(group_id)   
-                ids = guest.chat_id
-            }                               
-            this.addGroupToGuest(guest.uid,ids) 
-          }            
+      //     if(guest_ids.includes(guest.uid)){
+      //       var ids =[];          
+      //       guest.chat_id.push(group_id)   
+      //       ids = guest.chat_id                            
+      //       this.addGroupToGuest(guest.uid,ids) 
+      //     }
+      //   }
+      // );           
+      
+    guest_ids.map(async (user)=>{
+      await this.afs.firestore.collection('guests').doc(user).get().then(guestData=>{
+        let {chat_id} = guestData.data()
+        if(!chat_id.includes(group_id)){
+          chat_id.push(group_id)
         }
-      );  
-
+        this.addGroupToGuest(user,chat_id) 
+      })
+      
+    })   
   }
 
   updateGuest(guest: Guest): Promise<void> {
