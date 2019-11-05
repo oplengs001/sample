@@ -120,12 +120,18 @@ export class MessagesPage implements OnInit {
   }
 
   submit(chatId) {   
-    
-    this.cs.sendMessage(chatId, this.newMsg);
-    this.newMsg = ''
-    this.newMsg = this.newMsg.trim();
-      this.scrollToBottom(1500)
-  }
+    var message = this.newMsg
+      if(this.newMsg === '' || this.newMsg.length === 0 || !message.replace(/\s/g, '').length ){
+        console.log("do nothing")
+      }else{
+        this.newMsg = this.newMsg.trim();
+        this.cs.sendMessage(chatId, this.newMsg);
+        this.newMsg = ''
+     
+          this.scrollToBottom(1500)
+ 
+      }
+     }
 
   trackByCreated(i, msg) {    
     

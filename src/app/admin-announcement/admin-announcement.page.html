@@ -12,19 +12,24 @@
 <ion-content>
   <ion-item>
     <ion-label position="stacked">Title</ion-label>
-    <ion-input [(ngModel)]="message_body.title"></ion-input>
+    <ion-input [(ngModel)]="message_body.title" placeholder="WEDDING ANNOUNCEMENT"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked">body</ion-label>
-    <ion-input [(ngModel)]="message_body.body"></ion-input>
+    <ion-textarea
+     [(ngModel)]="message_body.body"
+     maxRows="8"
+     (keydown.enter)="AnnouncementConfirm()"
+     placeholder="ANNOUNCEMENT MESSAGE"
+     ></ion-textarea>
   </ion-item>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="success">
-    <ion-button expand="full" fill="clear" color="light" (click)="sendMessage()">
-      <ion-icon name="checkmark" slot="start"></ion-icon>
-      Send Message
+  <ion-toolbar color="primary">
+    <ion-button expand="full" fill="clear" color="light" (click)="AnnouncementConfirm()">
+      <ion-icon name="megaphone" slot="start"></ion-icon>
+      Send Notification
     </ion-button>
   </ion-toolbar>
 </ion-footer>

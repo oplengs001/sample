@@ -1,43 +1,47 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-button (click)="reRoute('guestlist')"> < Back</ion-button>
     </ion-buttons>
     <ion-title>
-      Guest Add Form
+      Guest Add Form 
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
- 
-  <ion-item>
-    <ion-label position="stacked">First Name</ion-label>
-    <ion-input [(ngModel)]="guest.first_name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Last Name</ion-label>
-    <ion-input [(ngModel)]="guest.last_name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Event Position</ion-label>
-    <ion-input [(ngModel)]="guest.position"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Email</ion-label>
-    <ion-input type="text" [(ngModel)]="guest.email"></ion-input>
-  </ion-item> 
-  <ion-item>
-    <ion-label position="stacked">Dedicated Password</ion-label>
-    <ion-input [(ngModel)]="password"></ion-input>
-  </ion-item> 
-  <ion-item>
-    <ion-label>Admin Functions</ion-label>
-    <ion-toggle [(ngModel)]="guest.isAdmin" slot="start" name="blueberry" checked></ion-toggle>
-  </ion-item>
+  <form [formGroup]="guestForm">
+    <ion-item>
+      <ion-label position="stacked">First Name</ion-label>
+      <ion-input formControlName="first_name"  ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Last Name</ion-label>
+      <ion-input formControlName="last_name"  ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Event Position</ion-label>
+      <ion-input  formControlName="position"  ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Number</ion-label>
+      <ion-input formControlName="number"  ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" formControlName="email"  ></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="stacked">Dedicated Password</ion-label>
+      <ion-input formControlName="password"  ></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label>Admin Functions</ion-label>
+      <ion-toggle formControlName="isAdmin"  slot="start" ></ion-toggle>
+    </ion-item>
+  </form>
 </ion-content>
- 
 <ion-footer *ngIf="!guest.id">
-  <ion-toolbar color="success">
+  <ion-toolbar color="primary">
     <ion-button expand="full" fill="clear" color="light" (click)="addGuest()">
       <ion-icon name="checkmark" slot="start"></ion-icon>
       Add Guest

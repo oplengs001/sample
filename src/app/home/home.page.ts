@@ -32,7 +32,8 @@ export class HomePage {
     ) {
       
     this.plt.ready()
-      .then(() => {
+      .then(() => { 
+               
         this.fcm.onNotification().subscribe( async data => {
           console.log(data)
           // this.badge.increase(1);
@@ -43,8 +44,10 @@ export class HomePage {
                 queryParams: {
                     group_id: data.group,
                 }
-            };
-            this.navCtrl.navigateForward(['messages'], navigationExtras);
+              };
+              this.navCtrl.navigateForward(['messages'], navigationExtras);
+            }else if(data.type === "announcement"){
+              this.transition.reRoute("announcements")
             }
           } else {
             if(data.type === "chat"){

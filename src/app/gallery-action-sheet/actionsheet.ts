@@ -1,9 +1,9 @@
 import { OnInit,Injectable} from '@angular/core';
-import { ActionSheetController} from '@ionic/angular';
-
+import { ActionSheetController ,AlertController} from '@ionic/angular';
+ 
 import { ImagesService ,ImageItem } from "../services/uploads/images.service"
 import { AuthService } from "../services/auth/auth.service"
-import { AlertController } from '@ionic/angular';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -39,7 +39,6 @@ export class ActionClass implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
   async presentActionSheet(post) {
@@ -61,18 +60,18 @@ export class ActionClass implements OnInit {
         icon: 'trash',
         handler: () => {
           this.DeleteConfirm(post)
+          
         }
       },{
         text: 'Cancel',
         icon: 'close',   
         handler: () => {
+          
           console.log('Cancel clicked');
         }
       }
-    ]
-    
-    if(this.authServ.currentUserId() !== uploaded_by){      
-    
+    ]  
+    if(this.authServ.currentUserId() !== uploaded_by){          
       buttons.splice(1,1)
     }
     const actionSheet = await this.actionSheetController.create({
@@ -125,8 +124,50 @@ export class ActionClass implements OnInit {
  
     await actionSheet.present();
   }
+  async confirmationMessage(message:string):Promise<boolean> {
+    let choice
+    const alert = await this.alertController.create({
+      header: 'Are You Sure?',
+      message: message,
+      buttons: [
+       {
+          text: 'Cancel',
+          handler: () => {
+          alert.dismiss(false)
+          return false
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+          alert.dismiss(true)
+          return false
+          }
+        }
+      ]
+    })  
+     await alert.present();
+     await alert.onDidDismiss().then(res=>{
+      choice = res.data
+     })
+     return choice
+  }
 
-
+  async inputAlert (){
+    const alert = await this.alertController.create({
+      header: "Warning",
+      message: "Please Complete All Fields",
+      buttons: ["OK"]
+    });
+    await alert.present();
+  }
+  async customAlert (header,message){
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ["OK"]
+    });
+    await alert.present();
+  }
   
   // imageUploadTest(){
   //   // var image = this.webview.convertFileSrc("../../assets/images/g1.jpg");
