@@ -5,8 +5,8 @@ import { HomeMenuPage } from '../modals/menu/home-menu.page'
 import { AuthService } from '../services/auth/auth.service';
 import { ToastService } from '../services/toaster/toast-service';
 import { TransitionsService } from '../services/native/transitions.service';
-import { ModalController  } from '@ionic/angular';
-import {  Router } from '@angular/router';
+import { ModalController,NavController  } from '@ionic/angular';
+import {  Router ,NavigationExtras} from '@angular/router';
 import { myEnterAnimation, myLeaveAnimation} from '../animations/animations'
 import { FooterComponent} from '../footer/footer.component'
 // import { Badge } from '@ionic-native/badge/ngx';
@@ -26,6 +26,7 @@ export class HomePage {
     private router: Router,
     private transition : TransitionsService,
     public modalctrl: ModalController,
+    private navCtrl : NavController,
     private footerFunc : FooterComponent,
     // private badge: Badge
     ) {
@@ -37,7 +38,14 @@ export class HomePage {
           // this.badge.increase(1);
           this.footerFunc.addBadge()
           if (data.wasTapped) {
-        
+            if(data.type ==="chat"){
+              let navigationExtras: NavigationExtras = {
+                queryParams: {
+                    group_id: data.group,
+                }
+            };
+            this.navCtrl.navigateForward(['messages'], navigationExtras);
+            }
           } else {
             if(data.type === "chat"){
               var uid = await this.authServ.currentUserId();        

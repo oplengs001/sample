@@ -22,7 +22,8 @@ export class NotificationService {
       let postData =  {
           "notification" :{
               "title": topic,
-              "text": `New Message From ${topic}`
+              "text": `New Message From ${topic}`,
+              "click_action":"FCM_PLUGIN_ACTIVITY", 
           },
           "data": 
           {
