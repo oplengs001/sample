@@ -57,17 +57,41 @@ export class ChatService {
         })
       );
   }  
-  group_members_format (members){
-    return new Promise<any>((resolve, reject) => {
-    
-      var inbox_format = members.map((item)=>{
-        return {
-          user_id : item,
-          message_count : 0
-        }
-      })
-      resolve(inbox_format)
+  group_members_format (members:any,forEdit : boolean,group_id:string){
+    return new Promise<any>(async(resolve, reject) => {
+      if(forEdit){
+        let inbox = await this.get_inboxById(group_id),        
+        unique = inbox.filter((o)=> members.indexOf(o.user_id) === -1),
+        reduced = unique.map(user=>{
+          inbox = this.remItem(inbox,user)
+        })
+        inbox_format = members.map((member)=>{
+          let member_inbox = inbox.find(({user_id})=> user_id === member)
+            if(member_inbox !== undefined){
+              return member_inbox
+            }else{
+              return {
+                    user_id : member,
+                    message_count : 0
+                }
+            }
+        })        
+        resolve(inbox_format)
+      }else{
+        var inbox_format = members.map((item)=>{
+          return {
+            user_id : item,
+            message_count : 0
+          }
+        })
+        resolve(inbox_format)
+      }
+   
     })
+  }
+  remItem(arr, val) {
+    for (var i = 0; i < arr.length; i++) if (arr[i] === val) arr.splice(i, 1);
+    return arr;
   }
   update_inbox (chat_data){
     return new Promise<any>((resolve, reject) => {
@@ -121,22 +145,11 @@ export class ChatService {
          }
       )
    })
-  }
-  get_inbox (chat_id){
-    return new Promise<any>((resolve, reject) => { 
-    const chat_data = this.afs.collection('chats').doc(chat_id);  
-    chat_data.ref.get().then( async(doc) =>{    
-      const  uid  = await this.auth.currentUserId();   
-      var {inbox} = doc.data()        
-      resolve(inbox.find(({user_id})=> user_id === uid).message_count) 
-    }) 
-  })
-
-  }
-  async create(group_details : any,group_members:any) {
-    const  uid  = await this.auth.currentUserId();    
-    var members_format = await this.group_members_format(group_members)
+  } 
+  async create(group_details : any,group_members:any,forEdit:boolean) {
+    const  uid  = await this.auth.currentUserId();
     var {group_name,group_id} = group_details    
+    let members_format  = await this.group_members_format(group_members,forEdit,group_id)    
     const data = {
       uid,
       group_name : group_name, 
@@ -208,5 +221,24 @@ export class ChatService {
         return chat;
       })
     );
+  }
+  get_inbox (chat_id){
+    return new Promise<any>((resolve, reject) => { 
+      const chat_data = this.afs.collection('chats').doc(chat_id);  
+      chat_data.ref.get().then( async(doc) =>{    
+        const  uid  = await this.auth.currentUserId();   
+        var {inbox} = doc.data()        
+        resolve(inbox.find(({user_id})=> user_id === uid).message_count) 
+      }) 
+    })
+  }
+  get_inboxById(chat_id){
+    return new Promise<any>((resolve, reject) => { 
+      const chat_data = this.afs.collection('chats').doc(chat_id);  
+      chat_data.ref.get().then((doc) =>{          
+        var {inbox} = doc.data()        
+        resolve(inbox)
+      }) 
+    })
   }
 }

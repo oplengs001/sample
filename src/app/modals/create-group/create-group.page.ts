@@ -73,7 +73,8 @@ export class CreateGroupPage implements OnInit {
     }
     let original = this.original_array,
         new_array = this.group_array,
-        reduced_array =[]
+        reduced_array =[],
+        forEdit = false
     var {value}= formValues,
     {group_name , group_id } = value,    
      chat_group = {
@@ -84,6 +85,7 @@ export class CreateGroupPage implements OnInit {
     })
     
     if(!this.EditingModal){ 
+      forEdit = true
       let unique = original.filter((o)=> new_array.indexOf(o) === -1),
       removed_chat_ids = unique.map(item=>{
         var {chat_id} = item;
@@ -99,7 +101,7 @@ export class CreateGroupPage implements OnInit {
     }
     
     this.GuestServ.addGroupToGuestMultiple(group_id , group_members,reduced_array).then(data=>{
-      this.ChatServ.create(chat_group,group_members)
+      this.ChatServ.create(chat_group,group_members,forEdit)
     })    
   }
   async closeModal() {  

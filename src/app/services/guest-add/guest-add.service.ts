@@ -79,7 +79,7 @@ export class GuestAddService {
         this.addGroupToGuest(user,chat_id) 
       })      
     })
-    forUpdate.map(user=>{
+    forUpdate.map(user=>{ // deleting removed members
       this.addGroupToGuest(user.uid,user.chat_id)
     })
   }
