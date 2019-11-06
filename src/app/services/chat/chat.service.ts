@@ -60,7 +60,7 @@ export class ChatService {
   group_members_format (members:any,forEdit : boolean,group_id:string){
     return new Promise<any>(async(resolve, reject) => {
       if(forEdit){
-        let inbox = await this.get_inboxById(group_id),        
+        let {inbox,messages} = await this.getChatByID(group_id),
         unique = inbox.filter((o)=> members.indexOf(o.user_id) === -1),
         reduced = unique.map(user=>{
           inbox = this.remItem(inbox,user)
@@ -76,7 +76,10 @@ export class ChatService {
                 }
             }
         })        
-        resolve(inbox_format)
+        resolve({
+          inbox_format :inbox_format,
+          messages : messages
+        })
       }else{
         var inbox_format = members.map((item)=>{
           return {
@@ -84,7 +87,10 @@ export class ChatService {
             message_count : 0
           }
         })
-        resolve(inbox_format)
+        resolve({
+          inbox_format :inbox_format,
+          messages : []
+        })
       }
    
     })
@@ -149,18 +155,18 @@ export class ChatService {
   async create(group_details : any,group_members:any,forEdit:boolean):Promise<any> {
     const  uid  = await this.auth.currentUserId();
     var {group_name,group_id} = group_details    
-    let members_format  = await this.group_members_format(group_members,forEdit,group_id)    
+    let format  = await this.group_members_format(group_members,forEdit,group_id)    
     const data = {
       uid,
       group_name : group_name, 
       createdAt: Date.now(),
       count: 0,
-      messages: [],
-      inbox: members_format
+      messages: format.messages,
+      inbox: format.inbox_format
     };
     return await this.afs.collection('chats').doc(group_id).set(data)        
   }
-  async sendMessage(chatId, content) {
+  async sendMessage(chatId, content) :Promise <any>{
     const  uid  = await this.auth.currentUserId();
     const data = {
       uid,
@@ -177,13 +183,15 @@ export class ChatService {
       }).then(()=>{
         this.notif.createNotif(chatId,uid)
         console.log(data)
+        return data
       }).catch(function(error) {
         // The document probably doesn't exist.
         console.error("Error updating document: ", error);
+        return error
       });
     }
   }
-  async joinUsers(chat$: Observable<any>,limit) {    
+  async joinUsers(chat$: Observable<any>) {    
     let chat;
     const joinKeys = {};
     
@@ -203,20 +211,20 @@ export class ChatService {
       }),
       map(arr => {
         arr.forEach(v => (joinKeys[(<any>v).uid] = v));
-        // chat.messages = chat.messages.map(v => {
-        //   return { ...v, user: joinKeys[v.uid] };
-        // });
-        var messages_length = chat.messages.length
-        let starting_index = chat.messages.length - limit
-    
-        if(limit >= messages_length){
-          starting_index = 0
-        }          
-        chat.messages_length = messages_length
-        chat.starting_index = starting_index
-        chat.messages = chat.messages.slice(starting_index,messages_length).map(v => {
+        chat.messages = chat.messages.map(v => {
           return { ...v, user: joinKeys[v.uid] };
         });
+        // var messages_length = chat.messages.length
+        // let starting_index = chat.messages.length - limit
+    
+        // if(limit >= messages_length){
+        //   starting_index = 0
+        // }          
+        // chat.messages_length = messages_length
+        // chat.starting_index = starting_index
+        // chat.messages = chat.messages.slice(starting_index,messages_length).map(v => {
+        //   return { ...v, user: joinKeys[v.uid] };
+        // });
         
         return chat;
       })
@@ -232,12 +240,12 @@ export class ChatService {
       }) 
     })
   }
-  get_inboxById(chat_id){
+  getChatByID(chat_id){
     return new Promise<any>((resolve, reject) => { 
       const chat_data = this.afs.collection('chats').doc(chat_id);  
       chat_data.ref.get().then((doc) =>{          
-        var {inbox} = doc.data()        
-        resolve(inbox)
+        var chat = doc.data()        
+        resolve(chat)
       }) 
     })
   }

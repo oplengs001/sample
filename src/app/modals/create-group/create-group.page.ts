@@ -60,7 +60,7 @@ export class CreateGroupPage implements OnInit {
   event: {
     component: IonicSelectableComponent,
     value: any 
-  }){console.log('guests:', event.value);}
+  }){}
   createGroupForm() {
     this.GroupForm = this.fb.group({
       group_id: ['', Validators.required],

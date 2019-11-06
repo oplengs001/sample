@@ -12,27 +12,22 @@
 
 <ion-content class="message-bg" [scrollEvents]="true" > 
   <!-- <div class="ion-text-center" [hidden]="SeeMore" >{{Scroll_Message}} </div> -->
-  <ion-infinite-scroll threshold="20px"  (ionInfinite)="loadData($event)"  position="top">
+  <ion-infinite-scroll threshold="10px"  (ionInfinite)="loadData($event)"  position="top">
     <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="bubbles" loading-text="Loading more chat...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
   <ion-grid *ngIf="chat$ | async as chat">
-
-    <ion-row #messages *ngFor="let msg of chat.messages; trackBy: trackByCreated">
-
+    <ion-row #messages *ngFor="let msg of chat.messages.slice(current_index,current_length); trackBy: trackByCreated">
         <ion-col size="9" *ngIf="msg.user.uid !== currentUser" class="message other-message">   
           <b class="username">{{ msg.user.first_name}} {{ msg.user.last_name }}</b><br>
           <span>{{ msg.content }}</span>
-          <div class="time" text-right><br>{{ msg.createdAt | date:'short' }}</div>
-        
-        </ion-col>
-  
+          <div class="time" text-right><br>{{ msg.createdAt | date:'short' }}</div>        
+        </ion-col>  
         <ion-col offset="3" size="9" *ngIf="msg.user.uid === currentUser" class="message my-message">
           <b class="username">{{ msg.user.first_name}} {{ msg.user.last_name }}</b><br>
           <span>{{ msg.content }}</span>
           <div class="time" text-right><br>{{ msg.createdAt | date:'short' }}</div>
-        </ion-col>
-  
+        </ion-col>  
       </ion-row>                
   </ion-grid>   
 </ion-content>
