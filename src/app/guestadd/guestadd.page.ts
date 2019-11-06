@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GuestAddService, Guest } from "../services/guest-add/guest-add.service"
-import { ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth/auth.service';
 import { ToastService } from '../services/toaster/toast-service';
 import { ActionClass } from '../gallery-action-sheet/actionsheet'

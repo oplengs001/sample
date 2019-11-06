@@ -146,7 +146,7 @@ export class ChatService {
       )
    })
   } 
-  async create(group_details : any,group_members:any,forEdit:boolean) {
+  async create(group_details : any,group_members:any,forEdit:boolean):Promise<any> {
     const  uid  = await this.auth.currentUserId();
     var {group_name,group_id} = group_details    
     let members_format  = await this.group_members_format(group_members,forEdit,group_id)    

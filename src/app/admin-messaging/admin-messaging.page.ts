@@ -79,14 +79,6 @@ export class AdminMessagingPage implements OnInit {
         }
       },
       {
-        text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          console.log(id)
-          console.log('Delete clicked');
-        }
-      },{
         text: 'Cancel',
         icon: 'close',
         role: 'cancel',
