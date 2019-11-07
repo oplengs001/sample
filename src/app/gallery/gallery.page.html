@@ -40,10 +40,10 @@
       </ion-fab>
    
     <br>
-    <div [ngSwitch]="galleryType">
+    <div [ngSwitch]="galleryType" *ngIf="GalleryPosts">
       <!-- Responsive Layout with Ion Grid-->
-        <div class="images-single" *ngSwitchCase="'regular'">
-          <div class="single-count-image" *ngFor="let post of (GalleryPosts | async); trackBy: trackByCreated" >    
+        <div class="images-single" *ngSwitchCase="'regular'" >
+          <div class="single-count-image" *ngFor="let post of GalleryPosts.slice(0,image_limit); trackBy: trackByCreated" >    
               <div *ngIf="OwnImages;then filteredImage;else allUser">                
               </div>
               <ng-template #filteredImage>                          
@@ -79,11 +79,15 @@
                         <img src="{{post.url}}">
                       </ion-card-content>                  
                   </ion-card>
-              </ng-template>             
+              </ng-template>                         
           </div>
+          <ion-infinite-scroll threshold="150px"  (ionInfinite)="loadData($event)">
+            <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="crescent">
+            </ion-infinite-scroll-content>
+          </ion-infinite-scroll> 
         </div>     
         <div class="images" *ngSwitchCase="'pinterest'">    
-            <div class="one-image" *ngFor="let post of (GalleryPosts | async) trackBy: trackByCreated">
+            <div class="one-image" *ngFor="let post of GalleryPosts.slice(0,image_limit); trackBy: trackByCreated">
               <div *ngIf="OwnImages;then filteredImage;else allUser">                       
               </div>
               <ng-template #filteredImage>
@@ -95,9 +99,12 @@
                   <div (click)="imageClick(post)">
                       <img src="{{post.url}}">
                   </div>  
-              </ng-template>            
-                       
+              </ng-template>
             </div>
+            <ion-infinite-scroll threshold="150px"  (ionInfinite)="loadData($event)">
+              <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="crescent">
+              </ion-infinite-scroll-content>
+            </ion-infinite-scroll> 
         </div>        
       <br>       
       <!-- More Pinterest floating gallery style -->   

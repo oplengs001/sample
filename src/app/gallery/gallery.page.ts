@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActionSheetController} from '@ionic/angular';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { ImagesService ,ImageItem } from "../services/uploads/images.service"
 import { AuthService } from "../services/auth/auth.service"
@@ -9,19 +8,23 @@ import { Observable } from 'rxjs';
 import { TransitionsService } from '../services/native/transitions.service';
 import { ImagePage } from '../modals/photos/image/image.page'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, IonInfiniteScroll } from '@ionic/angular';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.page.html',
   styleUrls: ['./gallery.page.scss'],
 })
 export class GalleryPage implements OnInit {
+  @ViewChild(IonInfiniteScroll, {static: false}) infiniteScroll: IonInfiniteScroll;
   private GalleryPosts: Observable<ImageItem[]>;
   fileUploads: any[];
   galleryType = 'regular';
   imagePath : string;
   currentUser :string; 
-  OwnImages: boolean; 
+  OwnImages: boolean;
+  images_length : number;
+
+  image_limit : number
   constructor(
     private imagePicker : ImagePicker,
     private imageService : ImagesService,
@@ -36,7 +39,15 @@ export class GalleryPage implements OnInit {
 
   ngOnInit() {      
    const source = this.imageService.getReferences();
-   this.GalleryPosts = this.imageService.joinUsers(source);
+  //  this.GalleryPosts = this.imageService.joinUsers(source);
+  this.image_limit = 12
+  this.imageService.joinUsers(source).then(data=>{
+    data.subscribe( data=>{
+      console.log(data)
+      this.images_length = data.length
+      this.GalleryPosts = data
+    })
+  });  
    this.currentUser = this.authServ.currentUserId();
   }
   openImagePicker(){
@@ -79,4 +90,20 @@ export class GalleryPage implements OnInit {
   seeAll(){
     this.OwnImages = false
   } 
+  loadData(event) {      
+    setTimeout(() => {         
+      console.log("called")
+      if(this.images_length !== undefined){                    
+          this.image_limit = this.image_limit + 12
+          if ( this.image_limit >= this.images_length) {          
+            this.infiniteScroll.disabled = true            
+            this.image_limit = this.images_length
+          }else{                             
+            this.infiniteScroll.complete() 
+          }                 
+      }else{
+        this.infiniteScroll.complete()
+      }           
+    }, 400);
+  }
 }

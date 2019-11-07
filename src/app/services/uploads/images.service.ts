@@ -172,7 +172,7 @@ export class ImagesService {
     };
     img.src = imageUri;
   };
-  joinUsers(post$: Observable<any>) {
+  async joinUsers(post$: Observable<any>) {
     let post;
     const joinKeys = {};
     

@@ -110,7 +110,6 @@ export class MessagesPage implements OnInit {
         this.current_length = data.messages.length 
         
         if(this.current_length <=8){
-          debugger
           this.infiniteScroll.disabled = true    
           this.hide_scroll = true
           this.limit = this.current_length
