@@ -55,18 +55,11 @@ export class MessagesPage implements OnInit {
           }else{
             this.current_index = this.current_length-this.limit                       
             this.infiniteScroll.complete() 
-          }
-                 
+          }                 
       }else{
         this.infiniteScroll.complete()
-      }       
-      console.table({
-        limit : this.limit,
-        c_index : this.current_index,
-        length : this.current_length
-      })
-
-    }, 250);
+      }           
+    }, 200);
   }
   scrollToBottom(value) {
     setTimeout(()=>{   
@@ -77,8 +70,7 @@ export class MessagesPage implements OnInit {
    
   }
   seen_chat(){
-    this.cs.seen_chat(this.id).then(seen =>{  
-      console.log(seen)
+    this.cs.seen_chat(this.id).then(seen =>{        
       if(seen.continue){
         this.footerFunc.SubrcibeToOwnTopics()
         this.footerFunc.ClearNotifs(seen.count)
@@ -88,24 +80,37 @@ export class MessagesPage implements OnInit {
     })
   }
   ionViewDidLeave(){
-    // this.current_length
+    // this.current_length   
+    this.current_index = undefined
+    this.current_length = undefined
+    this.limit = undefined
   }
   ionViewDidEnter (){    
-    this.seen_chat()      
+    this.seen_chat()     
+    console.table({
+      c_index : this.current_index,
+      limit : this.limit,
+      current_length : this.current_length
+    }) 
     this.currentUser = this.auth.currentUserId()
-    this.hide_scroll = false
+    this.hide_scroll = false    
     this.limit = 9 
+    console.log("did enter")
     this.infiniteScroll.disabled = false  
-    // this.scrollToBottom(1500)    
+    
     this.cs.joinUsers(this.cs.get(this.id)).then(data=>{
       this.chat$ = data
+      this.scrollToBottom(500)   
       data.subscribe(data=>{
+
         let from_seen = false
         if(this.current_length === data.messages.length){
           from_seen = true
         }
         this.current_length = data.messages.length 
+        
         if(this.current_length <=8){
+          debugger
           this.infiniteScroll.disabled = true    
           this.hide_scroll = true
           this.limit = this.current_length
@@ -114,16 +119,12 @@ export class MessagesPage implements OnInit {
             this.limit++
             this.infiniteScroll.disabled = false    
             this.hide_scroll = false  
-            this.scrollToBottom(500)        
+            this.scrollToBottom(500)    
           }
         }
  
         this.current_index = this.current_length-this.limit
-        console.table({
-          c_index : this.current_index,
-          limit : this.limit,
-          current_length : this.current_length
-        })
+    
       })
       
    
@@ -134,7 +135,7 @@ export class MessagesPage implements OnInit {
   submit(chatId) {   
     var message = this.newMsg
       if(this.newMsg === '' || this.newMsg.length === 0 || !message.replace(/\s/g, '').length ){
-        console.log("do nothing")
+ 
       }else{
         this.newMsg = this.newMsg.trim();
         this.cs.sendMessage(chatId, this.newMsg).then(data=>{        

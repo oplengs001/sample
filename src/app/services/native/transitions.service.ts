@@ -48,6 +48,14 @@ export class TransitionsService {
       };
       this.navCtrl.navigateForward(['slidingcontent'], navigationExtras);
     }
+    reRouteActivityNoAnimation(content:string){    
+      let navigationExtras: NavigationExtras = {
+          queryParams: {
+              content: content,
+          }
+      };
+      this.navCtrl.navigateForward(['slidingcontent'], navigationExtras);
+    }
     backButtonTrans(){
       let options: NativeTransitionOptions = {
         direction: 'right',

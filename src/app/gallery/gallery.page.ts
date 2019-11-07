@@ -6,10 +6,8 @@ import { AuthService } from "../services/auth/auth.service"
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { ToastService } from '../services/toaster/toast-service';
 import { Observable } from 'rxjs';
-import { AlertController } from '@ionic/angular';
 import { TransitionsService } from '../services/native/transitions.service';
 import { ImagePage } from '../modals/photos/image/image.page'
-import { debug } from 'util';
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
 import { LoadingController } from '@ionic/angular';
 @Component({
@@ -80,14 +78,5 @@ export class GalleryPage implements OnInit {
   }
   seeAll(){
     this.OwnImages = false
-  }
-  // imageUploadTest(){
-  //   // var image = this.webview.convertFileSrc("../../assets/images/g1.jpg");
-  //   var image = "../../assets/images/g4.jpg";
-  //   //uploads img to firebase storage
-  //   this.imageService.saveImageRef(image).then(photoURL => {    
-  //       this.toaster.showToast("image uploaded")
-  //   })
-    
-  // }
+  } 
 }

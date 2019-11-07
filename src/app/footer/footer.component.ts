@@ -64,6 +64,6 @@ export class FooterComponent   {
     this.router.navigateByUrl('/home');
   }
   goToItenerary (){
-    this.transServe.reRouteActivity("Itenerary")
+    this.transServe.reRouteActivityNoAnimation("Itenerary")
   }
 }

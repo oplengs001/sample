@@ -1,9 +1,4 @@
 @import "../../theme/variables.scss";
-.image-container {
-    min-height: 200px;
-    background-size: cover;
- 
-}
 ion-card{    
     margin: 0 !important;
     margin-bottom:  16px
@@ -11,6 +6,9 @@ ion-card{
 .images {
     column-count: 3;
     // height: 300px
+}
+.image-card{
+    padding-top: 0px !important
 }
 .images-single{
     column-count: 1
