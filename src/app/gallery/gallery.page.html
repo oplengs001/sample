@@ -59,7 +59,7 @@
                           </ion-item>   
                       </ion-card-header>
                       <ion-card-content class="image-card">
-                        <img src="{{post.url}}">
+                        <ion-img [src]="post.url"></ion-img>
                       </ion-card-content>                  
                     </ion-card>
               </ng-template>  
@@ -76,7 +76,7 @@
                           </ion-item>   
                       </ion-card-header>
                       <ion-card-content class="image-card">
-                        <img src="{{post.url}}">
+                        <ion-img  [src]="post.url"></ion-img>
                       </ion-card-content>                  
                   </ion-card>
               </ng-template>                         
@@ -92,12 +92,12 @@
               </div>
               <ng-template #filteredImage>
                   <div (click)="imageClick(post)" *ngIf="post.user.uid ===  this.currentUser">
-                      <img src="{{post.url}}">
+                      <ion-img [src]="post.url"></ion-img>
                   </div>  
               </ng-template>
               <ng-template #allUser>
                   <div (click)="imageClick(post)">
-                      <img src="{{post.url}}">
+                      <ion-img [src]="post.url"></ion-img>
                   </div>  
               </ng-template>
             </div>
