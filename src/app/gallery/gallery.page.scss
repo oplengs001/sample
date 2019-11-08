@@ -4,6 +4,8 @@ ion-card{
     margin-bottom:  16px
 }
 .images {
+    display: flex;
+    flex-wrap: wrap;
     column-count: 3;
     // height: 300px
 }
@@ -24,6 +26,7 @@ ion-card{
     object-fit: cover;
 }
 .one-image img{
+    margin: 6px;
     height: 20vh;
     width: 30vw;
     object-fit: cover;

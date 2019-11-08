@@ -42,8 +42,8 @@
     <br>
     <div [ngSwitch]="galleryType" *ngIf="GalleryPosts">
       <!-- Responsive Layout with Ion Grid-->
-        <div class="images-single" *ngSwitchCase="'regular'" >
-          <div class="single-count-image" *ngFor="let post of GalleryPosts.slice(0,image_limit); trackBy: trackByCreated" >    
+        <div class="images-single" *ngSwitchCase="'regular'">
+          <div class="single-count-image" *ngFor="let post of GalleryPosts.slice(0,image_limit) | sort :'desc':'date_uploaded'; trackBy: trackByCreated;" >    
               <div *ngIf="OwnImages;then filteredImage;else allUser">                
               </div>
               <ng-template #filteredImage>                          
@@ -87,7 +87,7 @@
           </ion-infinite-scroll> 
         </div>     
         <div class="images" *ngSwitchCase="'pinterest'">    
-            <div class="one-image" *ngFor="let post of GalleryPosts.slice(0,image_limit); trackBy: trackByCreated">
+            <div class="one-image" *ngFor="let post of GalleryPosts.slice(0,image_limit) | sort :'desc':'date_uploaded'; trackBy: trackByCreated">
               <div *ngIf="OwnImages;then filteredImage;else allUser">                       
               </div>
               <ng-template #filteredImage>

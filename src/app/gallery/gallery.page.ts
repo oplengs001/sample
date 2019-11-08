@@ -41,7 +41,7 @@ export class GalleryPage implements OnInit {
    const source = this.imageService.getReferences();
   //  this.GalleryPosts = this.imageService.joinUsers(source);
   this.image_limit = 12
-  this.imageService.joinUsers(source).then(data=>{
+  this.imageService.joinUsers(source).then(data=>{ 
     data.subscribe( data=>{
       console.log(data)
       this.images_length = data.length
@@ -73,7 +73,8 @@ export class GalleryPage implements OnInit {
       });
   }
   uploadImageToFirebase(image){
-    image =   this.webview.convertFileSrc(image);    
+    image =   this.webview.convertFileSrc(image);   
+      this.toaster.showToast("Image will be uploaded soon") 
     this.imageService.saveImageRef(image).then(photoURL => {    
       this.toaster.showToast("image uploaded")
     })
@@ -92,7 +93,7 @@ export class GalleryPage implements OnInit {
   } 
   loadData(event) {      
     setTimeout(() => {         
-      console.log("called")
+
       if(this.images_length !== undefined){                    
           this.image_limit = this.image_limit + 12
           if ( this.image_limit >= this.images_length) {          
