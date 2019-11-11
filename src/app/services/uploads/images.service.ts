@@ -3,6 +3,8 @@ import * as firebase from 'firebase/app';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
 import { AuthService } from "../../services/auth/auth.service"
 import { Observable ,combineLatest, of } from 'rxjs';
+import { Platform } from '@ionic/angular';
+import { File } from '@ionic-native/file/ngx';
 import 'firebase/storage';
 
 import { map ,switchMap } from 'rxjs/operators';
@@ -27,6 +29,7 @@ export class ImagesService {
   private imageItemHome: Observable<ImageItem[]>;
   private ImageCollection: AngularFirestoreCollection<ImageItem>;
   storageRef = firebase.storage().ref();
+  storagePath: string
   itemRef : ImageItem =
   {
     item_path: '',
@@ -39,7 +42,11 @@ export class ImagesService {
   constructor(
     private authServ: AuthService,
     private afs: AngularFirestore,
+    public platform: Platform,
+    private file : File
     ) {  
+    if (this.platform.is("ios")) this.storagePath = this.file.cacheDirectory + "/temp";
+    else if(this.platform.is("android")) this.storagePath = this.file.externalRootDirectory + "/myApp/temp";
     this.ImageCollection = this.afs.collection<ImageItem>('images');
     this.imageItem = this.ImageCollection.snapshotChanges().pipe(
       map(actions => {
@@ -102,6 +109,10 @@ export class ImagesService {
     
     })
   }
+  createTempFile(ref : string){        
+   const fileRef = this.storageRef.child(ref);
+   fileRef
+  }
   deleteImageRef(id: string): Promise<any> {    
     return this.ImageCollection.doc(id).delete();
   }
@@ -110,10 +121,15 @@ export class ImagesService {
     console.log("deleted")
   }
   getImage() :any{
-    var storage = firebase.storage();
-    var pathReference = storage.ref("image/uak1m8IGFr");
-    pathReference.getDownloadURL().then(function(url) {
-      console.log(url)
+    // var storage = firebase.storage(),
+     var pathReference = this.storageRef.child("image/7aFHVTL0xG")
+  
+      pathReference.getDownloadURL().then(function(url) {
+        let uri = encodeURI(url);
+ 
+        this.file.createFile(uri,"tempFile.jpg",false).then((entry)=>{
+
+        })       
       return url
     }).catch(function(error) {
       return error
@@ -126,7 +142,7 @@ export class ImagesService {
 
       res.items.forEach(function(itemRef) {
         itemRef.getDownloadURL().then(function(url) {
-          // console.log(url)
+          console.log(url)
         }).catch(function(error) {
           return error
         });

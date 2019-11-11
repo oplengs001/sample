@@ -39,7 +39,7 @@ export class GalleryPage implements OnInit {
   ) { }
 
   ngOnInit() {      
- 
+ this.imageService.getImage()
    const source = this.imageService.getReferences();
   //  this.GalleryPosts = this.imageService.joinUsers(source);
   this.image_limit = 12

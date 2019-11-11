@@ -89,7 +89,7 @@ export class ActionClass implements OnInit {
         text: 'Facebook',
         icon: 'logo-facebook',
         handler: () => {  
-          this.shareToFacebook("hoho",url,url)
+          this.shareToFacebook(url)
           console.log('Play clicked');
         }      
       },      
@@ -97,21 +97,21 @@ export class ActionClass implements OnInit {
         text: 'Twitter',     
         icon: 'logo-twitter',
         handler: () => {
-          console.log(id)
+            this.shareToTwitter(url)
           console.log('Delete clicked');
         }
       }, {
         text: 'Instagram',     
         icon: 'logo-instagram',
         handler: () => {
-          console.log(id)
+            this.shareToInsta(url)
           console.log('Delete clicked');
         }
       },{
         text: 'WhatsApp',     
         icon: 'logo-whatsapp',
         handler: () => {
-          console.log(id)
+            this.shareToWhatsApp(url)
           console.log('Delete clicked');
         }
       },{
@@ -170,10 +170,35 @@ export class ActionClass implements OnInit {
     });
     await alert.present();
   }
-  shareToFacebook(text, image,url){
-    this.socialSharing.shareViaFacebook(text, image, url).then((res) => {
+  shareToFacebook(url){
+    this.socialSharing.shareViaFacebook(null, null, url).then((res) => {
       // Success
     }).catch((e) => {
+      console.log(e)
+      alert("wait")
+    });
+  }
+  shareToInsta(url){
+    this.socialSharing.shareViaInstagram(null, url).then((res) => {
+      // Success
+    }).catch((e) => {
+      console.log(e)
+      alert("wait")
+    });
+  }
+  shareToWhatsApp(url){
+    this.socialSharing.shareViaWhatsApp(null, null, url).then((res) => {
+      // Success
+    }).catch((e) => {
+      console.log(e)
+      alert("wait")
+    });
+  }
+  shareToTwitter(url){
+    this.socialSharing.shareViaTwitter(null, null, url).then((res) => {
+      // Success
+    }).catch((e) => {
+      console.log(e)
       alert("wait")
     });
   }
