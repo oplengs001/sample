@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument,
 import { AuthService } from "../../services/auth/auth.service"
 import { Observable ,combineLatest, of } from 'rxjs';
 import { Platform } from '@ionic/angular';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
 import 'firebase/storage';
 
@@ -43,10 +44,13 @@ export class ImagesService {
     private authServ: AuthService,
     private afs: AngularFirestore,
     public platform: Platform,
-    private file : File
+    private file : File,
+    private transfer: FileTransfer
+    
     ) {  
     if (this.platform.is("ios")) this.storagePath = this.file.cacheDirectory + "/temp";
     else if(this.platform.is("android")) this.storagePath = this.file.externalRootDirectory + "/myApp/temp";
+
     this.ImageCollection = this.afs.collection<ImageItem>('images');
     this.imageItem = this.ImageCollection.snapshotChanges().pipe(
       map(actions => {
@@ -59,6 +63,7 @@ export class ImagesService {
         });
       })
     )
+  
     this.imageItemHome = this.ImageCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -122,14 +127,17 @@ export class ImagesService {
   }
   getImage() :any{
     // var storage = firebase.storage(),
-     var pathReference = this.storageRef.child("image/7aFHVTL0xG")
-  
+     var pathReference = this.storageRef.child("image/7aFHVTL0xG")  
+     debugger
       pathReference.getDownloadURL().then(function(url) {
         let uri = encodeURI(url);
- 
-        this.file.createFile(uri,"tempFile.jpg",false).then((entry)=>{
-
-        })       
+        const fileTransfer: FileTransferObject = this.transfer.create();
+        fileTransfer.download(uri, this.storagePath + "temp.jpg").then((entry) => {
+            console.log(entry)
+        })
+        .catch((e) =>{
+    
+        });
       return url
     }).catch(function(error) {
       return error
