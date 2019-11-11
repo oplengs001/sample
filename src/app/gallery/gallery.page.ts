@@ -34,10 +34,12 @@ export class GalleryPage implements OnInit {
     private transServe : TransitionsService,
     private imageModal: ImagePage,
     private loadingCtrl : LoadingController,
-    private actions : ActionClass
+    private actions : ActionClass 
+    
   ) { }
 
   ngOnInit() {      
+ 
    const source = this.imageService.getReferences();
   //  this.GalleryPosts = this.imageService.joinUsers(source);
   this.image_limit = 12

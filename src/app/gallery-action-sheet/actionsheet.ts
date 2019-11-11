@@ -3,7 +3,7 @@ import { ActionSheetController ,AlertController} from '@ionic/angular';
  
 import { ImagesService ,ImageItem } from "../services/uploads/images.service"
 import { AuthService } from "../services/auth/auth.service"
-
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 @Injectable({
     providedIn: 'root'
 })
@@ -14,6 +14,7 @@ export class ActionClass implements OnInit {
     private authServ : AuthService,
     private actionSheetController : ActionSheetController,
     private alertController : AlertController,   
+    private socialSharing: SocialSharing
   ) { }
 
   ngOnInit() {      
@@ -81,13 +82,14 @@ export class ActionClass implements OnInit {
     await actionSheet.present();
   }
   async sharingActionSheet(post) {
-    const {id} = post
+    const {id ,url} = post    
     const actionSheet = await this.actionSheetController.create({  
       buttons: [
       {
         text: 'Facebook',
         icon: 'logo-facebook',
         handler: () => {  
+          this.shareToFacebook("hoho",url,url)
           console.log('Play clicked');
         }      
       },      
@@ -168,7 +170,13 @@ export class ActionClass implements OnInit {
     });
     await alert.present();
   }
-  
+  shareToFacebook(text, image,url){
+    this.socialSharing.shareViaFacebook(text, image, url).then((res) => {
+      // Success
+    }).catch((e) => {
+      alert("wait")
+    });
+  }
   // imageUploadTest(){
   //   // var image = this.webview.convertFileSrc("../../assets/images/g1.jpg");
   //   var image = "../../assets/images/g4.jpg";
