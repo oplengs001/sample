@@ -26,6 +26,7 @@ import { AppVersion } from '@ionic-native/app-version/ngx';
 import { Badge } from '@ionic-native/badge/ngx'
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions/ngx';
 import { CreateGroupPageModule } from '../app/modals/create-group/create-group.module'
 import { HomeMenuPageModule } from '../app/modals/menu/home-menu.module'
@@ -68,6 +69,7 @@ import 'gl-ionic-background-video';
     WebView,
     SocialSharing,
     NativeGeocoder,
+    FileTransfer,
     Badge,
     ImagePicker,
     AppVersion,

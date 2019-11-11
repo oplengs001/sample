@@ -125,23 +125,23 @@ export class ImagesService {
     this.storageRef.child("image").child(imageName).delete()
     console.log("deleted")
   }
+downloadImage(url):Promise<any>{        
+  return new Promise<any>((resolve, reject) => {
+      const fileTransfer = this.transfer.create();
+      return fileTransfer.download(url, this.file.dataDirectory + "temp.jpg").then((entry) => {
+          console.log(entry);
+          console.log('download complete: ' + entry.toURL());
+          resolve(entry.toURL())
+      }, (error) => {
+          console.log(error);
+          reject(error);
+          // handle error
+      });
+    })
+  }
   getImage() :any{
     // var storage = firebase.storage(),
-     var pathReference = this.storageRef.child("image/7aFHVTL0xG")  
-     debugger
-      pathReference.getDownloadURL().then(function(url) {
-        let uri = encodeURI(url);
-        const fileTransfer: FileTransferObject = this.transfer.create();
-        fileTransfer.download(uri, this.storagePath + "temp.jpg").then((entry) => {
-            console.log(entry)
-        })
-        .catch((e) =>{
-    
-        });
-      return url
-    }).catch(function(error) {
-      return error
-    });
+
   }
   getFiles (){
     var listRef = this.storageRef.child('image');

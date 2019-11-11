@@ -83,13 +83,15 @@ export class ActionClass implements OnInit {
   }
   async sharingActionSheet(post) {
     const {id ,url} = post    
+    const ImgFile = await this.imageService.downloadImage(url)
+    debugger
     const actionSheet = await this.actionSheetController.create({  
       buttons: [
       {
         text: 'Facebook',
         icon: 'logo-facebook',
         handler: () => {  
-          this.shareToFacebook(url)
+          this.shareToFacebook(ImgFile,url)
           console.log('Play clicked');
         }      
       },      
@@ -97,21 +99,21 @@ export class ActionClass implements OnInit {
         text: 'Twitter',     
         icon: 'logo-twitter',
         handler: () => {
-            this.shareToTwitter(url)
+            this.shareToTwitter(ImgFile,url)
           console.log('Delete clicked');
         }
       }, {
         text: 'Instagram',     
         icon: 'logo-instagram',
         handler: () => {
-            this.shareToInsta(url)
+            this.shareToInsta(ImgFile,url)
           console.log('Delete clicked');
         }
       },{
         text: 'WhatsApp',     
         icon: 'logo-whatsapp',
         handler: () => {
-            this.shareToWhatsApp(url)
+            this.shareToWhatsApp(ImgFile,url)
           console.log('Delete clicked');
         }
       },{
@@ -170,32 +172,32 @@ export class ActionClass implements OnInit {
     });
     await alert.present();
   }
-  shareToFacebook(url){
-    this.socialSharing.shareViaFacebook(null, null, url).then((res) => {
+  shareToFacebook(ImageFile,url){
+    this.socialSharing.shareViaFacebook(null, ImageFile, url).then((res) => {
       // Success
     }).catch((e) => {
       console.log(e)
       alert("wait")
     });
   }
-  shareToInsta(url){
-    this.socialSharing.shareViaInstagram(null, url).then((res) => {
+  shareToInsta(ImageFile,url){
+    this.socialSharing.shareViaInstagram(null, ImageFile).then((res) => {
       // Success
     }).catch((e) => {
       console.log(e)
       alert("wait")
     });
   }
-  shareToWhatsApp(url){
-    this.socialSharing.shareViaWhatsApp(null, null, url).then((res) => {
+  shareToWhatsApp(ImageFile,url){
+    this.socialSharing.shareViaWhatsApp(null, ImageFile, url).then((res) => {
       // Success
     }).catch((e) => {
       console.log(e)
       alert("wait")
     });
   }
-  shareToTwitter(url){
-    this.socialSharing.shareViaTwitter(null, null, url).then((res) => {
+  shareToTwitter(ImageFile,url){
+    this.socialSharing.shareViaTwitter(null, ImageFile, url).then((res) => {
       // Success
     }).catch((e) => {
       console.log(e)
