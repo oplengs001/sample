@@ -214,17 +214,7 @@ export class ChatService {
         chat.messages = chat.messages.map(v => {
           return { ...v, user: joinKeys[v.uid] };
         });
-        // var messages_length = chat.messages.length
-        // let starting_index = chat.messages.length - limit
-    
-        // if(limit >= messages_length){
-        //   starting_index = 0
-        // }          
-        // chat.messages_length = messages_length
-        // chat.starting_index = starting_index
-        // chat.messages = chat.messages.slice(starting_index,messages_length).map(v => {
-        //   return { ...v, user: joinKeys[v.uid] };
-        // });
+
         
         return chat;
       })

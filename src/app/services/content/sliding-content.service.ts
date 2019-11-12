@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable  } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
-import { map, take } from 'rxjs/operators';
+import { map, take,flatMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ImagesService } from "../uploads/images.service"
+import { firestore } from 'firebase/app';
+
 export interface Itenerary {
   uid?: string,
   image_url: string,
@@ -17,7 +19,8 @@ export interface Itenerary {
 export class SlidingContentService {
   private events: Observable<Itenerary[]>;
   private eventsColletion :AngularFirestoreCollection<Itenerary>
-
+  private eventRef : DocumentReference
+  eventItem : Itenerary
   constructor(
     private afs: AngularFirestore,
     
@@ -28,10 +31,34 @@ export class SlidingContentService {
         return actions.map(a => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
-          return { id, ...data };
+          const ref = a.payload.doc.ref
+          return { id, ...data , ref};
         });
       })
     );
+  }
+  async updateEvent(from:number,to:number){   
+      const snapshotResult = await this.afs.collection('events', ref =>
+      ref.where('position', '==', from )
+         .limit(1))
+         .snapshotChanges()
+         .pipe(flatMap(events => events));          
+       snapshotResult.subscribe(doc => {        
+          this.eventRef = doc.payload.doc.ref;
+          this.eventItem = <Itenerary>doc.payload.doc.data();        
+        });                   
+  }
+  async updateEventItem(eventRef:DocumentReference, eventItem :any , to:number){   
+    delete eventItem.ref
+    delete eventItem.id    
+    var item = <Itenerary>eventItem
+    item.position = to;    
+    eventRef.update(item).then(()=>{
+      console.log("updated")
+    }).catch((error)=>{
+      console.log(error)
+    });
+
   }
   getEvents(): Observable<Itenerary[]> {
  

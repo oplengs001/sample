@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild } from '@angular/core';
 import { TransitionsService } from '../services/native/transitions.service';
 import { ActivatedRoute } from '@angular/router';
+import { IonReorderGroup } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { SlidingContentService, Itenerary } from "../services/content/sliding-content.service"
 @Component({
@@ -8,13 +9,16 @@ import { SlidingContentService, Itenerary } from "../services/content/sliding-co
   templateUrl: './slidingcontent.page.html',
   styleUrls: ['./slidingcontent.page.scss'],
 })
-export class SlidingcontentPage implements OnInit {
+export class SlidingcontentPage implements OnInit {  
+  @ViewChild(IonReorderGroup, {static: false}) reorderGroup: IonReorderGroup;
   content :string
   topResto : any = []
   event_it : any = []
   Dining: boolean
   Itenerary :boolean
+  isAdmin : boolean
   events: Observable<Itenerary[]>;
+  event_data : any
   constructor(
     private transServe : TransitionsService,
     private route : ActivatedRoute,
@@ -119,9 +123,31 @@ export class SlidingcontentPage implements OnInit {
     ]
     
   }
+  doReorder(ev: any) {    
+    var 
+    {from,to} = ev.detail,
+    fromData = this.event_data[from],
+    toData = this.event_data[to],
+    fromRef = fromData.ref,
+    toRef = toData.ref;       
+    this.contentServe.updateEventItem(fromRef,fromData,to)
+    this.contentServe.updateEventItem(toRef,toData,from)
+
+    // Finish the reorder and position the item in the DOM based on
+    // where the gesture ended. This method can also be called directly
+    // by the reorder group
+    ev.detail.complete();
+  }
+  toggleReorderGroup() {
     
+    this.reorderGroup.disabled = !this.reorderGroup.disabled;
+  }
   ngOnInit() {
+    
     this.events = this.contentServe.getEvents()
+    this.events.subscribe(data =>{
+      this.event_data =  data.sort((a, b) => a.position - b.position) 
+    })
   }
 
 }

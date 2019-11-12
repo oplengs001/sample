@@ -22,8 +22,7 @@
       </ion-label>
     </ion-item>    -->
     <div *ngFor="let announcement of (announcements | async | sort :'asc':'date_posted' );">
-
-        <ion-card class="card-class">      
+        <ion-card class="card-class">
             <ion-item class="item-class">
               <ion-icon name="megaphone" slot="start"></ion-icon>
               <ion-label>{{ announcement.title }} </ion-label> 
@@ -31,8 +30,7 @@
             <ion-card-content class="ion-text-center">
                 {{ announcement.body }} 
             </ion-card-content>
-            <ion-item>
-            
+            <ion-item>            
               <div class="ion-text-center time-format">{{announcement.date_posted | date: 'MMM dd hh:mm a'}}</div>
             </ion-item> 
           </ion-card> 
