@@ -1,29 +1,8 @@
 
 
 <ion-app *ngIf="authService.user | async">
-  <!-- <ion-split-pane>
-    <ion-menu type="overlay">
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages" id="menu-toggle">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"  color="medium"></ion-icon>
-              <ion-label>
-                {{p.title}}
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-      </ion-content>
-    </ion-menu>   
-    <ion-router-outlet main></ion-router-outlet>   
-  </ion-split-pane> -->
-  <ion-fab horizontal="end" vertical="top" slot="fixed" *ngIf=this.adminUser>
+  
+  <ion-fab horizontal="end" vertical="top" slot="fixed" *ngIf=adminUser>
     <ion-fab-button color="dark">
       <ion-icon name="bowtie"></ion-icon>
     </ion-fab-button>
@@ -37,8 +16,8 @@
       <ion-fab-button (click)="reRoute('admin-messaging')" color="light" data-desc="Create Group">
         <ion-icon name="contacts"></ion-icon>        
       </ion-fab-button>
-      <ion-fab-button (click)="reRoute('admin-messaging')" color="light" data-desc="Edit Itenerary">
-        <ion-icon name="contacts"></ion-icon>        
+      <ion-fab-button (click)="goToItenerary()" color="light" data-desc="Edit Itenerary">
+        <ion-icon name="list-box"></ion-icon>    
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
@@ -46,19 +25,19 @@
 </ion-app>
 
 <ion-app *ngIf="!(authService.user | async)">
-      <ion-content force-overscroll="false">
-      <gl-background-video src="../assets/video/background-video.mp4" poster="../assets/video/background-video-image.png"></gl-background-video>
-      <div class="page-centered-element">
-        <div class="content">
-          <h1 class="h1-text">Geoff & Sofia</h1>
-          <h6 class="h6-text">Requesting the Honour of Your Presence to Celebrate Their Marriage</h6>
-          <div class="buttons-container">
-              <ion-input type="text" [(ngModel)]="email" placeholder="email"></ion-input>
-              <ion-input type="password" [(ngModel)]="password" placeholder="password"> </ion-input>
-            <ion-button (click)="login()" [disabled]="!email || !password" >Login</ion-button>
-          </div>
-        </div>
+  <ion-content force-overscroll="false">
+  <gl-background-video src="../assets/video/background-video.mp4" poster="../assets/video/background-video-image.png"></gl-background-video>
+  <div class="page-centered-element">
+    <div class="content">
+      <h1 class="h1-text">Geoff & Sofia</h1>
+      <h6 class="h6-text">Requesting the Honour of Your Presence to Celebrate Their Marriage</h6>
+      <div class="buttons-container">
+          <ion-input type="text" [(ngModel)]="email" placeholder="email"></ion-input>
+          <ion-input type="password" [(ngModel)]="password" placeholder="password"> </ion-input>
+        <ion-button (click)="login()" [disabled]="!email || !password" >Login</ion-button>
       </div>
-      </ion-content>    
+    </div>
+  </div>
+  </ion-content>    
 </ion-app>
 

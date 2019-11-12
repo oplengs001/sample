@@ -52,7 +52,7 @@ export class SlidingContentService {
     delete eventItem.ref
     delete eventItem.id    
     var item = <Itenerary>eventItem
-    item.position = to;    
+    item.position = to;        
     eventRef.update(item).then(()=>{
       console.log("updated")
     }).catch((error)=>{
@@ -68,8 +68,11 @@ export class SlidingContentService {
     
     return this.eventsColletion.doc(event.uid).set(event);
   }
-  deleveEvent(id: string): Promise<void> {
+  deleteEvent(id: string): Promise<void> {
     return this.eventsColletion.doc(id).delete();
+  }
+  deleteEventByRef(itemRef: DocumentReference): Promise<void> {
+    return itemRef.delete();
   }
 }
 

@@ -155,7 +155,39 @@ export class ActionClass implements OnInit {
      })
      return choice
   }
-
+  async eventActionSheet():Promise<any>{ 
+    let choice
+    var buttons = [
+      {
+        text: 'Edit',
+        icon: 'create',
+        role: 'edit',
+        handler: () => {      
+        }      
+      },      
+      {
+        text: 'Delete',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {          
+        }
+      },{
+        text: 'Cancel',
+        icon: 'close',   
+        handler: () => {          
+          console.log('Cancel clicked');
+        }
+      }
+    ]       
+    const options = await this.actionSheetController.create({
+      buttons: buttons
+    });
+    await options.present();
+    await options.onDidDismiss().then(res=>{   
+     choice = res.role
+    })
+    return choice
+  }
   async inputAlert (){
     const alert = await this.alertController.create({
       header: "Warning",

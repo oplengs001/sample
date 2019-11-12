@@ -31,8 +31,10 @@ export class FooterComponent   {
   ngOnInit() {
     this.SubrcibeToOwnTopics()    
   }
-  SubrcibeToOwnTopics():void {
-    this.authServ.currentUserData().then( async(data)=>{
+
+  SubrcibeToOwnTopics() {
+ 
+    this.authServ.currentUserData().then( async(data)=>{  
       let {chat_id} = data
       var inbox_count = 0
       for(var i in chat_id ){

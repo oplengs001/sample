@@ -4,17 +4,21 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable} from 'rxjs';
 import { environment } from "../../../environments/environment"
-
+// import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
   userDetails: firebase.User = null
-
-  constructor(private firebaseAuth: AngularFireAuth) {
+  public userGuestDetails : any
+  constructor(
+    
+    private firebaseAuth: AngularFireAuth
+    
+    ) {
     this.user = firebaseAuth.authState;
     this.user.subscribe((user) => {
       if (user) {
-        this.userDetails = user;
+        this.userDetails = user;        
       }
       else {
         this.userDetails = null;
@@ -35,11 +39,15 @@ export class AuthService {
   currentUserDisplayName(): string {
     return this.userDetails.displayName || this.userDetails.email; 
   }
-  currentUserData():Promise<any> {   
+  currentUserData():Promise<any> {    
     return firebase.firestore().collection("guests").doc(this.currentUserId()).get()
-      .then( userGuestProfile=>{              
+      .then( userGuestProfile=>{                      
+        this.userGuestDetails = userGuestProfile.data()
         return userGuestProfile.data()
       })
+  }
+  isAdmin(){        
+    return this.userGuestDetails.isAdmin
   }
   currentUserObservable(): any {
     return this.firebaseAuth.idTokenResult

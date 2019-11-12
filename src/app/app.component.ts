@@ -3,6 +3,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth/auth.service'
+import { TransitionsService } from './services/native/transitions.service';
 import {  Router } from '@angular/router';
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private router : Router
+    private router : Router,
+    private transServe : TransitionsService,
     
   ) {
     this.initializeApp();
@@ -36,32 +38,24 @@ export class AppComponent {
   logout() {
     this.authService.logout();
   }
-  isAdmin(){
-    var currentUser = this.authService.user
-    currentUser.subscribe((user) => {
-      if (user) {     
-        this.authService.currentUserData().then(profile =>{
-          if(profile.isAdmin){
-            this.adminUser = true         
-          }
-        })  
-      }
-      else {
-        this.adminUser = false
-      }
-   });
+  isAdmin(){  
+    this.adminUser = this.authService.isAdmin()
   }
   ngOnInit(){
-    this.isAdmin()
-   
+    this.authService.user.subscribe((data)=>{              
+      this.authService.currentUserData().then(data=>
+        this.adminUser = data.isAdmin
+      )
+    })
+  }
+  goToItenerary(){
+    this.transServe.reRouteActivityNoAnimation("Itenerary")
   }
   reRoute(page:string){
     console.log(page)
     this.router.navigateByUrl(page);
   }
-  initializeApp() {   
-    
-
+  initializeApp() {       
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();

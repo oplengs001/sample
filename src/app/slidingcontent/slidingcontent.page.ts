@@ -2,7 +2,9 @@ import { Component, OnInit ,ViewChild } from '@angular/core';
 import { TransitionsService } from '../services/native/transitions.service';
 import { ActivatedRoute } from '@angular/router';
 import { IonReorderGroup } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { AuthService } from '../services/auth/auth.service'
+import { ActionClass} from '../gallery-action-sheet/actionsheet'
 import { SlidingContentService, Itenerary } from "../services/content/sliding-content.service"
 @Component({
   selector: 'app-slidingcontent',
@@ -21,9 +23,11 @@ export class SlidingcontentPage implements OnInit {
   event_data : any
   constructor(
     private transServe : TransitionsService,
+    private authServ : AuthService,
+    private actions : ActionClass,
     private route : ActivatedRoute,
     private contentServe : SlidingContentService
-  ) { 
+  ) {   
     this.Dining = false
     this.Itenerary = false
     this.route.queryParams.subscribe(params => {
@@ -132,18 +136,37 @@ export class SlidingcontentPage implements OnInit {
     toRef = toData.ref;       
     this.contentServe.updateEventItem(fromRef,fromData,to)
     this.contentServe.updateEventItem(toRef,toData,from)
-
-    // Finish the reorder and position the item in the DOM based on
-    // where the gesture ended. This method can also be called directly
-    // by the reorder group
     ev.detail.complete();
   }
   toggleReorderGroup() {
     
     this.reorderGroup.disabled = !this.reorderGroup.disabled;
   }
-  ngOnInit() {
+  ionViewDidEnter(){
     
+  }
+  eventOptions(event){
+    var {ref} = event
+    this.actions.eventActionSheet().then(res=>{        
+      console.log(res)
+      if(res === "destructive"){     
+          this.actions.confirmationMessage("Your About To Delete This Event").then(res=>{
+            if(res){
+              this.contentServe.deleteEventByRef(ref).then(data=>{
+                console.log("deleted")
+              })
+            }
+          })
+      }else if (res === "edit"){
+
+      }
+    })
+  }
+  ngOnInit() {    
+    // this.isAdmin = this.authServ.isAdmin()
+    this.authServ.currentUserData().then(data=>{
+      this.isAdmin = data.isAdmin
+    })
     this.events = this.contentServe.getEvents()
     this.events.subscribe(data =>{
       this.event_data =  data.sort((a, b) => a.position - b.position) 

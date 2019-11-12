@@ -120,17 +120,11 @@ export class MessagesPage implements OnInit {
             this.hide_scroll = false  
             this.scrollToBottom(500)    
           }
-        }
- 
-        this.current_index = this.current_length-this.limit
-    
-      })
-      
-   
-    });
-  
+        } 
+        this.current_index = this.current_length-this.limit    
+      })         
+    });  
   }
-
   submit(chatId) {   
     var message = this.newMsg
       if(this.newMsg === '' || this.newMsg.length === 0 || !message.replace(/\s/g, '').length ){

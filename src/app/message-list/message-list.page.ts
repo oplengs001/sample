@@ -21,20 +21,17 @@ export class MessageListPage implements OnInit {
   ngOnInit() {
    
   }
-  ionViewDidEnter(){
-    this.currentChats = []
-    this.authServ.currentUserData().then( async(data)=>{   
+ async ionViewDidEnter(){
+    this.currentChats = []    
+      var data = this.authServ.userGuestDetails
       console.log(data)
-      let {chat_id} = data
- 
+      let {chat_id} = data 
       for(var i in chat_id ){
         this.currentChats.push({
           name :chat_id[i],
           notifs : await this.chatServ.get_inbox(chat_id[i]) 
-        })
-        
-      }
-    })
+        })        
+      }    
   }
   goToChat (group_name) {
     let navigationExtras: NavigationExtras = {
