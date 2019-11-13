@@ -85,19 +85,21 @@ export class ImagesService {
   getRefHome(): Observable<ImageItem[]> {
     return this.imageItemHome
   }
-  addImageRef(imageRef: ImageItem[]): Promise<any> {
-    return this.ImageCollection.doc(this.itemRef.file_name).set(imageRef);
-  }
-  addAppGalleryRef(imageRef: ImageItem[]): Promise<any> {
-    return this.AppGalleryCollection.doc(this.itemRef.file_name).set(imageRef);
-  }
-  uploadImage(imageURI){
+  addImageRef(imageRef: ImageItem[],collection:string): Promise<any> {
+    if(collection === "image"){
+      return this.ImageCollection.doc(this.itemRef.file_name).set(imageRef);
+    }else if(collection === "app-gallery"){
+      return this.AppGalleryCollection.doc(this.itemRef.file_name).set(imageRef);
+    }
+  
+  } 
+  uploadImage(imageURI,collection:string){
     return new Promise<any>((resolve, reject) => {
       var uid = this.makeid(10)
       var itemRef = this.itemRef
       var cUID = this.authServ.currentUserId()
       
-      let imageRef = this.storageRef.child('image').child(uid);  
+      let imageRef = this.storageRef.child(collection).child(uid);  
       this.encodeImageUri(imageURI, function(image64){
         imageRef.putString(image64, 'data_url')
         .then(async snapshot => {
@@ -119,48 +121,52 @@ export class ImagesService {
     
     })
   }
-  uploadImageAppGallery(imageURI){
-    return new Promise<any>((resolve, reject) => {
-      var uid = this.makeid(10)
-      var itemRef = this.itemRef
-      var cUID = this.authServ.currentUserId()
-      
-      let imageRef = this.storageRef.child('app-gallery').child(uid);  
-      this.encodeImageUri(imageURI, function(image64){
-        imageRef.putString(image64, 'data_url')
-        .then(async snapshot => {
-          console.log(snapshot)
-          var item_path = snapshot.metadata.fullPath        
-          var file_name = snapshot.metadata.name
-          await snapshot.ref.getDownloadURL().then((downloadURL) => {    
-            itemRef.url = downloadURL
-            itemRef.item_path = item_path       
-            itemRef.uploaded_by = cUID
-            itemRef.file_name  = file_name
-          })
-          resolve(itemRef)
-        }, err => {
-          console.log(err)
-          reject(err);
-        })
-      })
-    
-    })
-  }
+  saveImageRef (imageURI):Promise <any>{      
+    return this.uploadImage(imageURI,"image").then((itemRef) => {            
+       this.addImageRef(itemRef,"image").then((added) => {
+         console.log(added)
+         return added
+       }, err => {
+         console.log(err)
+         return err
+       });  
+   })   
+  }   
+  async saveAppGalleryRef (imageURI,collection:string) :Promise<any>{      
+    const itemRef = await  this.uploadImage(imageURI,collection)          
+    this.addImageRef(itemRef,collection).then((added) => {        
+      console.log(itemRef)
+      console.log(added)
+      console.log("Added To List")
+    }, err => {
+      console.log(err)
+      return err
+    });
+    return itemRef        
+  
+  }   
+  deleteImageRef(id: string,collection:string): Promise<any> {   
+    if(collection === "image") {
+      return this.ImageCollection.doc(id).delete();
+    }else if(collection === "app-gallery"){
+      return this.AppGalleryCollection.doc(id).delete();
+    }
 
-  createTempFile(ref : string){        
-   const fileRef = this.storageRef.child(ref);
-   fileRef
   }
-  deleteImageRef(id: string): Promise<any> {    
-    return this.ImageCollection.doc(id).delete();
-  }
-  deleteImageStorage(imageName:string){
-    this.storageRef.child("image").child(imageName).delete()
+  deleteImageStorage(imageName:string,collection:string){
+    this.storageRef.child(collection).child(imageName).delete()
     console.log("deleted")
   }
+  removeImageRef (post:any,collection:string){
+    const {file_name} = post
+    this.deleteImageRef(file_name,collection)
+    .then(()=>{
+      return this.deleteImageStorage(file_name,collection)
+    })
+    // .catch(err=>{ console.log(err) return err})
+  }
   downloadImage(url):Promise<any>{        
-  return new Promise<any>((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
       const fileTransfer = this.transfer.create();
       return fileTransfer.download(url, this.file.dataDirectory + "temp.jpg").then((entry) => {
           console.log(entry);
@@ -172,11 +178,7 @@ export class ImagesService {
           // handle error
       });
     })
-  }
-  getImage() :any{
-    // var storage = firebase.storage(),
-
-  }
+  } 
   getFiles (){
     var listRef = this.storageRef.child('image');
     listRef.listAll().then(function(res) {    
@@ -196,36 +198,6 @@ export class ImagesService {
       // Uh-oh, an error occurred!
     });
   }  
-  saveImageRef (imageURI):Promise <any>{      
-     return this.uploadImage(imageURI).then((itemRef) => {            
-        this.addImageRef(itemRef).then((added) => {
-          console.log(added)
-          return added
-        }, err => {
-          console.log(err)
-          return err
-        });  
-    })   
-  }  
-  saveAppGalleryRef (imageURI):Promise <any>{      
-    return this.uploadImageAppGallery(imageURI).then((itemRef) => {            
-       this.addAppGalleryRef(itemRef).then((added) => {
-         console.log(added)
-         return added
-       }, err => {
-         console.log(err)
-         return err
-       });  
-   })   
- } 
-  removeImageRef (post:any){
-    const {file_name} = post
-    this.deleteImageRef(file_name)
-    .then(()=>{
-     return this.deleteImageStorage(file_name)
-    })
-    // .catch(err=>{ console.log(err) return err})
-  }
   encodeImageUri(imageUri, callback) {
     var c = document.createElement('canvas');
     var ctx = c.getContext("2d");

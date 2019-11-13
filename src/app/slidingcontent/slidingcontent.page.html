@@ -19,7 +19,7 @@
           </ion-card-header>   
       </ion-card>   
       <ion-card class="content-card" *ngFor="let resto of topResto">
-          <img src="{{resto.image_url}}"/>
+          <ion-img src="{{resto.image_url}}"></ion-img>
           <ion-card-header> 
             <ion-card-title>{{resto.name}}</ion-card-title>    
             <ion-card-subtitle>{{resto.location}}</ion-card-subtitle>
@@ -38,11 +38,12 @@
           </ion-card-header>   
       </ion-card>   
       <div *ngIf="(events|async)?.length === 0;else items">
-        <img src="/assets/images/itenerary/slide.png"/>
+        <ion-img src="/assets/images/itenerary/slide.png"></ion-img>
         <h2 class="ion-text-center">To Be Announce!</h2>
         <p class="ion-text-center"><b>Wait for further Announcement</b><br>
            you will be notified when Events are added in this Itenerary!</p>
       </div>
+      <ion-button *ngIf="isAdmin"expand="full" color="dark" (click)="addEvent()">ADD EVENT</ion-button>    
       <ng-template #items>
         <div *ngIf="isAdmin;else nonAdmin">
               <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">                                
@@ -51,18 +52,18 @@
                         <ion-reorder slot=start></ion-reorder> 
                         <ion-icon name="more" slot=end (click)="eventOptions(event)"></ion-icon>
                     </ion-item>      
-                    <img src="{{event.image_url}}"/>
+                    <ion-img src="{{event.image_url}}"></ion-img>
                     <ion-card-header> 
                       <ion-card-title>{{event.name}}</ion-card-title>    
                       <ion-card-subtitle>{{event.location}}</ion-card-subtitle>
                     </ion-card-header> 
                 </ion-card>                                                               
             </ion-reorder-group><br>
-            <ion-button expand="full" color="dark" (click)="addEvent()">ADD EVENT</ion-button>            
+                
         </div>    
         <ng-template #nonAdmin>
             <ion-card class="content-card" *ngFor="let event of (events | async  | sort :'asc':'position' )">              
-              <img src="{{event.image_url}}"/>
+              <ion-img src="{{event.image_url}}"></ion-img>
               <ion-card-header> 
                 <ion-card-title>{{event.name}}</ion-card-title>    
                 <ion-card-subtitle>{{event.location}}</ion-card-subtitle>

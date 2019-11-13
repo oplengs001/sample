@@ -5,7 +5,7 @@ import { IonReorderGroup } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
-import { ModalController, } from '@ionic/angular';
+import { ModalController, IonContent } from '@ionic/angular';
 import { CreateEventPage } from '../modals/create-event/create-event.page';
 import { SlidingContentService, Itenerary } from "../services/content/sliding-content.service"
 @Component({
@@ -14,6 +14,7 @@ import { SlidingContentService, Itenerary } from "../services/content/sliding-co
   styleUrls: ['./slidingcontent.page.scss'],
 })
 export class SlidingcontentPage implements OnInit {  
+  @ViewChild(IonContent, {static: false}) ioncontent: IonContent;
   @ViewChild(IonReorderGroup, {static: false}) reorderGroup: IonReorderGroup;
   content :string
   topResto : any = []
@@ -163,19 +164,17 @@ export class SlidingcontentPage implements OnInit {
     await modal.present();
   }
   eventOptions(event){
-    var {ref} = event
+    var {ref ,image_ref} = event
     this.actions.eventActionSheet().then(res=>{        
       console.log(res)
       if(res === "destructive"){     
           this.actions.confirmationMessage("Your About To Delete This Event").then(res=>{
             if(res){
-              this.contentServe.deleteEventByRef(ref).then(data=>{
+              this.contentServe.deleteEventByRef(ref,image_ref).then(data=>{
                 console.log("deleted")
               })
             }
           })
-      }else if (res === "edit"){
-
       }
     })
   }
@@ -186,8 +185,13 @@ export class SlidingcontentPage implements OnInit {
     })
     this.events = this.contentServe.getEvents()
     this.events.subscribe(data =>{
-      this.event_data =  data.sort((a, b) => a.position - b.position) 
-      this.lastPosition = this.event_data.length === 0? 0: this.event_data[this.event_data.length-1].position
+      console.log(data)
+      if(data.length > this.event_data){  
+        this.ioncontent.scrollToBottom(1000);   
+      }
+      this.event_data =  data.sort((a, b) => a.position - b.position)       
+      this.lastPosition = this.event_data.length === 0? -1: this.event_data[this.event_data.length-1].position
+      
     })
   }
 

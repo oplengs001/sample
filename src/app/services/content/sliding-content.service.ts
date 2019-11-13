@@ -11,6 +11,7 @@ export interface Itenerary {
   name: string,  
   location: string,
   position : number,
+  image_ref : string  
 }
 
 @Injectable({
@@ -23,7 +24,7 @@ export class SlidingContentService {
   eventItem : Itenerary
   constructor(
     private afs: AngularFirestore,
-    
+    private imageServe : ImagesService
     ) {
     this.eventsColletion = this.afs.collection<Itenerary>('events');
     this.events = this.eventsColletion.snapshotChanges().pipe(
@@ -63,16 +64,16 @@ export class SlidingContentService {
  
     return this.events;
   }
-  addEvent(event: Itenerary): Promise<any> {
-    debugger
-    console.log
+  addEvent(event: Itenerary): Promise<any> {   
     return this.eventsColletion.doc(this.afs.createId()).set(event);
   }
   deleteEvent(id: string): Promise<void> {
     return this.eventsColletion.doc(id).delete();
   }
-  deleteEventByRef(itemRef: DocumentReference): Promise<void> {
+  deleteEventByRef(itemRef: DocumentReference,imageRef : string): Promise<void> {
+    this.imageServe.removeImageRef({file_name:imageRef},"app-gallery")
     return itemRef.delete();
   }
+  
 }
 

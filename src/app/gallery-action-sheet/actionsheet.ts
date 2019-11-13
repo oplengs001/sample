@@ -35,7 +35,7 @@ export class ActionClass implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.imageService.removeImageRef(post)
+            this.imageService.removeImageRef(post,"image")
           }
         }
       ]
@@ -157,14 +157,7 @@ export class ActionClass implements OnInit {
   }
   async eventActionSheet():Promise<any>{ 
     let choice
-    var buttons = [
-      {
-        text: 'Edit',
-        icon: 'create',
-        role: 'edit',
-        handler: () => {      
-        }      
-      },      
+    var buttons = [        
       {
         text: 'Delete',
         role: 'destructive',
