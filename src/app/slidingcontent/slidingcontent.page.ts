@@ -179,10 +179,10 @@ export class SlidingcontentPage implements OnInit {
     })
   }
   ngOnInit() {    
-    // this.isAdmin = this.authServ.isAdmin()
-    this.authServ.currentUserData().then(data=>{
-      this.isAdmin = data.isAdmin
-    })
+    this.isAdmin = this.authServ.isAdmin()
+    // this.authServ.currentUserData().then(data=>{
+    //   this.isAdmin = data.isAdmin
+    // })
     this.events = this.contentServe.getEvents()
     this.events.subscribe(data =>{
       console.log(data)

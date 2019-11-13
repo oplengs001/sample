@@ -77,7 +77,7 @@ export class CreateEventPage implements OnInit {
           }).then(
             (results) => {
               for (var i = 0; i < results.length; i++) {
-                // this.uploadImageToFirebase(results[i]);
+                this.uploadImageToFirebase(results[i]);
               }
             }, (err) => console.log(err)
           );
@@ -87,13 +87,13 @@ export class CreateEventPage implements OnInit {
     });
   }
   // uploadImageToFirebase(image){
-  async uploadImageToFirebase(){
-    // image = this.webview.convertFileSrc(image);       
+  async uploadImageToFirebase(image){
+    image = this.webview.convertFileSrc(image);       
     const loading = await this.loadingController.create({
       message: 'Saving Image',     
     });
     await loading.present();
-    var image = "/assets/images/itenerary/arrival.jpg"    
+    // var image = "/assets/images/itenerary/arrival.jpg"    
     this.imageService.saveAppGalleryRef(image,"app-gallery").then(photo => {    
       this.temp_image = photo.url           
       this.temp_image_ref = photo.file_name

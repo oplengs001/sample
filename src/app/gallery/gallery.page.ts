@@ -71,7 +71,7 @@ export class GalleryPage implements OnInit {
         }
       }, (err) => {
         console.log(err);
-    });
+      });
   }
   uploadImageToFirebase(image){
     image =   this.webview.convertFileSrc(image);   
