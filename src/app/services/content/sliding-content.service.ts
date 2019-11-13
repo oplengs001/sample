@@ -58,15 +58,15 @@ export class SlidingContentService {
     }).catch((error)=>{
       console.log(error)
     });
-
   }
   getEvents(): Observable<Itenerary[]> {
  
     return this.events;
   }
   addEvent(event: Itenerary): Promise<any> {
-    
-    return this.eventsColletion.doc(event.uid).set(event);
+    debugger
+    console.log
+    return this.eventsColletion.doc(this.afs.createId()).set(event);
   }
   deleteEvent(id: string): Promise<void> {
     return this.eventsColletion.doc(id).delete();

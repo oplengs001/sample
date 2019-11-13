@@ -29,6 +29,7 @@ export class ImagesService {
   private imageItem: Observable<ImageItem[]>;
   private imageItemHome: Observable<ImageItem[]>;
   private ImageCollection: AngularFirestoreCollection<ImageItem>;
+  private AppGalleryCollection: AngularFirestoreCollection<ImageItem>;
   storageRef = firebase.storage().ref();
   storagePath: string
   itemRef : ImageItem =
@@ -52,6 +53,7 @@ export class ImagesService {
     else if(this.platform.is("android")) this.storagePath = this.file.externalRootDirectory + "/myApp/temp";
 
     this.ImageCollection = this.afs.collection<ImageItem>('images');
+    this.AppGalleryCollection = this.afs.collection<ImageItem>('app-gallery');
     this.imageItem = this.ImageCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -85,7 +87,10 @@ export class ImagesService {
   }
   addImageRef(imageRef: ImageItem[]): Promise<any> {
     return this.ImageCollection.doc(this.itemRef.file_name).set(imageRef);
-  } 
+  }
+  addAppGalleryRef(imageRef: ImageItem[]): Promise<any> {
+    return this.AppGalleryCollection.doc(this.itemRef.file_name).set(imageRef);
+  }
   uploadImage(imageURI){
     return new Promise<any>((resolve, reject) => {
       var uid = this.makeid(10)
@@ -114,6 +119,35 @@ export class ImagesService {
     
     })
   }
+  uploadImageAppGallery(imageURI){
+    return new Promise<any>((resolve, reject) => {
+      var uid = this.makeid(10)
+      var itemRef = this.itemRef
+      var cUID = this.authServ.currentUserId()
+      
+      let imageRef = this.storageRef.child('app-gallery').child(uid);  
+      this.encodeImageUri(imageURI, function(image64){
+        imageRef.putString(image64, 'data_url')
+        .then(async snapshot => {
+          console.log(snapshot)
+          var item_path = snapshot.metadata.fullPath        
+          var file_name = snapshot.metadata.name
+          await snapshot.ref.getDownloadURL().then((downloadURL) => {    
+            itemRef.url = downloadURL
+            itemRef.item_path = item_path       
+            itemRef.uploaded_by = cUID
+            itemRef.file_name  = file_name
+          })
+          resolve(itemRef)
+        }, err => {
+          console.log(err)
+          reject(err);
+        })
+      })
+    
+    })
+  }
+
   createTempFile(ref : string){        
    const fileRef = this.storageRef.child(ref);
    fileRef
@@ -125,7 +159,7 @@ export class ImagesService {
     this.storageRef.child("image").child(imageName).delete()
     console.log("deleted")
   }
-downloadImage(url):Promise<any>{        
+  downloadImage(url):Promise<any>{        
   return new Promise<any>((resolve, reject) => {
       const fileTransfer = this.transfer.create();
       return fileTransfer.download(url, this.file.dataDirectory + "temp.jpg").then((entry) => {
@@ -171,9 +205,19 @@ downloadImage(url):Promise<any>{
           console.log(err)
           return err
         });  
-    })
-   
+    })   
   }  
+  saveAppGalleryRef (imageURI):Promise <any>{      
+    return this.uploadImageAppGallery(imageURI).then((itemRef) => {            
+       this.addAppGalleryRef(itemRef).then((added) => {
+         console.log(added)
+         return added
+       }, err => {
+         console.log(err)
+         return err
+       });  
+   })   
+ } 
   removeImageRef (post:any){
     const {file_name} = post
     this.deleteImageRef(file_name)

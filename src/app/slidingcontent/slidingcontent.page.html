@@ -58,7 +58,7 @@
                     </ion-card-header> 
                 </ion-card>                                                               
             </ion-reorder-group><br>
-            <ion-button expand="full" color="dark">ADD EVENT</ion-button>            
+            <ion-button expand="full" color="dark" (click)="addEvent()">ADD EVENT</ion-button>            
         </div>    
         <ng-template #nonAdmin>
             <ion-card class="content-card" *ngFor="let event of (events | async  | sort :'asc':'position' )">              

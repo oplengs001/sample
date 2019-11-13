@@ -1,0 +1,32 @@
+
+  <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Add Event Form</ion-title>
+        <ion-buttons slot="start">
+            <ion-button (click)="closeModal()">Cancel</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+  <ion-content fullscreen>
+      <form [formGroup]="GroupForm" (ngSubmit)="addEvent(GroupForm)">
+        <ion-list>           
+            <ion-item>              
+                <ion-label position="stacked">Cover Image</ion-label>
+                <ion-button slot="end" expand="block" fill="outline" (click)="openImagePicker()"> Select Image</ion-button>             
+                <ion-img slot="start" [src]="temp_image"> </ion-img>                             
+            </ion-item>               
+            <ion-item>
+                <ion-label position="stacked">Event Name</ion-label>
+                <ion-input   formControlName="event_name" ></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="stacked">Event Details</ion-label>
+                <ion-input  formControlName="event_location"></ion-input>
+            </ion-item>       
+                                            
+        </ion-list>
+        <div>
+            <ion-button expand="full" type="submit" [disabled]="GroupForm.invalid || (temp_image === undefined)">Create Event</ion-button>
+        </div>          
+      </form>   
+  </ion-content>

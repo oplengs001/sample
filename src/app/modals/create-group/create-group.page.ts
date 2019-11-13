@@ -5,7 +5,7 @@ import {FormBuilder,FormGroup, Validators} from '@angular/forms';
 import { GuestAddService ,Guest} from '../../services/guest-add/guest-add.service'
 import { Observable } from 'rxjs';
 import { ToastService } from '../../services/toaster/toast-service';
-import {ActionClass} from '../../gallery-action-sheet/actionsheet'
+import  {ActionClass } from '../../gallery-action-sheet/actionsheet'
 import { AuthService } from '../../services/auth/auth.service';
 import { IonicSelectableComponent } from 'ionic-selectable';
 @Component({

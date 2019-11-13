@@ -5,6 +5,8 @@ import { IonReorderGroup } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
+import { ModalController, } from '@ionic/angular';
+import { CreateEventPage } from '../modals/create-event/create-event.page';
 import { SlidingContentService, Itenerary } from "../services/content/sliding-content.service"
 @Component({
   selector: 'app-slidingcontent',
@@ -21,12 +23,14 @@ export class SlidingcontentPage implements OnInit {
   isAdmin : boolean
   events: Observable<Itenerary[]>;
   event_data : any
+  lastPosition : number
   constructor(
     private transServe : TransitionsService,
     private authServ : AuthService,
     private actions : ActionClass,
     private route : ActivatedRoute,
-    private contentServe : SlidingContentService
+    private contentServe : SlidingContentService,
+    private modalController : ModalController
   ) {   
     this.Dining = false
     this.Itenerary = false
@@ -145,6 +149,19 @@ export class SlidingcontentPage implements OnInit {
   ionViewDidEnter(){
     
   }
+  async addEvent() {
+
+    const modal: HTMLIonModalElement =
+       await this.modalController.create({
+          component: CreateEventPage,
+          componentProps: {
+            event_last_position : this.lastPosition,
+            aParameter: true,
+            otherParameter: new Date()
+          }
+    });          
+    await modal.present();
+  }
   eventOptions(event){
     var {ref} = event
     this.actions.eventActionSheet().then(res=>{        
@@ -170,6 +187,7 @@ export class SlidingcontentPage implements OnInit {
     this.events = this.contentServe.getEvents()
     this.events.subscribe(data =>{
       this.event_data =  data.sort((a, b) => a.position - b.position) 
+      this.lastPosition = this.event_data.length === 0? 0: this.event_data[this.event_data.length-1].position
     })
   }
 
