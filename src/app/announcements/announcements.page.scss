@@ -1,7 +1,9 @@
 .time-format{
     font-size: 15px
 }
-
+.icon-checkSize{
+    font-size: 50px
+}
 .header-bg{
     --background: var( --ion-color-primary);
     color:#ffffff
@@ -9,7 +11,15 @@
 .content-bg{
     --ion-background-color:#DEEEEF;
 }
-
+.card-body{
+    font-size: 30px
+}
+.icon-announcement{
+    color:#ffffff   
+}
+.caught-body{
+    font-size:30px
+}
 .card-class {
     background: #ffffff
     

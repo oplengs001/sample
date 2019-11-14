@@ -22,19 +22,38 @@
       </ion-label>
     </ion-item>    -->
     <div *ngFor="let announcement of (announcements | async | sort :'asc':'date_posted' );">
-        <ion-card class="card-class">
-            <ion-item class="item-class">
-              <ion-icon name="megaphone" slot="start"></ion-icon>
-              <ion-label>{{ announcement.title }} </ion-label> 
-            </ion-item>          
-            <ion-card-content class="ion-text-center">
-                {{ announcement.body }} 
-            </ion-card-content>
-            <ion-item>            
-              <div class="ion-text-center time-format">{{announcement.date_posted | date: 'MMM dd hh:mm a'}}</div>
-            </ion-item> 
-          </ion-card> 
+      <ion-card class="card-class">
+          <ion-item class="item-class">
+            <ion-icon class="icon-announcement"  name="megaphone" slot="end"></ion-icon>
+            <ion-label slot="start">{{ announcement.title }}</ion-label> 
+          </ion-item>          
+          <ion-card-content class="ion-text-center card-body">
+              {{ announcement.body }} 
+          </ion-card-content>
+          <ion-item>            
+            <ion-label class="ion-text-center time-format">{{announcement.date_posted | date: 'MMM dd hh:mm a'}}</ion-label>
+          </ion-item> 
+        </ion-card>
     </div>
-
+   <div *ngIf="(announcements|async)?.length === 0;else caughtup">    
+      <ion-card class="card-class">
+          <ion-item class="item-class">         
+            <ion-label class="ion-text-center"><ion-icon name="information-circle-outline"  class="icon-checkSize" ></ion-icon> </ion-label> 
+          </ion-item>          
+          <ion-card-content class="ion-text-center caught-body">
+            Looks like there are no Announcements now, don't worry you will be notified if Announcements are made 
+          </ion-card-content>       
+        </ion-card>  
+    </div>
+    <ng-template #caughtup>
+        <ion-card class="card-class">
+            <ion-item class="item-class">         
+              <ion-label class="ion-text-center"><ion-icon name="checkmark-circle-outline"  class="icon-checkSize" ></ion-icon> </ion-label> 
+            </ion-item>          
+            <ion-card-content class="ion-text-center caught-body">
+              Your All Caught up!
+            </ion-card-content>       
+          </ion-card>
+    </ng-template>
   </ion-list>
 </ion-content> 

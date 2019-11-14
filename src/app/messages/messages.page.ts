@@ -130,9 +130,11 @@ export class MessagesPage implements OnInit {
       if(this.newMsg === '' || this.newMsg.length === 0 || !message.replace(/\s/g, '').length ){
  
       }else{
+
         this.newMsg = this.newMsg.trim();
         this.cs.sendMessage(chatId, this.newMsg).then(data=>{        
           this.newMsg = ''
+          this.seen_chat()
           // this.scrollToBottom(500)
         
         });

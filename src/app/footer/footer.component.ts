@@ -48,7 +48,7 @@ export class FooterComponent   {
              this.currentChats = this.pushToArray(this.currentChats,chat,uid,true)
            })        
          })
-       }else{        
+      }else{        
            this.chatServ.getUserChat(chat_id).then(data=>{
              data.map(chat =>{           
                chat.subscribe(data=>{                                
@@ -59,7 +59,7 @@ export class FooterComponent   {
                })
              })
            })
-       }
+      }
       
     })
   }

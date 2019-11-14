@@ -37,6 +37,7 @@
       <ion-col size="10">
         <ion-textarea  *ngIf="chat$ | async as chat"
         autosize class="message-input" maxRows="4"
+         (ionFocus)="seen_chat()"
          [(ngModel)]="newMsg" 
          (keydown.enter)="submit(chat.id)"    
           ></ion-textarea>
