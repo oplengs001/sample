@@ -14,8 +14,10 @@ import { Badge } from '@ionic-native/badge/ngx';
   providedIn: 'root'
 })
 export class FooterComponent   {
-  inbox_count : number = 0
+  public inbox_count : number =0
+  public isAdmin : boolean
   inbox_hide :boolean
+  public currentChats : any = []
   constructor(
     private fcm: FCM, 
     private router: Router,
@@ -35,19 +37,30 @@ export class FooterComponent   {
   SubrcibeToOwnTopics() {
  
     this.authServ.currentUserData().then( async(data)=>{  
-      let {chat_id} = data
-      var inbox_count = 0
-      for(var i in chat_id ){
-        inbox_count += await this.chatServ.get_inbox(chat_id[i]) 
+      let {chat_id , isAdmin ,uid  } = data 
+      //  this.inbox_count = 0
+      for(var i in chat_id ){      
         this.fcm.subscribeToTopic(chat_id[i]);  
       }
-      if(inbox_count !== 0){
-        this.inbox_hide = false
-      }else{
-        this.inbox_hide = true
-      }
-      this.badge.set(inbox_count);
-      this.inbox_count = inbox_count;
+      if(isAdmin){        
+        this.chatServ.getAllChatOnce().then(data=>{   
+           data.map(chat=>{        
+             this.currentChats = this.pushToArray(this.currentChats,chat,uid,true)
+           })        
+         })
+       }else{        
+           this.chatServ.getUserChat(chat_id).then(data=>{
+             data.map(chat =>{           
+               chat.subscribe(data=>{                                
+                 this.currentChats = this.pushToArray(this.currentChats,data,uid,false)
+                 this.inbox_count = this.countInbox(this.currentChats,uid)       
+                 this.inbox_hide = this.inbox_count!==0 ? false : true
+                 this.badge.set(this.inbox_count);   
+               })
+             })
+           })
+       }
+      
     })
   }
   addBadge():void{
@@ -67,5 +80,29 @@ export class FooterComponent   {
   }
   goToItenerary (){
     this.transServe.reRouteActivityNoAnimation("Itenerary")
+  }  
+  pushToArray(arr:any, obj:any,uid:string,admin:boolean) {
+    const index = arr.findIndex((e) => e.name === obj.id);       
+    const {id ,inbox} = obj
+    const notifs = admin ? 0 : inbox.find(({user_id})=> user_id === uid).message_count
+    if (index === -1) {
+        arr.push({
+          name :id,
+          notifs :notifs
+        });
+    } else {
+        arr[index] =
+         {
+          name :id,
+          notifs : notifs
+        };
+    }
+    return arr
+  }
+  countInbox(arr:any,uid:string){
+    console.log(arr)
+    return arr.reduce((sum,b)=>{      
+      return sum +  b.notifs
+    },0)
   }
 }

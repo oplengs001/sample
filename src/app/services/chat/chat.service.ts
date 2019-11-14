@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
 import { firestore } from 'firebase/app';
 import { map, switchMap,mergeMap } from 'rxjs/operators';
 import { Observable, combineLatest, of } from 'rxjs';
-import { async } from '@angular/core/testing';
-import { promise } from 'protractor';
+
 export interface GroupChat {
   count: number,
   createdAt : number,
@@ -46,6 +45,13 @@ export class ChatService {
   getAllChat(): Observable<GroupChat[]> {
     return this.group_chats;
   }
+  getAllChatOnce(): Promise<any> {
+    return this.gcCollection.ref.get().then( async(doc) =>{   
+      return doc.docs.map(data=>{
+        return {id: data.id, ...data.data()}
+      })
+     })
+  }
   // ref.parent.orderBy("messages.createdBy").limit(10).get()
   get(chatId) {  
     return this.afs
@@ -61,11 +67,11 @@ export class ChatService {
   } 
   async getUserChat(chat_ids){ 
     return chat_ids.map( (chat_id) =>  
-                 this.afs.doc(`chats/${chat_id}`).
-                          valueChanges().pipe(map(
-                            (convo) => Object.assign({}, {chat_id, ...convo}
-                        ))
-             ))
+            this.afs.doc(`chats/${chat_id}`).
+              valueChanges().pipe(map(
+                (convo) => Object.assign({}, { id:chat_id, ...convo}
+            ))
+        ))
      
   } 
   group_members_format (members:any,forEdit : boolean,group_id:string){
