@@ -4,6 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth/auth.service'
 import { TransitionsService } from './services/native/transitions.service';
+import { Network } from '@ionic-native/network/ngx';
 import {  Router } from '@angular/router';
 @Component({
   selector: 'app-root',
@@ -21,9 +22,26 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router : Router,
     private transServe : TransitionsService,
+    private network: Network
     
   ) {
     this.initializeApp();
+    let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+      console.log('network was disconnected :-(');
+    });
+    // disconnectSubscription.unsubscribe();
+
+    let connectSubscription = this.network.onConnect().subscribe(() => {
+      console.log('network connected!');
+      // We just got a connection but we need to wait briefly
+       // before we determine the connection type. Might need to wait.
+      // prior to doing any api requests as well.
+      setTimeout(() => {
+        if (this.network.type === 'wifi') {
+          console.log('we got a wifi connection, woohoo!');
+        }
+      }, 3000);
+    });
   }
 
   signup() {
