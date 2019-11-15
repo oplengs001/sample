@@ -99,29 +99,34 @@ export class MessagesPage implements OnInit {
     this.infiniteScroll.disabled = false  
     
     this.cs.joinUsers(this.cs.get(this.id)).then(data=>{
-      this.chat$ = data
+      this.chat$ = data      
       this.scrollToBottom(500)   
+      // this.scrollToBottom(500)
       data.subscribe(data=>{
-
-        let from_seen = false
-        if(this.current_length === data.messages.length){
-          from_seen = true
-        }
-        this.current_length = data.messages.length 
-        
-        if(this.current_length <=8){
-          this.infiniteScroll.disabled = true    
-          this.hide_scroll = true
-          this.limit = this.current_length
-        }else{
-          if(!from_seen){
-            this.limit++
-            this.infiniteScroll.disabled = false    
-            this.hide_scroll = false  
-            this.scrollToBottom(500)    
+        console.log(data)
+        if(this.id == data.id){
+          let from_seen = false
+          if(this.current_length === data.messages.length){
+            from_seen = true
           }
-        } 
-        this.current_index = this.current_length-this.limit    
+          this.current_length = data.messages.length 
+          
+          if(this.current_length <=8){
+            this.infiniteScroll.disabled = true    
+            this.hide_scroll = true
+            this.limit = this.current_length
+          }else{
+  
+            if(!from_seen){
+              this.limit++
+              this.infiniteScroll.disabled = false    
+              this.hide_scroll = false  
+              this.scrollToBottom(500)   
+            }
+          } 
+          this.current_index = this.current_length-this.limit  
+        }
+         
       })         
     });  
   }

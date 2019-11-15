@@ -27,21 +27,8 @@ export class AppComponent {
   ) {
     this.initializeApp();
     let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-      console.log('network was disconnected :-(');
-    });
-    // disconnectSubscription.unsubscribe();
-
-    let connectSubscription = this.network.onConnect().subscribe(() => {
-      console.log('network connected!');
-      // We just got a connection but we need to wait briefly
-       // before we determine the connection type. Might need to wait.
-      // prior to doing any api requests as well.
-      setTimeout(() => {
-        if (this.network.type === 'wifi') {
-          console.log('we got a wifi connection, woohoo!');
-        }
-      }, 3000);
-    });
+      alert('No Internet Connection Detected, Please connect to the Internet to use the app Properly');
+    });  
   }
 
   signup() {
