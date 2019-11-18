@@ -183,7 +183,7 @@ export class ChatService {
     };
     return await this.afs.collection('chats').doc(group_id).set(data)        
   }
-  async sendMessage(chatId, content) :Promise <any>{
+  async sendMessage(chatId,group_name, content) :Promise <any>{
     const  uid  = await this.auth.currentUserId();
     const data = {
       uid,
@@ -198,7 +198,7 @@ export class ChatService {
         messages: firestore.FieldValue.arrayUnion(data),
         "inbox" : inbox_value,
       }).then(()=>{
-        this.notif.createNotif(chatId,uid)
+        this.notif.createNotif(chatId,group_name,uid)
         console.log(data)
         return data
       }).catch(function(error) {

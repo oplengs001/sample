@@ -83,24 +83,25 @@ export class FooterComponent   {
   }  
   pushToArray(arr:any, obj:any,uid:string,admin:boolean) {
     const index = arr.findIndex((e) => e.name === obj.id);       
-    const {id ,inbox} = obj
+    const {id ,inbox,group_name} = obj
     const notifs = admin ? 0 : inbox.find(({user_id})=> user_id === uid).message_count
     if (index === -1) {
         arr.push({
           name :id,
+          group_name : group_name,
           notifs :notifs
         });
     } else {
         arr[index] =
          {
           name :id,
+          group_name : group_name,
           notifs : notifs
         };
     }
     return arr
   }
   countInbox(arr:any,uid:string){
-    console.log(arr)
     return arr.reduce((sum,b)=>{      
       return sum +  b.notifs
     },0)

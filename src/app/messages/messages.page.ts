@@ -2,7 +2,7 @@ import { Component, OnInit ,ViewChild , ViewChildren ,QueryList} from '@angular/
 import { IonContent,IonInfiniteScroll  ,IonTextarea } from '@ionic/angular';
 import { ChatService } from '../services/chat/chat.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable,Subscription } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 import { FooterComponent} from '../footer/footer.component'
 @Component({
@@ -12,6 +12,7 @@ import { FooterComponent} from '../footer/footer.component'
 })
 
 export class MessagesPage implements OnInit {  
+  private ThisChat = new Subscription()
   @ViewChild(IonContent, {static: false}) content: IonContent;
   @ViewChild(IonInfiniteScroll, {static: false}) infiniteScroll: IonInfiniteScroll;
   @ViewChildren('messages') things: QueryList<any>;
@@ -81,6 +82,7 @@ export class MessagesPage implements OnInit {
   }
   ionViewDidLeave(){
     // this.current_length   
+    this.ThisChat.unsubscribe()
     this.current_index = undefined
     this.current_length = undefined
     this.limit = undefined
@@ -102,7 +104,7 @@ export class MessagesPage implements OnInit {
       this.chat$ = data      
       this.scrollToBottom(500)   
       // this.scrollToBottom(500)
-      data.subscribe(data=>{
+    this.ThisChat = data.subscribe(data=>{
         console.log(data)
         if(this.id == data.id){
           let from_seen = false
@@ -130,14 +132,14 @@ export class MessagesPage implements OnInit {
       })         
     });  
   }
-  submit(chatId) {   
+  submit(chatId,group_name) {   
     var message = this.newMsg
       if(this.newMsg === '' || this.newMsg.length === 0 || !message.replace(/\s/g, '').length ){
  
       }else{
 
         this.newMsg = this.newMsg.trim();
-        this.cs.sendMessage(chatId, this.newMsg).then(data=>{        
+        this.cs.sendMessage(chatId, group_name,this.newMsg).then(data=>{        
           this.newMsg = ''
           this.seen_chat()
           // this.scrollToBottom(500)

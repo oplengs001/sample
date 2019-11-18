@@ -21,7 +21,7 @@
             <ion-card (click)="goToChat(gc.name)">
               <ion-item lines="none">      
                 
-                <h2 class="ion-text-center">{{gc.name}}</h2>               
+                <h2 class="ion-text-center">{{gc.group_name}}</h2>               
                 <ion-badge *ngIf="(gc.notifs!==0)" slot="end" color="danger">{{gc.notifs}} {{gc.notifs==1?'New Message':'New Messages'}}</ion-badge>         
                 <ion-icon slot="end" name="arrow-forward"></ion-icon>                             
               </ion-item>  

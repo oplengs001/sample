@@ -16,19 +16,19 @@ export class NotificationService {
     ) { }
 
     
-    createNotif(topic:string,sender_id:string){
+    createNotif(topic:string,group_name : string ,sender_id:string){
       
       var object_returns : any
       let postData =  {
           "notification" :{
-              "title": topic,
-              "text": `New Message From ${topic}`,
+              "title": group_name,
+              "text": `New Message From ${group_name}`,
               "click_action":"FCM_PLUGIN_ACTIVITY", 
           },
           "data": 
           {
             "type":"chat",
-            "group": topic,
+            "group": group_name,
             "sender_id" : sender_id 
           },
           "priority" : "high",
