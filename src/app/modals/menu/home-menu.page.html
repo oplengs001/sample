@@ -14,8 +14,8 @@
         <div class="snow snow--far"></div>
         <div class="snow snow--far snow--alt"></div>
       <ion-list class="modal-content">       
-        <div *ngFor="let p of appPages" >
-          <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" color="primary" (click)="closeModal()">
+        <div *ngFor="let p of appPages"  class="side-menu">
+          <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" color="primary" (click)="closeModal()" lines="none">
             <ion-icon slot="start" [name]="p.icon" ></ion-icon>
             <ion-label>
               {{p.title}}
@@ -28,13 +28,13 @@
 </ion-content>
 <ion-footer  class="modal-content">
   <ion-toolbar>
-      <ion-item (click)="logout()" >      
+      <ion-item (click)="logout()" lines="none" >      
           <ion-icon slot="start" color="danger" name="arrow-back"></ion-icon>
           <ion-label slot="start" color="danger" >
               Log-Out
           </ion-label>
         </ion-item>
-      <ion-item (click)="closeModal">   
+      <ion-item (click)="closeModal" lines="none">   
           <ion-icon slot="start"name="contact" color="primary"></ion-icon>
           <ion-label slot="start" color="primary">
             {{currentUser}}

@@ -13,8 +13,12 @@ $s--mid: ($s--near * 2);
 $s--far: ($s--near * 3);
 
 $ease--out-quad: cubic-bezier(.25,.46,.450,.94);
-
-
+.list-md{
+ background: none !important
+}
+.side-menu{
+  font-family: "notified-medium"
+}
 %on-top {
   z-index: 100;
   pointer-events: none;

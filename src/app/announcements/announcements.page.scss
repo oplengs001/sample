@@ -1,4 +1,5 @@
 .time-format{
+    --ion-background-color: var( --ion-color-primary);
     font-size: 15px
 }
 .icon-checkSize{
@@ -9,10 +10,15 @@
     color:#ffffff
 }
 .content-bg{
-    --ion-background-color:#DEEEEF;
+    --ion-background-color: var( --ion-color-primary);
+}
+.card-time-details{
+    --ion-background-color: #edeef2;
 }
 .card-body{
-    font-size: 30px
+    font-family: "notified-medium";
+    
+    font-size: 15px
 }
 .icon-announcement{
     color:#ffffff   
@@ -25,6 +31,6 @@
     
 }
 .item-class{
-    --background: var( --ion-color-primary);
-    color:#ffffff
+    --background:  #ffffff;;
+    color:gray
 }

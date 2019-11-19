@@ -23,15 +23,17 @@
     </ion-item>    -->
     <div *ngFor="let announcement of (announcements | async | sort :'asc':'date_posted' );">
       <ion-card class="card-class">
-          <ion-item class="item-class">
+          <ion-item class="item-class" lines="none">
             <ion-icon class="icon-announcement"  name="megaphone" slot="end"></ion-icon>
+            
             <ion-label slot="start">{{ announcement.title }}</ion-label> 
+            <ion-icon slot="end" name="flash"  color="medium"></ion-icon>    
           </ion-item>          
-          <ion-card-content class="ion-text-center card-body">
+          <ion-card-content class="ion-text-justify card-body">
               {{ announcement.body }} 
           </ion-card-content>
-          <ion-item>            
-            <ion-label class="ion-text-center time-format">{{announcement.date_posted | date: 'MMM dd hh:mm a'}}</ion-label>
+          <ion-item lines="none" class="card-time-details">            
+            <ion-label class="time-format">{{announcement.date_posted | date: 'MMM dd hh:mm a'}}</ion-label>
           </ion-item> 
         </ion-card>
     </div>
