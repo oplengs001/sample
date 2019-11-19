@@ -81,6 +81,7 @@ export class AuthService {
         return err
       });    
   }
+  // this needs to be fixed
   workAroundSignUp(email: string, password: string) :Promise<any>  {    
     var secondaryApp = firebase.initializeApp(environment.firebase, "Secondary");
     return secondaryApp.auth()
@@ -112,7 +113,9 @@ export class AuthService {
   logout() {
     this.firebaseAuth
       .auth
-      .signOut();
+      .signOut().then(() => {
+        console.log("logout")
+     });;
   }
 
 }

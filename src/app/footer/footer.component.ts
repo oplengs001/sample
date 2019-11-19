@@ -37,6 +37,7 @@ export class FooterComponent   {
   SubrcibeToOwnTopics() {
  
     this.authServ.currentUserData().then( async(data)=>{  
+    
       let {chat_id , isAdmin ,uid  } = data 
       //  this.inbox_count = 0
       for(var i in chat_id ){      
