@@ -26,18 +26,73 @@
 
 <ion-app *ngIf="!(authService.user | async)">
   <ion-content force-overscroll="false">
-  <gl-background-video src="../assets/video/background-video.mp4" poster="../assets/video/background-video-image.png"></gl-background-video>
-  <div class="page-centered-element">
-    <div class="content">
-      <h1 class="h1-text">Geoff & Sofia</h1>
-      <h6 class="h6-text">Requesting the Honour of Your Presence to Celebrate Their Marriage</h6>
-      <div class="buttons-container">
-          <ion-input type="text" [(ngModel)]="email" placeholder="email"></ion-input>
-          <ion-input type="password" [(ngModel)]="password" placeholder="password"> </ion-input>
-        <ion-button (click)="login()" [disabled]="!email || !password" >Login</ion-button>
+      <gl-background-video src="../assets/video/background-video.mp4" poster="../assets/video/background-video-image.png" [hidden]="hideLogin"></gl-background-video>
+      <ion-slides [options]="slideOptions" pager="true" [hidden]="hideSlide" >
+          <ion-slide>
+            <div class="slide-content" >             
+                <img src="../assets/images/couple.jpg">                                                                                            
+                <h1 class="wc-text">Tom & Ingga</h1>
+                <p> Joyfully invite you to their <br> wedding celebration</p>
+                <br>
+                <p> "Some Welcome Messsage and Intro About the App"</p>                
+            </div>
+          </ion-slide>  
+          <ion-slide>
+              <div class="slide-content">                                                                                                                                                                                                      
+                  <h1 class="notified-text">Love The Place</h1>
+                  <p> Know the Best Things to See and Do <br> in New Zealand</p>
+                  <br>
+                  <p> "Some Wordings "</p>                
+              </div>
+          </ion-slide>
+          <ion-slide>
+              <div class="slide-content">                                                                                                                                                                                                      
+                  <h1 class="notified-text">Be Updated</h1>
+                  <p> Be Updated to the latest Events and Announcements in the Wedding</p>
+                  <br>
+                  <p> "Some Wordings "</p>                
+              </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="slide-content">                                                                                                                                                                                                 
+                  <h1 class="notified-text">Chat in Group</h1>
+                  <p> Get in touch with your group and have a great connection with them in Real-Time</p>
+                  <br>
+                  <p> "Some Wordings "</p>                
+            </div>
+          </ion-slide>
+          <ion-slide>
+              <div class="slide-content">                                                                                                                                                                                                 
+                    <h1 class="notified-text-up">Share Precious Memories</h1>
+                    <p>See and Upload Images at the event</p>
+                    <br>
+                    <p> "Some Wordings "</p>                
+              </div>
+          </ion-slide>   
+          <ion-slide>
+              <div class="slide-content">                                                                                                                                                                                                 
+                    <h1 class="notified-text-up">Prepare for Everything</h1>
+                    <p>Know the Flights , forecasts , Real-Time weather condition, Rentals pretty much everything!</p>
+                    <br>
+                    <p> "Some Wordings "</p>
+                    <br>
+                    <ion-button (click)="getStarted()">Sign-In Now!</ion-button>
+              </div>
+          </ion-slide>
+      </ion-slides>
+
+    
+    <div class="page-centered-element" [hidden]="hideLogin" >
+      <div class="content">
+        <h1 class="h1-text">Tom & Ingga</h1>
+        <h6 class="h6-text">Requesting the Honour of Your Presence to Celebrate Their Marriage</h6>
+        <div class="buttons-container">
+            <ion-input type="text" [(ngModel)]="email" placeholder="email"></ion-input>
+            <ion-input type="password" [(ngModel)]="password" placeholder="password"> </ion-input>
+          <ion-button (click)="login()" [disabled]="!email || !password" >Login</ion-button>
+        </div>
       </div>
     </div>
-  </div>
   </ion-content>    
 </ion-app>
 

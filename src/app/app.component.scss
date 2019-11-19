@@ -1,8 +1,20 @@
 @import "../theme/variables.scss";
 @font-face {
   font-family: 'exmouth';
-  src: url("../assets/fonts/exmouth.ttf") format('truetype');    
-}
+  src: url("../assets/fonts/GreatVibes-Regular.ttf") format('truetype');    
+};
+@font-face {
+  font-family: 'notified';
+  src: url("../assets/fonts/GothamRounded.ttf") format('truetype');    
+};
+@font-face {
+  font-family: 'notified-light';
+  src: url("../assets/fonts/GothamRoundedLight.ttf") format('truetype');    
+};
+@font-face {
+  font-family: 'notified-medium';
+  src: url("../assets/fonts/GothamRoundedMedium.ttf") format('truetype');    
+};
 .page-centered-element {
     position: absolute;
     left: 0;
@@ -17,8 +29,22 @@
     font-family: "exmouth";
     font-size: 60px !important
   }
+  .wc-text{
+    font-family: "exmouth";
+    font-size: 6.5vh !important;
+  }
+  .notified-text{
+    font-family: "notified-medium";
+    font-size: 5vh !important;
+    margin-top: 30vh;
+  }
+  .notified-text-up{
+    font-family: "notified-medium";
+    font-size: 5vh !important;
+    margin-top: 25vh;
+  }
   .h6-text{
-    font-family: "Calibri";    
+    font-family: "notified-light";    
     padding-left:20px;
     padding-right:20px
   }
@@ -51,4 +77,64 @@
     box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12);
   }
 
+  ion-slides {
+    height: 100% !important;
+
+    // background: var(--ion-color-primary);
+    color: #fff;   
+    font-weight: 50 !important;
+    ion-slide { 
+      align-items: start;
+      text-align: center;    
  
+      .slide-content {
+        background:rgba(6, 87, 197, 0.45) !important;
+        position: absolute;
+        top:0;bottom:0;left:0;right:0;
+        padding: 30px 5%;
+        p {
+          margin-top: 0px;
+          font-family: notified-light;      
+          font-size:15px 
+        }       
+        img{           
+          border-radius: 50%;
+          width: 45vw;
+          height: 45vw;     
+          margin: 15vh 0 15px 0;       
+          object-fit: cover;
+          
+          border: 7px solid #d3dcfa;
+        }
+      }
+  
+    }
+    ion-slide:first-child{
+      background : url("../assets/images/home.jpg") no-repeat center center;
+      background-size: cover;;
+    }   
+    ion-slide:nth-child(2){
+      background : url(../assets/images/see_and_do.jpg) no-repeat center center;
+      background-size: cover;     
+    }     
+    ion-slide:nth-child(3){
+      background : url(../assets/images/notify.jpg) no-repeat center center;
+      background-size: cover;     
+    }    
+    ion-slide:nth-child(4){
+      background : url(../assets/images/chat.jpg) no-repeat center center;
+      background-size: cover;     
+    } 
+    ion-slide:nth-child(5){
+      background : url(../assets/images/memories.jpg) no-repeat center center;
+      background-size: cover;     
+    } 
+    ion-slide:nth-child(6){
+      background : url(../assets/images/prepare.jpg) no-repeat center center;
+      background-size: cover;     
+    }
+    .slider .slider-pager {
+      text-align: right;
+   } 
+  } 
+  

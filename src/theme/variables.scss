@@ -85,6 +85,13 @@
 );
 
 
+.swiper-pagination-bullet {
 
+  --bullet-background: black !important;
+}
+.swiper-pagination-bullet-active {
+
+  --bullet-background-active: white !important;
+}
 }
 

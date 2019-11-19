@@ -5,6 +5,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth/auth.service'
 import { TransitionsService } from './services/native/transitions.service';
 import { Network } from '@ionic-native/network/ngx';
+import { IonSlides } from '@ionic/angular';
 import {  Router } from '@angular/router';
 @Component({
   selector: 'app-root',
@@ -15,6 +16,12 @@ export class AppComponent {
   email: string;
   password: string;
   adminUser : boolean;  
+  hideLogin : boolean;  
+  hideSlide : boolean;
+  slideOptions = {
+    initialSlide: 0,
+    speed: 400,
+  };
   constructor(
     public authService: AuthService,
     private platform: Platform,
@@ -29,6 +36,8 @@ export class AppComponent {
     let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
       alert('No Internet Connection Detected, Please connect to the Internet to use the app Properly');
     });  
+    this.hideLogin = true
+    this.hideSlide = false
   }
 
   signup() {
@@ -59,6 +68,10 @@ export class AppComponent {
   reRoute(page:string){
     console.log(page)
     this.router.navigateByUrl(page);
+  }
+  getStarted(){
+    this.hideLogin = !this.hideLogin
+    this.hideSlide = !this.hideSlide
   }
   initializeApp() {       
     this.platform.ready().then(() => {
