@@ -148,7 +148,9 @@ export class MessagesPage implements OnInit {
    
       }
      }
-
+  gotoGroups(){
+    
+  }
   trackByCreated(i, msg) {    
     
     return msg.createdAt;
