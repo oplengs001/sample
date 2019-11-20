@@ -84,20 +84,26 @@ export class FooterComponent   {
   }  
   pushToArray(arr:any, obj:any,uid:string,admin:boolean) {
     const index = arr.findIndex((e) => e.name === obj.id);       
-    const {id ,inbox,group_name} = obj
-    const notifs = admin ? 0 : inbox.find(({user_id})=> user_id === uid).message_count
+    const {id ,inbox,group_name,messages} = obj    
+    const notifs = admin ? 0 : inbox.find(({user_id})=> user_id === uid).message_count  
+    const last_chat = messages.length === 0 ? "" : messages[messages.length-1].content
+    const last_chat_time = messages.length === 0 ? "" : messages[messages.length-1].createdAt
     if (index === -1) {
         arr.push({
           name :id,
           group_name : group_name,
-          notifs :notifs
+          notifs :notifs,
+          last_chat : last_chat,
+          last_chat_time:last_chat_time
         });
     } else {
         arr[index] =
          {
           name :id,
           group_name : group_name,
-          notifs : notifs
+          notifs : notifs,
+          last_chat : last_chat,
+          last_chat_time:last_chat_time
         };
     }
     return arr

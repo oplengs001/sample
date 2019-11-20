@@ -21,12 +21,12 @@
         <ion-col size="9" *ngIf="msg.user.uid !== currentUser" class="message other-message">   
           <b class="username">{{ msg.user.first_name}} {{ msg.user.last_name }}</b><br>
           <span>{{ msg.content }}</span>
-          <div class="time" text-right><br>{{ msg.createdAt | date:'short' }}</div>        
+          <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>        
         </ion-col>  
         <ion-col offset="3" size="9" *ngIf="msg.user.uid === currentUser" class="message my-message">
           <b class="username">{{ msg.user.first_name}} {{ msg.user.last_name }}</b><br>
           <span>{{ msg.content }}</span>
-          <div class="time" text-right><br>{{ msg.createdAt | date:'short' }}</div>
+          <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>
         </ion-col>  
       </ion-row>                
   </ion-grid>   

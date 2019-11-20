@@ -17,24 +17,38 @@
   
 <ion-content>
     <ion-list>
-        <div *ngFor="let gc of currentChats">           
-            <ion-item (click)="goToChat(gc.name)">    
-                <ion-avatar slot="start">
+        <div *ngFor="let gc of currentChats">       
+          <br>    
+            <ion-item (click)="goToChat(gc.name)" color="none" lines="none" class="item-gc">    
+                <!-- <ion-avatar slot="start">
                     <img src="../../assets/images/group_chat.jpg">
-                </ion-avatar>          
+                </ion-avatar>           -->
+                <!-- <ion-label>
+                  <div class="badge-style">
+                      <p>{{gc.last_chat_time | date:'h:mm a'}}</p>
+                 
+                    <ion-ripple-effect type="bounded"></ion-ripple-effect>
+                  </div>
+                  <h2 class=chat_name>{{gc.group_name}} </h2>                                             
+                  <p class="item-last-chat">{{gc.last_chat}}</p>                   
+                  <div class="ion-text-right">
+                    <ion-badge class="pulse" *ngIf="(gc.notifs!==0)" slot="end" color="danger" >
+                      {{gc.notifs}} {{gc.notifs==1?'New Message':'New Messages'}}                      
+                    </ion-badge>
+                  </div>                  
+                </ion-label> -->
                 <ion-label>
-                  <h2>{{gc.group_name}}</h2>              
-                  <p>Last Text Last Text Last Text </p>
-                  <ion-badge *ngIf="(gc.notifs!==0)" slot="end" color="danger">{{gc.notifs}} {{gc.notifs==1?'New Message':'New Messages'}}</ion-badge>                           
-                </ion-label>
+                    <div class="badge-style">
+                      <ion-badge class="pulse" *ngIf="(gc.notifs!==0)" slot="end" color="danger" >
+                        {{gc.notifs}} {{gc.notifs==1?'New Message':'New Messages'}}                      
+                      </ion-badge>
+                      <ion-ripple-effect type="bounded"></ion-ripple-effect>
+                    </div>
+                    <h2 class=chat_name>{{gc.group_name}} </h2>                                             
+                    <p class="item-last-chat">{{gc.last_chat}}</p>                   
+                    <p class="ion-text-right">{{gc.last_chat_time | date:'h:mm a'}}</p>                  
+                  </ion-label>
               </ion-item>
-            <!-- <ion-card (click)="goToChat(gc.name)">
-              <ion-item lines="none">                      
-                <h2 class="ion-text-center">{{gc.group_name}}</h2>               
-                <ion-badge *ngIf="(gc.notifs!==0)" slot="end" color="danger">{{gc.notifs}} {{gc.notifs==1?'New Message':'New Messages'}}</ion-badge>         
-                <ion-icon slot="end" name="arrow-forward"></ion-icon>                             
-              </ion-item>  
-            </ion-card> -->
         </div>
     </ion-list> 
 </ion-content>
