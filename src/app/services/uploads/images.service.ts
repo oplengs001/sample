@@ -157,7 +157,7 @@ export class ImagesService {
     this.storageRef.child(collection).child(imageName).delete()
     console.log("deleted")
   }
-  removeImageRef (post:any,collection:string){
+  async removeImageRef (post:any,collection:string){
     const {file_name} = post
     this.deleteImageRef(file_name,collection)
     .then(()=>{

@@ -22,6 +22,8 @@ export class SlidingcontentPage implements OnInit {
   Dining: boolean
   Itenerary :boolean
   isAdmin : boolean
+  tba : boolean
+  hideElements :boolean
   events: Observable<Itenerary[]>;
   event_data : any
   lastPosition : number
@@ -35,6 +37,7 @@ export class SlidingcontentPage implements OnInit {
   ) {   
     this.Dining = false
     this.Itenerary = false
+
     this.route.queryParams.subscribe(params => {
       this.content = params["content"];      
       
@@ -179,15 +182,22 @@ export class SlidingcontentPage implements OnInit {
     })
   }
   ngOnInit() {    
-    this.isAdmin = this.authServ.isAdmin()
-    // this.authServ.currentUserData().then(data=>{
-    //   this.isAdmin = data.isAdmin
-    // })
+    // this.isAdmin = this.authServ.isAdmin()
+    this.tba = true
+    this.hideElements = true
+    this.authServ.currentUserData().then(data=>{
+      this.isAdmin = data.isAdmin
+    })
     this.events = this.contentServe.getEvents()
     this.events.subscribe(data =>{
-      console.log(data)
+      console.log(data)      
       if(data.length > this.event_data){  
+        this.tba = true
+        this.hideElements = false
         this.ioncontent.scrollToBottom(1000);   
+      }else{
+        this.tba = false
+        this.hideElements = true
       }
       this.event_data =  data.sort((a, b) => a.position - b.position)       
       this.lastPosition = this.event_data.length === 0? -1: this.event_data[this.event_data.length-1].position

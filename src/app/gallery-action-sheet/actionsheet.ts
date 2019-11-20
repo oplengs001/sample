@@ -1,9 +1,11 @@
 import { OnInit,Injectable} from '@angular/core';
 import { ActionSheetController ,AlertController} from '@ionic/angular';
- 
+import { ModalController, } from '@ionic/angular';
+import { ToastService } from '../services/toaster/toast-service';
 import { ImagesService ,ImageItem } from "../services/uploads/images.service"
 import { AuthService } from "../services/auth/auth.service"
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { async } from 'q';
 @Injectable({
     providedIn: 'root'
 })
@@ -14,7 +16,9 @@ export class ActionClass implements OnInit {
     private authServ : AuthService,
     private actionSheetController : ActionSheetController,
     private alertController : AlertController,   
-    private socialSharing: SocialSharing
+    private socialSharing: SocialSharing,
+    private toaster : ToastService,
+    private modalCtrl : ModalController
   ) { }
 
   ngOnInit() {      
@@ -35,7 +39,10 @@ export class ActionClass implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.imageService.removeImageRef(post,"image")
+            this.imageService.removeImageRef(post,"image").then(async()=>{
+                this.toaster.showToast("Photo Deleted")
+                await this.modalCtrl.dismiss();
+            })
           }
         }
       ]

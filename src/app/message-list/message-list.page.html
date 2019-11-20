@@ -20,9 +20,7 @@
         <div *ngFor="let gc of currentChats">       
           <br>    
             <ion-item (click)="goToChat(gc.name)" color="none" lines="none" class="item-gc">    
-                <!-- <ion-avatar slot="start">
-                    <img src="../../assets/images/group_chat.jpg">
-                </ion-avatar>           -->
+                       
                 <!-- <ion-label>
                   <div class="badge-style">
                       <p>{{gc.last_chat_time | date:'h:mm a'}}</p>
@@ -38,13 +36,14 @@
                   </div>                  
                 </ion-label> -->
                 <ion-label>
+                   
                     <div class="badge-style">
                       <ion-badge class="pulse" *ngIf="(gc.notifs!==0)" slot="end" color="danger" >
                         {{gc.notifs}} {{gc.notifs==1?'New Message':'New Messages'}}                      
                       </ion-badge>
                       <ion-ripple-effect type="bounded"></ion-ripple-effect>
                     </div>
-                    <h2 class=chat_name>{{gc.group_name}} </h2>                                             
+                    <h2 class="chat_name">{{gc.group_name}} </h2>                                             
                     <p class="item-last-chat">{{gc.last_chat}}</p>                   
                     <p class="ion-text-right">{{gc.last_chat_time | date:'h:mm a'}}</p>                  
                   </ion-label>
