@@ -5,6 +5,9 @@ import { FCM } from '@ionic-native/fcm/ngx';
 import { AuthService } from '../services/auth/auth.service';
 import { ChatService } from '../services/chat/chat.service';
 import { Badge } from '@ionic-native/badge/ngx';
+import { GuestAddService} from "../services/guest-add/guest-add.service"
+import { Observable, Subscription } from 'rxjs';
+import { debug } from 'util';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -16,6 +19,7 @@ import { Badge } from '@ionic-native/badge/ngx';
 export class FooterComponent   {
   public inbox_count : number =0
   public isAdmin : boolean
+  private GCsubs : Subscription;
   inbox_hide :boolean
   public currentChats : any = []
   constructor(
@@ -24,9 +28,11 @@ export class FooterComponent   {
     private transServe : TransitionsService,
     private chatServ : ChatService,
     private authServ : AuthService,
-    private badge: Badge
+    private badge: Badge,
+    private guestServe : GuestAddService
     ) {
     this.inbox_hide = true
+    this.GCsubs = new Subscription()
    }
 
 
@@ -50,19 +56,41 @@ export class FooterComponent   {
            })        
          })
       }else{        
-           this.chatServ.getUserChat(chat_id).then(data=>{
-             data.map(chat =>{           
-               chat.subscribe(data=>{                                
-                 this.currentChats = this.pushToArray(this.currentChats,data,uid,false)
-                 this.inbox_count = this.countInbox(this.currentChats,uid)       
-                 this.inbox_hide = this.inbox_count!==0 ? false : true
-                 this.badge.set(this.inbox_count);   
-               })
-             })
-           })
-      }
-      
+        this.userDataSubscribe(chat_id,uid)     
+      }      
     })
+  }  
+  userDataSubscribe(chat_id,uid){
+    this.chatSubscribe(chat_id,uid)
+    this.guestServe.getGuestObs(uid).subscribe(data=>{       
+      this.chatServ.getUserChatTakeOne(data.chat_id).then(data=>{
+        this.resubs(data,uid,true)    
+       })
+    })  
+  }
+  chatSubscribe(chat_id,uid){
+    this.chatServ.getUserChat(chat_id).then(data=>{
+      this.resubs(data,uid,false)
+     })
+  }
+  resubs(data,uid,renew:boolean){
+    // if(renew){
+    //   if(this.currentChats.length>0){
+    //     this.currentChats = []
+    //   }   
+    // }    
+    data.map(chat =>{                    
+      chat.subscribe(data=>{                      
+          this.dataSet(data,uid)  
+        })      
+     }) 
+  }
+  dataSet(data,uid){
+    
+    this.currentChats = this.pushToArray(this.currentChats,data,uid,false)
+    this.inbox_count = this.countInbox(this.currentChats,uid)       
+    this.inbox_hide = this.inbox_count!==0 ? false : true
+    this.badge.set(this.inbox_count);  
   }
   addBadge():void{
     this.badge.increase(1)
@@ -82,10 +110,13 @@ export class FooterComponent   {
   goToItenerary (){
     this.transServe.reRouteActivityNoAnimation("Itenerary")
   }  
-  pushToArray(arr:any, obj:any,uid:string,admin:boolean) {
+  pushToArray(arr:any, obj:any,uid:string,admin:boolean) {    
+    
     const index = arr.findIndex((e) => e.name === obj.id);       
+    //looking if new data does exist in the current chat
     const {id ,inbox,group_name,messages} = obj    
-    const notifs = admin ? 0 : inbox.find(({user_id})=> user_id === uid).message_count  
+    const notifs = admin ? 0 : inbox.find(({user_id})=> user_id === uid).message_count
+
     const last_chat = messages.length === 0 ? "" : messages[messages.length-1].content
     const last_chat_time = messages.length === 0 ? "" : messages[messages.length-1].createdAt
     if (index === -1) {
@@ -105,9 +136,13 @@ export class FooterComponent   {
           last_chat : last_chat,
           last_chat_time:last_chat_time
         };
-    }
+    }    
     return arr
   }
+  // filterArray (array,id){
+  //   return array.filter 
+  //   return original.filter((o)=> new_array.indexOf(o) === -1)
+  // }
   countInbox(arr:any,uid:string){
     return arr.reduce((sum,b)=>{      
       return sum +  b.notifs

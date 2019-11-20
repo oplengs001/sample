@@ -50,7 +50,14 @@ export class GuestAddService {
       })
     );
   }
- 
+  getGuestObs(id: string): Observable<Guest> {    
+    return this.GuestCollection.doc<Guest>(id).snapshotChanges()
+    .pipe(
+      map(doc => {                    
+        return { id: doc.payload.id, ...doc.payload.data()};
+      })
+    );
+  }
   addGuest(guest: Guest): Promise<any> {
     return this.GuestCollection.doc(guest.uid).set(guest);
   }
@@ -79,7 +86,7 @@ export class GuestAddService {
         this.addGroupToGuest(user,chat_id) 
       })      
     })
-    forUpdate.map(user=>{ // deleting removed members
+    forUpdate.map(user=>{ // deleting removed members      
       this.addGroupToGuest(user.uid,user.chat_id)
     })
   }

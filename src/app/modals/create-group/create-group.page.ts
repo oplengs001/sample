@@ -101,7 +101,7 @@ export class CreateGroupPage implements OnInit {
         let unique = original.filter((o)=> new_array.indexOf(o) === -1),
         removed_chat_ids = unique.map(item=>{
           var {chat_id} = item;
-          item.chat_id = this.remItem(chat_id,group_name)
+          item.chat_id = this.remItem(chat_id,group_id)
           return item    
         })
         reduced_array = removed_chat_ids.map(item => {
@@ -109,7 +109,7 @@ export class CreateGroupPage implements OnInit {
             uid : item.uid,
             chat_id : item.chat_id
           }
-        })
+        })        
       }
       
       this.GuestServ.addGroupToGuestMultiple(group_id , group_members,reduced_array).then(data=>{

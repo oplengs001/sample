@@ -4,8 +4,8 @@ import { AuthService } from '../auth/auth.service';
 import { NotificationService } from '../alerts/notification.service';
 import { Router } from '@angular/router';
 import { firestore } from 'firebase/app';
-import { map, switchMap,mergeMap } from 'rxjs/operators';
-import { Observable, combineLatest, of } from 'rxjs';
+import { map, switchMap,mergeMap ,take } from 'rxjs/operators';
+import { Observable, combineLatest, of  } from 'rxjs';
 
 export interface GroupChat {
   count: number,
@@ -69,11 +69,18 @@ export class ChatService {
     return chat_ids.map( (chat_id) =>  
             this.afs.doc(`chats/${chat_id}`).
               valueChanges().pipe(map(
-                (convo) => Object.assign({}, { id:chat_id, ...convo}
-            ))
-        ))
-     
+                (convo) => Object.assign({}, { id:chat_id, ...convo})
+              )
+        ))     
   } 
+  async getUserChatTakeOne(chat_id){ 
+        return chat_id.map( (chat_id) =>  
+        this.afs.doc(`chats/${chat_id}`).
+          valueChanges().pipe(take(1),map(
+            (convo) => Object.assign({}, { id:chat_id, ...convo})
+          )
+      ))  
+    } 
   group_members_format (members:any,forEdit : boolean,group_id:string){
     return new Promise<any>(async(resolve, reject) => {
       if(forEdit){

@@ -7,7 +7,7 @@ import { environment } from "../../../environments/environment"
 // import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
 @Injectable()
 export class AuthService {
-  user: Observable<firebase.User>;
+  public user: Observable<firebase.User>;
   userDetails: firebase.User = null
   public userGuestDetails : any
   constructor(
@@ -16,8 +16,9 @@ export class AuthService {
     
     ) {
     this.user = firebaseAuth.authState;
-    this.user.subscribe((user) => {
+    this.user.subscribe((user) => {  
       if (user) {
+        
         this.userDetails = user;        
       }
       else {
