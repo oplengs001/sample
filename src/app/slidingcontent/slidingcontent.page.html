@@ -12,7 +12,7 @@
   </ion-header>
 
 <ion-content > 
-    <div *ngIf="Dining">
+    <div [hidden]="!Dining">
       <ion-card class="content-card">
           <ion-card-header > 
             <ion-card-title  class="ion-text-center"> Tom & Ingga's <br>Top Recommended Restaurants</ion-card-title>              
@@ -31,7 +31,7 @@
           </ion-card-header>   
       </ion-card> 
     </div>
-    <div *ngIf="Itenerary">  
+    <div [hidden]="!Itenerary">  
       <ion-card class="content-card">
           <ion-card-header > 
             <ion-card-title  class="ion-text-center">Wedding Itenerary</ion-card-title>

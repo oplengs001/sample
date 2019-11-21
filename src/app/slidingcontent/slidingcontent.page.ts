@@ -2,7 +2,7 @@ import { Component, OnInit ,ViewChild } from '@angular/core';
 import { TransitionsService } from '../services/native/transitions.service';
 import { ActivatedRoute } from '@angular/router';
 import { IonReorderGroup } from '@ionic/angular';
-import { Observable, of } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
 import { ModalController, IonContent } from '@ionic/angular';
@@ -27,6 +27,7 @@ export class SlidingcontentPage implements OnInit {
   events: Observable<Itenerary[]>;
   event_data : any
   lastPosition : number
+  private contentSubs : Subscription;
   constructor(
     private transServe : TransitionsService,
     private authServ : AuthService,
@@ -37,17 +38,6 @@ export class SlidingcontentPage implements OnInit {
   ) {   
     this.Dining = false
     this.Itenerary = false
-
-    this.route.queryParams.subscribe(params => {
-      this.content = params["content"];      
-      
-      if(this.content==="Dining"){
-        this.Dining = true
-      }else if(this.content === "Itenerary"){
-    
-        this.Itenerary = true
-      }
-    });
     this.event_it = [
       {
         image_url: "/assets/images/itenerary/arrival.jpg",
@@ -151,7 +141,20 @@ export class SlidingcontentPage implements OnInit {
     this.reorderGroup.disabled = !this.reorderGroup.disabled;
   }
   ionViewDidEnter(){
-    
+   this.contentSubs = this.route.queryParams.subscribe(params => {
+      this.content = params["content"];    
+   
+      if(this.content ==="Dining"){
+        this.Dining = true
+        this.Itenerary =false
+      }else if(this.content === "Itenerary"){
+        this.Dining =false
+        this.Itenerary = true
+      }               
+    }); 
+  }
+  ionViewDidLeave(){
+    this.contentSubs.unsubscribe()
   }
   async addEvent() {
 
