@@ -104,7 +104,7 @@ export class MessagesPage implements OnInit {
       this.chat$ = data      
       this.scrollToBottom(500)   
       // this.scrollToBottom(500)
-    this.ThisChat = data.subscribe(data=>{
+      this.ThisChat = data.subscribe(data=>{
         console.log(data)
         if(this.id == data.id){
           let from_seen = false

@@ -42,5 +42,7 @@ export class MessageListPage implements OnInit {
     };
     this.navCtrl.navigateForward(['messages'], navigationExtras);
   }
-
+  trackByFn(i: number) { 
+    return i
+  }
 }

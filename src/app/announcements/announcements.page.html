@@ -12,15 +12,7 @@
 </ion-header>
 
 <ion-content class="content-bg">  
-  <ion-list>
-    <!-- <ion-item *ngFor="let announcement of (announcements | async)">
-        <ion-icon slot="start" name="megaphone"  color="medium"></ion-icon>    
-      <ion-label>
-        <h2>{{ announcement.title }} </h2>
-        <h4>{{announcement.date_posted | date: 'dd/MM/yyyy hh:hh a'}}</h4>
-        <p>{{ announcement.body }} </p>
-      </ion-label>
-    </ion-item>    -->
+  <ion-list>  
     <div *ngFor="let announcement of (announcements | async | sort :'asc':'date_posted' );">
       <ion-card class="card-class">
           <ion-item class="item-class" lines="none">
@@ -37,7 +29,7 @@
           </ion-item> 
         </ion-card>
     </div>
-   <div *ngIf="(announcements|async)?.length === 0;else caughtup">    
+  <div *ngIf="(announcements|async)?.length === 0;else caughtup">    
       <ion-card class="card-class">
           <ion-item class="item-class">         
             <ion-label class="ion-text-center"><ion-icon name="information-circle-outline"  class="icon-checkSize" ></ion-icon> </ion-label> 
@@ -47,7 +39,7 @@
           </ion-card-content>       
         </ion-card>  
     </div>
-    <ng-template #caughtup>
+    <ng-template  #caughtup>
         <ion-card class="card-class">
             <ion-item class="item-class">         
               <ion-label class="ion-text-center"><ion-icon name="checkmark-circle-outline"  class="icon-checkSize" ></ion-icon> </ion-label> 

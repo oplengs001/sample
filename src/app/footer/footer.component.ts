@@ -20,7 +20,8 @@ export class FooterComponent   {
   public inbox_count : number =0
   public isAdmin : boolean
   private GCsubs : Subscription;
-  inbox_hide :boolean
+  inbox_hide :boolean 
+  private GCsubsList : any =[] 
   public currentChats : any = []
   constructor(
     private fcm: FCM, 
@@ -46,9 +47,7 @@ export class FooterComponent   {
     
       let {chat_id , isAdmin ,uid  } = data 
       //  this.inbox_count = 0
-      for(var i in chat_id ){      
-        this.fcm.subscribeToTopic(chat_id[i]);  
-      }
+      this.chatNotifSubs(chat_id)
       if(isAdmin){        
         this.chatServ.getAllChatOnce().then(data=>{   
            data.map(chat=>{        
@@ -60,30 +59,51 @@ export class FooterComponent   {
       }      
     })
   }  
+  chatNotifSubs(chat_ids){
+    for(var i in chat_ids ){      
+      this.fcm.subscribeToTopic(chat_ids[i]);  
+    }
+  }
   userDataSubscribe(chat_id,uid){
-    this.chatSubscribe(chat_id,uid)
-    this.guestServe.getGuestObs(uid).subscribe(data=>{       
-      this.chatServ.getUserChatTakeOne(data.chat_id).then(data=>{
-        this.resubs(data,uid,true)    
-       })
+    // this.chatSubscribe(chat_id,uid)
+    this.guestServe.getGuestObs(uid).subscribe(data=>{  
+
+       const currentChatId = this.currentChats.map(arr=>arr.name),
+       newChatid = data.chat_id,      
+       forRemoved = this.checkUnique(currentChatId,newChatid),
+       forSubscription =  this.checkUnique(newChatid,currentChatId)
+       
+        //forSubscription = this.currentChats.length ===0? newChatid :newItem
+        
+        //normal initialize subscription        
+        if(forRemoved.length !==0){this.removeSub(forRemoved)}
+        if(forSubscription.length !==0){
+          this.chatServ.getUserChat(forSubscription).then(data=>{          
+            this.resubs(forSubscription,data,uid)    
+          })  
+        }
+        
+                
     })  
   }
-  chatSubscribe(chat_id,uid){
-    this.chatServ.getUserChat(chat_id).then(data=>{
-      this.resubs(data,uid,false)
-     })
+  checkUnique(arr1,arr2){
+    return arr1.filter((o)=> arr2.indexOf(o) === -1);  
   }
-  resubs(data,uid,renew:boolean){
-    // if(renew){
-    //   if(this.currentChats.length>0){
-    //     this.currentChats = []
-    //   }   
-    // }    
-    data.map(chat =>{                    
-      chat.subscribe(data=>{                      
-          this.dataSet(data,uid)  
-        })      
-     }) 
+ 
+  resubs(entered,data,uid){   
+    data.map((chat,index) =>{    
+      const chatSub = chat.subscribe(data=>{        
+        this.dataSet(data,uid)  
+      })                 
+      this.GCsubsList.push({
+        subs : chatSub,
+        name : entered[index]
+      })
+    })
+  }
+  removeSub(items){
+    
+    this.remItem(items)      
   }
   dataSet(data,uid){
     
@@ -147,5 +167,13 @@ export class FooterComponent   {
     return arr.reduce((sum,b)=>{      
       return sum +  b.notifs
     },0)
+  }
+  remItem(forRemoved) {    
+    for(var i in forRemoved){
+      const index = this.currentChats.findIndex((e) => e.name === forRemoved[i])
+      const subIndex = this.GCsubsList.findIndex((e) => e.name === forRemoved[i])
+      this.currentChats.splice(index,1)
+      this.GCsubsList[subIndex]["subs"].unsubscribe()
+    }            
   }
 }

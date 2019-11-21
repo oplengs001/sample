@@ -50,7 +50,7 @@ export class GuestAddService {
       })
     );
   }
-  getGuestObs(id: string): Observable<Guest> {    
+  getGuestObs(id: string): Observable<any> {    
     return this.GuestCollection.doc<Guest>(id).snapshotChanges()
     .pipe(
       map(doc => {                    
@@ -106,4 +106,5 @@ export class GuestAddService {
   deleteGuest(id: string): Promise<void> {
     return this.GuestCollection.doc(id).delete();
   }
+  
 }
