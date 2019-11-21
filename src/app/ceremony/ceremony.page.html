@@ -74,17 +74,17 @@
     </form>
     <ion-card class="welcome-card"> 
         <ion-card-header>
-          <ion-card-subtitle>Gallery</ion-card-subtitle>
-          <ion-card-title>Live Photo Sharing</ion-card-title>
+          <ion-card-title>Latest Photos</ion-card-title>
+          <ion-card-subtitle>Gallery </ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
           <ion-slides [options]="slideOptions" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)" >
             <ion-slide *ngFor="let post of (posts | async)">
-              <img src="{{post.url}}">
+              <ion-img class="imageCard" [src]="post.url"></ion-img>
             </ion-slide>          
           </ion-slides>
           <br>
-          <ion-button fill="outline" expand="block" (click)="reRoute('gallery')"><ion-ripple-effect></ion-ripple-effect>View Album</ion-button>
+          <!-- <ion-button fill="outline" expand="block" (click)="reRoute('gallery')">View Photos</ion-button> -->
         </ion-card-content>
     </ion-card> 
         

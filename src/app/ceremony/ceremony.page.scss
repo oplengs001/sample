@@ -5,3 +5,8 @@
         width:400px;
         height:400px
 }
+.imageCard {
+    height: 60vh;
+    width: 90vw;
+    object-fit: cover !important;
+}

@@ -103,10 +103,11 @@ export class AuthService {
       .auth
       .signInWithEmailAndPassword(email, password)
       .then((user)=>{
-          console.log("logged in")
+          return user
         }
       )
       .catch(err => {
+        alert("Please Contact the ")
         console.log('Something went wrong:',err.message);
       });
   }

@@ -46,7 +46,14 @@ export class AppComponent {
   }
   
   login() {
-    this.authService.login(this.email, this.password)    
+    this.authService.login(this.email, this.password).then(data=>{
+      this.authService.user.subscribe((data)=>{        
+        console.log(data)      
+        this.authService.currentUserData().then(data=>
+          this.adminUser = data.isAdmin
+        )
+      })
+    })
     this.email = this.password = '';    
   } 
   logout() {
@@ -56,11 +63,14 @@ export class AppComponent {
     this.adminUser = this.authService.isAdmin()
   }
   ngOnInit(){
-    this.authService.user.subscribe((data)=>{              
+    console.log("initiated")
+    this.authService.user.subscribe((data)=>{        
+      console.log(data)      
       this.authService.currentUserData().then(data=>
         this.adminUser = data.isAdmin
       )
     })
+    
   }
   goToItenerary(){
     this.transServe.reRouteActivityNoAnimation("Itenerary")
