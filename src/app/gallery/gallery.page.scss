@@ -10,16 +10,46 @@ ion-card{
     // height: 300px
 }
 .image-card{
-    padding-top: 0px !important
+    padding-top: 0px !important;
+   
 }
+
 .images-single{
     column-count: 1
 }
-.single-count-image ion-img {
-    height: 60vh;
-    width: 90vw;
-    animation: fadein .5s;
-    object-fit: cover;
+.image-card {
+    ion-skeleton-text{
+        width: 90vw;
+        height: 60vh;
+        object-fit: inherit;
+        object-position: inherit;
+        position: absolute;
+        visibility: visible;
+        opacity : 1
+    }
+    ion-img {
+        height: 60vh;
+        width: 90vw;
+        animation: fadein .5s;
+        transition: visibility 0s linear, opacity .5s linear;
+        opacity: 0;
+        visibility:hidden;
+        object-fit: cover;    
+    }
+    &.img-loaded {
+        background-color: transparent;
+        border: 0;
+    
+        ion-img {
+          opacity: 1;
+          visibility: visible;
+        }
+    
+        ion-skeleton-text {
+          display: none;
+          visibility: hidden;
+        }
+      }
 }
 @keyframes fadein {
     from { opacity: 0; }

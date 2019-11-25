@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
+import { Component, OnInit ,ViewChild ,ElementRef} from '@angular/core';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { ImagesService ,ImageItem } from "../services/uploads/images.service"
 import { AuthService } from "../services/auth/auth.service"
@@ -34,10 +34,19 @@ export class GalleryPage implements OnInit {
     private transServe : TransitionsService,
     private imageModal: ImagePage,
     private loadingCtrl : LoadingController,
-    private actions : ActionClass 
+    private actions : ActionClass ,
+    private _elementRef: ElementRef,  
     
-  ) { }
-
+  ) { } 
+  imageLoaded(event,isLoaded: boolean) {    
+    if (isLoaded) {    
+      setTimeout(() => {        
+        event.target.parentElement.classList.add('img-loaded');
+      }, 500);
+    } else {
+      event.target.parentElement.classList.remove('img-loaded');
+    }
+  }
   ngOnInit() {       
    const source = this.imageService.getReferences();
   //  this.GalleryPosts = this.imageService.joinUsers(source);

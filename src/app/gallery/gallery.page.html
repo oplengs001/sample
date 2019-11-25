@@ -76,7 +76,10 @@
                           </ion-item>   
                       </ion-card-header>
                       <ion-card-content class="image-card">
-                        <ion-img  [src]="post.url"></ion-img>
+                          <ion-skeleton-text animated></ion-skeleton-text>
+                        <ion-img [src]="post.url" 
+                        (ionImgDidLoad)="imageLoaded($event,true)"
+                        ></ion-img>
                       </ion-card-content>                  
                   </ion-card>
               </ng-template>                         
