@@ -19,7 +19,7 @@
                     {{image_post.user.first_name}} {{image_post.user.last_name}} 
                     <p>{{ image_post.date_uploaded | date:'short' }}</p>
                   </ion-label>                 
-                  <ion-icon name="more" slot="end" (click)="actions.presentActionSheet(image_post)"></ion-icon>         
+                  <ion-icon name="more" slot="end" (click)="actions.GalleryActionSheet(image_post)"></ion-icon>         
               </ion-item>   
             </ion-card-header>
             <ion-card-content>

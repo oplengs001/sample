@@ -38,7 +38,7 @@ export class AdminAnnouncementPage implements OnInit {
     .set('Authorization' , 'key=AIzaSyDSNAyyH5RbR6bQaOQ6O26t-iUw0_GCVYA')   
     let postData =  {
         "notification" :{
-            "title": this.message_body.title,
+            "title": `ANNOUNCEMENT: ${this.message_body.title}`,
             "text": this.message_body.body,
             "click_action":"FCM_PLUGIN_ACTIVITY", 
         },

@@ -18,8 +18,13 @@ ion-card{
 .single-count-image ion-img {
     height: 60vh;
     width: 90vw;
+    animation: fadein .5s;
     object-fit: cover;
 }
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; } 
+  }
 .single-count-image .profile-img{
     height: 100%;
     width: 100%;

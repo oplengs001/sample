@@ -42,12 +42,12 @@
         autosize class="message-input" maxRows="4"
          (ionFocus)="seen_chat()"
          [(ngModel)]="newMsg" 
-         (keydown.enter)="submit(chat.id,chat.group_name)"    
+         (keydown.enter)="submit($event,chat.id,chat.group_name)"    
           ></ion-textarea>
       </ion-col>
       <ion-col size="2">
         <ion-button *ngIf="chat$ | async as chat" expand="block" fill="clear" color="primary" [disabled]="newMsg === ''"  class="msg-btn"
-        (click)="submit(chat.id,chat.group_name)">
+        (click)="submit($event,chat.id,chat.group_name)">
           <ion-icon name="ios-send" slot="icon-only"></ion-icon>
         </ion-button>       
       </ion-col>

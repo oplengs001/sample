@@ -132,7 +132,9 @@ export class MessagesPage implements OnInit {
       })         
     });  
   }
-  submit(chatId,group_name) {   
+
+  submit(event,chatId,group_name) {       
+    event.preventDefault()
     var message = this.newMsg
       if(this.newMsg === '' || this.newMsg.length === 0 || !message.replace(/\s/g, '').length ){
  

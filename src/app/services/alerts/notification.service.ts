@@ -16,13 +16,13 @@ export class NotificationService {
     ) { }
 
     
-    createNotif(topic:string,group_name : string ,sender_id:string){
+    createNotif(topic:string,group_name : string ,sender_id:string,content:any){
       
       var object_returns : any
       let postData =  {
           "notification" :{
               "title": group_name,
-              "text": `New Message From ${group_name}`,
+              "text": `${content.first_name} ${content.last_name}ioni: ${content.content}`,
               "click_action":"FCM_PLUGIN_ACTIVITY", 
           },
           "data": 
@@ -31,6 +31,7 @@ export class NotificationService {
             "group": group_name,
             "sender_id" : sender_id 
           },
+          "tag" : topic,
           "priority" : "high",
           "to" : `/topics/${topic}`
       }

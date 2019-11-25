@@ -51,13 +51,13 @@ export class HomePage {
             }
           } else {
             if(data.type === "chat"){
-              var uid = await this.authServ.currentUserId();        
-              if (data.sender_id === uid){
+              // var uid = await this.authServ.currentUserId();        
+              // if (data.sender_id === uid){
                 
-              }else{
-                this.footerFunc.SubrcibeToOwnTopics()
-                this.toastService.showNotif("New Message From!", data);
-              }       
+              // }else{
+              //   this.footerFunc.SubrcibeToOwnTopics()
+              //   this.toastService.showNotif("New Message From!", data);
+              // }       
             }else if(data.type === "announcement"){
               this.toastService.showNotif("New Announcement!",data)
             }

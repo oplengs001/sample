@@ -4,6 +4,8 @@ import { ModalController, } from '@ionic/angular';
 import { ToastService } from '../services/toaster/toast-service';
 import { ImagesService ,ImageItem } from "../services/uploads/images.service"
 import { AuthService } from "../services/auth/auth.service"
+import { LoadingController } from '@ionic/angular';
+
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { async } from 'q';
 @Injectable({
@@ -11,6 +13,8 @@ import { async } from 'q';
 })
 export class ActionClass implements OnInit { 
   currentUser :string;  
+  loaderToShow: any;
+
   constructor(
     private imageService : ImagesService,
     private authServ : AuthService,
@@ -18,7 +22,8 @@ export class ActionClass implements OnInit {
     private alertController : AlertController,   
     private socialSharing: SocialSharing,
     private toaster : ToastService,
-    private modalCtrl : ModalController
+    private modalCtrl : ModalController,
+    private loadingController: LoadingController
   ) { }
 
   ngOnInit() {      
@@ -49,7 +54,7 @@ export class ActionClass implements OnInit {
     });
     await alert.present();
   }
-  async presentActionSheet(post) {
+  async GalleryActionSheet(post) {
     
     console.log(post)
     const {id,uploaded_by} = post
@@ -90,8 +95,13 @@ export class ActionClass implements OnInit {
   }
   async sharingActionSheet(post) {
     const {id ,url} = post    
-    const ImgFile = await this.imageService.downloadImage(url)
-    debugger
+    this.showLoader()
+    const ImgFile = await this.imageService.downloadImage(url).then(()=>{
+      setTimeout(() => {
+        this.loadingController.dismiss();
+      }, 1000);
+    })
+    // const ImgFile = await this.imageService.downloadImage(url)
     const actionSheet = await this.actionSheetController.create({  
       buttons: [
       {
@@ -235,6 +245,14 @@ export class ActionClass implements OnInit {
       console.log(e)
       alert("wait")
     });
+  }
+  showLoader() {
+    this.loaderToShow = this.loadingController.create({
+      message: 'Processing Image for Sharing'
+    }).then((res) => {
+      res.present();      
+    });
+ 
   }
   // imageUploadTest(){
   //   // var image = this.webview.convertFileSrc("../../assets/images/g1.jpg");

@@ -116,7 +116,9 @@ export class FooterComponent   {
     this.badge.increase(1)
   }
   ClearNotifs(notifs:number):void{
+    console.log(notifs)
     this.badge.decrease(notifs)
+    
   }
   goToNotifications() {
     this.router.navigateByUrl('/announcements');
