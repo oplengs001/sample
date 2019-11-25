@@ -49,7 +49,9 @@ export class HomePage {
               };
               this.navCtrl.navigateForward(['messages'], navigationExtras);
             }else if(data.type === "announcement"){
+              this.footerFunc.addBadge()
               this.transition.reRoute("announcements")
+              this.guestFunc.updateNotifCount(uid,"increment")
             }
           } else {
             if(data.type === "chat"){
