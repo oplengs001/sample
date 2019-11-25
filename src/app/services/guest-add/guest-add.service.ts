@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import * as firebase from 'firebase/app';
 import { debug } from 'util';
 
 export interface Guest {
@@ -12,7 +13,8 @@ export interface Guest {
   number: string,
   email: string,
   chat_id : [],
-  isAdmin : boolean
+  isAdmin : boolean,
+  notif_count : number
 }
 @Injectable({
   providedIn: 'root'
@@ -101,6 +103,17 @@ export class GuestAddService {
         email: guest.email,
       }
     );
+  }
+  updateNotifCount(uid:string,type):Promise<void>{
+    var value;
+    if(type === "increment"){
+      value = firebase.firestore.FieldValue.increment(1)    
+    }else if(type === "clear"){
+      value = 0
+    }
+    return this.GuestCollection.doc(uid).update({
+      notif_count: value
+    })
   }
  
   deleteGuest(id: string): Promise<void> {

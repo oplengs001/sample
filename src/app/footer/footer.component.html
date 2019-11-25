@@ -8,6 +8,7 @@
     </ion-tab-button>
 
     <ion-tab-button tab="announcements">
+      <div [hidden]="notif_hide" > <ion-badge class="pulse" color="danger">{{notif_count}}</ion-badge></div>
       <ion-icon name="notifications"></ion-icon>
       <ion-label>Notifications</ion-label>
     </ion-tab-button>
@@ -22,7 +23,7 @@
       <ion-label>Itenerary</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="message-list">
-        <div [hidden]="inbox_hide" > <ion-badge class="pulse" color="danger">{{inbox_count}}</ion-badge></div>
+      <div [hidden]="inbox_hide" > <ion-badge class="pulse" color="danger">{{inbox_count}}</ion-badge></div>
       <ion-icon name="chatboxes"></ion-icon>
       <ion-label>Chat</ion-label>
     </ion-tab-button>

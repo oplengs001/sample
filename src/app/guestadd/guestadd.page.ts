@@ -20,7 +20,9 @@ export class GuestaddPage implements OnInit {
     number: '',
     email: '',    
     chat_id : [],
-    isAdmin: false
+    isAdmin: false,
+    notif_count:0
+
   };
   password : string;
   guestForm : FormGroup
@@ -42,7 +44,7 @@ export class GuestaddPage implements OnInit {
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
         ])],       
         password : ['123456', Validators.required],       
-        isAdmin : [false, Validators.required],         
+        isAdmin : [false, Validators.required],        
       });
     }
   ngOnInit() {
@@ -65,7 +67,8 @@ export class GuestaddPage implements OnInit {
         number,
         email,
         chat_id : [],      
-        isAdmin
+        isAdmin,
+        notif_count :0
       }    
       this.password = password
       let message = "You are about to add a Guest"
@@ -109,7 +112,8 @@ export class GuestaddPage implements OnInit {
       number: '',
       email: '',    
       chat_id : [],
-      isAdmin: false
+      isAdmin: false,
+      notif_count : 0
     };
     this.guestForm.setValue(
       {
@@ -119,7 +123,7 @@ export class GuestaddPage implements OnInit {
         number: '',
         email: '',   
         password :'',
-        isAdmin: false
+        isAdmin: false,
       }
     )
   }

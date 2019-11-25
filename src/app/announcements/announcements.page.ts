@@ -1,7 +1,8 @@
 import { Component, OnInit ,ViewChildren,QueryList} from '@angular/core';
 import { AnnouncementSaveService , Announcement } from "../services/announcements/announcement-save.service"
 import { TransitionsService } from '../services/native/transitions.service';
-
+import { GuestAddService } from '../services/guest-add/guest-add.service';
+import { AuthService } from '../services/auth/auth.service'
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,8 +16,9 @@ export class AnnouncementsPage implements OnInit   {
   private loading : boolean
   constructor(
     private announcementService : AnnouncementSaveService,
-    private transServe : TransitionsService
-    
+    private transServe : TransitionsService,
+    private authServ : AuthService,
+    private guestFunc : GuestAddService
   ) { }
   ngAfterViewInit(){  
     this.ngForDetails.changes.subscribe(t => {   
@@ -28,6 +30,10 @@ export class AnnouncementsPage implements OnInit   {
         }
     })     
   }  
+  ionViewDidEnter (){    
+    var uid = this.authServ.currentUserId();   
+    this.guestFunc.updateNotifCount(uid,"clear")
+  }
   ngOnInit() {
     this.loading = false;
     this.announcements =  this.announcementService.getAnnouncements()

@@ -18,9 +18,11 @@ import { debug } from 'util';
 })
 export class FooterComponent   {
   public inbox_count : number =0
+  public notif_count : number
   public isAdmin : boolean
   private GCsubs : Subscription;
   inbox_hide :boolean 
+  notif_hide : boolean
   private GCsubsList : any =[] 
   public currentChats : any = []
   constructor(
@@ -45,7 +47,7 @@ export class FooterComponent   {
  
     this.authServ.currentUserData().then( async(data)=>{  
     
-      let {chat_id , isAdmin ,uid  } = data 
+      let {chat_id , isAdmin ,uid } = data 
       //  this.inbox_count = 0
       this.chatNotifSubs(chat_id)
       if(isAdmin){        
@@ -54,7 +56,8 @@ export class FooterComponent   {
              this.currentChats = this.pushToArray(this.currentChats,chat,uid,true)
            })        
          })
-      }else{        
+      }else{   
+      
         this.userDataSubscribe(chat_id,uid)     
       }      
     })
@@ -67,12 +70,14 @@ export class FooterComponent   {
   userDataSubscribe(chat_id,uid){
     // this.chatSubscribe(chat_id,uid)
     this.guestServe.getGuestObs(uid).subscribe(data=>{  
-
+      const {notif_count ,chat_id} = data
+        this.notif_count = notif_count    
+        this.notif_hide = notif_count!==0 ? false : true 
        const currentChatId = this.currentChats.map(arr=>arr.name),
-       newChatid = data.chat_id,      
+       newChatid = chat_id,      
        forRemoved = this.checkUnique(currentChatId,newChatid),
        forSubscription =  this.checkUnique(newChatid,currentChatId)
-       
+
         //forSubscription = this.currentChats.length ===0? newChatid :newItem
         
         //normal initialize subscription        

@@ -107,7 +107,7 @@ export class AuthService {
         }
       )
       .catch(err => {
-        alert("Please Contact the ")
+        alert("Please Input the Correct password or username or Contact the Organizer to Assist you")
         console.log('Something went wrong:',err.message);
       });
   }

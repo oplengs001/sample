@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { HomeMenuPage } from '../modals/menu/home-menu.page'
 import { AuthService } from '../services/auth/auth.service';
 import { ToastService } from '../services/toaster/toast-service';
+import { GuestAddService } from '../services/guest-add/guest-add.service';
 import { TransitionsService } from '../services/native/transitions.service';
 import { ModalController,NavController  } from '@ionic/angular';
 import {  Router ,NavigationExtras} from '@angular/router';
@@ -28,6 +29,7 @@ export class HomePage {
     public modalctrl: ModalController,
     private navCtrl : NavController,
     private footerFunc : FooterComponent,
+    private guestFunc : GuestAddService
     // private badge: Badge
     ) {
       
@@ -59,7 +61,10 @@ export class HomePage {
               //   this.toastService.showNotif("New Message From!", data);
               // }       
             }else if(data.type === "announcement"){
+              var uid = await this.authServ.currentUserId();   
+              this.footerFunc.addBadge()
               this.toastService.showNotif("New Announcement!",data)
+              this.guestFunc.updateNotifCount(uid,"increment")
             }
             console.log("Received in foreground");
           };
