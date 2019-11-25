@@ -2,7 +2,7 @@
   <ion-toolbar class="header-bg">
       <ion-buttons slot="start">
           <ion-button (click)="this.transServe.backButtonTrans()">
-              <ion-icon slot="start" name="ios-arrow-back"></ion-icon>            
+              <ion-icon slot="start" name="ios-arrow-back" color="light"></ion-icon>            
           </ion-button>     
       </ion-buttons>
     <ion-title>
@@ -13,7 +13,21 @@
 
 <ion-content class="content-bg">  
   <ion-list>  
-    <div *ngFor="let announcement of (announcements | async | sort :'asc':'date_posted' );">
+    <ion-card class="card-class"  *ngFor="let number of [0,1,2,3,4]" [hidden]="loading===true">
+        <ion-item class="item-class" lines="none">
+          <ion-icon class="icon-announcement"  name="megaphone" slot="end"></ion-icon>          
+          <ion-label slot="start">         <ion-skeleton-text animated></ion-skeleton-text></ion-label> 
+          <ion-icon slot="end" name="flash"  color="medium"></ion-icon>    
+        </ion-item>          
+        <ion-card-content class="ion-text-justify card-body">
+            <ion-skeleton-text animated></ion-skeleton-text>
+            <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-card-content>
+        <ion-item lines="none" class="card-time-details">            
+          <ion-label class="time-format"><ion-skeleton-text animated></ion-skeleton-text></ion-label>
+        </ion-item> 
+    </ion-card>
+    <div #events *ngFor="let announcement of (announcements | async | sort :'asc':'date_posted' )">
       <ion-card class="card-class">
           <ion-item class="item-class" lines="none">
             <ion-icon class="icon-announcement"  name="megaphone" slot="end"></ion-icon>
@@ -29,7 +43,7 @@
           </ion-item> 
         </ion-card>
     </div>
-  <div *ngIf="(announcements|async)?.length === 0;else caughtup">    
+    <div *ngIf="(announcements|async)?.length === 0;else caughtup">    
       <ion-card class="card-class">
           <ion-item class="item-class">         
             <ion-label class="ion-text-center"><ion-icon name="information-circle-outline"  class="icon-checkSize" ></ion-icon> </ion-label> 

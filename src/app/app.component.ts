@@ -65,7 +65,7 @@ export class AppComponent {
   ngOnInit(){
     console.log("initiated")
     this.authService.user.subscribe((data)=>{        
-      console.log(data)      
+      
       this.authService.currentUserData().then(data=>
         this.adminUser = data.isAdmin
       )
