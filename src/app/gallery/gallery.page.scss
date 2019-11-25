@@ -60,11 +60,41 @@ ion-card{
     width: 100%;
     object-fit: cover;
 }
-.one-image ion-img{
-    margin: 6px;
-    height: 20vh;
-    width: 30vw;
-    object-fit: cover;
+// .one-image
+.frame-image{
+    ion-skeleton-text{
+        height: 20vh;
+        width: 30vw;
+        object-fit: inherit;
+        object-position: inherit;
+        position: absolute;
+        visibility: visible;
+        opacity : 1
+    }
+    ion-img{
+        margin: 6px;
+        height: 20vh;
+        width: 30vw;
+        animation: fadein .5s;
+        transition: visibility 0s linear, opacity .5s linear;
+        opacity: 0;
+        visibility:hidden;
+        object-fit: cover;
+    }
+    &.img-loaded {
+        background-color: transparent;
+        border: 0;
+    
+        ion-img {
+          opacity: 1;
+          visibility: visible;
+        }
+    
+        ion-skeleton-text {
+          display: none;
+          visibility: hidden;
+        }
+      }
 }
 
 ion-fab-button[data-desc] {

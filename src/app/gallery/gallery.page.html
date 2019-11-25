@@ -42,7 +42,8 @@
     <br>
     <div [ngSwitch]="galleryType" *ngIf="GalleryPosts">
       <!-- Responsive Layout with Ion Grid-->
-        <div class="images-single" *ngSwitchCase="'regular'">
+        <!-- <div class="images-single" *ngSwitchCase="'regular'"> -->
+        <div class="images-single" [hidden]="galleryType === 'pinterest'">
           <div class="single-count-image" *ngFor="let post of GalleryPosts.slice(0,image_limit) | sort :'desc':'date_uploaded'; trackBy: trackByCreated;" >    
               <div *ngIf="OwnImages;then filteredImage;else allUser">                
               </div>
@@ -59,8 +60,11 @@
                           </ion-item>   
                       </ion-card-header>
                       <ion-card-content class="image-card">
-                        <ion-img [src]="post.url"></ion-img>
-                      </ion-card-content>                  
+                          <ion-skeleton-text animated></ion-skeleton-text>
+                          <ion-img [src]="post.url" 
+                          (ionImgDidLoad)="imageLoaded($event,true)"
+                          ></ion-img>
+                      </ion-card-content>                   
                     </ion-card>
               </ng-template>  
               <ng-template #allUser>
@@ -76,7 +80,7 @@
                           </ion-item>   
                       </ion-card-header>
                       <ion-card-content class="image-card">
-                          <ion-skeleton-text animated></ion-skeleton-text>
+                        <ion-skeleton-text animated></ion-skeleton-text>
                         <ion-img [src]="post.url" 
                         (ionImgDidLoad)="imageLoaded($event,true)"
                         ></ion-img>
@@ -89,24 +93,31 @@
             </ion-infinite-scroll-content>
           </ion-infinite-scroll> 
         </div>     
-        <div class="images" *ngSwitchCase="'pinterest'">    
+        <!-- <div class="images" *ngSwitchCase="'pinterest'">     -->
+        <div class="images" [hidden]="galleryType === 'regular'" >    
             <div class="one-image" *ngFor="let post of GalleryPosts.slice(0,image_limit) | sort :'desc':'date_uploaded'; trackBy: trackByCreated">
               <div *ngIf="OwnImages;then filteredImage;else allUser">                       
               </div>
               <ng-template #filteredImage>
-                  <div (click)="imageClick(post)" *ngIf="post.user.uid ===  this.currentUser">
-                      <ion-img [src]="post.url"></ion-img>
+                  <div (click)="imageClick(post)" *ngIf="post.user.uid ===  this.currentUser" class="frame-image">
+                      <ion-skeleton-text animated></ion-skeleton-text>
+                      <ion-img [src]="post.url"
+                      (ionImgDidLoad)="imageLoaded($event,true)"                      
+                      ></ion-img>                      
                   </div>  
               </ng-template>
               <ng-template #allUser>
-                  <div (click)="imageClick(post)">
-                      <ion-img [src]="post.url"></ion-img>
+                  <div (click)="imageClick(post)" class="frame-image">
+                      <ion-skeleton-text animated></ion-skeleton-text>
+                      <ion-img [src]="post.url"
+                      (ionImgDidLoad)="imageLoaded($event,true)"                      
+                      ></ion-img>
                   </div>  
               </ng-template>
             </div>
             <ion-infinite-scroll threshold="150px"  (ionInfinite)="loadData($event)">
-              <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="crescent">
-              </ion-infinite-scroll-content>
+              <!-- <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="crescent">
+              </ion-infinite-scroll-content> -->
             </ion-infinite-scroll> 
         </div>        
       <br>       

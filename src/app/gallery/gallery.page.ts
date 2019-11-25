@@ -44,7 +44,7 @@ export class GalleryPage implements OnInit {
         event.target.parentElement.classList.add('img-loaded');
       }, 500);
     } else {
-      event.target.parentElement.classList.remove('img-loaded');
+        event.target.parentElement.classList.remove('img-loaded');
     }
   }
   ngOnInit() {       
