@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild,Injectable} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 // import {Geolocation} from '@ionic-native/geolocation/ngx';
 // import { NativeGeocoder,NativeGeocoderOptions,NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
@@ -10,6 +10,9 @@ import { GeneralInfoService ,Info} from "../services/content/general-info.servic
 import { FooterComponent } from "../footer/footer.component"
 import { AuthService } from '../services/auth/auth.service'
 // declare var google;
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-ceremony',
   templateUrl: './ceremony.page.html',
@@ -20,7 +23,7 @@ export class CeremonyPage implements OnInit, AfterViewInit {
   private gInfo: Observable<Info[]>
   private subscription : Subscription;
   private isAdmin:boolean
-  private info : Info
+  public info : Info
 
   @ViewChild('mapElement', {static: false}) mapNativeElement: ElementRef;
   
@@ -50,7 +53,7 @@ export class CeremonyPage implements OnInit, AfterViewInit {
     ) {
     slides.startAutoplay();
   }
-  saveItem(){
+  saveItem(){    
     this.infoService.updateInfo(this.info.ref,this.info)
   }
   ngOnInit() {

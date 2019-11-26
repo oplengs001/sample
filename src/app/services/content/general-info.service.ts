@@ -13,13 +13,11 @@ export interface Info {
   locationRef : string,
   weddingDate : string,
   dress_code : string,  
-  dining_list : [],  
+  dining_list : any  
   groom_name : string,
   bride_name : string
   ref: DocumentReference,
 }
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -52,4 +50,11 @@ export class GeneralInfoService {
       console.log(error)
     });
   }
+  getWeddingInfoTakeOne(){    
+    return this.g_infoCollection.
+      valueChanges().pipe(take(1),map(
+        (info) => info
+      )
+  )
+} 
 }
