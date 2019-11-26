@@ -6,6 +6,9 @@ import { TransitionsService } from '../services/native/transitions.service';
 import { IonSlides } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { ImagesService ,ImageItem } from "../services/uploads/images.service"
+import { GeneralInfoService ,Info} from "../services/content/general-info.service"
+import { FooterComponent } from "../footer/footer.component"
+import { AuthService } from '../services/auth/auth.service'
 // declare var google;
 @Component({
   selector: 'app-ceremony',
@@ -14,7 +17,11 @@ import { ImagesService ,ImageItem } from "../services/uploads/images.service"
 })
 export class CeremonyPage implements OnInit, AfterViewInit {
   private posts: Observable<ImageItem[]>;
+  private gInfo: Observable<Info[]>
   private subscription : Subscription;
+  private isAdmin:boolean
+  private info : Info
+
   @ViewChild('mapElement', {static: false}) mapNativeElement: ElementRef;
   
   // directionsService = new google.maps.DirectionsService;
@@ -31,7 +38,10 @@ export class CeremonyPage implements OnInit, AfterViewInit {
     //  private geolocation: Geolocation,
      private imageService : ImagesService,
     //  private nativeGeocoder: NativeGeocoder,
-     private transServe : TransitionsService
+     private transServe : TransitionsService,
+     private infoService : GeneralInfoService,
+     private fComp : FooterComponent,
+     private authServ : AuthService,
   ) {
     this.createDirectionForm();
   }
@@ -40,11 +50,22 @@ export class CeremonyPage implements OnInit, AfterViewInit {
     ) {
     slides.startAutoplay();
   }
+  saveItem(){
+    this.infoService.updateInfo(this.info.ref,this.info)
+  }
   ngOnInit() {
     this.posts = this.imageService.getRefHome();
     this.CardHide = false
     this.MapHide = true
-  }
+    this.infoService.getInfo().subscribe(data=>{
+      if(data){
+        this.info = data[0]        
+      }  
+    })
+    this.authServ.currentUserData().then(data=>{
+      this.isAdmin = data.isAdmin
+    })
+  } 
   ShowMap(){
     this.CardHide = true
     this.MapHide = false

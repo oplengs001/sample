@@ -11,8 +11,7 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
-  { path: 'locator', loadChildren: './locator/locator.module#LocatorPageModule' },
-  { path: 'itenerary', loadChildren: './itenerary/itenerary.module#IteneraryPageModule' },
+  { path: 'locator', loadChildren: './locator/locator.module#LocatorPageModule' },  
   { path: 'guestlist', loadChildren: './guestlist/guestlist.module#GuestlistPageModule' },
   { path: 'ceremony', loadChildren: './ceremony/ceremony.module#CeremonyPageModule' },
   { path: 'guestadd', loadChildren: './guestadd/guestadd.module#GuestaddPageModule' }, 

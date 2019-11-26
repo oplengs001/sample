@@ -46,9 +46,11 @@ export class FooterComponent   {
   SubrcibeToOwnTopics() {
  
     this.authServ.currentUserData().then( async(data)=>{  
-    
+   
       let {chat_id , isAdmin ,uid } = data 
       //  this.inbox_count = 0
+      this.isAdmin = isAdmin
+      console.log(isAdmin)
       this.chatNotifSubs(chat_id)
       if(isAdmin){        
         this.chatServ.getAllChatOnce().then(data=>{   
@@ -134,8 +136,8 @@ export class FooterComponent   {
   goToHome() {
     this.router.navigateByUrl('/home');
   }
-  goToItenerary (){
-    this.transServe.reRouteActivityNoAnimation("Itenerary")
+  goToItinerary (){
+    this.transServe.reRouteActivityNoAnimation("Itinerary")
   }  
   pushToArray(arr:any, obj:any,uid:string,admin:boolean) {    
     

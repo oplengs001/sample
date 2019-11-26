@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ImagesService } from "../uploads/images.service"
 import { firestore } from 'firebase/app';
 
-export interface Itenerary {
+export interface Itinerary {
   uid?: string,
   image_url: string,
   name: string,  
@@ -18,15 +18,15 @@ export interface Itenerary {
   providedIn: 'root'
 })
 export class SlidingContentService {
-  private events: Observable<Itenerary[]>;
-  private eventsColletion :AngularFirestoreCollection<Itenerary>
+  private events: Observable<Itinerary[]>;
+  private eventsColletion :AngularFirestoreCollection<Itinerary>
   private eventRef : DocumentReference
-  eventItem : Itenerary
+  eventItem : Itinerary
   constructor(
     private afs: AngularFirestore,
     private imageServe : ImagesService
     ) {
-    this.eventsColletion = this.afs.collection<Itenerary>('events');
+    this.eventsColletion = this.afs.collection<Itinerary>('events');
     this.events = this.eventsColletion.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -46,13 +46,13 @@ export class SlidingContentService {
          .pipe(flatMap(events => events));          
        snapshotResult.subscribe(doc => {        
           this.eventRef = doc.payload.doc.ref;
-          this.eventItem = <Itenerary>doc.payload.doc.data();        
+          this.eventItem = <Itinerary>doc.payload.doc.data();        
         });                   
   }
   async updateEventItem(eventRef:DocumentReference, eventItem :any , to:number){   
     delete eventItem.ref
     delete eventItem.id    
-    var item = <Itenerary>eventItem
+    var item = <Itinerary>eventItem
     item.position = to;        
     eventRef.update(item).then(()=>{
       console.log("updated")
@@ -60,11 +60,11 @@ export class SlidingContentService {
       console.log(error)
     });
   }
-  getEvents(): Observable<Itenerary[]> {
+  getEvents(): Observable<Itinerary[]> {
  
     return this.events;
   }
-  addEvent(event: Itenerary): Promise<any> {   
+  addEvent(event: Itinerary): Promise<any> {   
     return this.eventsColletion.doc(this.afs.createId()).set(event);
   }
   deleteEvent(id: string): Promise<void> {

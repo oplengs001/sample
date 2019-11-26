@@ -72,8 +72,8 @@ export class AppComponent {
     })
     
   }
-  goToItenerary(){
-    this.transServe.reRouteActivityNoAnimation("Itenerary")
+  goToItinerary(){
+    this.transServe.reRouteActivityNoAnimation("Itinerary")
   }
   reRoute(page:string){
     console.log(page)

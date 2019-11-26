@@ -7,7 +7,7 @@ import { AuthService } from '../services/auth/auth.service'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
 import { ModalController, IonContent } from '@ionic/angular';
 import { CreateEventPage } from '../modals/create-event/create-event.page';
-import { SlidingContentService, Itenerary } from "../services/content/sliding-content.service"
+import { SlidingContentService, Itinerary } from "../services/content/sliding-content.service"
 @Component({
   selector: 'app-slidingcontent',
   templateUrl: './slidingcontent.page.html',
@@ -20,11 +20,11 @@ export class SlidingcontentPage implements OnInit {
   topResto : any = []
   event_it : any = []
   Dining: boolean
-  Itenerary :boolean
+  Itinerary :boolean
   isAdmin : boolean
   tba : boolean
   hideElements :boolean
-  events: Observable<Itenerary[]>;
+  events: Observable<Itinerary[]>;
   event_data : any
   lastPosition : number
   private contentSubs : Subscription;
@@ -37,40 +37,40 @@ export class SlidingcontentPage implements OnInit {
     private modalController : ModalController
   ) {   
     this.Dining = false
-    this.Itenerary = false
+    this.Itinerary = false
     this.event_it = [
       {
-        image_url: "/assets/images/itenerary/arrival.jpg",
+        image_url: "/assets/images/Itinerary/arrival.jpg",
         name: "The Arrival",
         location: "17 Marine Parade, Queenstown 9300"
       },
       {
-        image_url: "/assets/images/itenerary/ido.jpg",
+        image_url: "/assets/images/Itinerary/ido.jpg",
         name: "Do You's & I Do's",
         location: "Te Nuku, 43 Ballarat St, Queenstown 9348"
       },
       {
-        image_url: "/assets/images/itenerary/raiseyourglass.jpg",
+        image_url: "/assets/images/Itinerary/raiseyourglass.jpg",
         name: "Raise Your Glass!",
         location: "14 Cow Ln, Queenstown 9300"
       },
       {
-        image_url: "/assets/images/itenerary/entrance.jpg",
+        image_url: "/assets/images/Itinerary/entrance.jpg",
         name: "The Entrance",
         location: "8 Duke St, Queenstown 9300"
       },
       {
-        image_url: "/assets/images/itenerary/samedayedit.jpg",
+        image_url: "/assets/images/Itinerary/samedayedit.jpg",
         name: "Wedding Video (Same day Edit)",
         location: "16 Church St, Queenstown 9300"
       },  
       {
-        image_url: "/assets/images/itenerary/sweetdance.jpg",
+        image_url: "/assets/images/Itinerary/sweetdance.jpg",
         name: "Sweet Dance",
         location: "9 Isle St, Queenstown 9300"
       },     
       {
-        image_url: "/assets/images/itenerary/danceparty.jpg",
+        image_url: "/assets/images/Itinerary/danceparty.jpg",
         name: "Party Time!",
         location: "3 Searle Ln, Queenstown 9300"
       }
@@ -146,10 +146,10 @@ export class SlidingcontentPage implements OnInit {
    
       if(this.content ==="Dining"){
         this.Dining = true
-        this.Itenerary =false
-      }else if(this.content === "Itenerary"){
+        this.Itinerary =false
+      }else if(this.content === "Itinerary"){
         this.Dining =false
-        this.Itenerary = true
+        this.Itinerary = true
       }               
     }); 
   }

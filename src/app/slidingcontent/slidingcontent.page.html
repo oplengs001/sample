@@ -31,10 +31,10 @@
           </ion-card-header>   
       </ion-card> 
     </div>
-    <div [hidden]="!Itenerary">  
+    <div [hidden]="!Itinerary">  
       <ion-card class="content-card">
           <ion-card-header > 
-            <ion-card-title  class="ion-text-center">Wedding Itenerary</ion-card-title>
+            <ion-card-title  class="ion-text-center">Wedding Itinerary</ion-card-title>
           </ion-card-header>   
       </ion-card>   
       <div *ngIf="(events|async)?.length !== 0;else items"> 
@@ -65,10 +65,10 @@
       </div>
       <ion-button *ngIf="isAdmin"expand="full" color="dark" (click)="addEvent()">ADD EVENT</ion-button>    
       <ng-template #items>
-          <ion-img src="/assets/images/itenerary/slide.png"></ion-img>
+          <ion-img src="/assets/images/Itinerary/slide.png"></ion-img>
           <h2 class="ion-text-center">To Be Announce!</h2>
           <p class="ion-text-center"><b>Wait for further Announcement</b><br>
-             you will be notified when Events are added in this Itenerary!</p>
+             you will be notified when Events are added in this Itinerary!</p>
       </ng-template>  
     </div>
 </ion-content>

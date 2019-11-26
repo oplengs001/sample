@@ -10,3 +10,15 @@
     width: 90vw;
     object-fit: cover !important;
 }
+.wedding-info{
+    ion-card-header{
+        padding-bottom: 0px !important
+    }
+    ion-card-content{
+        padding-top: 0px !important
+    }
+  
+}
+.native-input[disabled].sc-ion-input-ios {
+    opacity: 1 !important;
+}

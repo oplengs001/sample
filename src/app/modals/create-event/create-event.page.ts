@@ -4,7 +4,7 @@ import { ActionClass } from '../../gallery-action-sheet/actionsheet'
 import { ImagesService  } from "../../services/uploads/images.service"
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FormBuilder,FormGroup, Validators} from '@angular/forms';
-import { SlidingContentService, Itenerary } from "../../services/content/sliding-content.service"
+import { SlidingContentService, Itinerary } from "../../services/content/sliding-content.service"
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Observable } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
@@ -58,7 +58,7 @@ export class CreateEventPage implements OnInit {
         location : event_location,
         position : this.event_last_position+1
       }
-      this.contentService.addEvent(<Itenerary>eventItem).then(()=>{
+      this.contentService.addEvent(<Itinerary>eventItem).then(()=>{
         this.actions.customAlert("Sucess","Event Added")
         this.closeModal()
       })
@@ -93,7 +93,7 @@ export class CreateEventPage implements OnInit {
       message: 'Saving Image',     
     });
     await loading.present();
-    // var image = "/assets/images/itenerary/arrival.jpg"    
+    // var image = "/assets/images/Itinerary/arrival.jpg"    
     this.imageService.saveAppGalleryRef(image,"app-gallery").then(photo => {    
       this.temp_image = photo.url           
       this.temp_image_ref = photo.file_name
@@ -106,7 +106,7 @@ export class CreateEventPage implements OnInit {
   }
   selectImage(){
     
-    this.temp_image = "/assets/images/itenerary/arrival.jpg"
+    this.temp_image = "/assets/images/Itinerary/arrival.jpg"
   }
   async closeModal() {  
     await this.modalController.dismiss();
