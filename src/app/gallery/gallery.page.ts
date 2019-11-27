@@ -42,10 +42,10 @@ export class GalleryPage implements OnInit {
     if (isLoaded) {    
       // setTimeout(() => {        
         
-        event.target.parentElement.parentElement.parentElement.classList.add('img-loaded');
+        event.target.parentElement.classList.add('img-loaded');
       // }, 500);
     } else {
-        event.target.parentElement.parentElement.parentElement.classList.remove('img-loaded');
+        event.target.parentElement.classList.remove('img-loaded');
     }
   }
   ngOnInit() {       

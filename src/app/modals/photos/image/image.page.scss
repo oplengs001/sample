@@ -1,9 +1,15 @@
 .single-count-image img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: 0px 0px;
+    transition: all 200ms ease 0s;
+    transform: matrix(2, 0, 0, 2, -194, -13);
+}
+.pincher{
     height: 60vh;
     width: 100vw;
-    object-fit: cover;
 }
-
 .single-count-image .profile-img{
     height: 100%;
     width: 100%;

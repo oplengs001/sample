@@ -23,8 +23,10 @@
               </ion-item>   
             </ion-card-header>
             <ion-card-content>
-                <pinch-zoom>
-                  <img src="{{image_post.url}}">
+                <pinch-zoom class="pincher"
+                 auto-zoom-out=true
+                 >
+                  <img src="{{image_post.url}}" class="img-on-zoom">
                 </pinch-zoom>
             </ion-card-content>                  
         </ion-card>
