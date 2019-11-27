@@ -13,7 +13,7 @@
 <ion-content >
   <div *ngIf="info">
   <ion-card [hidden]="CardHide" class="wedding-info">
-    <img src="{{info.wedding_image}}" alt="" />
+    <img src="{{info.wedding_image}}" (click)="changeImage()" alt="" />
       <ion-card-header>
         <ion-card-subtitle>
             <ion-input   

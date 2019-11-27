@@ -83,7 +83,7 @@ export class GalleryPage implements OnInit {
       });
   }
   uploadImageToFirebase(image){
-    image =   this.webview.convertFileSrc(image);   
+    image = this.webview.convertFileSrc(image);   
       this.toaster.showToast("Image will be uploaded soon") 
     this.imageService.saveImageRef(image).then(photoURL => {    
       this.toaster.showToast("image uploaded")

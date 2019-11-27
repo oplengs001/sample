@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild,Injectable} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 // import {Geolocation} from '@ionic-native/geolocation/ngx';
 // import { NativeGeocoder,NativeGeocoderOptions,NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
 import { TransitionsService } from '../services/native/transitions.service';
@@ -9,6 +10,9 @@ import { ImagesService ,ImageItem } from "../services/uploads/images.service"
 import { GeneralInfoService ,Info} from "../services/content/general-info.service"
 import { FooterComponent } from "../footer/footer.component"
 import { AuthService } from '../services/auth/auth.service'
+import { ActionClass} from '../gallery-action-sheet/actionsheet'
+import { LoadingController } from '@ionic/angular';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 // declare var google;
 @Injectable({
   providedIn: 'root'
@@ -40,11 +44,15 @@ export class CeremonyPage implements OnInit, AfterViewInit {
      private fb: FormBuilder,
     //  private geolocation: Geolocation,
      private imageService : ImagesService,
+     private imagePicker : ImagePicker,
     //  private nativeGeocoder: NativeGeocoder,
      private transServe : TransitionsService,
      private infoService : GeneralInfoService,
      private fComp : FooterComponent,
+     private webview : WebView,
      private authServ : AuthService,
+     private actions : ActionClass,
+     public loadingController: LoadingController
   ) {
     this.createDirectionForm();
   }
@@ -83,11 +91,61 @@ export class CeremonyPage implements OnInit, AfterViewInit {
       destination: ['', Validators.required]
     });
   }
+  changeImage(){
+    if(this.isAdmin){
+        this.actions.confirmationMessage("your about to change to wedding image").then(res=>{
+          if(res){
+            this.openImagePicker()
+          }else{
+            return null
+          }
+        })
+    }else{
+      return null
+    }
+  }
+  openImagePicker(){
+    this.imagePicker.hasReadPermission().then(
+      (result) => {
+        if(result == false){
+          // no callbacks required as this opens a popup which returns async
+          this.imagePicker.requestReadPermission();
+        }
+        else if(result == true){
+          this.imagePicker.getPictures({
+            maximumImagesCount: 1
+          }).then(
+            (results) => {
+              for (var i = 0; i < results.length; i++) {
+                this.uploadImageToFirebase(results[i]);
+              }
+            }, (err) => console.log(err)
+          );
+        }
+      }, (err) => {
+        console.log(err);
+      });
+  }
+  async uploadImageToFirebase(image){
+    image = this.webview.convertFileSrc(image);       
+    const loading = await this.loadingController.create({
+      message: 'Saving Image',     
+    });
+    await loading.present();
+    // var image = "/assets/images/Itinerary/arrival.jpg"    
+    this.imageService.saveAppGalleryRef(image,"app-gallery").then(photo => {    
+      this.info.wedding_image = photo.url           
+      this.saveItem()
+      loading.dismiss()
+      
+    })
+  }
   ngAfterViewInit(): void {
     
     // this.geolocation.getCurrentPosition().then((resp) => {
     //   this.currentLocation.lat = resp.coords.latitude;
     //   this.currentLocation.lng = resp.coords.longitude;
+    
     // });
     // const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
     //   zoom: 13,
