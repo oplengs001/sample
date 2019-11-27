@@ -10,7 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import {FCM} from '@ionic-native/fcm/ngx';
 import { AutosizeModule } from 'ngx-autosize';
-
+import { PinchZoomModule } from 'ngx-pinch-zoom';
 import { AppComponent } from './app.component';
 // import { FooterComponent } from './footer/footer.component'
 import { AppRoutingModule } from './app-routing.module';
@@ -36,6 +36,7 @@ import { FlightMapPageModule } from '../app/modals/map/flight-map.module'
 import { ImagePageModule } from '../app/modals/photos/image/image.module'
 import { IonicSelectableModule } from 'ionic-selectable';
 import { ComponentsModule } from "../app/componenthandler/components.module"
+
 import 'gl-ionic-background-video';
 
 @NgModule({
@@ -53,6 +54,7 @@ import 'gl-ionic-background-video';
     FormsModule,
     HttpClientModule,
     AutosizeModule,
+    PinchZoomModule,
     CreateGroupPageModule,
     HomeMenuPageModule,
     FlightMapPageModule,

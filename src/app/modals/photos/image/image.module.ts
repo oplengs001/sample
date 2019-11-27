@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
-
+import { PinchZoomModule } from 'ngx-pinch-zoom';
 import { ImagePage } from './image.page';
 
 const routes: Routes = [
@@ -19,6 +19,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    PinchZoomModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ImagePage]
