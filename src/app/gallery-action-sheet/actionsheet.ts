@@ -96,55 +96,55 @@ export class ActionClass implements OnInit {
   async sharingActionSheet(post) {
     const {id ,url} = post    
     this.showLoader()
-    const ImgFile = await this.imageService.downloadImage(url).then(()=>{
+    await this.imageService.downloadImage(url).then(async(ImgFile)=>{
       setTimeout(() => {
         this.loadingController.dismiss();
-      }, 1000);
-
+      }, 500);
+      const actionSheet = await this.actionSheetController.create({  
+        buttons: [
+        {
+          text: 'Facebook',
+          icon: 'logo-facebook',
+          handler: () => {  
+            this.shareToFacebook(ImgFile,url)
+            console.log('Play clicked');
+          }      
+        },      
+        {
+          text: 'Twitter',     
+          icon: 'logo-twitter',
+          handler: () => {
+              this.shareToTwitter(ImgFile,url)
+            console.log('Delete clicked');
+          }
+        }, {
+          text: 'Instagram',     
+          icon: 'logo-instagram',
+          handler: () => {
+              this.shareToInsta(ImgFile,url)
+            console.log('Delete clicked');
+          }
+        },{
+          text: 'WhatsApp',     
+          icon: 'logo-whatsapp',
+          handler: () => {
+              this.shareToWhatsApp(ImgFile,url)
+            console.log('Delete clicked');
+          }
+        },{
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }]
+      });
+   
+      await actionSheet.present();
     })
     // const ImgFile = await this.imageService.downloadImage(url)
-    const actionSheet = await this.actionSheetController.create({  
-      buttons: [
-      {
-        text: 'Facebook',
-        icon: 'logo-facebook',
-        handler: () => {  
-          this.shareToFacebook(ImgFile,url)
-          console.log('Play clicked');
-        }      
-      },      
-      {
-        text: 'Twitter',     
-        icon: 'logo-twitter',
-        handler: () => {
-            this.shareToTwitter(ImgFile,url)
-          console.log('Delete clicked');
-        }
-      }, {
-        text: 'Instagram',     
-        icon: 'logo-instagram',
-        handler: () => {
-            this.shareToInsta(ImgFile,url)
-          console.log('Delete clicked');
-        }
-      },{
-        text: 'WhatsApp',     
-        icon: 'logo-whatsapp',
-        handler: () => {
-            this.shareToWhatsApp(ImgFile,url)
-          console.log('Delete clicked');
-        }
-      },{
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
-    });
- 
-    await actionSheet.present();
+
   }
   async confirmationMessage(message:string):Promise<boolean> {
     let choice
