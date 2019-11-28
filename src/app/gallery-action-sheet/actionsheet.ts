@@ -146,6 +146,33 @@ export class ActionClass implements OnInit {
     // const ImgFile = await this.imageService.downloadImage(url)
 
   }
+  async DirectSharingButton(post,type){
+    const {id ,url} = post    
+    this.showLoader()
+    await this.imageService.downloadImage(url).then(async(ImgFile)=>{
+      setTimeout(() => {
+        this.loadingController.dismiss();
+      }, 500);
+      switch(type){
+        case "fb":
+            this.shareToFacebook(ImgFile,url)
+            console.log("fb")
+        break
+        case "twitter":
+            this.shareToTwitter(ImgFile,url)
+            console.log("tw")
+        break
+        case "insta":
+            this.shareToInsta(ImgFile,url)
+            console.log("ins")
+        break
+        case "whats":
+            this.shareToWhatsApp(ImgFile,url)
+            console.log("wts")
+        break
+      }      
+    })
+  }
   async confirmationMessage(message:string):Promise<boolean> {
     let choice
     const alert = await this.alertController.create({

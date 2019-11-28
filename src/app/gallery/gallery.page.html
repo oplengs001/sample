@@ -65,7 +65,13 @@
                             src="{{post.url}}"                      
                             (ionImgDidLoad)="customImageLoaded($event,true)" 
                             ></ion-img-viewer>                       
-                      </ion-card-content>                   
+                      </ion-card-content>  
+                      <ion-item class="icon-footer" lines="none">                                                                                            
+                          <ion-icon name="logo-facebook" (click)="actions.DirectSharingButton(post,'fb')" color="medium" slot="end" style="margin-left: 4px; margin-bottom:15px"></ion-icon>                            
+                          <ion-icon name="logo-instagram" (click)="actions.DirectSharingButton(post,'insta')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>    
+                          <ion-icon name="logo-whatsapp" (click)="actions.DirectSharingButton(post,'whats')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>  
+                          <ion-icon name="logo-twitter" (click)="actions.DirectSharingButton(post,'twitter')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>     
+                      </ion-item>                   
                     </ion-card>
               </ng-template>  
               <ng-template #allUser>
@@ -83,10 +89,16 @@
                       <ion-card-content class="image-card" >                                
                           <ion-skeleton-text animated></ion-skeleton-text>
                           <ion-img-viewer                       
-                          src="{{post.url}}"                      
+                          src="{{post.url}}"                                                           
                           (ionImgDidLoad)="customImageLoaded($event,true)"
                           ></ion-img-viewer>                     
-                      </ion-card-content>                  
+                      </ion-card-content>   
+                      <ion-item class="icon-footer" lines="none">                                                                                            
+                          <ion-icon name="logo-facebook" (click)="actions.DirectSharingButton(post,'fb')" color="medium" slot="end" style="margin-left: 4px; margin-bottom:15px"></ion-icon>                            
+                          <ion-icon name="logo-instagram" (click)="actions.DirectSharingButton(post,'insta')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>    
+                          <ion-icon name="logo-whatsapp" (click)="actions.DirectSharingButton(post,'whats')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>  
+                          <ion-icon name="logo-twitter" (click)="actions.DirectSharingButton(post,'twitter')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>     
+                      </ion-item>  
                   </ion-card>
               </ng-template>                         
           </div>

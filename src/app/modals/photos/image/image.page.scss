@@ -7,6 +7,11 @@
     // transform: matrix(2, 0, 0, 2, -194, -13);
     object-fit: cover;
 }
+.icon-footer{
+    ion-icon{
+      font-size:20px
+    }
+  }
 ion-card{
     height :100% !important;
 }
