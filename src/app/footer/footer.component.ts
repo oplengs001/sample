@@ -20,6 +20,7 @@ export class FooterComponent   {
   public inbox_count : number =0
   public notif_count : number
   public isAdmin : boolean
+  public forRsvp : boolean
   private GCsubs : Subscription;
   inbox_hide :boolean 
   notif_hide : boolean
@@ -47,10 +48,10 @@ export class FooterComponent   {
  
     this.authServ.currentUserData().then( async(data)=>{  
    
-      let {chat_id , isAdmin ,uid } = data 
+      let {chat_id , isAdmin ,uid ,forRsvp} = data 
       //  this.inbox_count = 0
       this.isAdmin = isAdmin
-      console.log(isAdmin)
+      this.forRsvp = forRsvp
       this.chatNotifSubs(chat_id)
       if(isAdmin){        
         this.chatServ.getAllChatOnce().then(data=>{   
@@ -72,7 +73,8 @@ export class FooterComponent   {
   userDataSubscribe(chat_id,uid){
     // this.chatSubscribe(chat_id,uid)
     this.guestServe.getGuestObs(uid).subscribe(data=>{  
-      const {notif_count ,chat_id} = data
+      const {notif_count ,chat_id ,forRsvp} = data
+        this.forRsvp = forRsvp
         this.notif_count = notif_count    
         this.notif_hide = notif_count!==0 ? false : true 
        const currentChatId = this.currentChats.map(arr=>arr.name),
@@ -139,6 +141,9 @@ export class FooterComponent   {
   goToItinerary (){
     this.transServe.reRouteActivityNoAnimation("Itinerary")
   }  
+  ionViewDidEnter (){    
+    console.log("fpfpfp")
+  }
   pushToArray(arr:any, obj:any,uid:string,admin:boolean) {    
     
     const index = arr.findIndex((e) => e.name === obj.id);       

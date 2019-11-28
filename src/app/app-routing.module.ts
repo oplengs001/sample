@@ -35,6 +35,7 @@ const routes: Routes = [
   { path: 'flight-map', loadChildren: './modals/map/flight-map.module#FlightMapPageModule' },
   { path: 'image', loadChildren: './modals/photos/image/image.module#ImagePageModule' },
   { path: 'create-event', loadChildren: './modals/create-event/create-event.module#CreateEventPageModule' },
+  { path: 'rsvp', loadChildren: './rsvp/rsvp.module#RsvpPageModule' },
 ];
 
 @NgModule({

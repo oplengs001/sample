@@ -14,6 +14,8 @@ export interface Guest {
   email: string,
   chat_id : [],
   isAdmin : boolean,
+  forRsvp : boolean,
+  will_come : boolean
   notif_count : number
 }
 @Injectable({
@@ -113,6 +115,12 @@ export class GuestAddService {
     }
     return this.GuestCollection.doc(uid).update({
       notif_count: value
+    })
+  }
+  updateStatus(uid:string,will_come:boolean):Promise<void>{  
+    return this.GuestCollection.doc(uid).update({
+      will_come: will_come,
+      forRsvp : false
     })
   }
  

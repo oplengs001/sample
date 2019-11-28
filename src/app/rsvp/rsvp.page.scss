@@ -1,0 +1,46 @@
+
+
+
+  .wc-text{
+    font-family: "exmouth";
+    font-size: 6.5vh !important;
+  }
+  .under-text{    
+    font-size: 1.5vh !important;
+    font-weight: 200
+  }
+  ion-slides {
+    height: 100% !important;
+
+    // background: var(--ion-color-primary);
+    color: #fff;   
+    font-weight: 50 !important;
+    ion-slide { 
+      align-items: start;
+      text-align: center;    
+ 
+      .slide-content {
+        background:rgba(6, 87, 197, 0.45) !important;
+        position: absolute;
+        top:0;bottom:0;left:0;right:0;
+        padding: 30px 5%;
+        p {
+          margin-top: 0px;
+          font-family: notified-light;      
+          font-size:15px 
+        }             
+      }
+      
+    }
+    ion-slide:first-child{
+      background : url("../../assets/images/home.jpg") no-repeat center center;
+      background-size: cover;;
+    }     
+    .slider .slider-pager {
+      text-align: right;
+    } 
+    .buttons{
+        margin-top:30px
+    }
+  }  
+ 

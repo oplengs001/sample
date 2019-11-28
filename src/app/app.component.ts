@@ -18,6 +18,8 @@ export class AppComponent {
   adminUser : boolean;  
   hideLogin : boolean;  
   hideSlide : boolean;
+  forRsvp : boolean;
+  userID : string;
   slideOptions = {
     initialSlide: 0,
     speed: 400,
@@ -49,8 +51,11 @@ export class AppComponent {
     this.authService.login(this.email, this.password).then(data=>{
       this.authService.user.subscribe((data)=>{        
         console.log(data)      
-        this.authService.currentUserData().then(data=>
-          this.adminUser = data.isAdmin
+        this.authService.currentUserData().then(data=>{
+          this.adminUser = data.isAdmin        
+          this.forRsvp = data.forRsvp
+
+          }
         )
       })
     })
@@ -58,16 +63,20 @@ export class AppComponent {
   } 
   logout() {
     this.authService.logout();
-  }
+  } 
   isAdmin(){  
     this.adminUser = this.authService.isAdmin()
   }
   ngOnInit(){
-    console.log("initiated")
-    this.authService.user.subscribe((data)=>{        
-      
-      this.authService.currentUserData().then(data=>
-        this.adminUser = data.isAdmin
+    this.authService.user.subscribe((data)=>{              
+      this.authService.currentUserData().then(data=>{
+          this.adminUser = data.isAdmin    
+          this.forRsvp = data.forRsvp
+          this.userID = data.uid
+          if(this.forRsvp){
+            this.transServe.reRoute("rsvp")
+          }
+        }
       )
     })
     

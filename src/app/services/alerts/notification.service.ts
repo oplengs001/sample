@@ -22,7 +22,7 @@ export class NotificationService {
       let postData =  {
           "notification" :{
               "title": group_name,
-              "text": `${content.first_name} ${content.last_name}ioni: ${content.content}`,
+              "text": `${content.first_name} ${content.last_name}: ${content.content}`,
               "click_action":"FCM_PLUGIN_ACTIVITY", 
           },
           "data": 

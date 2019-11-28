@@ -1,6 +1,6 @@
 
 
-<ion-app *ngIf="authService.user | async">
+<ion-app *ngIf="(authService.user | async)">
   
   <ion-fab horizontal="end" vertical="top" slot="fixed" *ngIf=adminUser>
     <ion-fab-button color="dark">
@@ -21,7 +21,9 @@
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
+
   <app-footer></app-footer>     
+
 </ion-app>
 
 <ion-app *ngIf="!(authService.user | async)">
@@ -79,9 +81,7 @@
                     <ion-button (click)="getStarted()">Sign-In Now!</ion-button>
               </div>
           </ion-slide>
-      </ion-slides>
-
-    
+      </ion-slides>    
     <div class="page-centered-element" [hidden]="hideLogin" >
       <div class="content">
         <h1 class="h1-text">Tom & Ingga</h1>

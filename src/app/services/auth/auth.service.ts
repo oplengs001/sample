@@ -49,7 +49,7 @@ export class AuthService {
   }
   isAdmin(){        
     return this.userGuestDetails.isAdmin
-  }
+  } 
   currentUserObservable(): any {
     return this.firebaseAuth.idTokenResult
   }

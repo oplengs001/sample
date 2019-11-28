@@ -21,6 +21,8 @@ export class GuestaddPage implements OnInit {
     email: '',    
     chat_id : [],
     isAdmin: false,
+    forRsvp : true,
+    will_come : null,
     notif_count:0
 
   };
@@ -68,6 +70,8 @@ export class GuestaddPage implements OnInit {
         email,
         chat_id : [],      
         isAdmin,
+        forRsvp: true,
+        will_come : null,
         notif_count :0
       }    
       this.password = password
@@ -113,6 +117,8 @@ export class GuestaddPage implements OnInit {
       email: '',    
       chat_id : [],
       isAdmin: false,
+      forRsvp: true,
+      will_come : null,
       notif_count : 0
     };
     this.guestForm.setValue(
@@ -123,6 +129,7 @@ export class GuestaddPage implements OnInit {
         number: '',
         email: '',   
         password :'',
+        forRsvp: true,
         isAdmin: false,
       }
     )

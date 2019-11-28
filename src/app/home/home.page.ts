@@ -19,6 +19,7 @@ import { FooterComponent} from '../footer/footer.component'
 export class HomePage {
   pushes: any = [];
   public inbox_count : number
+  public forRsvp : boolean
   constructor(
     private fcm: FCM, 
     public plt: Platform,
@@ -29,10 +30,10 @@ export class HomePage {
     public modalctrl: ModalController,
     private navCtrl : NavController,
     private footerFunc : FooterComponent,
-    private guestFunc : GuestAddService
+    private guestFunc : GuestAddService, 
     // private badge: Badge
     ) {
-      
+    this.forRsvp = this.footerFunc.forRsvp 
     this.plt.ready()
       .then(() => { 
                
@@ -93,6 +94,7 @@ export class HomePage {
       // backend.registerToken(token);
     });
   }
+ 
   unsubscribeFromTopic() {
     this.fcm.unsubscribeFromTopic('enappd');
   }
@@ -113,7 +115,6 @@ export class HomePage {
     await modal.present();
   }
   ngOnInit() {
-    
     this.subscribeToTopic()
     
   }

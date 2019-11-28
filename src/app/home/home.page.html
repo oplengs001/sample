@@ -1,4 +1,5 @@
-<ion-header>
+<!-- <div> -->
+<ion-header *ngIf=!forRsvp>
   <ion-toolbar  mode="ios">
       <ion-title>
           <h1 class="h1-text">WEDDING</h1>
@@ -12,7 +13,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="card-background-page">
+<ion-content class="card-background-page" *ngIf=!forRsvp>
   <ion-card  (click)="reRoute('ceremony')" >
       <img class="card-image" src="/assets/images/activities.jpg"/>
       <div class="card-title">WEDDING SCHEDULE<br>
@@ -77,40 +78,4 @@
     </div>
   </ion-card>
 </ion-content>
-<!-- <app-footer>
-
-</app-footer> -->
-
-<!-- <ion-header>
-  <img src="assets/logo.svg" />
-</ion-header>
-
-<ion-content>
-
-<video autoplay loop src="assets/video/paradise.mp4"></video>
-
-<ion-slides autoplay="4000" pager loop>
-    <ion-slide>
-        <h4>Welcome</h4>
-        <p>Let us take care of you for the weekend</p>
-    </ion-slide>
-    <ion-slide>
-        <h4>Escape</h4>
-        <p>Let us take care of you for the weekend</p>
-    </ion-slide>
-    <ion-slide>
-        <h4>Luxury</h4>
-        <p>Let us take care of you for the weekend</p>
-    </ion-slide>
-</ion-slides>
-
-</ion-content>
-
-<ion-footer>
-<ion-grid>
-    <ion-row>
-        <ion-col col-2><button ion-button icon-only color="secondary" full><ion-icon name="call"></ion-icon></button></ion-col>
-        <ion-col col-10><button ion-button color="light" full>Book Online</button></ion-col>
-    </ion-row>
-</ion-grid>
-</ion-footer> -->
+<!-- </div> -->

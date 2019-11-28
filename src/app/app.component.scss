@@ -15,6 +15,10 @@
   font-family: 'notified-medium';
   src: url("../assets/fonts/GothamRoundedMedium.ttf") format('truetype');    
 };
+@font-face {
+  font-family: 'michi-medium';
+  src: url("../assets/fonts/michi.otf") format('opentype');    
+};
 .page-centered-element {
     position: absolute;
     left: 0;
