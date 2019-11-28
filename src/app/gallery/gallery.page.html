@@ -99,25 +99,19 @@
               <div *ngIf="OwnImages;then filteredImage;else allUser">                       
               </div>
               <ng-template #filteredImage>
-                  <div (click)="imageClick(post)" *ngIf="post.user.uid ===  this.currentUser" class="frame-image">
-                    <div>
+                  <div (click)="imageClick(post)" *ngIf="post.user.uid ===  this.currentUser" class="frame-image">                
                       <ion-skeleton-text animated></ion-skeleton-text>
                       <ion-img [src]="post.url"
                       (ionImgDidLoad)="imageLoaded($event,true)"                      
-                      ></ion-img>                      
-                    </div>
+                      ></ion-img>                                    
                   </div>  
               </ng-template>
               <ng-template #allUser>
-                  <div (click)="imageClick(post)" class="frame-image">
-                      <div>                                          
-                        <div>
-                          <ion-skeleton-text animated></ion-skeleton-text>
-                          <ion-img [src]="post.url"
-                          (ionImgDidLoad)="imageLoaded($event,true)"                      
-                          ></ion-img>
-                        </div>
-                      </div>
+                  <div (click)="imageClick(post)" class="frame-image">           
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                        <ion-img [src]="post.url"
+                        (ionImgDidLoad)="imageLoaded($event,true)"                      
+                        ></ion-img>                    
                   </div>  
               </ng-template>
             </div>

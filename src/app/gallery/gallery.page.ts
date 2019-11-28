@@ -59,7 +59,7 @@ export class GalleryPage implements OnInit {
       this.GalleryPosts = data
     })
   });  
-   this.currentUser = this.authServ.currentUserId();
+  this.currentUser = this.authServ.currentUserId();
   }
   openImagePicker(){
     this.imagePicker.hasReadPermission().then(
