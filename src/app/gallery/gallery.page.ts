@@ -39,13 +39,23 @@ export class GalleryPage implements OnInit {
     
   ) { } 
   imageLoaded(event,isLoaded: boolean) {    
-    if (isLoaded) {    
+    if (isLoaded) {
       // setTimeout(() => {        
         
         event.target.parentElement.classList.add('img-loaded');
       // }, 500);
     } else {
         event.target.parentElement.classList.remove('img-loaded');
+    }
+  }
+  customImageLoaded(event,isLoaded: boolean) {    
+    if (isLoaded) {
+      // setTimeout(() => {        
+        
+        event.target.parentElement.parentElement.classList.add('img-loaded');
+      // }, 500);
+    } else {
+        event.target.parentElement.parentElement.classList.remove('img-loaded');
     }
   }
   ngOnInit() {       

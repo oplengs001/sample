@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { GalleryPage } from './gallery.page';
 import { PipesModule } from '../pipe/sort/sort.pipe.module'
-
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +21,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     PipesModule,
+    NgxIonicImageViewerModule,
     PinchZoomModule,
     RouterModule.forChild(routes)
   ],

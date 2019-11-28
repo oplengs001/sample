@@ -1,14 +1,8 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="end">
-        <ion-button (click)="closeModal()">Close</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
     <div class="single-count-image" >
-        <ion-card no-padding> 
+        <ion-card no-padding no-margin> 
           <ion-card-header>               
               <ion-item lines="none" no-padding >
                   <ion-avatar slot="start">
@@ -26,7 +20,9 @@
                 <pinch-zoom class="pincher"
                  auto-zoom-out=true
                  >
-                  <img src="{{image_post.url}}" class="img-on-zoom">
+                <div class="img-on-zoom"> <!-- Block parent element -->
+                  <img src="{{image_post.url}}">
+                </div>               
                 </pinch-zoom>
             </ion-card-content>                  
         </ion-card>

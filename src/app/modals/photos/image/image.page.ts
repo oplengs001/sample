@@ -29,7 +29,8 @@ export class ImagePage implements OnInit {
          component: ImagePage,     
          componentProps:{
            image_post : post
-         }
+         },
+         cssClass:"customModalClass",
       });          
       await modal.present();  
   }
