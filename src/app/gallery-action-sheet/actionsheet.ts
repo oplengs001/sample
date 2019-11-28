@@ -100,6 +100,7 @@ export class ActionClass implements OnInit {
       setTimeout(() => {
         this.loadingController.dismiss();
       }, 1000);
+
     })
     // const ImgFile = await this.imageService.downloadImage(url)
     const actionSheet = await this.actionSheetController.create({  
@@ -219,7 +220,7 @@ export class ActionClass implements OnInit {
       // Success
     }).catch((e) => {
       console.log(e)
-      alert("wait")
+      alert("Can't find Facebook App In your Device")
     });
   }
   shareToInsta(ImageFile,url){
@@ -227,7 +228,7 @@ export class ActionClass implements OnInit {
       // Success
     }).catch((e) => {
       console.log(e)
-      alert("wait")
+      alert("Can't find Instagram App In your Device")
     });
   }
   shareToWhatsApp(ImageFile,url){
@@ -235,7 +236,7 @@ export class ActionClass implements OnInit {
       // Success
     }).catch((e) => {
       console.log(e)
-      alert("wait")
+      alert("Can't find WhatsApp In your Device")
     });
   }
   shareToTwitter(ImageFile,url){
@@ -243,7 +244,7 @@ export class ActionClass implements OnInit {
       // Success
     }).catch((e) => {
       console.log(e)
-      alert("wait")
+      alert("Can't find Twitter In your Device")
     });
   }
   showLoader() {
