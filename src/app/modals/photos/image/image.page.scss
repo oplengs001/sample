@@ -1,12 +1,4 @@
-.single-count-image img {
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    // transform-origin: 0px 0px;
-    // transition: all 200ms ease 0s;
-    // transform: matrix(2, 0, 0, 2, -194, -13);
-    object-fit: cover;
-}
+
 .icon-footer{
     ion-icon{
       font-size:20px
@@ -15,10 +7,28 @@
 ion-card{
     height :100% !important;
 }
-.pincher{
-    height: 60vh;
-    width: 90vw;
-    object-fit: contain ;
+
+.pincher {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+   
+}
+.blocker{
+    width: 100% !important;  
+    height: 100% !important;     
 }
 .single-count-image .profile-img{
     height: 100%;
@@ -30,4 +40,12 @@ ion-content{
 }
 ion-modal{
     --background : transparent
+}
+
+.img-on-zoom{
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
 }

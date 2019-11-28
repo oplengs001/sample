@@ -1,36 +1,33 @@
 
-
+<ion-header no-border>
+    <ion-toolbar >
+      <ion-buttons slot="end">
+          <ion-button (click)="closeModal()">X</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 <ion-content>
-    <div class="single-count-image" >
-        <ion-card no-padding no-margin> 
-          <ion-card-header>               
-              <ion-item lines="none" no-padding >
-                  <ion-avatar slot="start">
-                      <img class="profile-img" src="assets/images/avatar.svg">
-                  </ion-avatar>
-                  <ion-label>
-                    <!-- {{post.uploaded_by}} -->
-                    {{image_post.user.first_name}} {{image_post.user.last_name}} 
-                    <p>{{ image_post.date_uploaded | date:'short' }}</p>
-                  </ion-label>                 
-                  <ion-icon name="more" slot="end" (click)="actions.GalleryActionSheet(image_post)"></ion-icon>         
-              </ion-item>   
-            </ion-card-header>
-            <ion-card-content>
-                <pinch-zoom class="pincher"
-                 auto-zoom-out=true
-                 >
-                <div class="img-on-zoom"> <!-- Block parent element -->
-                  <img src="{{image_post.url}}">
-                </div>               
-                </pinch-zoom>
-            </ion-card-content>    
-            <ion-item class="icon-footer" lines="none">                                                                                            
-                <ion-icon name="logo-facebook" (click)="actions.DirectSharingButton(post,'fb')" color="medium" slot="end" style="margin-left: 4px; margin-bottom:15px"></ion-icon>                            
-                <ion-icon name="logo-instagram" (click)="actions.DirectSharingButton(post,'insta')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>    
-                <ion-icon name="logo-whatsapp" (click)="actions.DirectSharingButton(post,'whats')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>  
-                <ion-icon name="logo-twitter" (click)="actions.DirectSharingButton(post,'twitter')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>     
-            </ion-item>                
-        </ion-card>
-    </div>
+    <div class="pincher" >           
+       
+     <!-- Block parent element -->
+     <div class="blocker">
+        <pinch-zoom class="pincher" >
+          <img src="{{image_post.url}}"class="img-on-zoom">
+        </pinch-zoom>
+     </div>                                                      
+  </div>
+  
 </ion-content>
+<ion-footer>
+    <ion-item class="icon-footer" lines="none">                                                                                            
+        <ion-label slot="start">
+            <!-- {{post.uploaded_by}} -->
+            {{image_post.user.first_name}} {{image_post.user.last_name}} 
+            <p>{{ image_post.date_uploaded | date:'short' }}</p>
+          </ion-label>    
+        <ion-icon name="logo-facebook" (click)="actions.DirectSharingButton(image_post,'fb')" color="medium" slot="end" style="margin-left: 4px; margin-bottom:15px"></ion-icon>                            
+        <ion-icon name="logo-instagram" (click)="actions.DirectSharingButton(image_post,'insta')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>    
+        <ion-icon name="logo-whatsapp" (click)="actions.DirectSharingButton(image_post,'whats')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>  
+        <ion-icon name="logo-twitter" (click)="actions.DirectSharingButton(image_post,'twitter')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>     
+    </ion-item> 
+</ion-footer>

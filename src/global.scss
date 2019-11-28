@@ -26,7 +26,11 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 .customModalClass .modal-wrapper {
-    height: 80vh !important;
-    min-height: auto;
-    width: 100% !important; 
+    // height: 80vh !important;
+    // min-height: auto;
+    // width: 100% !important; 
  }
+.pinch-zoom-content{
+    width: 100% !important;  
+    height: 100% !important;   
+}
