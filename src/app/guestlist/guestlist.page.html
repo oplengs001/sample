@@ -12,14 +12,20 @@
 <ion-content> 
   <ion-list>
     <div *ngFor="let guest of (guests | async)">
-      <ion-item *ngIf="(guest.isAdmin == false)" >
-        <ion-avatar slot="start">
-          <img src="../../assets/icon/iconM.png">
-        </ion-avatar>
+      <ion-item *ngIf="(guest.isAdmin == false)" >        
         <ion-label>
           <h2>{{ guest.first_name }}  {{guest.last_name}}</h2>
-          <h3>{{ guest.position }} </h3>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+          <h3>{{ guest.position }} </h3>                  
+          <h2 *ngIf="guest.will_come; else notAttending">          
+              <ion-text color="success">will attend</ion-text>   
+              <ion-icon name="checkmark" color="success"></ion-icon>
+          </h2>            
+          <ng-template #notAttending>
+            <h2 >             
+              <ion-text color="danger">will not attend</ion-text>   
+              <ion-icon name="close" color="danger"></ion-icon>
+            </h2>            
+          </ng-template>
         </ion-label>
       </ion-item>
     </div>

@@ -173,11 +173,12 @@ export class ActionClass implements OnInit {
       }      
     })
   }
-  async confirmationMessage(message:string):Promise<boolean> {
+  async confirmationMessage(message:string,notifBody?:string):Promise<boolean> {
     let choice
     const alert = await this.alertController.create({
       header: 'Are You Sure?',
-      message: message,
+      subHeader :notifBody||"",
+      message: message,      
       buttons: [
        {
           text: 'Cancel',

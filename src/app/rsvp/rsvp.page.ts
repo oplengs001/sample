@@ -1,35 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Injectable} from '@angular/core';
 import {GuestAddService} from "../services/guest-add/guest-add.service"
-import {AppComponent} from "../../app/app.component"
 import { ActionClass} from "../gallery-action-sheet/actionsheet"
+import { AuthService } from '../services/auth/auth.service'
 import { TransitionsService } from '../services/native/transitions.service';
 @Component({
   selector: 'app-rsvp',
   templateUrl: './rsvp.page.html',
   styleUrls: ['./rsvp.page.scss'],
 })
+@Injectable({
+  providedIn: 'root'
+})
 export class RsvpPage implements OnInit {
 
   constructor(
     private guestService : GuestAddService,
-    private appComponent : AppComponent,
+    private authServ : AuthService,
     private actionSheet : ActionClass,
     private tranServe : TransitionsService
   ) { }
 
-  updateStatus(value){
+  updateStatus(value):Promise<any>{
     var message = "you are declining the invitation"
-    
+    var userDetails = this.authServ.userGuestDetails
     if(value){
       message = "you are accepting the invitation"
     }
-      this.actionSheet.confirmationMessage(message).then(data=>{
+     return this.actionSheet.confirmationMessage(message).then(data=>{
         if(data){
-          this.guestService.updateStatus(this.appComponent.userID,value).then(data=>{
+          this.guestService.updateStatus(userDetails,value).then(data=>{
             if(value){
-              this.actionSheet.customAlert("Welcome","Thanks for Accepting the invitation")
+              this.actionSheet.customAlert("Hello!","Thanks for Accepting the invitation")
             }else{
-              this.actionSheet.customAlert("Welcome","Hope You Change your Mind!")
+              this.actionSheet.customAlert("Ow..","Hope You Change your Mind!")
             }
             this.tranServe.reRoute("/")
           })

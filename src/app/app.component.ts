@@ -20,6 +20,7 @@ export class AppComponent {
   hideSlide : boolean;
   forRsvp : boolean;
   userID : string;
+  userDetails : any
   slideOptions = {
     initialSlide: 0,
     speed: 400,
@@ -54,7 +55,11 @@ export class AppComponent {
         this.authService.currentUserData().then(data=>{
           this.adminUser = data.isAdmin        
           this.forRsvp = data.forRsvp
-
+          this.userID = data.uid
+          this.userDetails = data
+            if(this.forRsvp){
+              this.transServe.reRoute("rsvp")
+            }
           }
         )
       })
@@ -72,7 +77,8 @@ export class AppComponent {
       this.authService.currentUserData().then(data=>{
           this.adminUser = data.isAdmin    
           this.forRsvp = data.forRsvp
-          this.userID = data.uid
+          this.userID = data.uid   
+          this.userDetails = data
           if(this.forRsvp){
             this.transServe.reRoute("rsvp")
           }

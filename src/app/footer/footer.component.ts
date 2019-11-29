@@ -21,6 +21,7 @@ export class FooterComponent   {
   public notif_count : number
   public isAdmin : boolean
   public forRsvp : boolean
+  public will_come : boolean
   private GCsubs : Subscription;
   inbox_hide :boolean 
   notif_hide : boolean
@@ -48,12 +49,15 @@ export class FooterComponent   {
  
     this.authServ.currentUserData().then( async(data)=>{  
    
-      let {chat_id , isAdmin ,uid ,forRsvp} = data 
+      let {chat_id , isAdmin ,uid ,forRsvp, will_come} = data 
       //  this.inbox_count = 0
       this.isAdmin = isAdmin
       this.forRsvp = forRsvp
+      this.will_come = will_come
+      console.log(this.will_come)
       this.chatNotifSubs(chat_id)
       if(isAdmin){        
+        this.fcm.subscribeToTopic("adminNotif")
         this.chatServ.getAllChatOnce().then(data=>{   
            data.map(chat=>{        
              this.currentChats = this.pushToArray(this.currentChats,chat,uid,true)
@@ -70,12 +74,19 @@ export class FooterComponent   {
       this.fcm.subscribeToTopic(chat_ids[i]);  
     }
   }
+  getStatus(){
+    console.log(this.will_come)
+    return this.will_come
+  }
   userDataSubscribe(chat_id,uid){
     // this.chatSubscribe(chat_id,uid)
     this.guestServe.getGuestObs(uid).subscribe(data=>{  
-      const {notif_count ,chat_id ,forRsvp} = data
+      const {notif_count ,chat_id ,forRsvp , will_come} = data
+
         this.forRsvp = forRsvp
+        this.will_come = will_come
         this.notif_count = notif_count    
+        console.log(this.will_come)
         this.notif_hide = notif_count!==0 ? false : true 
        const currentChatId = this.currentChats.map(arr=>arr.name),
        newChatid = chat_id,      

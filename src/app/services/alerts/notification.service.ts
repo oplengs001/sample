@@ -10,12 +10,8 @@ export class NotificationService {
   .set('Content-Type', 'application/json' )
   .set('Authorization' , 'key=AIzaSyDSNAyyH5RbR6bQaOQ6O26t-iUw0_GCVYA')
   constructor( 
-    public http: HttpClient,
-    
-    
-    ) { }
-
-    
+    public http: HttpClient,        
+    ) { }    
     createNotif(topic:string,group_name : string ,sender_id:string,content:any){
       
       var object_returns : any
@@ -31,7 +27,7 @@ export class NotificationService {
             "group": group_name,
             "sender_id" : sender_id 
           },
-          "tag" : topic,
+          "tag " : topic,
           "priority" : "high",
           "to" : `/topics/${topic}`
       }
@@ -53,6 +49,41 @@ export class NotificationService {
       });
       return object_returns 
     }
-    
+    AdminNotif(title : string ,body:string,){
+      
+      var object_returns : any
+      let postData =  {
+          "notification" :{
+              "title": title,
+              "text": body,
+              "click_action":"FCM_PLUGIN_ACTIVITY", 
+          },
+          "data": 
+          {
+            "type":"adminNotif",
+            "data_body": body,
+          },
+          "tag " : "adminNotif",
+          "priority" : "high",
+          "to" : `/topics/adminNotif`
+      }
+      this.http.post("https://fcm.googleapis.com/fcm/send", postData,
+      {
+        headers: this.headers,
+        observe: 'response'
+      })
+      .subscribe(data => {
+
+        if(data.statusText === "OK"){   
+          console.log("ok")
+          object_returns = "OK"
+        }  
+      }, error => {
+        console.log(error)
+        object_returns = error
+
+      });
+      return object_returns 
+    }
 
 }

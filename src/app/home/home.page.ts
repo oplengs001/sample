@@ -63,11 +63,14 @@ export class HomePage {
               //   this.footerFunc.SubrcibeToOwnTopics()
               //   this.toastService.showNotif("New Message From!", data);
               // }       
+              
             }else if(data.type === "announcement"){
               var uid = await this.authServ.currentUserId();   
               this.footerFunc.addBadge()
               this.toastService.showNotif("New Announcement!",data)
               this.guestFunc.updateNotifCount(uid,"increment")
+            }else if(data.type === "adminNotif"){
+              this.toastService.showNotif("New RSVP Response!",data.data_body)
             }
             console.log("Received in foreground");
           };
@@ -96,6 +99,7 @@ export class HomePage {
   }
  
   unsubscribeFromTopic() {
+    
     this.fcm.unsubscribeFromTopic('enappd');
   }
   reRoute(page:string){    

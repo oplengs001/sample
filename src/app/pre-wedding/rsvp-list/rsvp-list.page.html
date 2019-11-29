@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reponse List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <div *ngFor="let notif of (adminNotifs | async)">
+        <ion-item (click)=updateNotif(notif) [class]="notif.status==='read'?'readNotif':'unreadNotif'">        
+          <ion-label>
+            <h2>{{ notif.title }}</h2>     
+            <h2 *ngIf="notif.focus==='will attend'; else notAttending">          
+                <ion-text color="success">Will Attend</ion-text>             
+            </h2>         
+            <p>{{ notif.body }} </p>                             
+            <ng-template #notAttending>
+              <h2>
+                <ion-text color="danger">Will Not Attend</ion-text>                   
+              </h2>            
+            </ng-template>
+          </ion-label>
+        </ion-item>
+      </div>
+    </ion-list>
+</ion-content>

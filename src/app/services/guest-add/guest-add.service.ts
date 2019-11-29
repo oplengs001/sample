@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
-import { map, take } from 'rxjs/operators';
+import { map, take, timestamp } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { debug } from 'util';
-
+import { AnnouncementSaveService , AdminNotification} from "../announcements/announcement-save.service"
+import { NotificationService } from "../alerts/notification.service"
 export interface Guest {
   uid?: string,
   first_name: string,
@@ -25,7 +26,12 @@ export class GuestAddService {
   private guests: Observable<Guest[]>;
   private GuestCollection: AngularFirestoreCollection<Guest>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(
+    
+    private afs: AngularFirestore,
+    private announcementService : AnnouncementSaveService,
+    private notificationService : NotificationService
+    ) {
     this.GuestCollection = this.afs.collection<Guest>('guests');
     this.guests = this.GuestCollection.snapshotChanges().pipe(
       map(actions => {
@@ -117,13 +123,26 @@ export class GuestAddService {
       notif_count: value
     })
   }
-  updateStatus(uid:string,will_come:boolean):Promise<void>{  
-    return this.GuestCollection.doc(uid).update({
-      will_come: will_come,
-      forRsvp : false
+  updateStatus(userDetails : any ,will_come:boolean):Promise<void>{  
+    let {first_name , last_name ,uid} = userDetails
+    let decision  = will_come?"will attend":"will not attend"
+    let notif : AdminNotification ={
+        title: "RSVP Response",
+        body: `${first_name} ${last_name} responded "${decision}" on the RSVP`,
+        createdAt : Date.now(),
+        status : "unread",
+        focus : decision
+    }
+    this.notificationService.AdminNotif(notif.title,notif.body)  
+    return this.announcementService.saveNotif(notif).then(()=>{
+       this.GuestCollection.doc(uid).update({
+        will_come: will_come,
+        forRsvp : false
+      })
     })
+
   }
- 
+  
   deleteGuest(id: string): Promise<void> {
     return this.GuestCollection.doc(id).delete();
   }
