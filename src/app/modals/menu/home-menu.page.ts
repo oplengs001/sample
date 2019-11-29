@@ -6,6 +6,7 @@ import { ActionClass } from "../../gallery-action-sheet/actionsheet"
 import { AuthService } from '../../services/auth/auth.service'
 import { FooterComponent } from "../../footer/footer.component"
 import { GuestAddService } from "../../services/guest-add/guest-add.service"
+import { AnnouncementSaveService  } from "../../services/announcements/announcement-save.service"
 @Component({
   selector: 'app-home-menu',
   templateUrl: './home-menu.page.html',
@@ -52,12 +53,13 @@ export class HomeMenuPage implements OnInit {
     private modalctrl: ModalController,
     private authServ : AuthService,
     private tranServe :TransitionsService,
-    private footerComp : FooterComponent,
-    private guestService : GuestAddService,
+    private footer : FooterComponent,
+    private guestService : GuestAddService, 
+    private annServe  :AnnouncementSaveService,
   ) {     
     this.currentUser = `${this.authServ.userGuestDetails["first_name"]} ${this.authServ.userGuestDetails["last_name"]}`  
     this.isAdmin = this.authServ.isAdmin()    
-
+   
   }
   ionViewDidEnter(){       
 

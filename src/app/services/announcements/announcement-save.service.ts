@@ -27,7 +27,9 @@ export class AnnouncementSaveService {
   private announcements: Observable<Announcement[]>;
   private AnnouncementCollection: AngularFirestoreCollection<Announcement>;
   private notifs : Observable<AdminNotification[]>
-  private NotifCollection: AngularFirestoreCollection<AdminNotification>;
+  private NotifCollection: AngularFirestoreCollection<AdminNotification>;  
+  public RsvpNotif : any;
+  public RsvpNotifCount:number
   constructor(private afs: AngularFirestore) {
     this.AnnouncementCollection = this.afs.collection<Announcement>('announcements');
     this.announcements = this.AnnouncementCollection.snapshotChanges().pipe(

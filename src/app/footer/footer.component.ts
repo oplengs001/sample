@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { ChatService } from '../services/chat/chat.service';
 import { Badge } from '@ionic-native/badge/ngx';
 import { GuestAddService, Guest} from "../services/guest-add/guest-add.service"
+import { AnnouncementSaveService  } from "../services/announcements/announcement-save.service"
 import { Observable, Subscription } from 'rxjs';
 import { debug } from 'util';
 @Component({
@@ -28,6 +29,7 @@ export class FooterComponent   {
   notif_hide : boolean
   private GCsubsList : any =[] 
   public currentChats : any = []
+  public rsvpList : any =[]
   constructor(
     private fcm: FCM, 
     private router: Router,
@@ -35,7 +37,8 @@ export class FooterComponent   {
     private chatServ : ChatService,
     private authServ : AuthService,
     private badge: Badge,
-    private guestServe : GuestAddService
+    private guestServe : GuestAddService,   
+    private announcementServices : AnnouncementSaveService
     ) {
     this.inbox_hide = true
     this.GCsubs = new Subscription()
@@ -57,18 +60,23 @@ export class FooterComponent   {
   
       this.chatNotifSubs(chat_id)
       if(isAdmin){        
-        this.fcm.subscribeToTopic("adminNotif")
+        this.fcm.subscribeToTopic("adminNotif")        
         this.chatServ.getAllChatOnce().then(data=>{   
            data.map(chat=>{        
              this.currentChats = this.pushToArray(this.currentChats,chat,uid,true)
            })        
          })
+        this.announcementServices.getNotifs().subscribe(data=>{      
+          console.log(data)
+          this.announcementServices.RsvpNotif = data     
+          this.announcementServices.RsvpNotifCount = this.countUnreadAdminNotif(data);
+       })
       }else{   
-      
+        
         this.userDataSubscribe(chat_id,uid)     
       }      
     })
-  }  
+  }   
   chatNotifSubs(chat_ids){
     for(var i in chat_ids ){      
       this.fcm.subscribeToTopic(chat_ids[i]);  
@@ -188,6 +196,13 @@ export class FooterComponent   {
     return arr.reduce((sum,b)=>{      
       return sum +  b.notifs
     },0)
+  }
+  countUnreadAdminNotif(data){
+    return data.reduce(
+      (sum,notif)=>{
+      var it=notif.status=="unread"?1:0
+      return sum + it       
+      },0)
   }
   remItem(forRemoved) {    
     for(var i in forRemoved){

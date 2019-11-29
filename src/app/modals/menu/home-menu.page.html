@@ -28,11 +28,12 @@
 </ion-content>
 <ion-footer  class="modal-content">
   <ion-toolbar>
-      <ion-item *ngIf=isAdmin (click)="gotoRsvpList()" lines="none" >      
+      <ion-item *ngIf=isAdmin (click)="gotoRsvpList()" lines="none">      
           <ion-icon slot="start" color="success"name="checkmark-circle"></ion-icon>
-          <ion-label slot="start" color="success" >
+          <ion-label slot="start" color="success" >  
               RSVP Notifs
-          </ion-label>
+          </ion-label>       
+          <ion-badge *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
         </ion-item>
       <ion-item *ngIf=!isAdmin (click)="changeDecision()" lines="none" >        
           <ion-icon color="primary" slot="start" name="mail"></ion-icon>    
@@ -49,9 +50,7 @@
                 Declined
                 </ion-text>
               </ion-label>           
-          </ng-template>
-         
-         
+          </ng-template>                  
       </ion-item>
       <ion-item (click)="logout()" lines="none" >      
           <ion-icon slot="start" color="danger" name="arrow-back"></ion-icon>

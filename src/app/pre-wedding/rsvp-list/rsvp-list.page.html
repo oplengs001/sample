@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list>
-      <div *ngFor="let notif of (adminNotifs | async)">
+      <div *ngFor="let notif of this.announcementServices.RsvpNotif">
         <ion-item (click)=updateNotif(notif) [class]="notif.status==='read'?'readNotif':'unreadNotif'">        
           <ion-label>
             <h2>{{ notif.title }}</h2>     
