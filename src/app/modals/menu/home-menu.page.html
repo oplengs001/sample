@@ -36,13 +36,21 @@
         </ion-item>
       <ion-item *ngIf=!isAdmin (click)="changeDecision()" lines="none" >        
           <ion-icon color="primary" slot="start" name="mail"></ion-icon>    
-          <ion-label slot="start"  color="primary">
+          <ion-label slot="start"  color="primary" *ngIf="this.authServ.userGuestDetails.will_come;else notAttending">
                 RSVP: 
-                <ion-text color="{{this.will_come?'success':'danger'}}" >
-                {{this.will_come?"Accepted":"Declined"}}
-              </ion-text>
-          
+                <ion-text color="success" >
+                Accepted
+                </ion-text>
           </ion-label>
+          <ng-template #notAttending>
+              <ion-label slot="start" color="primary">
+                RSVP: 
+                <ion-text color="danger" >
+                Declined
+                </ion-text>
+              </ion-label>           
+          </ng-template>
+         
          
       </ion-item>
       <ion-item (click)="logout()" lines="none" >      

@@ -5,7 +5,7 @@ import { TransitionsService } from "../../services/native/transitions.service"
 import { ActionClass } from "../../gallery-action-sheet/actionsheet"
 import { AuthService } from '../../services/auth/auth.service'
 import { FooterComponent } from "../../footer/footer.component"
-import { RsvpPage } from "../../rsvp/rsvp.page"
+import { GuestAddService } from "../../services/guest-add/guest-add.service"
 @Component({
   selector: 'app-home-menu',
   templateUrl: './home-menu.page.html',
@@ -18,6 +18,7 @@ export class HomeMenuPage implements OnInit {
   private currentUser : string
   private isAdmin: boolean
   private will_come: boolean
+  private userDetail : any  
   appPages = [
     {
       title: 'VISAS',
@@ -50,38 +51,38 @@ export class HomeMenuPage implements OnInit {
     private actionSheet : ActionClass,
     private modalctrl: ModalController,
     private authServ : AuthService,
-    private transitions :TransitionsService,
-    private rsvp : RsvpPage,
-    private footerComp : FooterComponent
+    private tranServe :TransitionsService,
+    private footerComp : FooterComponent,
+    private guestService : GuestAddService,
   ) {     
     this.currentUser = `${this.authServ.userGuestDetails["first_name"]} ${this.authServ.userGuestDetails["last_name"]}`  
-    this.isAdmin = this.authServ.isAdmin()
-    this.will_come = this.authServ.userGuestDetails["will_come"]
+    this.isAdmin = this.authServ.isAdmin()    
+
   }
-  ionViewDidEnter(){
+  ionViewDidEnter(){       
+
   }
-  ngOnInit() {
+  ngOnInit() {    
+    // this.getUpdatedValue()
   }
   gotoRsvpList(){
     this.closeModal()
-    this.transitions.reRoute("/rsvp-list")
+    this.tranServe.reRoute("/rsvp-list")
   }
   changeDecision(){
     
-    let decision =this.will_come?"Decline":"Accept"
+    let decision =this.authServ.userGuestDetails.will_come?"Decline":"Accept"
 
-    this.actionSheet.confirmationMessage(`You Are changing your decision to ${decision}`).then((res)=>{
+    this.actionSheet.confirmationMessage(`You Are changing your Response to ${decision}`).then((res)=>{
       if(res){     
-        var rsvp = !this.will_come            
-        this.rsvp.updateStatus(rsvp).then(data=>{
-          this.will_come = rsvp
-        })
+        var rsvp = !this.authServ.userGuestDetails.will_come           
+        this.updateStatus(rsvp)
       }
     })
 
   }
   async closeModal() {  
-    matchMedia
+    
     await this.modalctrl.dismiss();
   }
   async logout() {  
@@ -103,7 +104,25 @@ export class HomeMenuPage implements OnInit {
     await modal.present();
   }
 
+  updateStatus(value){
+    var message = "you are declining the invitation"
+    if(value){
+      message = "you are accepting the invitation"
+    }
+    this.actionSheet.confirmationMessage(message).then(data=>{
+        if(data){
+          this.guestService.updateStatus(this.authServ.userGuestDetails,value).then(data=>{                       
+            if(value){
+              this.actionSheet.customAlert("Hello!","Thanks for Accepting the invitation")
+            }else{
+              this.actionSheet.customAlert("Ow..","Hope You Change your Mind!")
+            }                   
+            this.tranServe.reRoute("/")
+          })
+        }
+      })
 
+  }
 
   
 }

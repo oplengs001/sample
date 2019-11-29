@@ -5,7 +5,7 @@ import { FCM } from '@ionic-native/fcm/ngx';
 import { AuthService } from '../services/auth/auth.service';
 import { ChatService } from '../services/chat/chat.service';
 import { Badge } from '@ionic-native/badge/ngx';
-import { GuestAddService} from "../services/guest-add/guest-add.service"
+import { GuestAddService, Guest} from "../services/guest-add/guest-add.service"
 import { Observable, Subscription } from 'rxjs';
 import { debug } from 'util';
 @Component({
@@ -23,6 +23,7 @@ export class FooterComponent   {
   public forRsvp : boolean
   public will_come : boolean
   private GCsubs : Subscription;
+  public GuestObservable : Observable<Guest>
   inbox_hide :boolean 
   notif_hide : boolean
   private GCsubsList : any =[] 
@@ -49,12 +50,11 @@ export class FooterComponent   {
  
     this.authServ.currentUserData().then( async(data)=>{  
    
-      let {chat_id , isAdmin ,uid ,forRsvp, will_come} = data 
+      let {chat_id , isAdmin ,uid ,forRsvp} = data 
       //  this.inbox_count = 0
       this.isAdmin = isAdmin
       this.forRsvp = forRsvp
-      this.will_come = will_come
-      console.log(this.will_come)
+  
       this.chatNotifSubs(chat_id)
       if(isAdmin){        
         this.fcm.subscribeToTopic("adminNotif")
@@ -73,16 +73,12 @@ export class FooterComponent   {
     for(var i in chat_ids ){      
       this.fcm.subscribeToTopic(chat_ids[i]);  
     }
-  }
-  getStatus(){
-    console.log(this.will_come)
-    return this.will_come
-  }
+  } 
   userDataSubscribe(chat_id,uid){
     // this.chatSubscribe(chat_id,uid)
     this.guestServe.getGuestObs(uid).subscribe(data=>{  
       const {notif_count ,chat_id ,forRsvp , will_come} = data
-
+        this.authServ.userGuestDetails = data
         this.forRsvp = forRsvp
         this.will_come = will_come
         this.notif_count = notif_count    
