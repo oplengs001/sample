@@ -37,7 +37,7 @@ import { FlightMapPageModule } from '../app/modals/map/flight-map.module'
 import { ImagePageModule } from '../app/modals/photos/image/image.module'
 import { IonicSelectableModule } from 'ionic-selectable';
 import { ComponentsModule } from "../app/componenthandler/components.module"
-
+import { HTTP } from '@ionic-native/http/ngx';
 import 'gl-ionic-background-video';
 
 @NgModule({
@@ -69,6 +69,7 @@ import 'gl-ionic-background-video';
     StatusBar,
     SplashScreen,
     FCM,
+    HTTP,
     File,
     AuthService,
     NativePageTransitions,
