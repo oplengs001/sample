@@ -18,7 +18,7 @@
             <ion-card-title  class="ion-text-center"> Tom & Ingga's <br>Top Recommended Restaurants</ion-card-title>              
           </ion-card-header>   
       </ion-card>   
-      <ion-card class="content-card" *ngFor="let resto of topResto">
+      <ion-card class="content-card" *ngFor="let resto of topResto" (click)="OpenDining(resto)">
           <ion-img src="{{resto.image_url}}"></ion-img>
           <ion-card-header> 
             <ion-card-title>{{resto.name}}</ion-card-title>    

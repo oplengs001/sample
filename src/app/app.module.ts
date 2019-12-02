@@ -32,6 +32,7 @@ import { Network } from '@ionic-native/network/ngx';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions/ngx';
 import { CreateGroupPageModule } from '../app/modals/create-group/create-group.module'
 import { CreateEventPageModule } from '../app/modals/create-event/create-event.module'
+import { ViewingcontentPageModule } from '../app/viewingcontent/viewingcontent.module'
 import { HomeMenuPageModule } from '../app/modals/menu/home-menu.module'
 import { FlightMapPageModule } from '../app/modals/map/flight-map.module'
 import { ImagePageModule } from '../app/modals/photos/image/image.module'
@@ -62,6 +63,7 @@ import 'gl-ionic-background-video';
     FlightMapPageModule,
     ImagePageModule,   
     CreateEventPageModule,
+    ViewingcontentPageModule,
     IonicSelectableModule,
   ],
   providers: [

@@ -7,6 +7,7 @@ import { AuthService } from '../services/auth/auth.service'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
 import { ModalController, IonContent } from '@ionic/angular';
 import { CreateEventPage } from '../modals/create-event/create-event.page';
+import { ViewingcontentPage } from '../viewingcontent/viewingcontent.page'
 import { SlidingContentService, Itinerary } from "../services/content/sliding-content.service"
 import { GeneralInfoService ,Info} from "../services/content/general-info.service"
 @Component({
@@ -165,6 +166,18 @@ export class SlidingcontentPage implements OnInit {
           component: CreateEventPage,
           componentProps: {
             event_last_position : this.lastPosition,
+            aParameter: true,
+            otherParameter: new Date()
+          }
+    });          
+    await modal.present();
+  }
+  async OpenDining(diningPlace) {    
+    const modal: HTMLIonModalElement =
+       await this.modalController.create({
+          component: ViewingcontentPage,
+          componentProps: {
+            view_content : diningPlace,
             aParameter: true,
             otherParameter: new Date()
           }

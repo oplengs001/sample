@@ -1,9 +1,27 @@
-<ion-header>
+<ion-header translucent>
   <ion-toolbar>
-    <ion-title>viewingcontent</ion-title>
+    <ion-title>{{view_content.name}}</ion-title>
+    <ion-buttons slot="end">
+        <ion-button (click)="closeModal()">close</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card >
+      <ion-img src="{{view_content.image_url}}"></ion-img>
+      <ion-card-header> 
+        <ion-card-title>{{view_content.name}}</ion-card-title>    
+        <ion-card-subtitle>{{view_content.location}}</ion-card-subtitle>
+      </ion-card-header>   
+      <ion-card-content>
+        {{view_content.details? view_content.details: "Keep close to Nature's heart... and break clear away, once in awhile,
+        and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        This is content, without any paragraph or header tags,
+        within an ion-card-content element."}}
+        <a (click)="openLink([view_content.url? view_content.url:'https://www.botswanabutchery.co.nz/'])"> 
+           See More
+        </a>
+      </ion-card-content>
+  </ion-card> 
 </ion-content>
