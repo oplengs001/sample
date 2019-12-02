@@ -7,6 +7,8 @@ import { TransitionsService } from './services/native/transitions.service';
 import { Network } from '@ionic-native/network/ngx';
 import { IonSlides } from '@ionic/angular';
 import {  Router } from '@angular/router';
+import { Badge } from '@ionic-native/badge/ngx';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -32,7 +34,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router : Router,
     private transServe : TransitionsService,
-    private network: Network
+    private network: Network,
+    private badge: Badge,
     
   ) {
     this.initializeApp();
@@ -57,6 +60,7 @@ export class AppComponent {
           this.forRsvp = data.forRsvp
           this.userID = data.uid
           this.userDetails = data
+               
             if(this.forRsvp){
               this.transServe.reRoute("rsvp")
             }
@@ -68,6 +72,7 @@ export class AppComponent {
   } 
   logout() {
     this.authService.logout();
+    this.badge.clear()
   } 
   isAdmin(){  
     this.adminUser = this.authService.isAdmin()

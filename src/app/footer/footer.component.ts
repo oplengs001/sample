@@ -70,9 +70,8 @@ export class FooterComponent   {
           console.log(data)
           this.announcementServices.RsvpNotif = data     
           this.announcementServices.RsvpNotifCount = this.countUnreadAdminNotif(data);
-       })
-      }else{   
-        
+        })
+      }else{           
         this.userDataSubscribe(chat_id,uid)     
       }      
     })
@@ -118,6 +117,7 @@ export class FooterComponent   {
     data.map((chat,index) =>{    
       const chatSub = chat.subscribe(data=>{        
         this.dataSet(data,uid)  
+        this.badge.set(this.inbox_count);  
       })                 
       this.GCsubsList.push({
         subs : chatSub,
@@ -134,15 +134,15 @@ export class FooterComponent   {
     this.currentChats = this.pushToArray(this.currentChats,data,uid,false)
     this.inbox_count = this.countInbox(this.currentChats,uid)       
     this.inbox_hide = this.inbox_count!==0 ? false : true
-    this.badge.set(this.inbox_count);  
+    console.log(this.inbox_count)
+
   }
   addBadge():void{
     this.badge.increase(1)
   }
   ClearNotifs(notifs:number):void{
     console.log(notifs)
-    this.badge.decrease(notifs)
-    
+    this.badge.decrease(notifs)    
   }
   goToNotifications() {
     this.router.navigateByUrl('/announcements');
