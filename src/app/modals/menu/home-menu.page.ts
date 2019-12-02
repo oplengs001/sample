@@ -91,7 +91,8 @@ export class HomeMenuPage implements OnInit {
     this.actionSheet.confirmationMessage("Your About to Log-Out").then(res=>{
       if(!res){
         return null
-      }   
+      }
+      this.footer.clearBadge()
       this.authServ.logout()
     })
 

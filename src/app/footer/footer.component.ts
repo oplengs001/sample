@@ -144,6 +144,9 @@ export class FooterComponent   {
     console.log(notifs)
     this.badge.decrease(notifs)    
   }
+  clearBadge(){
+    this.badge.clear()
+  }
   goToNotifications() {
     this.router.navigateByUrl('/announcements');
   }
