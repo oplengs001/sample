@@ -8,12 +8,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class NotificationService {
   private headers = new HttpHeaders()
   .set('Content-Type', 'application/json' )
+  .set("Accept", "application/json")
   .set('Authorization' , 'key=AIzaSyDSNAyyH5RbR6bQaOQ6O26t-iUw0_GCVYA')
+
   constructor( 
     public http: HttpClient,        
     ) { }    
-    createNotif(topic:string,group_name : string ,sender_id:string,content:any){
-      
+    createNotif(topic:string,group_name : string ,sender_id:string,content:any){    
       var object_returns : any
       let postData =  {
           "notification" :{
@@ -31,13 +32,14 @@ export class NotificationService {
           "priority" : "high",
           "to" : `/topics/${topic}`
       }
+      
       this.http.post("https://fcm.googleapis.com/fcm/send", postData,
       {
         headers: this.headers,
         observe: 'response'
       })
       .subscribe(data => {
-
+        console.log(data)
         if(data.statusText === "OK"){   
           console.log("ok")
           object_returns = "OK"

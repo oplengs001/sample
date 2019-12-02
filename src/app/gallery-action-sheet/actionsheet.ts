@@ -277,7 +277,7 @@ export class ActionClass implements OnInit {
   }
   showLoader() {
     this.loaderToShow = this.loadingController.create({
-      message: 'Processing Image for Sharing'
+      message: 'Please Wait'
     }).then((res) => {
       res.present();      
     });
