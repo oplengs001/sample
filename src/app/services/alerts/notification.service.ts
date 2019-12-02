@@ -39,6 +39,7 @@ export class NotificationService {
           "priority" : "high",
           "to" : `/topics/${topic}`
       }
+      this.httpIon.setDataSerializer("json")
       this.httpIon.sendRequest("https://fcm.googleapis.com/fcm/send",{
         method:"post",
         data: postData,
@@ -96,22 +97,42 @@ export class NotificationService {
           "priority" : "high",
           "to" : `/topics/adminNotif`
       }
-      this.http.post("https://fcm.googleapis.com/fcm/send", postData,
-      {
-        headers: this.headers,
-        observe: 'response'
+      this.httpIon.setDataSerializer("json")
+      this.httpIon.sendRequest("https://fcm.googleapis.com/fcm/send",{
+        method:"post",
+        data: postData,
+        headers: this.IonHeader,
       })
-      .subscribe(data => {
+      .then(response => {
+        // prints 200
+        object_returns = "OK"
+        console.log(response.status);
+      })
+      .catch(response => {
+        // prints 403
+        console.log(response)
+        console.log(response.status);
 
-        if(data.statusText === "OK"){   
-          console.log("ok")
-          object_returns = "OK"
-        }  
-      }, error => {
-        console.log(error)
-        object_returns = error
-
+        // prints Permission denied
+        console.log(response.error);
+        object_returns = response.error
       });
+      // this.http.post("https://fcm.googleapis.com/fcm/send", postData,
+      // {
+      //   headers: this.headers,
+      //   observe: 'response'
+      // })
+      // .subscribe(data => {
+
+      //   if(data.statusText === "OK"){   
+      //     console.log("ok")
+      //     object_returns = "OK"
+      //   }  
+      // }, error => {
+      //   console.log(error)
+      //   object_returns = error
+
+      // });
       return object_returns 
     }
 
