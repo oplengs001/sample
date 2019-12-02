@@ -13,7 +13,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="card-background-page" *ngIf=!forRsvp>
+<ion-content class="card-background-page" *ngIf=!forRsvp forceOverscroll=false>
   <ion-card  (click)="reRoute('ceremony')" >
       <img class="card-image" src="/assets/images/activities.jpg"/>
       <div class="card-title">WEDDING SCHEDULE<br>
