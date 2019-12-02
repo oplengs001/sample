@@ -37,7 +37,7 @@ export class AppComponent {
   ) {
     this.initializeApp();
     let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-      alert('No Internet Connection Detected, Please connect to the Internet to use the app Properly');
+      alert('No Internet Connection Detected, Please connect to the Internet to Use the Online Featues of the App ');
     });  
     this.hideLogin = true
     this.hideSlide = false

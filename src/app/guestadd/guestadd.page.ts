@@ -80,15 +80,23 @@ export class GuestaddPage implements OnInit {
       
         if(res){      
           this.authService.workAroundSignUp(this.guest.email, this.password).then((value)=>{
-            if(value){
+            console.log(value)
+            if(value.code === "auth/email-already-in-use"){              
+              this.actions.customAlert("Opps!",value.message)
+              this.toastService.showToast('There was a problem adding your Guest '+value.message);
+              return null;
+            }
+          
+            if(value.user){
               this.guest.uid = value.user.uid
               this.guestService.addGuest(this.guest).then(() => {
                 this.toastService.showToast('Guest added');
                 this.actions.customAlert("Success!","Guest Added!")
                 this.emptyForm()
               }, err => {
-                this.actions.customAlert("Opps!",err)
-                this.toastService.showToast('There was a problem adding your Guest '+err);                
+                this.actions.customAlert("Opps!",err.message)
+                this.toastService.showToast('There was a problem adding your Guest '+err.message);       
+                return  null         
               });
             }
           }).catch(err =>{

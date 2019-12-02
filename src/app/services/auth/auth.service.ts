@@ -93,7 +93,8 @@ export class AuthService {
         return value
         
       })
-      .catch(err => {
+      .catch(err => {        
+        secondaryApp.delete()
         console.log('Something went wrong:',err.message);
         return err
       });    
