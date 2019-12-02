@@ -13,6 +13,7 @@ import { AuthService } from '../services/auth/auth.service'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
 import { LoadingController } from '@ionic/angular';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+import {NgxImageCompressService} from 'ngx-image-compress';
 // declare var google;
 @Injectable({
   providedIn: 'root'
@@ -52,7 +53,8 @@ export class CeremonyPage implements OnInit, AfterViewInit {
      private webview : WebView,
      private authServ : AuthService,
      private actions : ActionClass,
-     public loadingController: LoadingController
+     public loadingController: LoadingController,
+     private imageCompress: NgxImageCompressService
   ) {
     this.createDirectionForm();
   }
@@ -114,7 +116,7 @@ export class CeremonyPage implements OnInit, AfterViewInit {
         else if(result == true){
           this.imagePicker.getPictures({
             maximumImagesCount: 1,
-            quality:30
+            quality: 20
           }).then(
             (results) => {
               for (var i = 0; i < results.length; i++) {
@@ -134,12 +136,14 @@ export class CeremonyPage implements OnInit, AfterViewInit {
     });
     await loading.present();
     // var image = "/assets/images/Itinerary/arrival.jpg"    
-    this.imageService.saveAppGalleryRef(image,"app-gallery").then(photo => {    
-      this.info.wedding_image = photo.url           
-      this.saveItem()
-      loading.dismiss()
-      
+    this.imageCompress.compressFile(image,-1,50,50).then(res=>{
+      this.imageService.saveAppGalleryRef(res,"app-gallery").then(photo => {    
+        this.info.wedding_image = photo.url           
+        this.saveItem()
+        loading.dismiss()        
+      })
     })
+  
   }
   ngAfterViewInit(): void {
     

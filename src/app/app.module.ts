@@ -39,6 +39,7 @@ import { ImagePageModule } from '../app/modals/photos/image/image.module'
 import { IonicSelectableModule } from 'ionic-selectable';
 import { ComponentsModule } from "../app/componenthandler/components.module"
 import { HTTP } from '@ionic-native/http/ngx';
+import {NgxImageCompressService} from 'ngx-image-compress';
 import 'gl-ionic-background-video';
 
 @NgModule({
@@ -85,6 +86,7 @@ import 'gl-ionic-background-video';
     ImagePicker,
     AppVersion,
     AngularFirestore,
+    NgxImageCompressService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: FirestoreSettingsToken, useValue: {} }
   ],

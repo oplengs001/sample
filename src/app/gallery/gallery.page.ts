@@ -9,6 +9,7 @@ import { TransitionsService } from '../services/native/transitions.service';
 import { ImagePage } from '../modals/photos/image/image.page'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
 import { LoadingController, IonInfiniteScroll } from '@ionic/angular';
+import {NgxImageCompressService} from 'ngx-image-compress';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.page.html',
@@ -36,6 +37,7 @@ export class GalleryPage implements OnInit {
     private loadingCtrl : LoadingController,
     private actions : ActionClass ,
     private _elementRef: ElementRef,  
+    private imageCompress: NgxImageCompressService
     
   ) { } 
   imageLoaded(event,isLoaded: boolean) {    
@@ -97,10 +99,13 @@ export class GalleryPage implements OnInit {
   }
   uploadImageToFirebase(image){
     image = this.webview.convertFileSrc(image);   
-      this.toaster.showToast("Image will be uploaded soon") 
-    this.imageService.saveImageRef(image).then(photoURL => {    
-      this.toaster.showToast("image uploaded")
+    this.toaster.showToast("Image will be uploaded soon") 
+    this.imageCompress.compressFile(image,-1,50,50).then(res=>{
+      this.imageService.saveImageRef(res).then(photoURL => {    
+        this.toaster.showToast("image uploaded")
+      })
     })
+     
   }
   trackByCreated(i, post) {
     return post.date_uploaded;
