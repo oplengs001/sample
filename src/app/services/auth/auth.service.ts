@@ -10,6 +10,7 @@ export class AuthService {
   public user: Observable<firebase.User>;
   userDetails: firebase.User = null
   public userGuestDetails : any
+  public userChatSubs : any
   constructor(
     
     private firebaseAuth: AngularFireAuth

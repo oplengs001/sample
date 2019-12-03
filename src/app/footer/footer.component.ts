@@ -17,6 +17,7 @@ import { debug } from 'util';
 @Injectable({
   providedIn: 'root'
 })
+
 export class FooterComponent   {
   public inbox_count : number =0
   public notif_count : number
@@ -27,7 +28,7 @@ export class FooterComponent   {
   public GuestObservable : Observable<Guest>
   inbox_hide :boolean 
   notif_hide : boolean
-  private GCsubsList : any =[] 
+  public GCsubsList : any =[] 
   public currentChats : any = []
   public rsvpList : any =[]
   constructor(
@@ -42,6 +43,7 @@ export class FooterComponent   {
     ) {
     this.inbox_hide = true
     this.GCsubs = new Subscription()
+
    }
 
 
@@ -115,15 +117,29 @@ export class FooterComponent   {
  
   resubs(entered,data,uid){   
     data.map((chat,index) =>{    
-      const chatSub = chat.subscribe(data=>{        
+      var chatSub = chat.subscribe(data=>{        
         this.dataSet(data,uid)  
         this.badge.set(this.inbox_count);  
-      })                 
+      })                   
       this.GCsubsList.push({
         subs : chatSub,
         name : entered[index]
       })
     })
+    console.log(this.GCsubsList)
+    this.authServ.userChatSubs = this.GCsubsList
+  }
+  unsubscribeAllChat(){
+    for(var i in this.GCsubsList){
+      console.log(this.GCsubsList[i].name)
+      this.GCsubsList[i].subs.unsubscribe()  
+    }
+    this.GCsubsList = []
+    this.authServ.userChatSubs = []
+  }
+  sfunc(){
+
+
   }
   removeSub(items){
     
@@ -134,7 +150,7 @@ export class FooterComponent   {
     this.currentChats = this.pushToArray(this.currentChats,data,uid,false)
     this.inbox_count = this.countInbox(this.currentChats,uid)       
     this.inbox_hide = this.inbox_count!==0 ? false : true
-    console.log(this.inbox_count)
+    
 
   }
   addBadge():void{

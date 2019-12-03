@@ -59,7 +59,6 @@ export class HomeMenuPage implements OnInit {
   ) {     
     this.currentUser = `${this.authServ.userGuestDetails["first_name"]} ${this.authServ.userGuestDetails["last_name"]}`  
     this.isAdmin = this.authServ.isAdmin()    
-   
   }
   ionViewDidEnter(){       
 
@@ -87,15 +86,17 @@ export class HomeMenuPage implements OnInit {
     
     await this.modalctrl.dismiss();
   }
-  async logout() {  
+  async logout() {
     this.actionSheet.confirmationMessage("Your About to Log-Out").then(res=>{
       if(!res){
         return null
       }
+      console.log(this.authServ.userChatSubs)
+      debugger
       this.footer.clearBadge()
+      this.footer.unsubscribeAllChat()    
       this.authServ.logout()
     })
-
   }
   async openModal() {
     const modal: HTMLIonModalElement =
@@ -113,17 +114,17 @@ export class HomeMenuPage implements OnInit {
       message = "you are accepting the invitation"
     }
     this.actionSheet.confirmationMessage(message).then(data=>{
-        if(data){
-          this.guestService.updateStatus(this.authServ.userGuestDetails,value).then(data=>{                       
-            if(value){
-              this.actionSheet.customAlert("Hello!","Thanks for Accepting the invitation")
-            }else{
-              this.actionSheet.customAlert("Ow..","Hope You Change your Mind!")
-            }                   
-            this.tranServe.reRoute("/")
-          })
-        }
-      })
+      if(data){
+        this.guestService.updateStatus(this.authServ.userGuestDetails,value).then(data=>{                       
+          if(value){
+            this.actionSheet.customAlert("Hello!","Thanks for Accepting the invitation")
+          }else{
+            this.actionSheet.customAlert("Ow..","Hope You Change your Mind!")
+          }                   
+          this.tranServe.reRoute("/")
+        })
+      }
+    })
 
   }
 
