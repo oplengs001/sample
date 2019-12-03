@@ -130,9 +130,9 @@ export class FooterComponent   {
     this.authServ.userChatSubs = this.GCsubsList
   }
   unsubscribeAllChat(){
-    for(var i in this.GCsubsList){
-      console.log(this.GCsubsList[i].name)
-      this.GCsubsList[i].subs.unsubscribe()  
+    for(var i in  this.authServ.userChatSubs ){
+      console.log(this.authServ.userChatSubs[i].name)
+      this.authServ.userChatSubs[i].subs.unsubscribe()  
     }
     this.GCsubsList = []
     this.authServ.userChatSubs = []
