@@ -207,6 +207,7 @@ export class SlidingcontentPage implements OnInit {
       this.isAdmin = data.isAdmin
     })
     this.events = this.contentServe.getEvents()
+    
     this.events.subscribe(data =>{
       console.log(data)      
       if(data.length > this.event_data){  

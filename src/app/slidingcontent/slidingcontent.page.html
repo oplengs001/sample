@@ -38,9 +38,9 @@
           </ion-card-header>   
       </ion-card>   
       <div *ngIf="(events|async)?.length !== 0;else items"> 
-        <div *ngIf="isAdmin;else nonAdmin">
-              <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">                                
-                <ion-card class="content-card" *ngFor="let event of (events | async  | sort :'asc':'position')" >  
+        <ion-reorder-group  (ionItemReorder)="doReorder($event)" disabled="false" *ngIf="isAdmin;else nonAdmin">
+              <!-- <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">                                 -->
+                <ion-card class="content-card" *ngFor="let event of (event_data   | sort :'asc':'position')" >  
                     <ion-item > 
                         <ion-reorder slot=start></ion-reorder> 
                         <ion-icon name="more" slot=end (click)="eventOptions(event)"></ion-icon>
@@ -51,10 +51,10 @@
                       <ion-card-subtitle>{{event.location}}</ion-card-subtitle>
                     </ion-card-header> 
                 </ion-card>                                                               
-            </ion-reorder-group><br>                
-        </div>    
+            <!-- </ion-reorder-group><br>                 -->
+        </ion-reorder-group>    
         <ng-template #nonAdmin>
-            <ion-card class="content-card" *ngFor="let event of (events | async  | sort :'asc':'position' )">              
+            <ion-card class="content-card" *ngFor="let event of (event_data  | sort :'asc':'position' )">              
               <ion-img src="{{event.image_url}}"></ion-img>
               <ion-card-header> 
                 <ion-card-title>{{event.name}}</ion-card-title>    
@@ -65,7 +65,7 @@
       </div>
       <ion-button *ngIf="isAdmin"expand="full" color="dark" (click)="addEvent()">ADD EVENT</ion-button>    
       <ng-template #items>
-          <ion-img src="/assets/images/Itinerary/slide.png"></ion-img>
+          <ion-img src="/assets/images/itenerary/slide.png"></ion-img>
           <h2 class="ion-text-center">To Be Announce!</h2>
           <p class="ion-text-center"><b>Wait for further Announcement</b><br>
              you will be notified when Events are added in this Itinerary!</p>
