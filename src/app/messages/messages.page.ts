@@ -43,7 +43,8 @@ export class MessagesPage implements OnInit {
     // this.things.changes.subscribe(t => {                  
     // })     
   }  
-  loadData(event) {      
+  loadData(event) {  
+    console.log("ac")    
     setTimeout(() => {         
       if(this.current_length !== undefined){          
           
@@ -53,9 +54,10 @@ export class MessagesPage implements OnInit {
             this.infiniteScroll.disabled = true
             this.hide_scroll = true    
             this.limit = this.current_length
+            
           }else{
             this.current_index = this.current_length-this.limit                       
-            this.infiniteScroll.complete() 
+            this.infiniteScroll.complete()  
           }                 
       }else{
         this.infiniteScroll.complete()
@@ -96,7 +98,7 @@ export class MessagesPage implements OnInit {
     }) 
     this.currentUser = this.auth.currentUserId()
     this.hide_scroll = false    
-    this.limit = 9 
+    this.limit = 10
     console.log("did enter")
     this.infiniteScroll.disabled = false  
     
