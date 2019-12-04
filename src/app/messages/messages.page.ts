@@ -43,8 +43,7 @@ export class MessagesPage implements OnInit {
     // this.things.changes.subscribe(t => {                  
     // })     
   }  
-  loadData(event) {  
-    console.log("ac")    
+  loadData(event) {      
     setTimeout(() => {         
       if(this.current_length !== undefined){          
           
@@ -62,7 +61,7 @@ export class MessagesPage implements OnInit {
       }else{
         this.infiniteScroll.complete()
       }           
-    }, 200);
+    }, 1000);
   }
   scrollToBottom(value) {
     setTimeout(()=>{   
