@@ -59,8 +59,8 @@
           </ion-label>
         </ion-item>
       <ion-item (click)="closeModal" lines="none">   
-          <ion-icon slot="start"name="contact" color="primary"></ion-icon>
-          <ion-label slot="start" color="primary">
+      <ion-icon slot="start"name="contact" [style.color]=userColor ></ion-icon>
+          <ion-label slot="start" [style.color]=userColor>          
             {{currentUser}}
         </ion-label>
       </ion-item>

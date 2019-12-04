@@ -23,7 +23,8 @@ export class GuestaddPage implements OnInit {
     isAdmin: false,
     forRsvp : true,
     will_come : null,
-    notif_count:0
+    notif_count:0,
+    color: this.getRandomColor()
 
   };
   password : string;
@@ -72,7 +73,8 @@ export class GuestaddPage implements OnInit {
         isAdmin,
         forRsvp: true,
         will_come : null,
-        notif_count :0
+        notif_count :0,
+        color: this.getRandomColor()
       }    
       this.password = password
       let message = "You are about to add a Guest"
@@ -127,7 +129,8 @@ export class GuestaddPage implements OnInit {
       isAdmin: false,
       forRsvp: true,
       will_come : null,
-      notif_count : 0
+      notif_count : 0,
+      color: this.getRandomColor()
     };
     this.guestForm.setValue(
       {
@@ -161,4 +164,13 @@ export class GuestaddPage implements OnInit {
     console.log(page)
     this.router.navigateByUrl(page);
   }
+  getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 }
+

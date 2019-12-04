@@ -18,6 +18,7 @@ export interface Guest {
   forRsvp : boolean,
   will_come : boolean
   notif_count : number
+  color : string,
 }
 @Injectable({
   providedIn: 'root'

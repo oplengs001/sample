@@ -42,13 +42,13 @@
 .time {
   color: #dfdfdf;
   float: right;
-  font-size: small;
+  font-size: 10px;
 }
 .username{
-
+  text-transform: capitalize;
   margin-bottom:5px;
   font-size: 15px;
-  color:#3DBCC3;
+  // color:#3DBCC3;
  }
 
 .message-input {

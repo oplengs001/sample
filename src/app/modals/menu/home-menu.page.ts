@@ -20,6 +20,7 @@ export class HomeMenuPage implements OnInit {
   private isAdmin: boolean
   private will_come: boolean
   private userDetail : any  
+  private userColor : string
   appPages = [
     {
       title: 'VISAS',
@@ -59,6 +60,7 @@ export class HomeMenuPage implements OnInit {
   ) {     
     this.currentUser = `${this.authServ.userGuestDetails["first_name"]} ${this.authServ.userGuestDetails["last_name"]}`  
     this.isAdmin = this.authServ.isAdmin()    
+    this.userColor = this.authServ.userGuestDetails["color"]
   }
   ionViewDidEnter(){       
 

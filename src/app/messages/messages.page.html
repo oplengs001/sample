@@ -21,7 +21,7 @@
     [ngClass]="msg.user.uid !== currentUser?'':'ion-justify-content-end'">
         <ion-col size="auto" *ngIf="msg.user.uid !== currentUser" class="message other-message">   
         <!-- <ion-col size="9" *ngIf="msg.user.uid !== currentUser" class="message other-message">    -->
-          <div class="username"><b>{{ msg.user.first_name}}  {{ msg.user.last_name }}</b><br></div>
+          <div class="username" [style.color]=msg.user.color><b >{{ msg.user.first_name}}  {{ msg.user.last_name }}</b><br></div>
           <span>{{ msg.content }}</span>
           <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>        
         </ion-col>  
