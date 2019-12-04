@@ -20,53 +20,31 @@
         <ion-button color="primary" class="home_buttons">SEE MORE</ion-button>
       </div>
   </ion-card>
+  <ion-card (click)="reRoute('weather')">   
+      <img class="card-image" src="/assets/images/weather.jpg"/>
+      <div class="card-title weather">               
+          <ion-row class="home-weather">
+            <ion-col>        
+                  <ion-icon class="home-label-icon" name="partly-sunny"></ion-icon>
+                  <ion-label class="home-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEATHER</ion-label>         
+            </ion-col>
+            <ion-col>      
+                  <ion-label class="home-title">18 &deg;</ion-label>            
+                  <ion-label class="home-label">TEMPERATURE</ion-label>              
+            </ion-col>                       
+          </ion-row> 
+          <div class="country ion-text-center">QUEENSTOWN</div>       
+        <ion-button color="primary" class="home_buttons">SNOW REPORT</ion-button>
+      </div>      
+  </ion-card> 
   <ion-card  (click)="reRoute('gallery')" >
-      <img class="card-image" src="/assets/images/activities.jpg"/>
+      <img class="card-image" src="/assets/images/events.jpg"/>
       <div class="card-title">PHOTOS<br>
         <ion-button color="primary" class="home_buttons">LIVE FEED</ion-button>
       </div>
   </ion-card>
-  <!-- <ion-card (click)="reRoute('weather')">    
-      <img class="card-image" src="/assets/images/weather.jpg"/>
-      <div class="card-title">          
-          <ion-row class="home-weather">
-            <ion-col>
-                <ion-row>
-                  <ion-icon class="home-label-icon" name="partly-sunny"></ion-icon>
-                </ion-row>
-                <ion-row>
-                  <ion-label class="home-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEATHER</ion-label>
-                </ion-row>
-            </ion-col>
-            <ion-col>
-                <ion-row>
-                  <ion-label class="home-title">18 &deg;</ion-label>
-                </ion-row>
-                <ion-row>
-                  <ion-label class="home-label">TEMPERATURE</ion-label>
-                </ion-row>
-            </ion-col>
-            <ion-col>
-                <ion-row>
-                  <ion-label class="home-title">55</ion-label>
-                  </ion-row>
-                  <ion-row>
-                    <ion-label class="home-label">CM DEPTH</ion-label>
-                  </ion-row>
-            </ion-col>
-          </ion-row>       
-        <ion-button color="primary" class="home_buttons">SNOW REPORT</ion-button>
-      </div>
-      
-  </ion-card> -->
-  <ion-card (click)="reRoute('weather')">    
-      <img class="card-image" src="/assets/images/weather.jpg"/>
-      <div class="card-title">WEATHER<br>
-        <ion-button color="primary" class="home_buttons">SNOW REPORT</ion-button>
-      </div>
-  </ion-card>
   <ion-card (click)="reRoute('home-tab')">    
-      <img class="card-image" src="/assets/images/home.jpg"/>
+      <img class="card-image" src="/assets/images/see_and_do.jpg"/>
       <div class="card-title">SEE & DO<br>
         <ion-button color="primary" class="home_buttons">ACTIVITIES</ion-button>
       </div>
