@@ -22,12 +22,14 @@
         <ion-col size="auto" *ngIf="msg.user.uid !== currentUser" class="message other-message">   
         <!-- <ion-col size="9" *ngIf="msg.user.uid !== currentUser" class="message other-message">    -->
           <div class="username" [style.color]=msg.user.color><b >{{ msg.user.first_name}}  {{ msg.user.last_name }}</b><br></div>
+          <ion-img [src]="msg.image" class="chat_img"></ion-img>
           <span>{{ msg.content }}</span>
           <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>        
         </ion-col>  
         <!-- <ion-col size="auto" *ngIf="msg.user.uid === currentUser" class="message my-message"> -->
         <ion-col size="auto" *ngIf="msg.user.uid === currentUser" class="message my-message ion-justify-content-end">
           <!-- <b class="username">{{ msg.user.first_name}} {{ msg.user.last_name }}</b><br> -->
+          <ion-img [src]="msg.image" class="chat_img"></ion-img>          
           <span>{{ msg.content }}</span>
           <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>
         </ion-col>  
@@ -123,12 +125,15 @@
          (keydown.enter)="submit($event,chat.id,chat.group_name)"    
           ></ion-textarea>
       </ion-col>
-      <ion-col size="2">
-        <ion-button *ngIf="chat$ | async as chat" expand="block" fill="clear" color="primary" [disabled]="newMsg === ''"  class="msg-btn"
-        (click)="submit($event,chat.id,chat.group_name)">
+      <ion-col size="2" *ngIf="chat$ | async as chat">
+        <ion-button [hidden]="newMsg === ''" expand="block" fill="clear" color="primary" [disabled]="newMsg === ''"  class="msg-btn"(click)="submit($event,chat.id,chat.group_name)">
           <ion-icon name="ios-send" slot="icon-only"></ion-icon>
         </ion-button>       
-      </ion-col>
+        <ion-button [hidden]="newMsg.length !== 0" expand="block" fill="clear" color="primary" class="msg-btn" (click)="openImagePicker()">
+            <ion-img [src]="temp_image"></ion-img>       
+            <ion-icon name="camera"  slot="icon-only"></ion-icon>
+        </ion-button>           
+      </ion-col>    
     </ion-row>
   </ion-toolbar>
 </ion-footer>

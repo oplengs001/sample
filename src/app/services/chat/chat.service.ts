@@ -190,8 +190,8 @@ export class ChatService {
     };
     return await this.afs.collection('chats').doc(group_id).set(data)        
   }
-  async sendMessage(chatId,group_name, content) :Promise <any>{
-    const  {uid,first_name,last_name}  = await this.auth.currentUserData();
+  async sendMessage(chatId,group_name,content, image_url) :Promise <any>{
+    const  {uid,first_name,last_name}  = this.auth.userGuestDetails;
     const notifDetails ={
         first_name,
         last_name,
@@ -200,7 +200,8 @@ export class ChatService {
     const data = {
       uid,
       content,
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      image  : image_url
     };
 
     if (uid) {      

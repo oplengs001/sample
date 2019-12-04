@@ -5,6 +5,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable,Subscription } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 import { FooterComponent} from '../footer/footer.component'
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { NgxImageCompressService } from 'ngx-image-compress';
+import { ImagesService  } from "../services/uploads/images.service";
+import { LoadingController } from '@ionic/angular';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.page.html',
@@ -25,11 +30,18 @@ export class MessagesPage implements OnInit {
   current_index :number
   current_length :number  
   hide_scroll:boolean
+  text_value:boolean
+  temp_image : string
   constructor(
     public cs: ChatService,
     public auth : AuthService,
     private route: ActivatedRoute,
-    private footerFunc : FooterComponent
+    private footerFunc : FooterComponent,
+    private imageCompress: NgxImageCompressService,
+    private imagePicker : ImagePicker,
+    private loadingCtrl : LoadingController,
+    private imageService : ImagesService,
+    private webview : WebView,
   ) {    
     this.route.queryParams.subscribe(params => {
       this.id = params["group_id"];      
@@ -90,6 +102,8 @@ export class MessagesPage implements OnInit {
   }
   ionViewDidEnter (){    
     this.seen_chat()     
+    this.newMsg = ""
+    this.temp_image = ""
     console.table({
       c_index : this.current_index,
       limit : this.limit,
@@ -140,17 +154,53 @@ export class MessagesPage implements OnInit {
       if(this.newMsg === '' || this.newMsg.length === 0 || !message.replace(/\s/g, '').length ){
  
       }else{
-
+        
         this.newMsg = this.newMsg.trim();
-        this.cs.sendMessage(chatId, group_name,this.newMsg).then(data=>{        
+        this.cs.sendMessage(chatId, group_name,this.newMsg,this.temp_image).then(data=>{
           this.newMsg = ''
           this.seen_chat()
+          this.temp_image = ''
           // this.scrollToBottom(500)
-        
-        });
-   
+        });   
       }
-     }
+  }  
+  openImagePicker(){
+    this.imagePicker.hasReadPermission().then(
+      (result) => {
+        if(result == false){
+          // no callbacks required as this opens a popup which returns async
+          this.imagePicker.requestReadPermission();
+        }
+        else if(result == true){
+          this.imagePicker.getPictures({
+            maximumImagesCount: 1,
+            quality : 15,            
+          }).then(
+            (results) => {
+              for (var i = 0; i < results.length; i++) {
+                this.uploadImageToFirebase(results[i]);
+              }
+            }, (err) => console.log(err)
+          );
+        }
+      }, (err) => {
+        console.log(err);
+      });
+  }
+  async uploadImageToFirebase(image){
+    image = this.webview.convertFileSrc(image);       
+    const loading = await this.loadingCtrl.create({
+      message: 'Saving Image',     
+    });
+    await loading.present();
+    // var image = "/assets/images/Itinerary/arrival.jpg"
+    this.imageCompress.compressFile(image,-1,50,50).then(res=>{
+      this.imageService.saveAppGalleryRef(res,"chat-images").then(photo => {    
+        this.temp_image = photo.url
+        loading.dismiss()      
+      })
+    })
+  }
   gotoGroups(){
     
   }
