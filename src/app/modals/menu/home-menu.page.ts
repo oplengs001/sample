@@ -92,7 +92,6 @@ export class HomeMenuPage implements OnInit {
         return null
       }
       console.log(this.authServ.userChatSubs)
-      debugger
       this.footer.clearBadge()
       this.footer.unsubscribeAllChat()    
       this.authServ.logout()

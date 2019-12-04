@@ -141,6 +141,7 @@ export class FooterComponent   {
       this.authServ.userChatSubs[i].subs.unsubscribe()  
       this.fcm.unsubscribeFromTopic(this.authServ.userChatSubs[i].name)
     }
+    this.fcm.unsubscribeFromTopic("adminNotif")
     this.GCsubsList = []
     this.authServ.userChatSubs = []
   } 

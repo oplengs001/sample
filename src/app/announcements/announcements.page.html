@@ -27,7 +27,7 @@
           <ion-label class="time-format"><ion-skeleton-text animated></ion-skeleton-text></ion-label>
         </ion-item> 
     </ion-card>
-    <div #events *ngFor="let announcement of (announcements | async | sort :'asc':'date_posted' )">
+    <div #events *ngFor="let announcement of (announcements | async | sort :'desc':'date_posted' )">
       <ion-card class="card-class">
           <ion-item class="item-class" lines="none">
             <ion-icon class="icon-announcement"  name="megaphone" slot="end"></ion-icon>
