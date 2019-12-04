@@ -10,6 +10,7 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 import { ImagesService  } from "../services/uploads/images.service";
 import { LoadingController } from '@ionic/angular';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { ToastService } from '../services/toaster/toast-service';
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.page.html',
@@ -42,6 +43,7 @@ export class MessagesPage implements OnInit {
     private loadingCtrl : LoadingController,
     private imageService : ImagesService,
     private webview : WebView,
+    private toaster : ToastService,
   ) {    
     this.route.queryParams.subscribe(params => {
       this.id = params["group_id"];      
@@ -188,16 +190,12 @@ export class MessagesPage implements OnInit {
       });
   }
   async uploadImageToFirebase(image){
-    image = this.webview.convertFileSrc(image);       
-    const loading = await this.loadingCtrl.create({
-      message: 'Saving Image',     
-    });
-    await loading.present();
+    image = this.webview.convertFileSrc(image);           
     // var image = "/assets/images/Itinerary/arrival.jpg"
     this.imageCompress.compressFile(image,-1,50,50).then(res=>{
       this.imageService.saveAppGalleryRef(res,"chat-images").then(photo => {    
         this.temp_image = photo.url
-        loading.dismiss()      
+        this.toaster.showToast("image uploaded")   
       })
     })
   }
