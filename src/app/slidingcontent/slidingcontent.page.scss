@@ -8,4 +8,22 @@
     border-radius: 0;
     margin-top: 0;
     margin-bottom: 0;
+    padding-top:0 !important;
+    --background : #ffffff
+}
+.event-name{
+    font-size:20px
+}
+.itinerary-card{
+    --background: #ffffff7a;
+    color: #000000
+}
+.itinerary-item{
+    --background: #edeff8;
+}
+ion-content{
+    // background : url(../../assets/images/gradient4.jpg) no-repeat center center;
+    // background-size: cover;     
+    --background: url(../../assets/images/gradient4.jpg)  no-repeat center center;
+    --background-size: cover;  
 }

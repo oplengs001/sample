@@ -32,11 +32,7 @@
       </ion-card> 
     </div>
     <div [hidden]="!Itinerary">  
-      <ion-card class="content-card">
-          <ion-card-header > 
-            <ion-card-title  class="ion-text-center">Wedding Itinerary</ion-card-title>
-          </ion-card-header>   
-      </ion-card>   
+
       <div *ngIf="(events|async)?.length !== 0;else items"> 
         <ion-reorder-group  (ionItemReorder)="doReorder($event)" disabled="false" *ngIf="isAdmin;else nonAdmin">
               <!-- <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">                                 -->
@@ -54,12 +50,21 @@
             <!-- </ion-reorder-group><br>                 -->
         </ion-reorder-group>    
         <ng-template #nonAdmin>
-            <ion-card class="content-card" *ngFor="let event of (event_data  | sort :'asc':'position' )">              
-              <ion-img src="{{event.image_url}}"></ion-img>
-              <ion-card-header> 
-                <ion-card-title>{{event.name}}</ion-card-title>    
-                <ion-card-subtitle>{{event.location}}</ion-card-subtitle>
-              </ion-card-header>   
+            <ion-card  *ngFor="let event of (event_data  | sort :'asc':'position' )" (click)="expandItem(event)"  class="itinerary-card">                                
+              <ion-card-header>    
+                <ion-item lines="none" class="itinerary-item">
+                    <ion-icon slot="end" name="ios-arrow-down"></ion-icon>
+                    <ion-card-title class="event-name">{{event.name}}</ion-card-title>
+                </ion-item>
+              </ion-card-header>
+              <ion-card-content class="content-card">
+                  <app-expandable expandHeight="100vh" [expanded]="event.expanded">  
+                  <ion-img src="{{event.image_url}}"></ion-img>
+                  <br>
+                  <ion-card-title>{{event.name}}</ion-card-title>    
+                  <div class="ion-text-center">{{event.location}}</div>
+                  </app-expandable>
+              </ion-card-content>                        
             </ion-card> 
         </ng-template>   
       </div>

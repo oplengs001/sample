@@ -218,13 +218,29 @@ export class SlidingcontentPage implements OnInit {
         this.tba = false
         this.hideElements = true
       }
-      this.event_data =  data.sort((a, b) => a.position - b.position)       
-      this.lastPosition = this.event_data.length === 0? -1: this.event_data[this.event_data.length-1].position
+      this.event_data =  data.sort((a, b) => a.position - b.position)     
       
+      this.lastPosition = this.event_data.length === 0? -1: this.event_data[this.event_data.length-1].position
+      // this.event_data = this.addExpansion(this.event_data)
     })
     this.generalInfo.getWeddingInfoTakeOne().subscribe(data=>{      
       this.topResto = data[0].dining_list
     })
     }
+    expandItem(item): void {
+      if (item.expanded) {
+        item.expanded = false;
+      } else {
+        this.event_data.map(listItem => {
+          if (item == listItem) {
+            listItem.expanded = !listItem.expanded;
+          } else {
+            listItem.expanded = false;
+          }
+          return listItem;
+        });
+      }
+    }
 
+    
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { ExpandableComponent } from "../components/expandable/expandable.component";
+import { ComponentsModule } from "../componenthandler/components.module"
 import { IonicModule } from '@ionic/angular';
 
 import { HomeTabPage } from './home-tab.page';
@@ -19,8 +19,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ComponentsModule
+    
   ],
-  declarations: [HomeTabPage,ExpandableComponent]
+  declarations: [HomeTabPage]
 })
 export class HomeTabPageModule {}

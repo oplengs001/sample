@@ -66,6 +66,7 @@ import 'gl-ionic-background-video';
     CreateEventPageModule,
     ViewingcontentPageModule,
     IonicSelectableModule,
+   
   ],
   providers: [
 

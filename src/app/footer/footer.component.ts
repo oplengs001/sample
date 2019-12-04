@@ -136,14 +136,19 @@ export class FooterComponent   {
     this.authServ.userChatSubs = this.GCsubsList
   }
   unsubscribeAllChat(){
-    for(var i = 0 ; i < this.authServ.userChatSubs.length-1 ; i++ ){
-      console.log(this.authServ.userChatSubs[i].name)
-      this.authServ.userChatSubs[i].subs.unsubscribe()  
-      this.fcm.unsubscribeFromTopic(this.authServ.userChatSubs[i].name)
+    if(this.authServ.userGuestDetails["isAdmin"]){
+      this.fcm.unsubscribeFromTopic("adminNotif")
+    }else{
+      for(var i = 0 ; i < this.authServ.userChatSubs.length-1 ; i++ ){
+        console.log(this.authServ.userChatSubs[i].name)
+        this.authServ.userChatSubs[i].subs.unsubscribe()  
+        this.fcm.unsubscribeFromTopic(this.authServ.userChatSubs[i].name)
+      }
+  
+      this.GCsubsList = []
+      this.authServ.userChatSubs = []
     }
-    this.fcm.unsubscribeFromTopic("adminNotif")
-    this.GCsubsList = []
-    this.authServ.userChatSubs = []
+
   } 
   removeSub(items){
     
