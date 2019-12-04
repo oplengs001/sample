@@ -38,7 +38,7 @@ export class ChatService {
           return { id, ...data };
         });
       })
-    );
+    );    
 
   }
 

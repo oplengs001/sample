@@ -25,11 +25,17 @@ export class MessageListPage implements OnInit {
 
   ngOnInit(){
    this.currentChats = this.footerClass.currentChats
+
   }
-  ionViewDidLeave (){
-    this.AllChatSubs.unsubscribe()
+  ionViewDidLeave (){  
+    this.AllChatSubs.unsubscribe()    
   }
-  
+  ionViewDidEnter(){
+    if(this.authServ.userGuestDetails["isAdmin"]){
+      this.footerClass.getAllGC()
+    }
+   
+  }
   ngOnDestroy(){
     console.log("leaved")
     this.AllChatSubs.unsubscribe()

@@ -70,7 +70,10 @@ export class HomePage {
               this.toastService.showNotif("New Announcement!",data)
               this.guestFunc.updateNotifCount(uid,"increment")
             }else if(data.type === "adminNotif"){
-              this.toastService.showNotif("New RSVP Response!",data.data_body)
+              if(this.authServ.isAdmin){
+                this.toastService.showNotif("New RSVP Response!",data.data_body)
+              }
+              
             }
             console.log("Received in foreground");
           };

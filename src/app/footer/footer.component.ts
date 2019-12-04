@@ -24,7 +24,7 @@ export class FooterComponent   {
   public isAdmin : boolean
   public forRsvp : boolean
   public will_come : boolean
-  private GCsubs : Subscription;
+  public GCsubs : Subscription;
   public GuestObservable : Observable<Guest>
   inbox_hide :boolean 
   notif_hide : boolean
@@ -63,11 +63,10 @@ export class FooterComponent   {
       this.chatNotifSubs(chat_id)
       if(isAdmin){        
         this.fcm.subscribeToTopic("adminNotif")        
-        this.chatServ.getAllChatOnce().then(data=>{   
-           data.map(chat=>{        
-             this.currentChats = this.pushToArray(this.currentChats,chat,uid,true)
-           })        
-         })
+        // this.getAllGC()
+        // this.chatServ.getAllChat().subscribe(data=>{
+        //   console.log(data)
+        // })
         this.announcementServices.getNotifs().subscribe(data=>{      
           console.log(data)
           this.announcementServices.RsvpNotif = data     
@@ -78,6 +77,13 @@ export class FooterComponent   {
       }      
     })
   }   
+  getAllGC(){
+    this.chatServ.getAllChatOnce().then(data=>{   
+      data.map(chat=>{        
+        this.currentChats = this.pushToArray(this.currentChats,chat,this.authServ.currentUserId(),true)
+      })        
+   })  
+  }
   chatNotifSubs(chat_ids){
     for(var i in chat_ids ){      
       this.fcm.subscribeToTopic(chat_ids[i]);  
@@ -137,11 +143,7 @@ export class FooterComponent   {
     }
     this.GCsubsList = []
     this.authServ.userChatSubs = []
-  }
-  sfunc(){
-
-
-  }
+  } 
   removeSub(items){
     
     this.remItem(items)      
@@ -176,8 +178,11 @@ export class FooterComponent   {
   goToItinerary (){
     this.transServe.reRouteActivityNoAnimation("Itinerary")
   }  
-  ionViewDidEnter (){    
-    console.log("fpfpfp")
+  ionViewDidEnter (){        
+  }
+  ionViewDidLeave(){ 
+    // console.log("leave")
+    // this.GCsubs.unsubscribe()
   }
   pushToArray(arr:any, obj:any,uid:string,admin:boolean) {    
     

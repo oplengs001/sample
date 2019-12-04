@@ -22,7 +22,8 @@
   </ion-card>
   <ion-card (click)="reRoute('weather')">   
       <img class="card-image" src="/assets/images/weather.jpg"/>
-      <div class="card-title weather">               
+      <div class="card-title weather">         
+          <div class="country ion-text-center">QUEENSTOWN</div>           
           <ion-row class="home-weather">
             <ion-col>        
                   <ion-icon class="home-label-icon" name="partly-sunny"></ion-icon>
@@ -32,8 +33,7 @@
                   <ion-label class="home-title">18 &deg;</ion-label>            
                   <ion-label class="home-label">TEMPERATURE</ion-label>              
             </ion-col>                       
-          </ion-row> 
-          <div class="country ion-text-center">QUEENSTOWN</div>       
+          </ion-row>     
         <ion-button color="primary" class="home_buttons">SNOW REPORT</ion-button>
       </div>      
   </ion-card> 

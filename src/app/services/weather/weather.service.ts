@@ -12,8 +12,10 @@ export class WeatherService {
     app_id : "1da5d76c",
     app_key : "517f65cb2270dd87f82bc1059680ec6e",
     app_id2 : "dfbbd7b2",
-    app_key2 : "acd9f9997c49af151e9727de8018d236"
+    app_key2 : "acd9f9997c49af151e9727de8018d236",
+    qtown_api_endpoint : "api.openweathermap.org/data/2.5/weather?id=963516&APPID=aa0f9dce6dbbe256382c80a9121d8539"
   }
+
 
   constructor(
     public http: HttpClient
@@ -29,6 +31,13 @@ export class WeatherService {
     }
      return this.http.get(
       config_url, { headers:this.headers}).toPromise()
+      .then(data => 
+      {return  this.ProcessWeather(data["forecast"])}
+      ,error => {return error});
+  }
+  getQtown(){
+    return this.http.get(
+      this.config.qtown_api_endpoint, { headers:this.headers}).toPromise()
       .then(data => 
       {return  this.ProcessWeather(data["forecast"])}
       ,error => {return error});
@@ -54,4 +63,5 @@ export class WeatherService {
       resolve(filtered)
     })
   }
+
 }
