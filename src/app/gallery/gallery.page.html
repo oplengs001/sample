@@ -19,26 +19,32 @@
 </ion-header>
 
 <ion-content>
-    <ion-fab horizontal="end" vertical="bottom" slot="fixed" >
-        <ion-fab-button color="primary">
+    <ion-fab horizontal="end" vertical="bottom"slot="fixed" >
+        <ion-fab-button color="primary" > 
           <ion-icon name="camera"></ion-icon>
         </ion-fab-button>
         <ion-fab-list side="top">
           <ion-fab-button (click)="openImagePicker()"color="primary" data-desc="Upload Image">
             <ion-icon name="image"></ion-icon>
-          </ion-fab-button>
-          <ion-fab-button (click)="postFilter()"color="primary" data-desc="Filter My Posts">
-            <ion-icon name="photos"></ion-icon>     
-          </ion-fab-button>       
-          <ion-fab-button (click)="seeAll()"color="primary" data-desc="See All Posts">
-            <ion-icon name="photos"></ion-icon>     
-          </ion-fab-button>      
+          </ion-fab-button>            
           <!-- <ion-fab-button (click)="imageUploadTest()"color="primary" data-desc="Test Upload">
             <ion-icon name="photos"></ion-icon>     
           </ion-fab-button>    -->
         </ion-fab-list>
       </ion-fab>
-   
+      <ion-fab horizontal="end"  slot="fixed" >
+          <ion-fab-button color="primary">
+            <ion-icon name="images"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-list side="bottom"> 
+            <ion-fab-button (click)="postFilter()"color="primary" data-desc="Filter My Posts">
+              <ion-icon name="person"></ion-icon>     
+            </ion-fab-button>       
+            <ion-fab-button (click)="seeAll()"color="primary" data-desc="See All Posts">
+              <ion-icon name="people"></ion-icon>
+            </ion-fab-button>              
+          </ion-fab-list>
+        </ion-fab>  
     <br>
     <div [ngSwitch]="galleryType" *ngIf="GalleryPosts">
       <!-- Responsive Layout with Ion Grid-->
