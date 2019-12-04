@@ -193,8 +193,9 @@ export class MessagesPage implements OnInit {
     image = this.webview.convertFileSrc(image);           
     // var image = "/assets/images/Itinerary/arrival.jpg"
     this.imageCompress.compressFile(image,-1,50,50).then(res=>{
-      this.imageService.saveAppGalleryRef(res,"chat-images").then(photo => {    
+      this.imageService.saveChatGallery(res,"chat-images").then(photo => {    
         this.temp_image = photo.url
+        
         this.toaster.showToast("image uploaded")   
       })
     })

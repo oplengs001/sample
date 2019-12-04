@@ -90,6 +90,8 @@ export class ImagesService {
       return this.ImageCollection.doc(this.itemRef.file_name).set(imageRef);
     }else if(collection === "app-gallery"){
       return this.AppGalleryCollection.doc(this.itemRef.file_name).set(imageRef);
+    }else if(collection === "chat-images"){
+      return this.AppGalleryCollection.doc(this.itemRef.file_name).set(imageRef);
     }
   
   } 
@@ -144,7 +146,10 @@ export class ImagesService {
     });
     return itemRef        
   
-  }   
+  }  
+  async saveChatGallery (imageURI,collection:string) :Promise<any>{      
+    return  await  this.uploadImage(imageURI,collection)                     
+  }  
   deleteImageRef(id: string,collection:string): Promise<any> {   
     if(collection === "image") {
       return this.ImageCollection.doc(id).delete();
