@@ -118,9 +118,9 @@
   <ion-toolbar color="light">
     <ion-row no-padding align-items-center>
       <ion-col size="10">
-        <ion-img [src]="temp_image" [class]="temp_image_css"></ion-img>    
+        <ion-img [src]="temp_image" class="temp_image_css" [hidden]=hide_image></ion-img>    
         <ion-textarea  *ngIf="chat$ | async as chat"
-        autosize class="message-input" maxRows="4"
+         autosize class="message-input" maxRows="4"
          (ionFocus)="seen_chat()"
          [(ngModel)]="newMsg" 
          (keydown.enter)="submit($event,chat.id,chat.group_name)"

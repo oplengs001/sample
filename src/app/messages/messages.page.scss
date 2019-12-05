@@ -53,11 +53,13 @@
 .chat_img{
     width:50vw !important  
 }
-.temp-img{
+.temp_image_css{
   height: 50vh !important;
+  // display: block
 }
 .sent-img{
-  height: 0vh !important;
+  // height: 0vh !important;
+  // display: hidden
 }
 .message-input {
   width: 100%;

@@ -33,7 +33,7 @@ export class MessagesPage implements OnInit {
   hide_scroll:boolean
   text_value:boolean
   temp_image : string
-  temp_image_css : string
+  hide_image : boolean
   constructor(
     public cs: ChatService,
     public auth : AuthService,
@@ -52,7 +52,7 @@ export class MessagesPage implements OnInit {
   }
 
   ngOnInit(){
-    this.temp_image_css = "sent-img"
+    // this.temp_image_css = "sent-img"
   }
   ngAfterViewInit(){  
     // this.things.changes.subscribe(t => {                  
@@ -103,13 +103,15 @@ export class MessagesPage implements OnInit {
     this.current_index = undefined
     this.current_length = undefined
     this.limit = undefined
-    // this.temp_image = ""
+    this.temp_image = ""
+    this.hide_image = true
   }
   ionViewDidEnter (){
     this.seen_chat()     
     this.newMsg = ""
     this.temp_image =""
-    this.temp_image_css = "sent-img"
+    this.hide_image = true
+    // this.temp_image_css = "sent-img"
     // this.temp_image = "https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
     // this.temp_image_css = "temp-img"
     console.table({
@@ -165,7 +167,7 @@ export class MessagesPage implements OnInit {
         
         this.newMsg = this.newMsg.trim();
         this.cs.sendMessage(chatId, group_name,this.newMsg,this.temp_image).then(data=>{
-          this.temp_image_css = "sent-img"
+          this.hide_image = true
           this.newMsg = ''
           this.seen_chat()
           this.temp_image = ''
@@ -197,13 +199,13 @@ export class MessagesPage implements OnInit {
       });
   }
   async uploadImageToFirebase(image){
+
     image = this.webview.convertFileSrc(image);           
-    // var image = "/assets/images/Itinerary/arrival.jpg"
-    this.temp_image_css = "temp-img"
-    this.imageCompress.compressFile(image,-1,50,50).then(res=>{
-      this.imageService.saveChatGallery(res,"chat-images").then(photo => {    
-        this.temp_image = photo.url
-        this.temp_image_css = "temp-img"
+    // var image = "assets/images/itenerary/arrival.jpg"
+    this.imageCompress.compressFile(image,-1,50,50).then(res=>{       
+      this.imageService.saveChatGallery(res,"chat-images").then(photo => {        
+        this.temp_image = photo.url      
+        this.hide_image = false
         this.toaster.showToast("image uploaded")   
       })
     })
