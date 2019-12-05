@@ -50,7 +50,15 @@
   font-size: 15px;
   // color:#3DBCC3;
  }
-
+.chat_img{
+    width:50vw !important  
+}
+.temp-img{
+  height: 50vh !important;
+}
+.sent-img{
+  height: 0vh !important;
+}
 .message-input {
   width: 100%;
   border: 1px solid var(--ion-color-medium);
