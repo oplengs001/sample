@@ -6,7 +6,7 @@ import { ComponentsModule } from "../componenthandler/components.module"
 import { IonicModule } from '@ionic/angular';
 
 import { MessagesPage } from './messages.page';
-
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 const routes: Routes = [
   {
     path: '',
@@ -20,6 +20,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     ComponentsModule,
+    NgxIonicImageViewerModule,
     RouterModule.forChild(routes)
   ],
   declarations: [MessagesPage]

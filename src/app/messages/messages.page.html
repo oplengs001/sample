@@ -22,16 +22,27 @@
         <ion-col size="auto" *ngIf="msg.user.uid !== currentUser" class="message other-message">   
         <!-- <ion-col size="9" *ngIf="msg.user.uid !== currentUser" class="message other-message">    -->
           <div class="username" [style.color]=msg.user.color><b >{{ msg.user.first_name}}  {{ msg.user.last_name }}</b><br></div>
-          <ion-img [src]="msg.image" [class]="msg.image?'chat_img':''"></ion-img>
+          <div class="image_container">
+            <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
+            <ion-img-viewer [src]="msg.image"
+            (ionImgDidLoad)="imageLoaded($event,true)"
+            [class]="msg.image?'chat_img':''"></ion-img-viewer>
+          </div>         
           <span>{{ msg.content }}</span>
           <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>        
         </ion-col>  
         <!-- <ion-col size="auto" *ngIf="msg.user.uid === currentUser" class="message my-message"> -->
         <ion-col size="auto" *ngIf="msg.user.uid === currentUser" class="message my-message ion-justify-content-end">
           <!-- <b class="username">{{ msg.user.first_name}} {{ msg.user.last_name }}</b><br> -->
-          <ion-img [src]="msg.image" [class]="msg.image?'chat_img':''"></ion-img>          
-          <span>{{ msg.content }}</span>
-          <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>
+          <div class="image_container">
+            <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
+            <ion-img-viewer [src]="msg.image"
+            (ionImgDidLoad)="imageLoaded($event,true)"
+            [class]="msg.image?'chat_img':''"></ion-img-viewer>   
+          </div>       
+            <span>{{ msg.content }}</span>
+            <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>
+          
         </ion-col>  
       </ion-row>                
   </ion-grid>   
@@ -118,7 +129,9 @@
   <ion-toolbar color="light">
     <ion-row no-padding align-items-center>
       <ion-col size="10">
-        <ion-img [src]="temp_image" class="temp_image_css" [hidden]=hide_image></ion-img>    
+        <ion-img [src]="temp_image" 
+        class="temp_image_css" [hidden]=hide_image>
+        </ion-img>    
         <ion-textarea  *ngIf="chat$ | async as chat"
          autosize class="message-input" maxRows="4"
          (ionFocus)="seen_chat()"

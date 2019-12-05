@@ -33,6 +33,7 @@ export class MessagesPage implements OnInit {
   hide_scroll:boolean
   text_value:boolean
   temp_image : string
+  temp_image_frb : string
   hide_image : boolean
   constructor(
     public cs: ChatService,
@@ -199,16 +200,25 @@ export class MessagesPage implements OnInit {
       });
   }
   async uploadImageToFirebase(image){
-
+    this.temp_image = image
     image = this.webview.convertFileSrc(image);           
     // var image = "assets/images/itenerary/arrival.jpg"
-    this.imageCompress.compressFile(image,-1,50,50).then(res=>{       
+    this.imageCompress.compressFile(image,-1,50,50).then(res=>{
       this.imageService.saveChatGallery(res,"chat-images").then(photo => {        
-        this.temp_image = photo.url      
+        this.temp_image_frb = photo.url      
         this.hide_image = false
         this.toaster.showToast("image uploaded")   
       })
     })
+  }
+  imageLoaded(event,isLoaded: boolean) {    
+    if (isLoaded) {
+      // setTimeout(() => {                
+        event.target.parentElement.parentElement.classList.add('img-loaded');
+      // }, 500);
+    } else {
+        event.target.parentElement.parentElement.classList.remove('img-loaded');
+    }
   }
   gotoGroups(){
     

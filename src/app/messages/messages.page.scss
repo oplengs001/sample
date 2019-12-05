@@ -50,9 +50,7 @@
   font-size: 15px;
   // color:#3DBCC3;
  }
-.chat_img{
-    width:50vw !important  
-}
+
 .temp_image_css{
   height: 50vh !important;
   // display: block
@@ -74,4 +72,31 @@
 .msg-btn {
   --padding-start: 0.5em;
   --padding-end: 0.5em;
+}
+.image_container{
+  ion-skeleton-text {
+    height: 30vh;
+    width: 50vw;
+    object-fit: inherit;
+    object-position: inherit;
+    // position: absolute;
+    visibility: visible;
+    opacity : 1
+  } 
+ 
+  &.img-loaded {
+    // background-color: transparent;
+    // border: 0;
+    max-width: 50vw !important;
+    ion-img-viewer {
+      
+      opacity: 1;
+      visibility: visible;
+    }
+
+    ion-skeleton-text {
+      display: none;
+      visibility: hidden;
+    }
+  }
 }
