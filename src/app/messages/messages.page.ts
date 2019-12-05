@@ -109,6 +109,7 @@ export class MessagesPage implements OnInit {
     this.seen_chat()     
     this.newMsg = ""
     this.temp_image =""
+    this.temp_image_css = "sent-img"
     // this.temp_image = "https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
     // this.temp_image_css = "temp-img"
     console.table({
