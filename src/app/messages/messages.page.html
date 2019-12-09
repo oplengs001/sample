@@ -148,7 +148,7 @@
         <ion-button [hidden]="newMsg === ''" expand="block" fill="clear" color="primary" [disabled]="uploading"  class="msg-btn"(click)="submit($event,chat.id,chat.group_name)">
           <ion-icon name="ios-send" slot="icon-only"></ion-icon>
         </ion-button>       
-        <ion-button [hidden]="newMsg.length !== 0" expand="block" fill="clear" color="primary" class="msg-btn" (click)="uploadImageToFirebase()">          
+        <ion-button [hidden]="newMsg.length !== 0" expand="block" fill="clear" color="primary" class="msg-btn" (click)="openImagePicker()">          
             <ion-icon name="camera"  slot="icon-only"></ion-icon>
         </ion-button>           
       </ion-col>    
