@@ -40,7 +40,7 @@ export class HomePage {
         this.fcm.onNotification().subscribe( async data => {
           console.log(data)
           // this.badge.increase(1);
-          this.footerFunc.addBadge()
+          
           if (data.wasTapped) {
             if(data.type ==="chat"){
               let navigationExtras: NavigationExtras = {
@@ -49,6 +49,7 @@ export class HomePage {
                 }
               };
               this.navCtrl.navigateForward(['messages'], navigationExtras);
+              this.footerFunc.addBadge()
             }else if(data.type === "announcement"){
               this.footerFunc.addBadge()
               this.transition.reRoute("announcements")
@@ -63,7 +64,7 @@ export class HomePage {
               //   this.footerFunc.SubrcibeToOwnTopics()
               //   this.toastService.showNotif("New Message From!", data);
               // }       
-              
+              this.footerFunc.addBadge()
             }else if(data.type === "announcement"){
               var uid = await this.authServ.currentUserId();   
               this.footerFunc.addBadge()
@@ -71,6 +72,7 @@ export class HomePage {
               this.guestFunc.updateNotifCount(uid,"increment")
             }else if(data.type === "adminNotif"){
               if(this.authServ.isAdmin){
+                
                 this.toastService.showNotif("New RSVP Response!",data.data_body)
               }
               

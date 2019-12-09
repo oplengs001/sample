@@ -36,7 +36,7 @@ export class NotificationService {
             "sender_id" : sender_id,
           },
           "tag " : topic,
-          "priority" : "low",
+          "priority" : "high",
           "to" : `/topics/${topic}`
       }
       this.httpIon.setDataSerializer("json")
