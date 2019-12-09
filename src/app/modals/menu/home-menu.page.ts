@@ -43,6 +43,11 @@ export class HomeMenuPage implements OnInit {
       icon: 'pricetag'
     },   
     {
+      title: 'See & Do',
+      url: '/home-tab',
+      icon: 'walk'
+    },
+    {
       title: 'Wedding Weather',
       url: '/wedding-weather',
       icon: 'rainy'

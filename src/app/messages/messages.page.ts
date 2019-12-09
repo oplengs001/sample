@@ -35,6 +35,7 @@ export class MessagesPage implements OnInit {
   temp_image : string
   temp_image_frb : string
   hide_image : boolean
+  uploading: boolean
   constructor(
     public cs: ChatService,
     public auth : AuthService,
@@ -108,6 +109,7 @@ export class MessagesPage implements OnInit {
     this.hide_image = true
   }
   ionViewDidEnter (){
+    this.uploading = false
     this.seen_chat()     
     this.newMsg = ""
     this.temp_image =""
@@ -199,21 +201,28 @@ export class MessagesPage implements OnInit {
         console.log(err);
       });
   }
-  async uploadImageToFirebase(image){
+  async uploadImageToFirebase(){
     // this.temp_image = image
-    image = this.webview.convertFileSrc(image);           
-    // var image = "assets/images/itenerary/arrival.jpg"
-    this.imageCompress.compressFile(image,-1,50,50).then(res=>{
-      this.imageService.saveChatGallery(res,"chat-images").then(photo => {        
-        this.temp_image = photo.url      
-        this.hide_image = false
-        this.toaster.showToast("image uploaded")   
-      })
-    })
+    // image = this.webview.convertFileSrc(image);           
+    this.toaster.showToast("image uploading, Please wait")
+    var image = "assets/images/itenerary/arrival.jpg"
+    this.hide_image = false
+    this.temp_image = image
+    this.uploading = true
+    this.newMsg = " "
+    // this.imageCompress.compressFile(image,-1,50,50).then(res=>{
+    //   this.imageService.saveChatGallery(res,"chat-images").then(photo => {        
+    //     this.temp_image = photo.url      
+    //     this.hide_image = false
+    //     this.uploading = false
+    //     this.toaster.showToast("image uploaded")   
+    //   })
+    // })
   }
   imageLoaded(event,isLoaded: boolean) {    
     if (isLoaded) {
       // setTimeout(() => {                
+        this.scrollToBottom(500)
         event.target.parentElement.parentElement.classList.add('img-loaded');
       // }, 500);
     } else {

@@ -10,7 +10,7 @@
   </ion-header>
 
 <ion-content [ngClass]="checkTime()">
-    <ion-slides  pager="true">
+    <ion-slides  pager="true"  class="weather-pager">
         <ion-slide *ngIf="cpeak_today" [hidden]="cpeak_slide">
           <ion-card class="content-card"> 
                 <!-- <img src="/assets/images/weather/clear.jpg" alt="" /> -->

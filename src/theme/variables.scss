@@ -89,11 +89,17 @@
   .swiper-pagination-bullet {
 
     --bullet-background: black !important;
+  
+  }  
+  .rentals .swiper-pagination-bullet-active {
+
+    --bullet-background-active: #488aff !important;
   }
   .swiper-pagination-bullet-active {
 
     --bullet-background-active: white !important;
   }
+
   .pulse {
     background: #f53d3d;
     box-shadow: 0 0 0 rgb(245, 61, 61,0.4);
