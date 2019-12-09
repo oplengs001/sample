@@ -72,7 +72,7 @@ export class CeremonyPage implements OnInit, AfterViewInit {
     this.MapHide = true
     this.infoService.getInfo().subscribe(data=>{
       if(data){
-        this.info = data[0]        
+        this.info = data[0]        //to be edit for more user
       }  
     })
     this.authServ.currentUserData().then(data=>{

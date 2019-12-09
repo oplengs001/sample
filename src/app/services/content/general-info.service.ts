@@ -15,7 +15,16 @@ export interface Info {
   dress_code : string,  
   dining_list : any  
   groom_name : string,
-  bride_name : string
+  bride_name : string,
+  b_mother_name:string,
+  b_father_name: string
+  g_mother_name :string,
+  g_father_name : string
+  invitation_f_text : string,
+  weddingDateText : string,
+  weddingYearText : string,
+  weddingTimeText : string,
+  invitation_last_text: string,  
   ref: DocumentReference,
 }
 @Injectable({

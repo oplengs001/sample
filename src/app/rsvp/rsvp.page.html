@@ -1,21 +1,21 @@
 <ion-content force-overscroll="false">
-  <ion-slides [options]="slideOptions" pager="true" [hidden]="hideSlide" >
+  <ion-slides [options]="slideOptions" pager="true" [hidden]="hideSlide" *ngIf=info>
       <ion-slide>
         <div class="slide-content" >
-            <p> JOHN DANIELS & TARA DANIELS </p>
-            <p> RAFAELA ABELLO &  PRESENTACIO ABELLO </p>
-            <span class=under-text> request the honor of your presence <br>at the marraige of their children </span>
-            <h1 class="wc-text">Tom  <br>&<br> Ingga</h1>
-            <p> SATURDAY, THE THIRTIETH OF NOVEMBER
-            <br> two thousand and nineteen</p>
+            <p style="text-transform:uppercase"> {{info.b_father_name}} & {{info.b_mother_name}} </p>
+            <p> {{info.g_father_name}} &  {{info.g_mother_name}} </p>
+            <span class=under-text> {{info.invitation_f_text}} </span>
+            <h1 class="wc-text">{{info.groom_name}}  <br>&<br> {{info.bride_name}}</h1>
+            <p> {{info.weddingDateText}}
+            <br> {{info.weddingYearText}}</p>
             <br>
-            <p> AT TWO O'CLOCK IN THE AFTERNOON
+            <p> {{info.weddingTimeText}}
                 <br> </p>
             <br>
-            <p> SAINT JUDE THADDEUS PARISH AND SHRINE
+            <p> {{info.location_place}}
                 <br> </p>
             <br>
-            <p> "Some Welcome Messsage and Intro About the App"</p>
+            <p> {{info.invitation_last_text}}</p>
             <br>
             <section class="buttons">
                 <header>RSVP</header>
