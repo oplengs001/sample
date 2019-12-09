@@ -11,23 +11,24 @@
 
 <ion-content> 
   <ion-list>
-    <div *ngFor="let guest of (guests | async)">
-      <ion-item *ngIf="(guest.isAdmin == false)" >        
+    <div *ngFor="let guest of (guests | async)">    
         <ion-label>
-          <h2>{{ guest.first_name }}  {{guest.last_name}}</h2>
-          <h3>{{ guest.position }} </h3>                  
-          <h2 *ngIf="guest.will_come; else notAttending">          
-              <ion-text color="success">will attend</ion-text>   
-              <ion-icon name="checkmark" color="success"></ion-icon>
-          </h2>            
-          <ng-template #notAttending>
-            <h2 >             
-              <ion-text color="danger">will not attend</ion-text>   
-              <ion-icon name="close" color="danger"></ion-icon>
+          <ion-item *ngIf="(guest.isAdmin == false)" >   
+            <ion-icon name="shirt" style.color="{{guest.color}}" slot="start"></ion-icon>
+            <h2 style="text-transform: capitalize" style.color="{{guest.color}}">{{ guest.first_name }}  {{guest.last_name}}</h2>               
+            <h2 *ngIf="guest.will_come; else notAttending" slot="end">          
+                <ion-text color="success">will attend</ion-text>   
+                <ion-icon name="checkmark" color="success"></ion-icon>
             </h2>            
-          </ng-template>
+            <ng-template #notAttending>
+              <h2 slot="end">
+                <ion-text color="danger">will not attend</ion-text>   
+                <ion-icon name="close" color="danger"></ion-icon>
+              </h2>            
+            </ng-template>
+          </ion-item>
         </ion-label>
-      </ion-item>
+ 
     </div>
   </ion-list>
 </ion-content> 
