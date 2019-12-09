@@ -69,6 +69,7 @@ export class AnnouncementSaveService {
     return this.NotifCollection.doc(id).delete();
   }
   updateNotif(id:string):Promise<void>{
+    console.log(id)
     return  this.NotifCollection.doc(id).update({
        status: "read",       
     })

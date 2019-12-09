@@ -4,7 +4,7 @@ import { map, take,flatMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ImagesService } from "../uploads/images.service"
 import { firestore } from 'firebase/app';
-
+import { NotificationService } from '../alerts/notification.service';
 export interface Itinerary {
   uid?: string,
   image_url: string,
@@ -24,7 +24,8 @@ export class SlidingContentService {
   eventItem : Itinerary
   constructor(
     private afs: AngularFirestore,
-    private imageServe : ImagesService
+    private imageServe : ImagesService,
+    private notif : NotificationService,   
     ) {
     this.eventsColletion = this.afs.collection<Itinerary>('events');
     this.events = this.eventsColletion.snapshotChanges().pipe(
@@ -56,6 +57,7 @@ export class SlidingContentService {
     item.position = to;        
     eventRef.update(item).then(()=>{
       console.log("updated")
+      this.notif.ItineraryNotif("Event Itinerary Update!",`${item.name}`)
     }).catch((error)=>{
       console.log(error)
     });

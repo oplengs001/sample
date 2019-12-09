@@ -7,7 +7,7 @@
 <ion-content>
   <ion-list>
       <div *ngFor="let notif of this.announcementServices.RsvpNotif">
-        <ion-item (click)=updateNotif(notif) [class]="notif.status==='read'?'readNotif':'unreadNotif'">        
+        <ion-item (click)="notif.status==='unread'?updateNotif(notif):'unreadNotif'" [class]="notif.status==='read'?'readNotif':'unreadNotif'">        
           <ion-label>
             <h2>{{ notif.title }}</h2>     
             <h2 *ngIf="notif.focus==='will attend'; else notAttending">          

@@ -36,7 +36,7 @@ export class NotificationService {
             "sender_id" : sender_id,
           },
           "tag " : topic,
-          "priority" : "high",
+          "priority" : "low",
           "to" : `/topics/${topic}`
       }
       this.httpIon.setDataSerializer("json")
@@ -59,26 +59,9 @@ export class NotificationService {
         console.log(response.error);
         object_returns = response.error
       });
-      // this.http.post("https://fcm.googleapis.com/fcm/send", postData,
-      // {
-      //   headers: this.headers,
-      //   observe: 'response'
-      // })
-      // .subscribe(data => {
-      //   console.log(data)
-      //   if(data.statusText === "OK"){   
-      //     console.log("ok")
-      //     object_returns = "OK"
-      //   }  
-      // }, error => {
-      //   console.log(error)
-      //   object_returns = error
-
-      // });
       return object_returns 
     }
-    AdminNotif(title : string ,body:string,){
-      
+    AdminNotif(title : string ,body:string,){      
       var object_returns : any
       let postData =  {
           "notification" :{
@@ -117,22 +100,47 @@ export class NotificationService {
         console.log(response.error);
         object_returns = response.error
       });
-      // this.http.post("https://fcm.googleapis.com/fcm/send", postData,
-      // {
-      //   headers: this.headers,
-      //   observe: 'response'
-      // })
-      // .subscribe(data => {
+      return object_returns 
+    }
+    ItineraryNotif(title : string ,body:string,){      
+      var object_returns : any
+      let postData =  {
+          "notification" :{
+              "title": title,
+              "text": body,
+              "click_action":"FCM_PLUGIN_ACTIVITY", 
+              "sound": "2",
+          },
+          "data": 
+          {
+            "type":"enappd",
+            "data_body": body,
+            "vibrate": "300",
+          },
+          "tag " : "enappd",
+          "priority" : "high",
+          "to" : `/topics/enappd`
+      }
+      this.httpIon.setDataSerializer("json")
+      this.httpIon.sendRequest("https://fcm.googleapis.com/fcm/send",{
+        method:"post",
+        data: postData,
+        headers: this.IonHeader,
+      })
+      .then(response => {
+        // prints 200
+        object_returns = "OK"
+        console.log(response.status);
+      })
+      .catch(response => {
+        // prints 403
+        console.log(response)
+        console.log(response.status);
 
-      //   if(data.statusText === "OK"){   
-      //     console.log("ok")
-      //     object_returns = "OK"
-      //   }  
-      // }, error => {
-      //   console.log(error)
-      //   object_returns = error
-
-      // });
+        // prints Permission denied
+        console.log(response.error);
+        object_returns = response.error
+      });
       return object_returns 
     }
 

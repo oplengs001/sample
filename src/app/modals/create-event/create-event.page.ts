@@ -9,6 +9,7 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Observable } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
 import { ToastService } from '../../services/toaster/toast-service';
+import { NotificationService } from "../../services/alerts/notification.service"
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.page.html',
@@ -31,8 +32,8 @@ export class CreateEventPage implements OnInit {
     private toastService : ToastService,
     private contentService : SlidingContentService,
     private fb: FormBuilder,
-    public loadingController: LoadingController
-
+    public loadingController: LoadingController,
+    private notif : NotificationService,   
   ) { 
 
     this.createGroupForm();
@@ -58,8 +59,11 @@ export class CreateEventPage implements OnInit {
         location : event_location,
         position : this.event_last_position+1
       }
-      this.contentService.addEvent(<Itinerary>eventItem).then(()=>{
+      this.contentService.addEvent(<Itinerary>eventItem).then((data)=>{
         this.actions.customAlert("Sucess","Event Added")
+        console.log(event_name)
+        console.log(data)
+        this.notif.ItineraryNotif("New Event on the Itinerary!",event_name)
         this.closeModal()
       })
     })

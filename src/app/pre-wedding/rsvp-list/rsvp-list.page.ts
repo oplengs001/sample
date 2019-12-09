@@ -23,6 +23,7 @@ export class RsvpListPage implements OnInit {
     let {id,body} = notif
     this.actions.confirmationMessage("You are marking this notification as Read",body).then((data)=>{
       if(data){
+        console.log(data)
         this.announcementServices.updateNotif(id)
       }
     })
