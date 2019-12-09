@@ -27,7 +27,14 @@
 
   // --ion-background-color:var(--ion-color-medium);
 }
-
+.imageloading {
+  opacity: .5;
+}
+.spinner-loader-class{
+  position: absolute;
+  left: 45vw;
+  bottom: 13vh;
+}
 .my-message {
   background: #6099ff;
   color:#ffffff;

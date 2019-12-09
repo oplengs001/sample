@@ -10,6 +10,7 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 import { ImagesService  } from "../services/uploads/images.service";
 import { LoadingController } from '@ionic/angular';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+
 import { ToastService } from '../services/toaster/toast-service';
 @Component({
   selector: 'app-messages',
@@ -201,23 +202,25 @@ export class MessagesPage implements OnInit {
         console.log(err);
       });
   }
-  async uploadImageToFirebase(){
+  async uploadImageToFirebase(image){
     // this.temp_image = image
-    // image = this.webview.convertFileSrc(image);           
-    this.toaster.showToast("image uploading, Please wait")
-    var image = "assets/images/itenerary/arrival.jpg"
+    image = this.webview.convertFileSrc(image);           
+    this.toaster.showToast("Please wait")
+    // var image = "assets/images/itenerary/arrival.jpg"
     this.hide_image = false
     this.temp_image = image
+    this.temp_image_frb = "imageloading md hydrated"
     this.uploading = true
     this.newMsg = " "
-    // this.imageCompress.compressFile(image,-1,50,50).then(res=>{
-    //   this.imageService.saveChatGallery(res,"chat-images").then(photo => {        
-    //     this.temp_image = photo.url      
-    //     this.hide_image = false
-    //     this.uploading = false
-    //     this.toaster.showToast("image uploaded")   
-    //   })
-    // })
+    this.imageCompress.compressFile(image,-1,50,50).then(res=>{
+      this.imageService.saveChatGallery(res,"chat-images").then(photo => {        
+        this.temp_image = photo.url      
+        this.hide_image = false
+        this.uploading = false
+        this.temp_image_frb = "md hydrated"
+        this.toaster.showToast("image ready")   
+      })
+    })
   }
   imageLoaded(event,isLoaded: boolean) {    
     if (isLoaded) {
