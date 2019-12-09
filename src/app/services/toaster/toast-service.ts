@@ -20,7 +20,8 @@ export class ToastService {
   showToast(msg) {    
     this.toastCtrl.create({
       message: msg,
-      duration: 2000
+      duration: 2000,
+      position: "top"
     }).then(toast => toast.present());
   }
   showNotif(msg:string,chat_data:any){
