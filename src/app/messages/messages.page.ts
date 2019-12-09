@@ -166,7 +166,16 @@ export class MessagesPage implements OnInit {
     event.preventDefault()
     var message = this.newMsg
       if(this.newMsg === '' || this.newMsg.length === 0 || !message.replace(/\s/g, '').length ){
- 
+        if(!this.hide_image){
+          this.cs.sendMessage(chatId, group_name,this.newMsg,this.temp_image).then(data=>{
+            this.hide_image = true
+            this.newMsg = ''
+            this.seen_chat()
+            this.temp_image = ''
+            // this.scrollToBottom(500)
+          }); 
+        }
+     
       }else{
         
         this.newMsg = this.newMsg.trim();
