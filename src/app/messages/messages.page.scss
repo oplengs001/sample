@@ -29,6 +29,13 @@
 }
 .imageloading {
   opacity: .5;
+  height: 50vh !important;
+  max-height:  50vh !important
+}
+.imageloaded {
+  opacity: 1;
+  height: 50vh !important;
+  max-height:  50vh !important
 }
 .spinner-loader-class{
   position: absolute;
@@ -59,7 +66,7 @@
  }
 
 .temp_image_css{
-  height: 50vh !important;
+
   // display: block
 }
 .sent-img{

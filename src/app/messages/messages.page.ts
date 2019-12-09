@@ -203,10 +203,10 @@ export class MessagesPage implements OnInit {
       });
   }
   async uploadImageToFirebase(image){
-    // this.temp_image = image
+    
     image = this.webview.convertFileSrc(image);           
     this.toaster.showToast("Please wait")
-    // var image = "assets/images/itenerary/arrival.jpg"
+    // var image = "assets/images/itenerary/sf5MXmIzXd.jpg"
     this.hide_image = false
     this.temp_image = image
     this.temp_image_frb = "imageloading md hydrated"
@@ -217,7 +217,7 @@ export class MessagesPage implements OnInit {
         this.temp_image = photo.url      
         this.hide_image = false
         this.uploading = false
-        this.temp_image_frb = "md hydrated"
+        this.temp_image_frb = "imageloaded md hydrated"
         this.toaster.showToast("image ready")   
       })
     })
