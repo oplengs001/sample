@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="reRoute('rsvp')">View RSVP</ion-button>
+    </ion-buttons>
+    <ion-title>RSVP CONTENT</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf=info>
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+          <ion-label position="stacked">Groom Name</ion-label>
+          <ion-input   
+          [(ngModel)]="info.groom_name"  
+          (ionBlur)="saveItem()"            
+          ></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="stacked">Bride Name</ion-label>
+          <ion-input   
+          [(ngModel)]="info.bride_name"  
+          (ionBlur)="saveItem()"            
+          ></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="stacked">Groom Father Name</ion-label>
+          <ion-input   
+          [(ngModel)]="info.g_father_name"  
+          (ionBlur)="saveItem()"            
+          ></ion-input>
+      </ion-item> 
+      <ion-item>
+          <ion-label position="stacked">Groom Mother Name</ion-label>
+          <ion-input   
+          [(ngModel)]="info.g_mother_name"  
+          (ionBlur)="saveItem()"            
+          ></ion-input>
+      </ion-item> 
+      <ion-item>
+          <ion-label position="stacked">Bride Father Name</ion-label>
+          <ion-input   
+          [(ngModel)]="info.b_father_name"  
+          (ionBlur)="saveItem()"            
+          ></ion-input>
+      </ion-item> 
+      <ion-item>
+          <ion-label position="stacked">Bride Mother Name</ion-label>
+          <ion-input   
+          [(ngModel)]="info.b_mother_name"  
+          (ionBlur)="saveItem()"            
+          ></ion-input>
+      </ion-item> 
+      <ion-item>
+          <ion-label position="stacked">Welcome Note</ion-label>
+          <ion-textarea  
+          [(ngModel)]="info.invitation_f_text"  
+          (ionBlur)="saveItem()"            
+          ></ion-textarea>
+      </ion-item>
+      <ion-item>
+          <ion-label position="stacked">Wedding Date Text</ion-label>
+          <ion-input   
+          [(ngModel)]="info.weddingDateText"  
+          (ionBlur)="saveItem()"            
+          ></ion-input>
+      </ion-item>  
+      <ion-item>
+          <ion-label position="stacked">Wedding Time Text</ion-label>
+          <ion-input   
+          [(ngModel)]="info.weddingTimeText"  
+          (ionBlur)="saveItem()"            
+          ></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="stacked">Wedding Location</ion-label>
+          <ion-input   
+          [(ngModel)]="info.location_place"  
+          (ionBlur)="saveItem()"            
+          ></ion-input>
+      </ion-item>
+    </ion-list>
+</ion-content>

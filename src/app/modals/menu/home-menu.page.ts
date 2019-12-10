@@ -43,7 +43,7 @@ export class HomeMenuPage implements OnInit {
       icon: 'pricetag'
     },   
     {
-      title: 'See & Do',
+      title: 'What To Do',
       url: '/home-tab',
       icon: 'walk'
     },

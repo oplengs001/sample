@@ -1,8 +1,8 @@
 <ion-content force-overscroll="false">
-  <ion-slides [options]="slideOptions" pager="true" [hidden]="hideSlide" *ngIf=info>
+  <ion-slides [options]="slideOptions" [hidden]="hideSlide" *ngIf=info >
       <ion-slide>
         <div class="slide-content" >
-            <p style="text-transform:uppercase"> {{info.b_father_name}} & {{info.b_mother_name}} </p>
+            <p> {{info.b_father_name}} & {{info.b_mother_name}} </p>
             <p> {{info.g_father_name}} &  {{info.g_mother_name}} </p>
             <span class=under-text> {{info.invitation_f_text}} </span>
             <h1 class="wc-text">{{info.groom_name}}  <br>&<br> {{info.bride_name}}</h1>
@@ -19,8 +19,8 @@
             <br>
             <section class="buttons">
                 <header>RSVP</header>
-                <ion-button size="large" color="light" (click)="home.updateStatus(true)"> Accept </ion-button>      
-                <ion-button size="large" color="danger" (click)="home.updateStatus(false)"> Decline </ion-button>
+                <ion-button size="large" color="light" (click)="home.updateStatus(true)" [disabled]="isAdmin" > Accept </ion-button>      
+                <ion-button size="large" color="danger" (click)="home.updateStatus(false)" [disabled]="isAdmin"> Decline </ion-button>
             </section>            
         </div>
       </ion-slide>       

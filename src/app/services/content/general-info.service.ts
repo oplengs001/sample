@@ -52,8 +52,8 @@ export class GeneralInfoService {
   getInfo(): Observable<Info[]> { 
     return this.g_info;
   }
-  updateInfo(infoRef:DocumentReference,item:any){
-    infoRef.update(item).then(()=>{
+  updateInfo(infoRef:DocumentReference,item:any):Promise <any>{
+    return infoRef.update(item).then(()=>{
       console.log("updated")
     }).catch((error)=>{
       console.log(error)

@@ -37,6 +37,7 @@ const routes: Routes = [
   { path: 'create-event', loadChildren: './modals/create-event/create-event.module#CreateEventPageModule' },
   { path: 'rsvp', loadChildren: './rsvp/rsvp.module#RsvpPageModule' },
   { path: 'rsvp-list', loadChildren: './pre-wedding/rsvp-list/rsvp-list.module#RsvpListPageModule' },
+  { path: 'rsvp-admin', loadChildren: './rsvp/rsvp-admin/rsvp-admin.module#RsvpAdminPageModule' },
 ];
 
 @NgModule({
