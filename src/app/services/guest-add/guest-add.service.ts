@@ -17,7 +17,8 @@ export interface Guest {
   isAdmin : boolean,
   forRsvp : boolean,
   will_come : boolean
-  notif_count : number
+  notif_count : number,
+  extra: number
   color : string,
 }
 @Injectable({
@@ -124,28 +125,41 @@ export class GuestAddService {
       notif_count: value
     })
   }
+  updateGuestCount(uid:string,count:number):Promise<void>{    
+    return this.GuestCollection.doc(uid).update({
+      extra: count
+    })
+  }
   updateStatus(userDetails : any ,will_come:boolean):Promise<void>{  
     let {first_name , last_name ,uid} = userDetails
-    let decision  = will_come?"will attend":"will not attend"
+    let decision  = will_come?"will attend":"will not attend"  
     let notif : AdminNotification ={
         title: "RSVP Response",
         body: `${first_name} ${last_name} responded "${decision}" on the RSVP`,
         createdAt : Date.now(),
         status : "unread",
         focus : decision
-    }
+    }         
     this.notificationService.AdminNotif(notif.title,notif.body)  
     return this.announcementService.saveNotif(notif).then(()=>{
        this.GuestCollection.doc(uid).update({
-        will_come: will_come,
+        will_come: will_come, 
+        color : userDetails.color || this.getRandomColor(),
         forRsvp : false
       })
     })
-
   }
   
   deleteGuest(id: string): Promise<void> {
     return this.GuestCollection.doc(id).delete();
   }
-  
+ 
+  getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 }

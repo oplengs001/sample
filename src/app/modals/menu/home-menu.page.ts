@@ -1,5 +1,5 @@
 import { Component, OnInit ,Injectable } from '@angular/core';
-import { ModalController, } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { myEnterAnimation, myLeaveAnimation } from "../../animations/animations"
 import { TransitionsService } from "../../services/native/transitions.service"
 import { ActionClass } from "../../gallery-action-sheet/actionsheet"
@@ -20,6 +20,7 @@ export class HomeMenuPage implements OnInit {
   private isAdmin: boolean
   private will_come: boolean
   private userDetail : any  
+  private currentUID : string
   private userColor : string
   appPages = [
     {
@@ -61,7 +62,7 @@ export class HomeMenuPage implements OnInit {
     private tranServe :TransitionsService,
     private footer : FooterComponent,
     private guestService : GuestAddService, 
-    private annServe  :AnnouncementSaveService,
+    private annServe  :AnnouncementSaveService,    
   ) {     
   
   }
@@ -69,9 +70,16 @@ export class HomeMenuPage implements OnInit {
    
   }
   ngOnInit() {    
+
     this.currentUser = `${this.authServ.userGuestDetails["first_name"]} ${this.authServ.userGuestDetails["last_name"]}`  
     this.isAdmin = this.authServ.isAdmin()    
     this.userColor = this.authServ.userGuestDetails["color"]
+    this.currentUID = this.authServ.userGuestDetails["uid"]
+
+    console.log(!this.isAdmin)
+
+    console.log(!this.isAdmin
+      &&this.authServ.userGuestDetails.extra!==''&&this.authServ.userGuestDetails.extra!=="0")
   }
   gotoRsvpList(){
     this.closeModal()
@@ -123,7 +131,8 @@ export class HomeMenuPage implements OnInit {
       if(data){
         this.guestService.updateStatus(this.authServ.userGuestDetails,value).then(data=>{                       
           if(value){
-            this.actionSheet.customAlert("Hello!","Thanks for Accepting the invitation")
+            this.actionSheet.customAlert("Welcome!","Thanks for Accepting the invitation")
+            this.plusOnePrompt()
           }else{
             this.actionSheet.customAlert("Ow..","Hope You Change your Mind!")
           }                   
@@ -134,5 +143,24 @@ export class HomeMenuPage implements OnInit {
 
   }
 
-  
+  plusOnePrompt(message?: string){
+    var r_message = message||"Do you have extra Guests Attending with you?"
+    this.actionSheet.confirmationMessage(r_message,"","Hey There!").then(data=>{
+      if(data){
+      this.actionSheet.plusOnePrompt().then(data=>{
+        var {extra} = data.values
+        if (extra !== "0" && extra !== "") {
+          if(this.currentUID === undefined){
+            this.currentUID = this.authServ.currentUserId()
+          }
+          this.guestService.updateGuestCount(this.currentUID,extra)
+        }else{
+          return null
+        }
+      })
+      }else{
+      }
+    })  
+  }
 }
+

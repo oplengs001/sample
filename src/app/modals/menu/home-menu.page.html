@@ -35,6 +35,12 @@
           </ion-label>       
           <ion-badge *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
         </ion-item>
+      <ion-item *ngIf="!isAdmin&&this.authServ.userGuestDetails.extra!==''&&this.authServ.userGuestDetails.extra!=='0'"  lines="none" (click)="plusOnePrompt('Do you want to Change you Plus Guest Count?')">      
+            <ion-icon slot="start" color="primary" name="people"></ion-icon>
+            <ion-label slot="start" color="primary" >
+                Plus Guests : <ion-text> {{this.authServ.userGuestDetails.extra}}</ion-text>
+            </ion-label>
+      </ion-item>
       <ion-item *ngIf=!isAdmin (click)="changeDecision()" lines="none" >        
           <ion-icon color="primary" slot="start" name="mail"></ion-icon>    
           <ion-label slot="start"  color="primary" *ngIf="this.authServ.userGuestDetails.will_come;else notAttending">
@@ -51,13 +57,13 @@
                 </ion-text>
               </ion-label>           
           </ng-template>                  
-      </ion-item>
+      </ion-item>   
       <ion-item (click)="logout()" lines="none" >      
           <ion-icon slot="start" color="danger" name="arrow-back"></ion-icon>
           <ion-label slot="start" color="danger" >
               Log-Out
           </ion-label>
-        </ion-item>
+      </ion-item>
       <ion-item (click)="closeModal" lines="none">   
       <ion-icon slot="start"name="contact" [style.color]=userColor ></ion-icon>
           <ion-label slot="start" [style.color]=userColor>          

@@ -173,10 +173,10 @@ export class ActionClass implements OnInit {
       }      
     })
   }
-  async confirmationMessage(message:string,notifBody?:string):Promise<boolean> {
+  async confirmationMessage(message:string,notifBody?:string,header?:string):Promise<boolean> {
     let choice
     const alert = await this.alertController.create({
-      header: 'Are You Sure?',
+      header: header||'Are You Sure?',
       subHeader :notifBody||"",
       message: message,      
       buttons: [
@@ -282,6 +282,45 @@ export class ActionClass implements OnInit {
       res.present();      
     });
  
+  }
+  async plusOnePrompt():Promise<any>{
+    var returning_data
+    let alert = await this.alertController.create({
+      header: 'Plus One',
+      inputs: [
+        {
+          name: 'extra',
+          placeholder: 'Extra Guests Count',
+          type: "number"
+        },       
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },{
+          text: 'Save',
+          handler:  data => {
+            console.log(data)
+            if (data.extra !== "0" && data.extra !== "") {
+              // logged in!
+              this.customAlert(`Alright!`,`This number (${data.extra}) is now your Plus Guests Count, Click Plus Guest On Side Menu if You want to Change it.`)
+            } else {              
+              this.toaster.showToast("Guest Number Cannot be Empty")
+              this.plusOnePrompt()
+            }
+          }
+        }   
+      ]
+    });
+   await alert.present();
+   await alert.onDidDismiss().then(res=>{
+    returning_data = res.data
+   })
+   return returning_data
   }
   // imageUploadTest(){
   //   // var image = this.webview.convertFileSrc("../../assets/images/g1.jpg");

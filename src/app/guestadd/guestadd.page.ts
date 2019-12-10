@@ -24,6 +24,7 @@ export class GuestaddPage implements OnInit {
     forRsvp : true,
     will_come : null,
     notif_count:0,
+    extra:0,
     color: this.getRandomColor()
 
   };
@@ -74,6 +75,7 @@ export class GuestaddPage implements OnInit {
         forRsvp: true,
         will_come : null,
         notif_count :0,
+        extra:0,
         color: this.getRandomColor()
       }    
       this.password = password
@@ -130,6 +132,7 @@ export class GuestaddPage implements OnInit {
       forRsvp: true,
       will_come : null,
       notif_count : 0,
+      extra:0,
       color: this.getRandomColor()
     };
     this.guestForm.setValue(
