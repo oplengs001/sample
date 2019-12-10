@@ -67,8 +67,7 @@ export class FooterComponent   {
         // this.chatServ.getAllChat().subscribe(data=>{
         //   console.log(data)
         // })
-        this.announcementServices.getNotifs().subscribe(data=>{      
-          console.log(data)
+        this.announcementServices.getNotifs().subscribe(data=>{                
           this.announcementServices.RsvpNotif = data     
           this.announcementServices.RsvpNotifCount = this.countUnreadAdminNotif(data);
         })

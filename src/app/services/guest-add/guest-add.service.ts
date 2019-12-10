@@ -125,7 +125,7 @@ export class GuestAddService {
       notif_count: value
     })
   }
-  updateGuestCount(uid:string,count:number):Promise<void>{    
+  updateGuestCount(uid:string,count:number):Promise<void>{        
     return this.GuestCollection.doc(uid).update({
       extra: count
     })

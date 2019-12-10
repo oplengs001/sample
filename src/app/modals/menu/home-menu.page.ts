@@ -75,11 +75,6 @@ export class HomeMenuPage implements OnInit {
     this.isAdmin = this.authServ.isAdmin()    
     this.userColor = this.authServ.userGuestDetails["color"]
     this.currentUID = this.authServ.userGuestDetails["uid"]
-
-    console.log(!this.isAdmin)
-
-    console.log(!this.isAdmin
-      &&this.authServ.userGuestDetails.extra!==''&&this.authServ.userGuestDetails.extra!=="0")
   }
   gotoRsvpList(){
     this.closeModal()

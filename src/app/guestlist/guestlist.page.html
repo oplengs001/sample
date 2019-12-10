@@ -10,9 +10,10 @@
 </ion-header>
 
 <ion-content> 
+    
   <ion-list>
     <div *ngFor="let guest of (guests | async)">    
-        <ion-label>
+        <ion-label class="guests">
           <ion-item *ngIf="(guest.isAdmin == false)" >   
             <ion-icon name="shirt" style.color="{{guest.color}}" slot="start"></ion-icon>
             <h2 style="text-transform: capitalize" style.color="{{guest.color}}">{{ guest.first_name }}  {{guest.last_name}}</h2>               
@@ -32,3 +33,23 @@
     </div>
   </ion-list>
 </ion-content> 
+<ion-footer class="footer" *ngIf="footer_details">
+    <ion-row>
+        <ion-col class="attend">      
+          <h3>{{footer_details.attending}}</h3>
+          <h4> Will Attend</h4>
+        </ion-col>
+        <ion-col class="not">          
+          <h3>{{footer_details.n_attending}}</h3>
+          <h4>Will Not Attend</h4>
+        </ion-col>
+        <ion-col class="all">                  
+          <h3>{{footer_details.all_guest}}</h3>
+          <h4>All Guest</h4>
+        </ion-col>
+        <ion-col class="overall">          
+          <h3>{{footer_details.overall}}</h3>
+          <h4>Overall Guest</h4>
+        </ion-col>
+      </ion-row>
+</ion-footer>
