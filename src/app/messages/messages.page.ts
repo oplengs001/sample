@@ -94,8 +94,8 @@ export class MessagesPage implements OnInit {
   ionViewWillEnter() {
    
   }
-  seen_chat(){
-    this.cs.seen_chat(this.id).then(seen =>{        
+  seen_chat(chat_id:string){
+    this.cs.seen_chat(chat_id).then(seen =>{        
       if(seen.continue){
         this.footerFunc.SubrcibeToOwnTopics()
         this.footerFunc.ClearNotifs(seen.count)
@@ -124,7 +124,7 @@ export class MessagesPage implements OnInit {
     this.current_length = undefined
     this.limit = undefined
     this.uploading = false
-    this.seen_chat()     
+    this.seen_chat(id)
     this.newMsg = ""
     this.temp_image =""
     this.hide_image = true
@@ -176,7 +176,7 @@ export class MessagesPage implements OnInit {
           this.cs.sendMessage(chatId, group_name,this.newMsg,this.temp_image).then(data=>{
             this.hide_image = true
             this.newMsg = ''
-            this.seen_chat()
+            this.seen_chat(this.id)
             this.temp_image = ''
             // this.scrollToBottom(500)
           }); 
@@ -188,7 +188,7 @@ export class MessagesPage implements OnInit {
         this.cs.sendMessage(chatId, group_name,this.newMsg,this.temp_image).then(data=>{
           this.hide_image = true
           this.newMsg = ''
-          this.seen_chat()
+          this.seen_chat(this.id)
           this.temp_image = ''
           // this.scrollToBottom(500)
         });   

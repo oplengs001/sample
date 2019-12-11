@@ -51,8 +51,8 @@ export class HomePage {
                 queryParams: {
                     group_id: data.group,
                 }
-              };
-              this.transition.reRoute("home")
+              };              
+              // this.transition.reRoute("home")
               this.navCtrl.navigateForward(['messages'], navigationExtras);
               this.footerFunc.addBadge()
             }else if(data.type === "announcement"){
@@ -78,7 +78,10 @@ export class HomePage {
               //   this.footerFunc.SubrcibeToOwnTopics()
               //   this.toastService.showNotif("New Message From!", data);
               // }       
-              this.footerFunc.addBadge()
+              if(!this.authServ.isAdmin){
+                this.footerFunc.addBadge()
+              }
+            
             }else if(data.type === "announcement"){
               var uid = await this.authServ.currentUserId();   
               this.footerFunc.addBadge()

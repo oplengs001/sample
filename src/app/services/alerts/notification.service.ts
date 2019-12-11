@@ -31,7 +31,7 @@ export class NotificationService {
           "data": 
           {
             "type":"chat",
-            "group": group_name,
+            "group": topic,
             "vibrate": "300",
             "sender_id" : sender_id,
           },
