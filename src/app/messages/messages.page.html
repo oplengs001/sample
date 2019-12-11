@@ -142,14 +142,13 @@
          (ionFocus)="seen_chat()"
          [(ngModel)]="newMsg" 
          (keydown.enter)="submit($event,chat.id,chat.group_name)"
-         id="message_area"
           ></ion-textarea>
       </ion-col>
       <ion-col size="2" *ngIf="chat$ | async as chat">
-        <ion-button for="message_area" [hidden]="newMsg === ''" expand="block" fill="clear" color="primary" [disabled]="uploading"  class="msg-btn"(click)="submit($event,chat.id,chat.group_name)">
+        <ion-button [hidden]="newMsg === ''" expand="block" fill="clear" color="primary" [disabled]="uploading"  class="msg-btn"(click)="submit($event,chat.id,chat.group_name)">
           <ion-icon name="ios-send" slot="icon-only"></ion-icon>
         </ion-button>       
-        <ion-button for="message_area" [hidden]="newMsg.length !== 0" expand="block" fill="clear" color="primary" class="msg-btn" (click)="openImagePicker()">          
+        <ion-button [hidden]="newMsg.length !== 0" expand="block" fill="clear" color="primary" class="msg-btn" (click)="openImagePicker()">          
             <ion-icon name="camera"  slot="icon-only"></ion-icon>
         </ion-button>           
       </ion-col>    

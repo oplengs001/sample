@@ -52,7 +52,7 @@ export class HomePage {
                     group_id: data.group,
                 }
               };              
-              // this.transition.reRoute("home")
+              this.transition.reRoute("home")
               this.navCtrl.navigateForward(['messages'], navigationExtras);
               this.footerFunc.addBadge()
             }else if(data.type === "announcement"){
