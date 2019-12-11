@@ -14,18 +14,18 @@
   <ion-list>
       <ion-list-header>
           <ion-row style="width:100%">
-            <ion-col class="ion-text-left">
+            <ion-col class="ion-text-left" (click)="changeSort('first_name')">
               Guests
             </ion-col>
-            <ion-col>
+            <ion-col (click)="changeSort('extra')">
               Extra
             </ion-col>
-            <ion-col>
+            <ion-col (click)="changeSort('will_come')">
               Status
             </ion-col>
           </ion-row>
       </ion-list-header>
-    <div *ngFor="let guest of (guest_array)" (click)="expandItem(guest)" >    
+    <div *ngFor="let guest of (guest_array | sort :sortFlow:sortValue )" (click)="expandItem(guest)" >    
         <!-- <ion-label class="guests"> -->
           <ion-item *ngIf="(guest.isAdmin == false)" >   
               <ion-row style="width:100%">
@@ -33,7 +33,7 @@
                       <h2 style.color="{{guest.color}}" style="text-transform: capitalize">{{ guest.first_name }}  {{guest.last_name}}</h2>  
                   </ion-col>
                   <ion-col >
-                      <h2 >{{guest.extra}}</h2>  
+                      <h2 >{{guest.extra||'#'}}</h2>  
                   </ion-col>
                   <ion-col >
                       <h2 *ngIf="guest.will_come; else notAttending" >
@@ -64,6 +64,22 @@
                   <ion-col class="ion-text-left">
                     {{guest.email}}
                   </ion-col>
+                </ion-item>
+                <ion-item>
+                    <ion-col>
+                        Extra Guests:
+                    </ion-col>
+                    <ion-col class="ion-text-left">
+                      {{guest.extra||'#'}}
+                    </ion-col>
+                </ion-item>
+                <ion-item>
+                    <ion-col>
+                        Number:
+                    </ion-col>
+                    <ion-col class="ion-text-left">
+                      {{guest.number||'#'}}
+                    </ion-col>
                 </ion-item>
                 <ion-item>
                     <ion-col>

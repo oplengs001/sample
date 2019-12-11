@@ -11,6 +11,8 @@ export class GuestlistPage implements OnInit {
   private guests: Observable<Guest[]>;
   private footer_details : any
   private guest_array : any
+  private sortValue :any
+  private sortFlow : any
   constructor(
     private guestServ: GuestAddService ,
     private router : Router) { }
@@ -21,6 +23,8 @@ export class GuestlistPage implements OnInit {
       this.guest_array = data
       this.guestSummary(data)
     })
+    this.sortValue = "first_name"
+    this.sortFlow = "asc"
   }
   guestSummary(guests) {
     var attending=0,n_attending=0,overall=0,all_guest=0,pendings=0
@@ -52,6 +56,17 @@ export class GuestlistPage implements OnInit {
     this.footer_details={
       attending,n_attending,overall,all_guest,pendings
     }    
+  }
+  changeSort(value:string){
+    if(value === this.sortValue){
+      if(this.sortFlow === "asc"){
+        this.sortFlow = "desc"
+      }else{
+        this.sortFlow = "asc"
+      }
+    }
+    this.sortValue = value
+    
   }
   expandItem(item): void {
    
