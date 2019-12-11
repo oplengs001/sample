@@ -144,10 +144,12 @@ export class HomeMenuPage implements OnInit {
       if(data){
       this.actionSheet.plusOnePrompt().then(data=>{
         var {extra} = data.values
+     
         if (extra !== "0" && extra !== "") {
           if(this.currentUID === undefined){
             this.currentUID = this.authServ.currentUserId()
           }
+          extra = parseInt(extra)
           this.guestService.updateGuestCount(this.currentUID,extra)
         }else{
           return null

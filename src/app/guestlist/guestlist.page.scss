@@ -1,7 +1,15 @@
 @import "../../theme/variables.scss";
-.guests{
+
     h2{
-        font-size:15px
+        font-size:12px
+    }
+ion-col{
+    text-align: center
+}
+.expandables{
+    ion-col{
+        font-size:12px;
+        text-align: left
     }
 }
 .footer{
@@ -17,10 +25,13 @@
         color :  var(--ion-color-danger);
     }
     .all{
-        color :  var(--ion-color-dark);
+        color :  var(--ion-color-tertiary);
     }
     .overall{
         color :  var(--ion-color-primary);
+    }
+    .pending{
+        color :  var(--ion-color-warning);
     }
     h4 {
         text-align: center;
