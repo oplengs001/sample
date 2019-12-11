@@ -51,9 +51,7 @@ export class MessagesPage implements OnInit {
     private toaster : ToastService,
   ) {    
     this.route.queryParams.subscribe(params => {
-      console.log(params["group_id"])
       this.id = params["group_id"];      
-      this.loadChat(this.id)
     });
   }
 
@@ -113,35 +111,33 @@ export class MessagesPage implements OnInit {
     this.temp_image = ""
     this.hide_image = true
   }
-  ionViewDidEnter (){    
-   
-    
-    
-  }
-  loadChat(id:string){
-    this.ThisChat.unsubscribe()
-    this.current_index = undefined
-    this.current_length = undefined
-    this.limit = undefined
+  ionViewDidEnter (){
     this.uploading = false
     this.seen_chat()     
     this.newMsg = ""
     this.temp_image =""
     this.hide_image = true
-      
+    // this.temp_image_css = "sent-img"
+    // this.temp_image = "https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
+    // this.temp_image_css = "temp-img"
+    console.table({
+      c_index : this.current_index,
+      limit : this.limit,
+      current_length : this.current_length
+    }) 
     this.currentUser = this.auth.currentUserId()
     this.hide_scroll = false    
     this.limit = 10
     console.log("did enter")
     this.infiniteScroll.disabled = false  
     
-    this.cs.joinUsers(this.cs.get(id)).then(data=>{
+    this.cs.joinUsers(this.cs.get(this.id)).then(data=>{
       this.chat$ = data      
       this.scrollToBottom(500)   
       // this.scrollToBottom(500)
       this.ThisChat = data.subscribe(data=>{
         console.log(data)
-        if(id == data.id){
+        if(this.id == data.id){
           let from_seen = false
           if(this.current_length === data.messages.length){
             from_seen = true
@@ -165,7 +161,7 @@ export class MessagesPage implements OnInit {
         }
          
       })         
-    }); 
+    });  
   }
 
   submit(event,chatId,group_name) {       
