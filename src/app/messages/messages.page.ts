@@ -37,6 +37,7 @@ export class MessagesPage implements OnInit {
   temp_image_frb : string
   hide_image : boolean
   uploading: boolean
+  private first_line = true
   constructor(
     public cs: ChatService,
     public auth : AuthService,
@@ -74,6 +75,7 @@ export class MessagesPage implements OnInit {
             this.limit = this.current_length
             
           }else{
+            this.first_line = false
             this.current_index = this.current_length-this.limit                       
             this.infiniteScroll.complete()  
           }                 
@@ -234,7 +236,10 @@ export class MessagesPage implements OnInit {
   imageLoaded(event,isLoaded: boolean) {    
     if (isLoaded) {
       // setTimeout(() => {                
-        this.scrollToBottom(500)
+        //
+        if(this.first_line){
+          this.scrollToBottom(500)
+        }
         event.target.parentElement.parentElement.classList.add('img-loaded');
       // }, 500);
     } else {
