@@ -46,7 +46,8 @@ export class HomePage {
           
           if (data.wasTapped) {
             if(data.type ==="chat"){
-              let navigationExtras: NavigationExtras = {
+              //to fix previous chat
+              var navigationExtras: NavigationExtras = {
                 queryParams: {
                     group_id: data.group,
                 }
@@ -57,6 +58,15 @@ export class HomePage {
               this.footerFunc.addBadge()
               this.transition.reRoute("announcements")
               this.guestFunc.updateNotifCount(uid,"increment")
+            }
+            else if(data.type === "enappd"){
+              this.footerFunc.addBadge()
+              var navigationExtras: NavigationExtras = {
+                queryParams: {
+                    group_id: data.group,
+                }
+              };
+              this.transition.reRouteActivityNoAnimation("Itinerary")              
             }
           } else {
             if(data.type === "chat"){
