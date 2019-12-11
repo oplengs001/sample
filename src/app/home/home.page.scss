@@ -97,4 +97,15 @@
   transition: all ease-in-out 250ms; }
 
     
-    
+.bounce-2 {
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    transform-origin: bottom;
+    animation-name: bounce-2;
+    animation-timing-function: ease;
+}
+@keyframes bounce-2 {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-25px); }
+    100% { transform: translateY(0); }
+}

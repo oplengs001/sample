@@ -1,6 +1,6 @@
-import { Component , OnInit,Injectable} from '@angular/core';
+import { Component ,ViewChild, OnInit,Injectable} from '@angular/core';
 import { FCM } from '@ionic-native/fcm/ngx';
-import { Platform } from '@ionic/angular';
+import {IonContent, Platform } from '@ionic/angular';
 import { HomeMenuPage } from '../modals/menu/home-menu.page'
 import { AuthService } from '../services/auth/auth.service';
 import { ToastService } from '../services/toaster/toast-service';
@@ -18,8 +18,11 @@ import { FooterComponent} from '../footer/footer.component'
 })
 export class HomePage {
   pushes: any = [];
+  @ViewChild(IonContent, {static: false}) content: IonContent;
   public inbox_count : number
   public forRsvp : boolean
+  private scrollDepthTriggered = false;
+  
   constructor(
     private fcm: FCM, 
     public plt: Platform,
@@ -126,5 +129,32 @@ export class HomePage {
   ngOnInit() {
     this.subscribeToTopic()
     
+  }
+  scrollToBottom(){
+    this.content.scrollToBottom(500);
+  }
+  async logScrolling($event) {
+    // only send the event once
+    if(this.scrollDepthTriggered) {
+      return;
+    }
+
+    console.log(this.scrollDepthTriggered);
+    const scrollElement = await $event.target.getScrollElement();
+    // minus clientHeight because trigger is scrollTop
+    // otherwise you hit the bottom of the page before 
+    // the top screen can get to 80% total document height
+    const scrollHeight = scrollElement.scrollHeight - scrollElement.clientHeight;
+    const currentScrollDepth = $event.detail.scrollTop;
+    const targetPercent = 80;
+    let triggerDepth = ((scrollHeight / 100) * targetPercent); 
+    if(currentScrollDepth > triggerDepth) {
+      console.log(`Scrolled to ${targetPercent}%`);
+      // this ensures that the event only triggers once
+      this.scrollDepthTriggered = true;
+      // do your analytics tracking here
+    }else{
+      this.scrollDepthTriggered = false;
+    }
   }
 }
