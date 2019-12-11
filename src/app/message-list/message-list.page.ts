@@ -14,7 +14,7 @@ import { FooterComponent } from '../footer/footer.component'
 })
 export class MessageListPage implements OnInit {
   private AllChatSubs = new Subscription()
-  private currentChats : any = []
+  private currentChats : any
   constructor( 
     private authServ : AuthService,
     private navCtrl : NavController,
@@ -31,13 +31,22 @@ export class MessageListPage implements OnInit {
     this.AllChatSubs.unsubscribe()    
   }
   ionViewDidEnter(){
-    if(this.authServ.userGuestDetails["isAdmin"]){
-      this.footerClass.getAllGC()
-    }
-   
+    var isAdmin
+    if(this.authServ.userGuestDetails){
+      isAdmin = this.authServ.userGuestDetails["isAdmin"]
+      if(isAdmin){      
+        this.footerClass.getAllGC()
+      }
+    }else{
+      this.authServ.currentUserData().then(data=>{     
+        isAdmin = data.isAdmin    
+        if(isAdmin){      
+          this.footerClass.getAllGC()
+        }
+      })
+    }       
   }
-  ngOnDestroy(){
-    console.log("leaved")
+  ngOnDestroy(){    
     this.AllChatSubs.unsubscribe()
   }
   goToChat (group_name) {
@@ -47,8 +56,5 @@ export class MessageListPage implements OnInit {
         }
     };
     this.navCtrl.navigateForward(['messages'], navigationExtras);
-  }
-  trackByFn(i: number) { 
-    return i
-  }
+  } 
 }

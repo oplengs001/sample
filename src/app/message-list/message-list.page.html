@@ -10,15 +10,15 @@
         </ion-back-button>
       </ion-buttons>
       <ion-title>
-        My Groups
+       My Groups
       </ion-title>
     </ion-toolbar>
   </ion-header>
   
 <ion-content  forceOverscroll=false>
     <ion-list>
-        <div *ngFor="let gc of currentChats ;trackBy: trackByFn; ">       
-          <br>    
+      <div *ngFor="let gc of (currentChats)">      
+        <br>           
             <ion-item (click)="goToChat(gc.name)" color="none" lines="none" class="item-gc">                    
                 <ion-label>
                     <div class="badge-style">

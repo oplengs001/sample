@@ -193,7 +193,7 @@ export class FooterComponent   {
     
     const index = arr.findIndex((e) => e.name === obj.id);       
     //looking if new data does exist in the current chat
-    const {id ,inbox,group_name,messages} = obj    
+    const {id ,inbox,group_name,messages,createdAt} = obj        
     const notifs = admin ? 0 : inbox.find(({user_id})=> user_id === uid).message_count
 
     const last_chat = messages.length === 0 ? "" : messages[messages.length-1].content
@@ -202,6 +202,7 @@ export class FooterComponent   {
         arr.push({
           name :id,
           group_name : group_name,
+          createdAt : createdAt,
           notifs :notifs,
           last_chat : last_chat,
           last_chat_time:last_chat_time
