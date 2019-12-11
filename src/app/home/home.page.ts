@@ -52,6 +52,7 @@ export class HomePage {
                     group_id: data.group,
                 }
               };
+              this.transition.reRoute("home")
               this.navCtrl.navigateForward(['messages'], navigationExtras);
               this.footerFunc.addBadge()
             }else if(data.type === "announcement"){
@@ -68,7 +69,7 @@ export class HomePage {
               };
               this.transition.reRouteActivityNoAnimation("Itinerary")              
             }
-          } else {
+          } else { // on screen
             if(data.type === "chat"){
               // var uid = await this.authServ.currentUserId();        
               // if (data.sender_id === uid){
