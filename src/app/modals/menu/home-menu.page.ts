@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth/auth.service'
 import { FooterComponent } from "../../footer/footer.component"
 import { GuestAddService } from "../../services/guest-add/guest-add.service"
 import { AnnouncementSaveService  } from "../../services/announcements/announcement-save.service"
+import { Network } from '@ionic-native/network/ngx';
 @Component({
   selector: 'app-home-menu',
   templateUrl: './home-menu.page.html',
@@ -63,14 +64,15 @@ export class HomeMenuPage implements OnInit {
     private footer : FooterComponent,
     private guestService : GuestAddService, 
     private annServe  :AnnouncementSaveService,    
+
   ) {     
   
   }
   ionViewDidEnter(){       
    
   }
-  ngOnInit() {    
-
+  ngOnInit() {        
+ 
     this.currentUser = `${this.authServ.userGuestDetails["first_name"]} ${this.authServ.userGuestDetails["last_name"]}`  
     this.isAdmin = this.authServ.isAdmin()    
     this.userColor = this.authServ.userGuestDetails["color"]
@@ -101,7 +103,9 @@ export class HomeMenuPage implements OnInit {
       if(!res){
         return null
       }
+      
       console.log(this.authServ.userChatSubs)
+      debugger
       this.footer.clearBadge()
       this.footer.unsubscribeAllChat()    
       this.authServ.logout()

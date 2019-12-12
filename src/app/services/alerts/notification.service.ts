@@ -143,7 +143,7 @@ export class NotificationService {
       });
       return object_returns 
     }
-    AnnouncementNotif(title : string ,body:string,){
+    AnnouncementNotif(title : string ,body:string,):Promise<any>{
       var object_returns : any
       let postData =  {
           "notification" :{
@@ -171,7 +171,7 @@ export class NotificationService {
       .then(response => {
         // prints 200
         object_returns = "OK"
-        console.log(response.status);
+        console.log(response.status);     
       })
       .catch(response => {
         // prints 403

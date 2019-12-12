@@ -35,13 +35,13 @@ export class HomePage {
     private navCtrl : NavController,
     private footerFunc : FooterComponent,
     private guestFunc : GuestAddService, 
-    private weatherServ : WeatherService
+    private weatherServ : WeatherService,
+
     // private badge: Badge
     ) {
     this.forRsvp = this.footerFunc.forRsvp 
     this.plt.ready()
-      .then(() => { 
-               
+      .then(() => {                        
         this.fcm.onNotification().subscribe( async data => {
           console.log(data)
           // this.badge.increase(1);
@@ -147,8 +147,7 @@ export class HomePage {
     this.weatherServ.getQtown().then(data=>{
       this.weather = data 
       console.log(this.weather)       
-    })
-    
+    })     
   }
   scrollToBottom(){
     this.content.scrollToBottom(500);

@@ -139,14 +139,14 @@ export class FooterComponent   {
       this.fcm.unsubscribeFromTopic("adminNotif")
       this.fcm.unsubscribeFromTopic("enappd")
     }else{
-      for(var i = 0 ; i < this.authServ.userChatSubs.length-1 ; i++ ){
+      for(var i = 0 ; i < this.authServ.userChatSubs.length ; i++ ){
         console.log(this.authServ.userChatSubs[i].name)
         this.authServ.userChatSubs[i].subs.unsubscribe()  
         this.fcm.unsubscribeFromTopic(this.authServ.userChatSubs[i].name)
-        this.fcm.unsubscribeFromTopic("adminNotif")
-        this.fcm.unsubscribeFromTopic("enappd")
+     
       }
-  
+      this.fcm.unsubscribeFromTopic("adminNotif")
+      this.fcm.unsubscribeFromTopic("enappd")
       this.GCsubsList = []
       this.authServ.userChatSubs = []
     }
