@@ -12,6 +12,8 @@ import { LoadingController } from '@ionic/angular';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { throttleTime } from 'rxjs/operators';
 import { ToastService } from '../services/toaster/toast-service';
+import { Platform } from '@ionic/angular';
+
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.page.html',
@@ -37,6 +39,7 @@ export class MessagesPage implements OnInit {
   temp_image_frb : string
   hide_image : boolean
   uploading: boolean
+  device_platform : string
   private first_line = true
   constructor(
     public cs: ChatService,
@@ -49,13 +52,18 @@ export class MessagesPage implements OnInit {
     private imageService : ImagesService,
     private webview : WebView,
     private toaster : ToastService,
+    private platform : Platform
   ) {    
   
   }
 
   ngOnInit(){
     // this.temp_image_css = "sent-img"
-   
+    if(this.platform.is("ios")){
+      this.device_platform = "ios"
+    }else{
+      this.device_platform = "android"
+    }
   }
   ngAfterViewInit(){  
     this.route.queryParams.subscribe(params => {
@@ -67,25 +75,33 @@ export class MessagesPage implements OnInit {
   loadData(event) {      
     console.log("called")
    
-    // setTimeout(() => {
-      if(this.current_length !== undefined){          
+    if(this.device_platform === "ios"){
+      setTimeout(() => {
+        this.loadDataTimeout()
+      }, 1000);
+    }else{
+      this.loadDataTimeout()
+    }
+   
+  }
+  loadDataTimeout(){
+    if(this.current_length !== undefined){          
           
-          this.limit = this.limit + 10
-          if ( this.limit >= this.current_length) {          
-            this.current_index = 0         
-            this.infiniteScroll.disabled = true
-            this.hide_scroll = true    
-            this.limit = this.current_length
-            
-          }else{
-            this.first_line = false
-            this.current_index = this.current_length-this.limit                       
-            this.infiniteScroll.complete()  
-          }                 
+      this.limit = this.limit + 10
+      if ( this.limit >= this.current_length) {          
+        this.current_index = 0         
+        this.infiniteScroll.disabled = true
+        this.hide_scroll = true    
+        this.limit = this.current_length
+        
       }else{
-        this.infiniteScroll.complete()
-      }           
-    // }, 1000);
+        this.first_line = false
+        this.current_index = this.current_length-this.limit                       
+        this.infiniteScroll.complete()  
+      }                 
+  }else{
+    this.infiniteScroll.complete()
+  } 
   }
   scrollToBottom(value) {
     setTimeout(()=>{   
