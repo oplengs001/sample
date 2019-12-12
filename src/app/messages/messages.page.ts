@@ -65,6 +65,7 @@ export class MessagesPage implements OnInit {
     
   }  
   loadData(event) {      
+    console.log("called")
     setTimeout(() => {         
       if(this.current_length !== undefined){          
           
