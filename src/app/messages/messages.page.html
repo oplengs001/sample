@@ -12,7 +12,7 @@
 
 <ion-content class="message-bg" [scrollEvents]="true"  forceOverscroll=false> 
   <!-- <div class="ion-text-center" [hidden]="SeeMore" >{{Scroll_Message}} </div> -->
-  <ion-infinite-scroll threshold="40%"  (ionInfinite)="loadData($event)"  position="top">
+  <ion-infinite-scroll threshold="30%"  (ionInfinite)="loadData($event)"  position="top">
     <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="crescent">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>

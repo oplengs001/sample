@@ -10,7 +10,7 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 import { ImagesService  } from "../services/uploads/images.service";
 import { LoadingController } from '@ionic/angular';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
-
+import { throttleTime } from 'rxjs/operators';
 import { ToastService } from '../services/toaster/toast-service';
 @Component({
   selector: 'app-messages',
@@ -22,7 +22,7 @@ export class MessagesPage implements OnInit {
   private ThisChat = new Subscription()
   @ViewChild(IonContent, {static: false}) content: IonContent;
   @ViewChild(IonInfiniteScroll, {static: false}) infiniteScroll: IonInfiniteScroll;
-  @ViewChildren('messages') things: QueryList<any>;
+  @ViewChildren('messages') messages: QueryList<any>;
 
   chat$: Observable<any>;
   public newMsg: string; 
@@ -62,11 +62,12 @@ export class MessagesPage implements OnInit {
       this.id = params["group_id"];        
       this.showChat()    
     });  
-    
+    this.messages.changes.pipe(throttleTime(500))
   }  
   loadData(event) {      
     console.log("called")
-    setTimeout(() => {         
+   
+    // setTimeout(() => {
       if(this.current_length !== undefined){          
           
           this.limit = this.limit + 10
@@ -84,7 +85,7 @@ export class MessagesPage implements OnInit {
       }else{
         this.infiniteScroll.complete()
       }           
-    }, 1000);
+    // }, 1000);
   }
   scrollToBottom(value) {
     setTimeout(()=>{   
