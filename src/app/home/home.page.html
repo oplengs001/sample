@@ -28,14 +28,15 @@
       <img class="card-image" src="/assets/images/weather.jpg"/>
       <div class="card-title weather">         
           <div class="country ion-text-center">QUEENSTOWN</div>           
-          <ion-row class="home-weather">
+          <ion-row class="home-weather" *ngIf=weather>
             <ion-col>        
-                  <ion-icon class="home-label-icon" name="partly-sunny"></ion-icon>
+                  <!-- <ion-icon class="home-label-icon" name="partly-sunny"></ion-icon> -->
+                  <ion-label > <img [src]="weather.weather" class="home-label-icon"></ion-label>
                   <ion-label class="home-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEATHER</ion-label>         
             </ion-col>
             <ion-col>      
-                  <ion-label class="home-title">18 &deg;</ion-label>            
-                  <ion-label class="home-label">TEMPERATURE</ion-label>              
+                  <ion-label class="home-title">{{weather.temperature}} &deg;</ion-label>            
+                  <ion-label class="home-label">TEMPERATURE</ion-label>
             </ion-col>                       
           </ion-row>     
         <ion-button color="primary" class="home_buttons">SNOW REPORT</ion-button>

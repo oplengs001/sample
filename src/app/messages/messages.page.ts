@@ -181,6 +181,7 @@ export class MessagesPage implements OnInit {
     this.hide_scroll = false    
     this.limit = 10    
     this.infiniteScroll.disabled = false  
+    this.first_line = true
   }
   submit(event,chatId,group_name) {       
     event.preventDefault()

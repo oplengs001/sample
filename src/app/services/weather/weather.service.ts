@@ -7,19 +7,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class WeatherService {
   private headers = new HttpHeaders().append("Accept", "application/json" )
   private hour_limit = 9;
+  
   private config ={
     weather_url : "https://api.weatherunlocked.com/api/resortforecast",  
     app_id : "1da5d76c",
     app_key : "517f65cb2270dd87f82bc1059680ec6e",
     app_id2 : "dfbbd7b2",
     app_key2 : "acd9f9997c49af151e9727de8018d236",
-    qtown_api_endpoint : "api.openweathermap.org/data/2.5/weather?id=963516&APPID=aa0f9dce6dbbe256382c80a9121d8539"
+    qtown_api_endpoint : "https://api.openweathermap.org/data/2.5/weather?id=963516&APPID=aa0f9dce6dbbe256382c80a9121d8539"
   }
 
 
   constructor(
     public http: HttpClient
   ) { 
+  }
+  weatherIcon(icon){
+    return `http://openweathermap.org/img/w/${icon}.png`
   }
   getWeather(resort_key : string) {   
     
@@ -37,11 +41,17 @@ export class WeatherService {
   }
   getQtown(){
     return this.http.get(
-      this.config.qtown_api_endpoint, { headers:this.headers}).toPromise()
+      this.config.qtown_api_endpoint).toPromise()
       .then(data => 
-      {return  this.ProcessWeather(data["forecast"])}
+      {             
+        return  {
+          weather : this.weatherIcon(data["weather"][0].icon),
+          temperature : Math.round(data["main"]["feels_like"] - 273.15)
+        }
+        
+      }
       ,error => {return error});
-  }
+  } 
   async ProcessWeather(forecast: any){     
     var filtered = await this.getDailyData(forecast)
       return {

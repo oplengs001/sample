@@ -10,6 +10,7 @@ import { ModalController,NavController  } from '@ionic/angular';
 import {  Router ,NavigationExtras} from '@angular/router';
 import { myEnterAnimation, myLeaveAnimation} from '../animations/animations'
 import { FooterComponent} from '../footer/footer.component'
+import { WeatherService} from  '../services/weather/weather.service'
 // import { Badge } from '@ionic-native/badge/ngx';
 @Component({
   selector: 'app-home',
@@ -22,7 +23,7 @@ export class HomePage {
   public inbox_count : number
   public forRsvp : boolean
   private scrollDepthTriggered = false;
-  
+  private weather : any
   constructor(
     private fcm: FCM, 
     public plt: Platform,
@@ -34,6 +35,7 @@ export class HomePage {
     private navCtrl : NavController,
     private footerFunc : FooterComponent,
     private guestFunc : GuestAddService, 
+    private weatherServ : WeatherService
     // private badge: Badge
     ) {
     this.forRsvp = this.footerFunc.forRsvp 
@@ -51,7 +53,7 @@ export class HomePage {
                     group_id: data.group,
                 }
               };              
-              this.transition.reRoute("home")
+              // this.transition.reRoute("home")
               this.navCtrl.navigateForward(['messages'], navigationExtras);
               this.footerFunc.addBadge()
             }else if(data.type === "announcement"){
@@ -142,6 +144,10 @@ export class HomePage {
   }
   ngOnInit() {
     this.subscribeToTopic()
+    this.weatherServ.getQtown().then(data=>{
+      this.weather = data 
+      console.log(this.weather)       
+    })
     
   }
   scrollToBottom(){
