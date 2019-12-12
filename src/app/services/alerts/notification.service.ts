@@ -102,7 +102,7 @@ export class NotificationService {
       });
       return object_returns 
     }
-    ItineraryNotif(title : string ,body:string,){      
+    ItineraryNotif(title : string ,body:string,){
       var object_returns : any
       let postData =  {
           "notification" :{
@@ -143,5 +143,45 @@ export class NotificationService {
       });
       return object_returns 
     }
+    AnnouncementNotif(title : string ,body:string,){
+      var object_returns : any
+      let postData =  {
+          "notification" :{
+            "title": `ANNOUNCEMENT: ${title}`,
+            "text": body,   
+            "click_action":"FCM_PLUGIN_ACTIVITY", 
+            "sound": "2",
+          },
+          "data": 
+          {
+            "type":"announcement",
+            "data_body": body,
+            "vibrate": "300",
+          },
+          "tag " : "enappd",
+          "priority" : "high",
+          "to" : `/topics/enappd`
+      }
+      this.httpIon.setDataSerializer("json")
+      this.httpIon.sendRequest("https://fcm.googleapis.com/fcm/send",{
+        method:"post",
+        data: postData,
+        headers: this.IonHeader,
+      })
+      .then(response => {
+        // prints 200
+        object_returns = "OK"
+        console.log(response.status);
+      })
+      .catch(response => {
+        // prints 403
+        console.log(response)
+        console.log(response.status);
 
+        // prints Permission denied
+        console.log(response.error);
+        object_returns = response.error
+      });
+      return object_returns 
+    }
 }
