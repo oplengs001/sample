@@ -33,7 +33,8 @@ export class AdminAnnouncementPage implements OnInit {
   ngOnInit() {
   }
   sendMessage() {
-
+    this.message_body.title = "",
+    this.message_body.body = ""
     this.notifs.AnnouncementNotif(this.message_body.title,this.message_body.body).then(data=>{
       if(data==="OK"){
         var a_data = {
@@ -43,8 +44,7 @@ export class AdminAnnouncementPage implements OnInit {
         }
         this.announcementService.saveAnnouncement(a_data)
         this.toastService.showToast("Announcement Broadcasted!")
-        this.message_body.title = "",
-        this.message_body.body = ""
+    
       }else{
 
         this.toastService.showToast("Announcement Cannot be created something wrong")
