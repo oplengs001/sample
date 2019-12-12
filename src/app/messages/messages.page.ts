@@ -50,17 +50,18 @@ export class MessagesPage implements OnInit {
     private webview : WebView,
     private toaster : ToastService,
   ) {    
-    this.route.queryParams.subscribe(params => {
-      this.id = params["group_id"];      
-    });
+  
   }
 
   ngOnInit(){
     // this.temp_image_css = "sent-img"
+   
   }
   ngAfterViewInit(){  
-    // this.things.changes.subscribe(t => {                  
-    // })     
+    this.route.queryParams.subscribe(params => {
+      this.id = params["group_id"];        
+      this.showChat()    
+    });  
     
   }  
   loadData(event) {      
@@ -104,35 +105,19 @@ export class MessagesPage implements OnInit {
   }
   ionViewDidLeave(){
     // this.current_length   
-    this.ThisChat.unsubscribe()
-    this.current_index = undefined
-    this.current_length = undefined
-    this.limit = undefined
-    this.temp_image = ""
-    this.hide_image = true
+ 
   }
-  ionViewDidEnter (){
-    this.uploading = false
-    this.seen_chat()     
-    this.newMsg = ""
-    this.temp_image =""
-    this.hide_image = true
-    // this.temp_image_css = "sent-img"
-    // this.temp_image = "https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-    // this.temp_image_css = "temp-img"
-    console.table({
-      c_index : this.current_index,
-      limit : this.limit,
-      current_length : this.current_length
-    }) 
-    this.currentUser = this.auth.currentUserId()
-    this.hide_scroll = false    
-    this.limit = 10
-    console.log("did enter")
-    this.infiniteScroll.disabled = false  
+  ionViewDidEnter (){ 
     
+  }
+  showChat(){
+    console.log("ca")
+    this.emptyChat()
+    this.currentUser = this.auth.currentUserId()
+    this.seen_chat()   
     this.cs.joinUsers(this.cs.get(this.id)).then(data=>{
       this.chat$ = data      
+       
       this.scrollToBottom(500)   
       // this.scrollToBottom(500)
       this.ThisChat = data.subscribe(data=>{
@@ -161,9 +146,24 @@ export class MessagesPage implements OnInit {
         }
          
       })         
-    });  
+    }); 
   }
-
+  emptyChat(){
+    this.ThisChat.unsubscribe()
+    this.current_index = undefined
+    this.current_length = undefined
+    this.limit = undefined
+    this.temp_image = ""
+    this.hide_image = true
+    this.uploading = false
+    
+    this.newMsg = ""
+    this.temp_image =""
+    this.hide_image = true
+    this.hide_scroll = false    
+    this.limit = 10    
+    this.infiniteScroll.disabled = false  
+  }
   submit(event,chatId,group_name) {       
     event.preventDefault()
     var message = this.newMsg
