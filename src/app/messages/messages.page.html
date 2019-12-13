@@ -26,7 +26,7 @@
             <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
             <ion-img-viewer [src]="msg.image"
             (ionImgDidLoad)="imageLoaded($event,true)"
-            class="chat_img"></ion-img-viewer>
+            ></ion-img-viewer>
           </div>         
           <span>{{ msg.content }}</span>
           <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>        
@@ -38,7 +38,7 @@
             <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
             <ion-img-viewer [src]="msg.image"
             (ionImgDidLoad)="imageLoaded($event,true)"
-            class="chat_img"></ion-img-viewer>   
+            ></ion-img-viewer>   
           </div>       
             <span>{{ msg.content }}</span>
             <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>

@@ -42,9 +42,9 @@ ion-card{
         animation: fadein .5s;
         transition: visibility 0s linear, opacity .5s linear;
         opacity: 1;
-        visibility:visible;
+        visibility:hidden;
         object-fit: cover;    
-    }
+    }   
     &.img-loaded {
         background-color: transparent;
         border: 0;

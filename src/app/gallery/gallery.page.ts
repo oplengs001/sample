@@ -52,10 +52,9 @@ export class GalleryPage implements OnInit {
   }
   customImageLoaded(event,isLoaded: boolean) {    
     if (isLoaded) {
-      // setTimeout(() => {        
-        
+      // setTimeout(() => {                
         event.target.parentElement.parentElement.classList.add('img-loaded');
-      // }, 500);
+      // }, 500);      
     } else {
         event.target.parentElement.parentElement.classList.remove('img-loaded');
     }

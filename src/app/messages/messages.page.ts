@@ -263,7 +263,7 @@ export class MessagesPage implements OnInit {
           this.scrollToBottom(500)
         }
         event.target.parentElement.parentElement.classList.add('img-loaded');
-      // }, 500);
+      // }, 500);      
     } else {
         event.target.parentElement.parentElement.classList.remove('img-loaded');
     }

@@ -87,6 +87,7 @@
   --padding-start: 0.5em;
   --padding-end: 0.5em;
 }
+
 .image_container{
   ion-skeleton-text {
     height: 30vh;
@@ -97,11 +98,17 @@
     visibility: visible;
     opacity : 1
   } 
- 
+  ion-img-viewer {
+      
+    opacity: 0;
+    visibility: hidden;
+  }
   &.img-loaded {
     // background-color: transparent;
     // border: 0;
+
     max-width: 50vw !important;
+    
     ion-img-viewer {
       
       opacity: 1;
