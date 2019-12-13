@@ -40,6 +40,7 @@ export class MessagesPage implements OnInit {
   hide_image : boolean
   uploading: boolean
   device_platform : string
+  scrollThreshold : string
   private first_line = true
   constructor(
     public cs: ChatService,
@@ -61,8 +62,10 @@ export class MessagesPage implements OnInit {
     // this.temp_image_css = "sent-img"
     if(this.platform.is("ios")){
       this.device_platform = "ios"
+      this.scrollThreshold = "30px"
     }else{
       this.device_platform = "android"
+      this.scrollThreshold = "30%"
     }
   }
   ngAfterViewInit(){  

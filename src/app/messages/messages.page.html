@@ -12,7 +12,7 @@
 
 <ion-content class="message-bg" [scrollEvents]="true"  forceOverscroll=false> 
   <!-- <div class="ion-text-center" [hidden]="SeeMore" >{{Scroll_Message}} </div> -->
-  <ion-infinite-scroll threshold="30%"  (ionInfinite)="loadData($event)"  position="top">
+  <ion-infinite-scroll threshold={{scrollThreshold}}  (ionInfinite)="loadData($event)"  position="top">
     <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="crescent">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
@@ -26,7 +26,7 @@
             <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
             <ion-img-viewer [src]="msg.image"
             (ionImgDidLoad)="imageLoaded($event,true)"
-            [class]="msg.image?'chat_img':''"></ion-img-viewer>
+            class="chat_img"></ion-img-viewer>
           </div>         
           <span>{{ msg.content }}</span>
           <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>        
@@ -38,7 +38,7 @@
             <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
             <ion-img-viewer [src]="msg.image"
             (ionImgDidLoad)="imageLoaded($event,true)"
-            [class]="msg.image?'chat_img':''"></ion-img-viewer>   
+            class="chat_img"></ion-img-viewer>   
           </div>       
             <span>{{ msg.content }}</span>
             <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>

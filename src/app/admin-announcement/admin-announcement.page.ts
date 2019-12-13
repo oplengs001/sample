@@ -35,6 +35,7 @@ export class AdminAnnouncementPage implements OnInit {
   sendMessage() {
     this.message_body.title = "",
     this.message_body.body = ""
+    
     this.notifs.AnnouncementNotif(this.message_body.title,this.message_body.body).then(data=>{
       if(data==="OK"){
         var a_data = {
