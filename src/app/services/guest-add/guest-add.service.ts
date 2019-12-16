@@ -10,8 +10,7 @@ import { NotificationService } from "../alerts/notification.service"
 export interface Guest {
   uid?: string,
   first_name: string,
-  last_name: string,
-  position: string,  
+  last_name: string,  
   number: string,
   email: string,
   chat_id : [],
@@ -114,7 +113,6 @@ export class GuestAddService {
       {       
         first_name: guest.first_name,
         last_name: guest.last_name,
-        position: guest.position,
         number: guest.number,
         email: guest.email,
       }

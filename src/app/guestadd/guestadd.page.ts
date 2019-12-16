@@ -15,8 +15,7 @@ export class GuestaddPage implements OnInit {
 
   guest: Guest = {
     first_name: '',
-    last_name: '',
-    position: '',  
+    last_name: '', 
     number: '',
     email: '',    
     chat_id : [],
@@ -39,8 +38,7 @@ export class GuestaddPage implements OnInit {
     ) { 
       this.guestForm = this.formBuilder.group({
         first_name : ['', Validators.required],        
-        last_name : ['', Validators.required],
-        position : ['', Validators.required],
+        last_name : ['', Validators.required],      
         number : ['', Validators.required],
         email : ['',  Validators.compose([
           Validators.required,
@@ -56,8 +54,7 @@ export class GuestaddPage implements OnInit {
     if(this.guestForm.valid){
       let {
          first_name,
-         last_name,
-         position,
+         last_name,      
          number,
          email,
          password,
@@ -65,8 +62,7 @@ export class GuestaddPage implements OnInit {
        }  = this.guestForm.value
       this.guest ={
         first_name,
-        last_name,
-        position,
+        last_name,    
         number,
         email,
         chat_id : [],      
@@ -122,7 +118,6 @@ export class GuestaddPage implements OnInit {
     this.guest = {
       first_name: '',
       last_name: '',
-      position: '',  
       number: '',
       email: '',    
       chat_id : [],
@@ -135,12 +130,10 @@ export class GuestaddPage implements OnInit {
     this.guestForm.setValue(
       {
         first_name: '',
-        last_name: '',
-        position: '',  
+        last_name: '',     
         number: '',
         email: '',   
-        password :'',
-        forRsvp: true,
+        password :'',        
         isAdmin: false,
       }
     )
