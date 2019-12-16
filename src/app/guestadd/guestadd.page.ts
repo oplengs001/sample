@@ -23,8 +23,7 @@ export class GuestaddPage implements OnInit {
     isAdmin: false,
     forRsvp : true,
     will_come : null,
-    notif_count:0,
-    extra:0,
+    notif_count:0,        
     color: this.getRandomColor()
 
   };
@@ -46,7 +45,7 @@ export class GuestaddPage implements OnInit {
         email : ['',  Validators.compose([
           Validators.required,
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-        ])],       
+        ])],          
         password : ['123456', Validators.required],       
         isAdmin : [false, Validators.required],        
       });
@@ -62,7 +61,7 @@ export class GuestaddPage implements OnInit {
          number,
          email,
          password,
-         isAdmin
+         isAdmin         
        }  = this.guestForm.value
       this.guest ={
         first_name,
@@ -74,8 +73,7 @@ export class GuestaddPage implements OnInit {
         isAdmin,
         forRsvp: true,
         will_come : null,
-        notif_count :0,
-        extra:0,
+        notif_count :0,                
         color: this.getRandomColor()
       }    
       this.password = password
@@ -131,8 +129,7 @@ export class GuestaddPage implements OnInit {
       isAdmin: false,
       forRsvp: true,
       will_come : null,
-      notif_count : 0,
-      extra:0,
+      notif_count : 0,            
       color: this.getRandomColor()
     };
     this.guestForm.setValue(

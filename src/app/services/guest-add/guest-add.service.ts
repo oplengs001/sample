@@ -18,8 +18,7 @@ export interface Guest {
   isAdmin : boolean,
   forRsvp : boolean,
   will_come : boolean
-  notif_count : number,
-  extra: number
+  notif_count : number,  
   color : string,
 }
 @Injectable({

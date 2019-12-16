@@ -27,7 +27,7 @@ export class GuestlistPage implements OnInit {
     this.sortFlow = "asc"
   }
   guestSummary(guests) {
-    var attending=0,n_attending=0,overall=0,all_guest=0,pendings=0
+    var attending=0,n_attending=0,all_guest=0,pendings=0
 
     for(var i in guests){
       var data = guests[i]
@@ -42,19 +42,14 @@ export class GuestlistPage implements OnInit {
           console.log(data.first_name)
           n_attending++
         }   
-      }
-      if(data.extra){
-        overall = overall+ parseInt(data.extra) + 1
-        }else{
-        overall++
-        }
+      }      
       if(data.forRsvp){
         pendings++
       }      
     }
 
     this.footer_details={
-      attending,n_attending,overall,all_guest,pendings
+      attending,n_attending,all_guest,pendings
     }    
   }
   changeSort(value:string){

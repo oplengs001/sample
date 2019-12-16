@@ -16,11 +16,8 @@
           <ion-row style="width:100%">
             <ion-col class="ion-text-left" (click)="changeSort('first_name')">
               Guests
-            </ion-col>
-            <ion-col (click)="changeSort('extra')">
-              Extra
-            </ion-col>
-            <ion-col (click)="changeSort('will_come')">
+            </ion-col> 
+            <ion-col  class="ion-text-center" (click)="changeSort('will_come')">
               Status
             </ion-col>
           </ion-row>
@@ -31,11 +28,8 @@
               <ion-row style="width:100%">
                   <ion-col class="ion-text-left">
                       <h2 style.color="{{guest.color}}" style="text-transform: capitalize">{{ guest.first_name }}  {{guest.last_name}}</h2>  
-                  </ion-col>
-                  <ion-col >
-                      <h2 >{{guest.extra||'#'}}</h2>  
-                  </ion-col>
-                  <ion-col >
+                  </ion-col>            
+                  <ion-col class="ion-text-center">
                       <h2 *ngIf="guest.will_come; else notAttending" >
                           <ion-badge color="success">Accepted</ion-badge>
                         </h2>                 
@@ -51,41 +45,33 @@
               <ion-list class="expandables">
                 <ion-item>
                    <ion-col>
-                      position:
+                      Position:
                    </ion-col>
-                   <ion-col class="ion-text-left">
+                   <ion-col class="ion-text-center">
                       {{guest.position}}
                     </ion-col>
                 </ion-item>
                 <ion-item>
                   <ion-col>
-                      email:
+                      Email:
                   </ion-col>
-                  <ion-col class="ion-text-left">
+                  <ion-col class="ion-text-center">
                     {{guest.email}}
                   </ion-col>
                 </ion-item>
                 <ion-item>
                     <ion-col>
-                        Extra Guests:
-                    </ion-col>
-                    <ion-col class="ion-text-left">
-                      {{guest.extra||'#'}}
-                    </ion-col>
-                </ion-item>
-                <ion-item>
-                    <ion-col>
                         Number:
                     </ion-col>
-                    <ion-col class="ion-text-left">
+                    <ion-col class="ion-text-center">
                       {{guest.number||'#'}}
                     </ion-col>
                 </ion-item>
                 <ion-item>
                     <ion-col>
-                        color:
+                        Assigned Color:
                     </ion-col>
-                    <ion-col  class="ion-text-left">
+                    <ion-col  class="ion-text-center">
                       <ion-icon [style.color]=guest.color name="square"></ion-icon> {{guest.color}}
                     </ion-col>
                 </ion-item>
@@ -96,29 +82,22 @@
   </ion-list>
 </ion-content> 
 <ion-footer class="footer" *ngIf="footer_details">
-    <ion-row>
-        <ion-col class="overall">          
-          <h3>{{footer_details.overall}}</h3>
-          <h4>Overall Guest (including plus one)</h4>
-        </ion-col>
-      </ion-row>
-    <ion-row>
-        <ion-col class="attend">      
-          <h3>{{footer_details.attending}}</h3>
-          <h4> Will Attend</h4>
-        </ion-col>
-        <ion-col class="not">          
+  <ion-row>
+      <ion-col class="not">          
           <h3>{{footer_details.n_attending}}</h3>
           <h4>Will Not Attend</h4>
-        </ion-col>
-        <ion-col class="pending">                  
-          <h3>{{footer_details.pendings}}</h3>
-          <h4>Pending</h4>
-        </ion-col>
-        <ion-col class="all">                  
+      </ion-col>     
+      <ion-col class="pending">                  
+        <h3>{{footer_details.pendings}}</h3>
+        <h4>Pending</h4>
+      </ion-col>
+      <ion-col class="attend">      
+          <h3>{{footer_details.attending}}</h3>
+          <h4> Will Attend</h4>
+      </ion-col>
+      <ion-col class="all">                  
           <h3>{{footer_details.all_guest}}</h3>
           <h4>All Guest</h4>
-        </ion-col>          
-      </ion-row>
-  
+      </ion-col> 
+  </ion-row>  
 </ion-footer>
