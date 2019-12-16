@@ -70,7 +70,7 @@ export class MessagesPage implements OnInit {
     // this.temp_image_css = "sent-img"
     if(this.platform.is("ios")){
       this.device_platform = "ios"
-      this.scrollThreshold = "30px"
+      this.scrollThreshold = "50px"
     }else{
       this.device_platform = "android"
       this.scrollThreshold = "30%"
@@ -81,7 +81,7 @@ export class MessagesPage implements OnInit {
       this.id = params["group_id"];        
       this.showChat()    
     });  
-    this.messages.changes.pipe(throttleTime(500))
+    // this.messages.changes.pipe(throttleTime(500))
   }  
   loadData(event) {      
     console.log("called")
@@ -106,9 +106,10 @@ export class MessagesPage implements OnInit {
         this.limit = this.current_length
         
       }else{
-        this.first_line = false
+
         this.current_index = this.current_length-this.limit                       
-        this.infiniteScroll.complete()  
+        this.infiniteScroll.complete()
+        this.first_line = false
       }                 
   }else{
     this.infiniteScroll.complete()
@@ -147,9 +148,11 @@ export class MessagesPage implements OnInit {
     this.cs.joinUsers(this.cs.get(this.id)).then(data=>{
       this.chat$ = data      
  
-      this.scrollToBottom(500)   
+      // this.scrollToBottom(0)   
       // this.scrollToBottom(500)
-      this.ThisChat = data.subscribe(data=>{        
+      
+      this.ThisChat = data.subscribe(data=>{    
+          
         this.gcName = data.group_name        
         this.current_images = data.images.reverse()
         this.current_group = data
@@ -166,12 +169,14 @@ export class MessagesPage implements OnInit {
             this.hide_scroll = true
             this.limit = this.current_length
           }else{
-  
+          
             if(!from_seen){
               this.limit++
               this.infiniteScroll.disabled = false    
               this.hide_scroll = false  
-              this.scrollToBottom(500)   
+              this.scrollToBottom(0)   
+            }else{
+              this.scrollToBottom(500)
             }
           } 
           this.current_index = this.current_length-this.limit  
@@ -195,7 +200,7 @@ export class MessagesPage implements OnInit {
     this.temp_image =""
     this.hide_image = true
     this.hide_scroll = false    
-    this.limit = 10    
+    this.limit = 25
     this.infiniteScroll.disabled = false  
     this.first_line = true
     this.gcName = ""
@@ -271,17 +276,20 @@ export class MessagesPage implements OnInit {
     })
   }
 
-  imageLoaded(event,isLoaded: boolean) {    
+  imageLoaded(event,isLoaded: boolean,index) {    
     if (isLoaded) {
       // setTimeout(() => {                
         //
-        if(this.first_line){
-          this.scrollToBottom(500)
-        }
+        console.log(this.limit)
+        console.log(this.limit-10)
+        console.log(index +"index")        
+        if(this.limit >= index &&  index >= this.limit-5){
+          this.scrollToBottom(0)          
+        }    
         event.target.parentElement.parentElement.classList.add('img-loaded');
       // }, 500);      
     } else {
-        event.target.parentElement.parentElement.classList.remove('img-loaded');
+        // event.target.parentElement.parentElement.classList.remove('img-loaded');
     }
   }
   gotoGroups(){

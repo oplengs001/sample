@@ -17,7 +17,7 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
   <ion-grid *ngIf="chat$ | async as chat;else chatHolder">
-    <ion-row #messages *ngFor="let msg of chat.messages.slice(current_index,current_length); trackBy: trackByCreated" 
+    <ion-row #messages *ngFor="let msg of chat.messages.slice(current_index,current_length);let i = index; trackBy: trackByCreated" 
     [ngClass]="msg.user.uid !== currentUser?'':'ion-justify-content-end'">
         <ion-col size="auto" *ngIf="msg.user.uid !== currentUser" class="message other-message">   
         <!-- <ion-col size="9" *ngIf="msg.user.uid !== currentUser" class="message other-message">    -->
@@ -25,7 +25,7 @@
           <div class="image_container">
             <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
             <ion-img-viewer [src]="msg.image"
-            (ionImgDidLoad)="imageLoaded($event,true)"
+            (ionImgDidLoad)="imageLoaded($event,true,i,current_length)"
             ></ion-img-viewer>
           </div>         
           <span>{{ msg.content }}</span>
