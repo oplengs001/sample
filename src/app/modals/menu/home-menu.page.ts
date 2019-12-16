@@ -8,6 +8,7 @@ import { FooterComponent } from "../../footer/footer.component"
 import { GuestAddService } from "../../services/guest-add/guest-add.service"
 import { AnnouncementSaveService  } from "../../services/announcements/announcement-save.service"
 import { Network } from '@ionic-native/network/ngx';
+import { ThrowStmt } from '@angular/compiler';
 @Component({
   selector: 'app-home-menu',
   templateUrl: './home-menu.page.html',
@@ -50,6 +51,11 @@ export class HomeMenuPage implements OnInit {
       icon: 'walk'
     },
     {
+      title: 'What To Eat',
+      url: 'dining',
+      icon: 'restaurant'
+    },
+    {
       title: 'Wedding Weather',
       url: '/wedding-weather',
       icon: 'rainy'
@@ -82,6 +88,9 @@ export class HomeMenuPage implements OnInit {
     this.closeModal()
     this.tranServe.reRoute("/rsvp-list")
   }
+  gotoDining(){
+    this.tranServe.reRouteActivity("Dining")
+  }
   changeDecision(){
     
     let decision =this.authServ.userGuestDetails.will_come?"Decline":"Accept"
@@ -94,8 +103,10 @@ export class HomeMenuPage implements OnInit {
     })
 
   }
-  async closeModal() {  
-    
+  async closeModal(url?:string) {  
+    if(url==="dining"){
+      this.gotoDining()
+    }
     await this.modalctrl.dismiss();
   }
   async logout() {

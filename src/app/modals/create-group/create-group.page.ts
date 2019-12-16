@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, } from '@ionic/angular';
 import { ChatService} from '../../services/chat/chat.service'
-import {FormBuilder,FormGroup, Validators} from '@angular/forms';
+import { FormBuilder,FormGroup, Validators} from '@angular/forms';
 import { GuestAddService ,Guest} from '../../services/guest-add/guest-add.service'
 import { Observable } from 'rxjs';
 import { ToastService } from '../../services/toaster/toast-service';

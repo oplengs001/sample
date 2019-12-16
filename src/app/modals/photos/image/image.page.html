@@ -18,7 +18,7 @@
   </div>
   
 </ion-content>
-<ion-footer>
+<ion-footer [hidden]="hideFooter" *ngIf=!hideFooter>
     <ion-item class="icon-footer" lines="none">                                                                                            
         <ion-label slot="start">
             <!-- {{post.uploaded_by}} -->

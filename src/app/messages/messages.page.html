@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
        <span class="backto" (click)=this.footerFunc.goToMessages()> <ion-icon name="ios-arrow-back"></ion-icon>Groups </span>
     </ion-buttons>
-    <ion-title *ngIf="chat$ | async as chat" >
+    <ion-title *ngIf="chat$ | async as chat" (click)=openDetails() >
       {{ chat.group_name }}
     </ion-title>
   </ion-toolbar>

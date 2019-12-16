@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{group_details.gcName}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      Members:
+      <ion-button slot="end" *ngIf=isAdmin (click)=editGroup()>        
+          Edit
+      </ion-button>
+    </ion-item>
+    <ion-item lines="none" *ngFor="let member of group_details.members" [hidden]="member.isAdmin">               
+         <span  style.color="{{member.color}}" style="text-transform: capitalize">  {{member.first_name}}  {{member.last_name}} </span>         
+    </ion-item>
+    <ion-item lines="none">
+      <div class="ion-text-center">
+          Conversation Images
+      </div>
+  
+    </ion-item> 
+    <ion-item>
+        <div class="images">    
+            <div class="one-image" *ngFor="let image of group_details.images">                 
+                <div class="frame-image">                                    
+                    <ion-img (click)=imageClick(image) [src]="image.url"></ion-img>                                    
+                </div>
+            </div>
+            <!-- <ion-infinite-scroll threshold="150px"  (ionInfinite)="loadData($event)">
+            
+            </ion-infinite-scroll>  -->
+        </div>   
+    </ion-item>
+  </ion-list>
+</ion-content>

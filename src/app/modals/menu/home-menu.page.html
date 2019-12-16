@@ -15,7 +15,7 @@
         <div class="snow snow--far snow--alt"></div>
       <ion-list class="modal-content">       
         <div *ngFor="let p of appPages"  class="side-menu">
-          <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" color="primary" (click)="closeModal()" lines="none">
+          <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" color="primary" (click)="closeModal(p.url)" lines="none">
             <ion-icon slot="start" [name]="p.icon" ></ion-icon>
             <ion-label>
               {{p.title}}

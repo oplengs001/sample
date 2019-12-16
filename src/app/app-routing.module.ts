@@ -38,6 +38,7 @@ const routes: Routes = [
   { path: 'rsvp', loadChildren: './rsvp/rsvp.module#RsvpPageModule' },
   { path: 'rsvp-list', loadChildren: './pre-wedding/rsvp-list/rsvp-list.module#RsvpListPageModule' },
   { path: 'rsvp-admin', loadChildren: './rsvp/rsvp-admin/rsvp-admin.module#RsvpAdminPageModule' },
+  { path: 'messages-details', loadChildren: './modals/messages-details/messages-details.module#MessagesDetailsPageModule' },
 ];
 
 @NgModule({

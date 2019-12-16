@@ -4,6 +4,7 @@ import { map, take, timestamp } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { debug } from 'util';
+import { firestore } from 'firebase/app';
 import { AnnouncementSaveService , AdminNotification} from "../announcements/announcement-save.service"
 import { NotificationService } from "../alerts/notification.service"
 export interface Guest {
@@ -61,6 +62,12 @@ export class GuestAddService {
         return guest
       })
     );
+  }
+  getGuestSingle(id: string):Promise<any> {
+  return  firestore().collection("guests").doc(`${id}`).get().then( userGuestProfile=>{
+      
+      return userGuestProfile.data()
+    })  
   }
   getGuestObs(id: string): Observable<any> {    
     return this.GuestCollection.doc<Guest>(id).snapshotChanges()

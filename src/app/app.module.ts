@@ -35,6 +35,7 @@ import { CreateEventPageModule } from '../app/modals/create-event/create-event.m
 import { ViewingcontentPageModule } from '../app/viewingcontent/viewingcontent.module'
 import { HomeMenuPageModule } from '../app/modals/menu/home-menu.module'
 import { FlightMapPageModule } from '../app/modals/map/flight-map.module'
+import { MessagesDetailsPageModule } from '../app/modals/messages-details/messages-details.module'
 import { ImagePageModule } from '../app/modals/photos/image/image.module'
 import { IonicSelectableModule } from 'ionic-selectable';
 import { ComponentsModule } from "../app/componenthandler/components.module"
@@ -66,6 +67,7 @@ import 'gl-ionic-background-video';
     CreateEventPageModule,
     ViewingcontentPageModule,
     IonicSelectableModule,
+    MessagesDetailsPageModule
    
   ],
   providers: [

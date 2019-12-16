@@ -13,7 +13,9 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { throttleTime } from 'rxjs/operators';
 import { ToastService } from '../services/toaster/toast-service';
 import { Platform } from '@ionic/angular';
-
+import { ModalController, } from '@ionic/angular';
+import { MessagesDetailsPage } from "../modals/messages-details/messages-details.page"
+import { GuestAddService} from "../services/guest-add/guest-add.service"
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.page.html',
@@ -32,7 +34,10 @@ export class MessagesPage implements OnInit {
   id: any;
   limit:number
   current_index :number
+  current_group : any
   current_length :number  
+  current_images : any
+  current_members : any
   hide_scroll:boolean
   text_value:boolean
   temp_image : string
@@ -41,6 +46,7 @@ export class MessagesPage implements OnInit {
   uploading: boolean
   device_platform : string
   scrollThreshold : string
+  gcName : string
   private first_line = true
   constructor(
     public cs: ChatService,
@@ -53,7 +59,9 @@ export class MessagesPage implements OnInit {
     private imageService : ImagesService,
     private webview : WebView,
     private toaster : ToastService,
-    private platform : Platform
+    private platform : Platform,
+    private modalctrl : ModalController,
+    private guest : GuestAddService
   ) {    
   
   }
@@ -138,11 +146,14 @@ export class MessagesPage implements OnInit {
     this.seen_chat()   
     this.cs.joinUsers(this.cs.get(this.id)).then(data=>{
       this.chat$ = data      
-       
+ 
       this.scrollToBottom(500)   
       // this.scrollToBottom(500)
-      this.ThisChat = data.subscribe(data=>{
-        console.log(data)
+      this.ThisChat = data.subscribe(data=>{        
+        this.gcName = data.group_name        
+        this.current_images = data.images.reverse()
+        this.current_group = data
+        this.getMembers(data)
         if(this.id == data.id){
           let from_seen = false
           if(this.current_length === data.messages.length){
@@ -173,6 +184,8 @@ export class MessagesPage implements OnInit {
     this.ThisChat.unsubscribe()
     this.current_index = undefined
     this.current_length = undefined
+    this.current_images = undefined
+    this.current_members = undefined
     this.limit = undefined
     this.temp_image = ""
     this.hide_image = true
@@ -185,6 +198,8 @@ export class MessagesPage implements OnInit {
     this.limit = 10    
     this.infiniteScroll.disabled = false  
     this.first_line = true
+    this.gcName = ""
+
   }
   submit(event,chatId,group_name) {       
     event.preventDefault()
@@ -255,6 +270,7 @@ export class MessagesPage implements OnInit {
       })
     })
   }
+
   imageLoaded(event,isLoaded: boolean) {    
     if (isLoaded) {
       // setTimeout(() => {                
@@ -274,6 +290,33 @@ export class MessagesPage implements OnInit {
   trackByCreated(i, msg) {    
     
     return msg.createdAt;
+  }  
+  async openDetails() {    
+    const modal: HTMLIonModalElement =
+      await this.modalctrl.create({
+          component: MessagesDetailsPage,
+          componentProps: {
+            group_details:{
+              members : this.current_members,
+              images:this.current_images,
+              gcName : this.gcName
+            },       
+            group_for_edit : this.current_group,     
+            aParameter: true,
+          }
+    });          
+    await modal.present();
   }
+  getMembers(group){
+    this.current_members = []
+    var {inbox} = group
+        inbox.map((member)=>{
+        this.guest.getGuestSingle(member.user_id).then(data=>{
+            this.current_members.push(data)
+        })
+     
+      })
+    
+  } 
 
 }

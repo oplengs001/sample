@@ -230,24 +230,36 @@ export class ChatService {
         // Unique User IDs
         chat = c;
         const uids = Array.from(new Set(c.messages.map(v => v.uid)));
-  
+        
         // Firestore User Doc Reads
         const userDocs = uids.map(u =>         
           firestore().collection("guests").doc(`${u}`).get().then( userGuestProfile=>{
             return userGuestProfile.data()
           })
         );
+
         return userDocs.length ? combineLatest(userDocs) : of([]);
       }),
-      map(arr => {
+      map(arr => {      
+        chat.images = []
         arr.forEach(v => (joinKeys[(<any>v).uid] = v));
-        chat.messages = chat.messages.map(v => {
+        chat.messages = chat.messages.map(v => {     
+          
+          if(v.image !== "" && v.image !== undefined){
+            chat.images.push({
+             url:v.image,
+             member :joinKeys[v.uid],
+             date : v.createdAt,
+         
+            })
+          }
           return { ...v, user: joinKeys[v.uid] };
-        });
-
-        
+        });                                 
         return chat;
       })
+      
+  
+      
     );
   }
   get_inbox (chat_id){

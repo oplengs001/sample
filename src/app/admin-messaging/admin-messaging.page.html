@@ -16,12 +16,12 @@
   <ion-list>
       <div *ngFor="let gc of (group_chats | async)">
           <ion-item (click)="presentActionSheet(gc)">
-              <ion-avatar slot="start">
+              <!-- <ion-avatar slot="start">
                   <img src="../../assets/icon/iconM.png">
-              </ion-avatar>
+              </ion-avatar> -->
               <ion-label>
                 <h2>{{gc.group_name}}</h2>
-                <h3>{{gc.createdAt | date: 'dd/MM/yyyy hh:hh a'}}</h3>
+                <h3>Created: {{gc.createdAt | date: 'dd/MM/yyyy hh:hh a'}}</h3>
                 <p></p>
               </ion-label>
             </ion-item>

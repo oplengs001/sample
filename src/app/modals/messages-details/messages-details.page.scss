@@ -1,0 +1,41 @@
+.images {
+    display: flex;
+    flex-wrap: wrap;
+    column-count: 3;
+    // height: 300px
+}
+.frame-image{
+    // ion-skeleton-text{
+    //     height: 20vh;
+    //     width: 30vw;
+    //     object-fit: inherit;
+    //     object-position: inherit;
+    //     position: absolute;
+    //     visibility: visible;
+    //     opacity : 1
+    // }
+    ion-img{
+        margin: .5px;        
+        height: 20vh;
+        width: 30vw;
+        animation: fadein .5s;
+        transition: visibility 0s linear, opacity .5s linear;
+        opacity: 1;
+        visibility:visible;
+        object-fit: cover;
+    }
+    &.img-loaded {
+        background-color: transparent;
+        border: 0;
+    
+        ion-img {
+          opacity: 1;
+          visibility: visible;
+        }
+    
+        ion-skeleton-text {
+          display: none;
+          visibility: hidden;
+        }
+      }
+}
