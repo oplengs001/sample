@@ -6,7 +6,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FormBuilder,FormGroup, Validators} from '@angular/forms';
 import { SlidingContentService, Itinerary } from "../../services/content/sliding-content.service"
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
-import { Observable } from 'rxjs';
+import { Observable, scheduled } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
 import { ToastService } from '../../services/toaster/toast-service';
 import { NotificationService } from "../../services/alerts/notification.service"
@@ -21,6 +21,7 @@ export class CreateEventPage implements OnInit {
   temp_image : string;
   temp_image_ref : string;
   event_name : string;
+  event_schedule : string;
   event_location : string
   event_last_position : number
   constructor(
@@ -43,10 +44,11 @@ export class CreateEventPage implements OnInit {
     this.GroupForm = this.fb.group({
       event_name: ['', Validators.required],
       event_location: ['', Validators.required],
+      event_schedule : ['', Validators.required],
     });
   }
   addEvent (formValues) {    
-    var {event_name , event_location} = formValues.value
+    var {event_name , event_location ,event_schedule} = formValues.value
     let message = `Your about to Create this Event`
     this.actions.confirmationMessage(message).then(res=>{
       if(!res){
@@ -57,7 +59,8 @@ export class CreateEventPage implements OnInit {
         image_ref : this.temp_image_ref,
         name : event_name,
         location : event_location,
-        position : this.event_last_position+1
+        position : this.event_last_position+1,
+        schedule : event_schedule
       }
       this.contentService.addEvent(<Itinerary>eventItem).then((data)=>{
         this.actions.customAlert("Sucess","Event Added")
@@ -91,13 +94,13 @@ export class CreateEventPage implements OnInit {
     });
   }
   // uploadImageToFirebase(image){
-  async uploadImageToFirebase(image){
+  async uploadImageToFirebase(image?){
     image = this.webview.convertFileSrc(image);       
     const loading = await this.loadingController.create({
       message: 'Saving Image',     
     });
     await loading.present();
-    // var image = "/assets/images/Itinerary/arrival.jpg"    
+    //  image = "/assets/images/itenerary/arrival.jpg"    
     this.imageService.saveAppGalleryRef(image,"app-gallery").then(photo => {    
       this.temp_image = photo.url           
       this.temp_image_ref = photo.file_name

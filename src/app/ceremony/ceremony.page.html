@@ -16,11 +16,11 @@
     <img src="{{info.wedding_image}}" (click)="changeImage()" alt="" />
       <ion-card-header>
         <ion-card-subtitle>
-            <ion-input   
+          <ion-textarea  autoGrow=true   
             [(ngModel)]="info.location_place"  
             (ionBlur)="saveItem()"    
             readonly="{{!isAdmin}}"
-            ></ion-input>
+            ></ion-textarea >
         </ion-card-subtitle>
         <ion-card-title>
           <ion-input   

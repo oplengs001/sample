@@ -37,13 +37,14 @@
         <ion-reorder-group  (ionItemReorder)="doReorder($event)" disabled="false" *ngIf="isAdmin;else nonAdmin">
               <!-- <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">                                 -->
                 <ion-card class="content-card" *ngFor="let event of (event_data   | sort :'asc':'position')" >  
-                    <ion-item > 
+                    <ion-item lines="none"> 
                         <ion-reorder slot=start></ion-reorder> 
                         <ion-icon name="more" slot=end (click)="eventOptions(event)"></ion-icon>
                     </ion-item>      
-                    <ion-img src="{{event.image_url}}"></ion-img>
+                    <ion-img class="admin-img"src="{{event.image_url}}"></ion-img>
                     <ion-card-header> 
                       <ion-card-title>{{event.name}}</ion-card-title>    
+                      <ion-card-subtitle>Time: {{event.schedule}} </ion-card-subtitle>
                       <ion-card-subtitle>{{event.location}}</ion-card-subtitle>
                     </ion-card-header> 
                 </ion-card>                                                               
@@ -53,8 +54,9 @@
             <ion-card  *ngFor="let event of (event_data  | sort :'asc':'position' )" (click)="expandItem(event)"  class="itinerary-card">                                
               <ion-card-header>    
                 <ion-item lines="none" class="itinerary-item">
-                    <ion-icon slot="end" name="ios-arrow-down"></ion-icon>
+                    <ion-card-title  class="schedule" slot="end">{{event.schedule}} <ion-icon  name="ios-arrow-down"></ion-icon></ion-card-title>                    
                     <ion-card-title class="event-name">{{event.name}}</ion-card-title>
+                    
                 </ion-item>
               </ion-card-header>
               <ion-card-content class="content-card">

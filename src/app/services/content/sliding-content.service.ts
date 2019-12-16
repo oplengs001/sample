@@ -11,7 +11,8 @@ export interface Itinerary {
   name: string,  
   location: string,
   position : number,
-  image_ref : string  
+  image_ref : string,
+  schedule : string,
 }
 
 @Injectable({

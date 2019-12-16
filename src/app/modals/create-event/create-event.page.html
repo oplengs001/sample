@@ -13,11 +13,16 @@
             <ion-item>              
                 <ion-label position="stacked">Cover Image</ion-label>
                 <ion-button slot="end" expand="block" fill="outline" (click)="openImagePicker()"> Select Image</ion-button>             
+                <!-- <ion-button slot="end" expand="block" fill="outline" (click)="uploadImageToFirebase()"> Select Image</ion-button>              -->
                 <ion-img slot="start" [src]="temp_image"> </ion-img>                             
             </ion-item>               
             <ion-item>
                 <ion-label position="stacked">Event Name</ion-label>
                 <ion-input   formControlName="event_name" ></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="stacked">Event Schedule</ion-label>
+                <ion-input   formControlName="event_schedule" ></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label position="stacked">Event Details</ion-label>

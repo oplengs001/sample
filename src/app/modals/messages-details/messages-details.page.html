@@ -10,17 +10,17 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      Members:
+      <b>Members:</b>
       <ion-button slot="end" *ngIf=isAdmin (click)=editGroup()>        
-          Edit
+          Edit Group
       </ion-button>
     </ion-item>
-    <ion-item lines="none" *ngFor="let member of group_details.members" [hidden]="member.isAdmin">               
-         <span  style.color="{{member.color}}" style="text-transform: capitalize">  {{member.first_name}}  {{member.last_name}} </span>         
+    <ion-item lines="none" *ngFor="let member of group_details.members" [hidden]="member.isAdmin" text-center>
+         <ion-label  style.color="{{member.color}}" style="text-transform: capitalize;font-size:20px">   <b>{{member.first_name}}  {{member.last_name}} </b>  </ion-label>         
     </ion-item>
     <ion-item lines="none">
       <div class="ion-text-center">
-          Conversation Images
+         <b> Conversation Images </b>
       </div>
   
     </ion-item> 

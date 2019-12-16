@@ -104,17 +104,21 @@ export class CreateGroupPage implements OnInit {
           item.chat_id = this.remItem(chat_id,group_id)
           return item    
         })
+      
         reduced_array = removed_chat_ids.map(item => {
           return {
             uid : item.uid,
             chat_id : item.chat_id
           }
-        })        
+        })
+    
       }
-      
+      console.log(group_members)     
+      console.log(reduced_array)        
       this.GuestServ.addGroupToGuestMultiple(group_id , group_members,reduced_array).then(data=>{
         this.ChatServ.create(chat_group,group_members,forEdit).then(data=>{
           if(forEdit){
+            console.log(reduced_array)
             this.toastService.showToast('Group Updated!');
             this.actions.customAlert("Success!","Group Updated!")
           }else{

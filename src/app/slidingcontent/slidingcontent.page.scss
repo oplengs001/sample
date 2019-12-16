@@ -11,6 +11,9 @@
     padding-top:0 !important;
     --background : #ffffff
 }
+.schedule{
+    font-size:10px
+}
 .event-name{
     font-size:20px
 }
@@ -19,7 +22,10 @@
     color: #000000
 }
 .itinerary-item{
-    --background: #edeff8;
+    --background:#dfe4f400
+}
+.admin-img{
+    height:30vh
 }
 ion-content{
     // background : url(../../assets/images/gradient4.jpg) no-repeat center center;
