@@ -289,7 +289,7 @@ export class MessagesPage implements OnInit {
   imageLoaded(event,isLoaded: boolean,index) {    
     if (isLoaded) {
       // setTimeout(() => {                
-        //
+        //  
       if(this.first_line){      
         if(this.limit >= index &&  index >= this.limit-5){
           this.scrollToBottom(0)          

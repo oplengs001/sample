@@ -50,8 +50,7 @@ export class AppComponent {
   
   login() {
     this.authService.login(this.email, this.password).then(data=>{
-      this.authService.user.subscribe((data)=>{        
-        console.log(data)      
+      this.authService.user.subscribe((data)=>{                    
         this.authService.currentUserData().then(data=>{
           this.adminUser = data.isAdmin        
           this.forRsvp = data.forRsvp
