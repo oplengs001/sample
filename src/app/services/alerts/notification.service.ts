@@ -143,9 +143,9 @@ export class NotificationService {
       });
       return object_returns 
     }
-    AnnouncementNotif(title : string ,body:string,):Promise<any>{
-      var object_returns : any
-      let postData =  {
+    AnnouncementNotif(title : string ,body:string,){
+        var object_returns : any
+       let postData =  {
           "notification" :{
             "title": `ANNOUNCEMENT: ${title}`,
             "text": body,   
@@ -170,8 +170,8 @@ export class NotificationService {
       })
       .then(response => {
         // prints 200
-        object_returns = "OK"
-        console.log(response.status);     
+        return "OK"
+    
       })
       .catch(response => {
         // prints 403
@@ -180,8 +180,8 @@ export class NotificationService {
 
         // prints Permission denied
         console.log(response.error);
-        object_returns = response.error
+        return response.error
       });
-      return object_returns 
-    }
+      }
+    
 }

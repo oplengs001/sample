@@ -32,25 +32,22 @@ export class AdminAnnouncementPage implements OnInit {
 
   ngOnInit() {
   }
-  sendMessage() {
-    this.message_body.title = "",
-    this.message_body.body = ""
-    
-    this.notifs.AnnouncementNotif(this.message_body.title,this.message_body.body).then(data=>{
-      if(data==="OK"){
-        var a_data = {
-          title : this.message_body.title,
-          body : this.message_body.body,
-          date_posted : Date.now()
-        }
-        this.announcementService.saveAnnouncement(a_data)
-        this.toastService.showToast("Announcement Broadcasted!")
-    
-      }else{
-
-        this.toastService.showToast("Announcement Cannot be created something wrong")
+  sendMessage() {  
+      var a_data = {
+        title : this.message_body.title,
+        body : this.message_body.body,
+        date_posted : Date.now()
       }
-    })
+      this.announcementService.saveAnnouncement(a_data).then(data=>{
+        if(data){
+          this.notifs.AnnouncementNotif(this.message_body.title,this.message_body.body)
+          this.toastService.showToast("Announcement Broadcasted!")
+          this.message_body.title = "",
+          this.message_body.body = ""
+        }else{
+          this.toastService.showToast("Announcement Cannot be created something wrong")
+        }
+      })                   
 
   }
   async AnnouncementConfirm() {

@@ -12,8 +12,9 @@ import { Observable } from 'rxjs';
 })
 export class AnnouncementsPage implements OnInit   {
   @ViewChildren('events') ngForDetails: QueryList<any>;
-  private announcements: Observable<Announcement[]>;
-  private loading : boolean
+  // private announcements: Observable<Announcement[]>;
+  private announcements: any;
+  private loaded : boolean
   constructor(
     private announcementService : AnnouncementSaveService,
     private transServe : TransitionsService,
@@ -25,7 +26,7 @@ export class AnnouncementsPage implements OnInit   {
       console.log(t)
         if(t.length){
           setTimeout(() => {        
-          this.loading = true
+          this.loaded = true
           },500)
         }
     })     
@@ -35,7 +36,10 @@ export class AnnouncementsPage implements OnInit   {
     this.guestFunc.updateNotifCount(uid,"clear")
   }
   ngOnInit() {
-    this.loading = false;
-    this.announcements =  this.announcementService.getAnnouncements()
+
+    this.announcementService.getAnnouncements().subscribe(data=>{
+      this.announcements = data
+      this.loaded = true;
+    })
   }
 }

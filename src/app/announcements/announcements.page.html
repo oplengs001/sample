@@ -13,7 +13,7 @@
 
 <ion-content class="content-bg">  
   <ion-list>  
-    <ion-card class="card-class"  *ngFor="let number of [0,1,2,3,4]" [hidden]="loading===true">
+    <ion-card class="card-class"  *ngFor="let number of [0,1,2,3,4]" [hidden]="loaded">
         <ion-item class="item-class" lines="none">
           <ion-icon class="icon-announcement"  name="megaphone" slot="end"></ion-icon>          
           <ion-label slot="start">         <ion-skeleton-text animated></ion-skeleton-text></ion-label> 
@@ -27,7 +27,7 @@
           <ion-label class="time-format"><ion-skeleton-text animated></ion-skeleton-text></ion-label>
         </ion-item> 
     </ion-card>
-    <div #events *ngFor="let announcement of (announcements | async | sort :'desc':'date_posted' )">
+    <div #events *ngFor="let announcement of (announcements | sort :'desc':'date_posted' )">
       <ion-card class="card-class">
           <ion-item class="item-class" lines="none">
             <ion-icon class="icon-announcement"  name="megaphone" slot="end"></ion-icon>
@@ -43,7 +43,7 @@
           </ion-item> 
         </ion-card>
     </div>
-    <div *ngIf="(announcements|async)?.length === 0;else caughtup">    
+    <div *ngIf="(announcements)?.length === 0;else caughtup">    
       <ion-card class="card-class">
           <ion-item class="item-class">         
             <ion-label class="ion-text-center"><ion-icon name="information-circle-outline"  class="icon-checkSize" ></ion-icon> </ion-label> 
