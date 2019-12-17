@@ -2,25 +2,24 @@
   <ion-slides [options]="slideOptions" [hidden]="hideSlide" *ngIf=info >
       <ion-slide>
         <div class="slide-content" >
-            <p> {{info.b_father_name}} & {{info.b_mother_name}} </p>
+            <!-- <p> {{info.b_father_name}} & {{info.b_mother_name}} </p> -->
             <p> {{info.g_father_name}} &  {{info.g_mother_name}} </p>
             <span class=under-text> {{info.invitation_f_text}} </span>
             <h1 class="wc-text">{{info.groom_name}}  <br>&<br> {{info.bride_name}}</h1>
+            <br><br>
             <p> {{info.weddingDateText}}
-            <br> {{info.weddingYearText}}</p>
-            <br>
-            <p> {{info.weddingTimeText}}
-                <br> </p>
-            <br>
+            <br> {{info.weddingYearText}}</p>          
+            <!-- <p> {{info.weddingTimeText}}
+                <br> </p> -->       
             <p> {{info.location_place}}
                 <br> </p>
-            <br>
-            <p> {{info.invitation_last_text}}</p>
-            <br>
+            <br><br><br><br>
+            <!-- <p> {{info.invitation_last_text}}</p> -->
+            <br><br>
             <section class="buttons">
-                <header>RSVP</header>
+                <header>R.S.V.P</header>
                 <ion-button size="large" color="light" (click)="home.updateStatus(true)" [disabled]="isAdmin" > Accept </ion-button>      
-                <ion-button size="large" color="danger" (click)="home.updateStatus(false)" [disabled]="isAdmin"> Decline </ion-button>
+                <ion-button size="large" color="dark" (click)="home.updateStatus(false)" [disabled]="isAdmin"> Decline </ion-button>
             </section>            
         </div>
       </ion-slide>       

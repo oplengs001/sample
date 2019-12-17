@@ -66,6 +66,13 @@
           ></ion-input>
       </ion-item>  
       <ion-item>
+            <ion-label position="stacked">Wedding Date Year Text</ion-label>
+            <ion-input   
+            [(ngModel)]="info.weddingYearText"  
+            (ionBlur)="saveItem()"            
+            ></ion-input>
+        </ion-item> 
+      <ion-item>
           <ion-label position="stacked">Wedding Time Text</ion-label>
           <ion-input   
           [(ngModel)]="info.weddingTimeText"  

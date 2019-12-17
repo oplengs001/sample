@@ -11,9 +11,11 @@ import { GeneralInfoService ,Info} from "../services/content/general-info.servic
 import { FooterComponent } from "../footer/footer.component"
 import { AuthService } from '../services/auth/auth.service'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
-import { LoadingController } from '@ionic/angular';
+import { LoadingController,ModalController } from '@ionic/angular';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import {NgxImageCompressService} from 'ngx-image-compress';
+import { GettingTherePage } from "../modals/getting-there/getting-there.page"
+
 // declare var google;
 @Injectable({
   providedIn: 'root'
@@ -54,7 +56,8 @@ export class CeremonyPage implements OnInit, AfterViewInit {
      private authServ : AuthService,
      private actions : ActionClass,
      public loadingController: LoadingController,
-     private imageCompress: NgxImageCompressService
+     private imageCompress: NgxImageCompressService,
+     private modalController : ModalController,
   ) {
     this.createDirectionForm();
   }
@@ -78,15 +81,7 @@ export class CeremonyPage implements OnInit, AfterViewInit {
     this.authServ.currentUserData().then(data=>{
       this.isAdmin = data.isAdmin
     })
-  } 
-  ShowMap(){
-    this.CardHide = true
-    this.MapHide = false
-  }
-  ShowChurch(){
-    this.CardHide = false
-    this.MapHide = true
-  }
+  }  
   createDirectionForm() {
     this.directionForm = this.fb.group({
       source: ['', Validators.required],
@@ -144,6 +139,13 @@ export class CeremonyPage implements OnInit, AfterViewInit {
       })
     })
   
+  }
+  async openMap() {    
+    const modal: HTMLIonModalElement =
+       await this.modalController.create({
+          component: GettingTherePage,         
+    });          
+    await modal.present();
   }
   ngAfterViewInit(): void {
     
