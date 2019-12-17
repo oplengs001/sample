@@ -24,9 +24,10 @@
           <div class="username" [style.color]=msg.user.color><b >{{ msg.user.first_name}}  {{ msg.user.last_name }}</b><br></div>
           <div class="image_container">
             <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
-            <ion-img-viewer [src]="msg.image"
+            <ion-img [src]="msg.image"
             (ionImgDidLoad)="imageLoaded($event,true,i,current_length)"
-            ></ion-img-viewer>
+            (click)= imageClick(msg.image)
+            ></ion-img>
           </div>         
           <span>{{ msg.content }}</span>
           <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>        
@@ -36,9 +37,10 @@
           <!-- <b class="username">{{ msg.user.first_name}} {{ msg.user.last_name }}</b><br> -->
           <div class="image_container">
             <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
-            <ion-img-viewer [src]="msg.image"
-            (ionImgDidLoad)="imageLoaded($event,true)"
-            ></ion-img-viewer>   
+            <ion-img [src]="msg.image"
+            (ionImgDidLoad)="imageLoaded($event,true,i,current_length)"
+            (click)= imageClick(msg.image)
+            ></ion-img>   
           </div>       
             <span>{{ msg.content }}</span>
             <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>          

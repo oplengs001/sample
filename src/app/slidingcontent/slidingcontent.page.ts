@@ -10,6 +10,7 @@ import { CreateEventPage } from '../modals/create-event/create-event.page';
 import { ViewingcontentPage } from '../viewingcontent/viewingcontent.page'
 import { SlidingContentService, Itinerary } from "../services/content/sliding-content.service"
 import { GeneralInfoService ,Info} from "../services/content/general-info.service"
+import { GettingTherePage } from "../modals/getting-there/getting-there.page"
 @Component({
   selector: 'app-slidingcontent',
   templateUrl: './slidingcontent.page.html',
@@ -37,96 +38,10 @@ export class SlidingcontentPage implements OnInit {
     private route : ActivatedRoute,
     private contentServe : SlidingContentService,
     private modalController : ModalController,
-    private generalInfo : GeneralInfoService
+    private generalInfo : GeneralInfoService    
   ) {   
     this.Dining = false
-    this.Itinerary = false
-    this.event_it = [
-      {
-        image_url: "/assets/images/Itinerary/arrival.jpg",
-        name: "The Arrival",
-        location: "17 Marine Parade, Queenstown 9300"
-      },
-      {
-        image_url: "/assets/images/Itinerary/ido.jpg",
-        name: "Do You's & I Do's",
-        location: "Te Nuku, 43 Ballarat St, Queenstown 9348"
-      },
-      {
-        image_url: "/assets/images/Itinerary/raiseyourglass.jpg",
-        name: "Raise Your Glass!",
-        location: "14 Cow Ln, Queenstown 9300"
-      },
-      {
-        image_url: "/assets/images/Itinerary/entrance.jpg",
-        name: "The Entrance",
-        location: "8 Duke St, Queenstown 9300"
-      },
-      {
-        image_url: "/assets/images/Itinerary/samedayedit.jpg",
-        name: "Wedding Video (Same day Edit)",
-        location: "16 Church St, Queenstown 9300"
-      },  
-      {
-        image_url: "/assets/images/Itinerary/sweetdance.jpg",
-        name: "Sweet Dance",
-        location: "9 Isle St, Queenstown 9300"
-      },     
-      {
-        image_url: "/assets/images/Itinerary/danceparty.jpg",
-        name: "Party Time!",
-        location: "3 Searle Ln, Queenstown 9300"
-      }
-    ]
-
-    // this.topResto = [
-    //   {
-    //     image_url: "/assets/images/dining/botswana.jpg",
-    //     name: "Botswana Butchery",
-    //     location: "17 Marine Parade, Queenstown 9300"
-    //   },
-    //   {
-    //     image_url: "/assets/images/dining/rata.jpg",
-    //     name: "Rata",
-    //     location: "Te Nuku, 43 Ballarat St, Queenstown 9348"
-    //   },
-    //   {
-    //     image_url: "/assets/images/dining/the bunker.jpg",
-    //     name: "The Bunker",
-    //     location: "14 Cow Ln, Queenstown 9300"
-    //   },
-    //   {
-    //     image_url: "/assets/images/dining/jervois.jpg",
-    //     name: "Jervois Steak House",
-    //     location: "8 Duke St, Queenstown 9300"
-    //   },
-    //   {
-    //     image_url: "/assets/images/dining/bluekanu.jpg",
-    //     name: "Blue Kanu",
-    //     location: "16 Church St, Queenstown 9300"
-    //   },
-    //   {
-    //     image_url: "/assets/images/dining/tacomedic.jpg",
-    //     name: "Taco Medic",
-    //     location: "3 Searle Ln, Queenstown 9300"
-    //   },    
-    //   {
-    //     image_url: "/assets/images/dining/bespoke.jpg",
-    //     name: "Bespoke Kitchen",
-    //     location: "9 Isle St, Queenstown 9300"
-    //   },
-    //   {
-    //     image_url: "/assets/images/dining/ferg.jpg",
-    //     name: "Fergburger",
-    //     location: "42 Shotover St, Queenstown 9300"
-    //   },
-    //   {
-    //     image_url: "/assets/images/dining/carib.jpg",
-    //     name: "Caribe Latin Kitchen",
-    //     location: "36 Ballarat St, Queenstown 9300"
-    //   },      
-    // ]
-    
+    this.Itinerary = false   
   }
   doReorder(ev: any) {    
     var 
@@ -199,6 +114,13 @@ export class SlidingcontentPage implements OnInit {
       }
     })
   }
+  async openMap() {    
+    const modal: HTMLIonModalElement =
+       await this.modalController.create({
+          component: GettingTherePage,         
+    });          
+    await modal.present();
+  }
   ngOnInit() {    
     // this.isAdmin = this.authServ.isAdmin()
     this.tba = true
@@ -240,6 +162,10 @@ export class SlidingcontentPage implements OnInit {
           return listItem;
         });
       }
+    }
+    openReception(){    
+      var url = 'https://www.google.com/maps/search/?api=1&query=-45.033001,168.660799'
+      window.open(url, '_system');
     }
 
     

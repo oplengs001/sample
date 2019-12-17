@@ -46,6 +46,11 @@ export class HomeMenuPage implements OnInit {
       icon: 'pricetag'
     },   
     {
+      title: 'Wedding Weather',
+      url: '/wedding-weather',
+      icon: 'rainy'
+    },
+    {
       title: 'What To Do',
       url: '/home-tab',
       icon: 'walk'
@@ -54,12 +59,8 @@ export class HomeMenuPage implements OnInit {
       title: 'What To Eat',
       url: 'dining',
       icon: 'restaurant'
-    },
-    {
-      title: 'Wedding Weather',
-      url: '/wedding-weather',
-      icon: 'rainy'
-    }  
+    }
+
   ]; 
 
   constructor(

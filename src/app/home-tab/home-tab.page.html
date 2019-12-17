@@ -31,7 +31,7 @@
           <img src="{{item.image_link}}" alt="" class="img-container"/>
           <br>
          {{item.text}}
-         <a (click)="openLink([item.url])"> 
+         <a (click)="openLink(item.url)"> 
          {{item.url_tag}}
          </a>
       </app-expandable>

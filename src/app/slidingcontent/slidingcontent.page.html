@@ -56,15 +56,18 @@
                 <ion-item lines="none" class="itinerary-item">
                     <ion-card-title  class="schedule" slot="end">{{event.schedule}} <ion-icon  name="ios-arrow-down"></ion-icon></ion-card-title>                    
                     <ion-card-title class="event-name">{{event.name}}</ion-card-title>
-                    
                 </ion-item>
               </ion-card-header>
               <ion-card-content class="content-card">
                   <app-expandable expandHeight="100vh" [expanded]="event.expanded">  
                   <ion-img src="{{event.image_url}}"></ion-img>
                   <br>
-                  <ion-card-title>{{event.name}}</ion-card-title>    
-                  <div class="ion-text-center">{{event.location}}</div>
+                  <!-- <ion-card-title>{{event.name}}</ion-card-title>     -->
+                  <!-- <ion-card-subtitle>{{event.schedule}} </ion-card-subtitle> -->
+                  <div class="ion-text-justify" style="font-size: 12px;">{{event.location}}
+                      <ion-text *ngIf="event.name === 'Pre-Dinner Drinks'" class="ion-text-justify" style="font-size: 12px;"> at <a (click)=openReception()>The Grille at Eichardt</a></ion-text>
+                  </div>                                    
+                  <div *ngIf="event.name === 'Ceremony'" class="ion-text-justify" style="font-size: 12px;">From central queenstown to Jack’s retreat for those who want to drive there themselves <a (click)=openMap()>"Get There"</a></div>                    
                   </app-expandable>
               </ion-card-content>                        
             </ion-card> 

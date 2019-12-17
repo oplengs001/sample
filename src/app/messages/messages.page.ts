@@ -16,6 +16,7 @@ import { Platform } from '@ionic/angular';
 import { ModalController, } from '@ionic/angular';
 import { MessagesDetailsPage } from "../modals/messages-details/messages-details.page"
 import { GuestAddService} from "../services/guest-add/guest-add.service"
+import { ImagePage } from "../modals/photos/image/image.page"
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.page.html',
@@ -61,7 +62,8 @@ export class MessagesPage implements OnInit {
     private toaster : ToastService,
     private platform : Platform,
     private modalctrl : ModalController,
-    private guest : GuestAddService
+    private guest : GuestAddService,
+    private imageModal: ImagePage
   ) {    
   
   }
@@ -85,7 +87,7 @@ export class MessagesPage implements OnInit {
   }  
   loadData(event) {      
     console.log("called")
-   
+    
     if(this.device_platform === "ios"){
       setTimeout(() => {
         this.loadDataTimeout()
@@ -96,9 +98,10 @@ export class MessagesPage implements OnInit {
    
   }
   loadDataTimeout(){
-    if(this.current_length !== undefined){          
+    
+  if(this.current_length !== undefined){          
           
-      this.limit = this.limit + 10
+      this.limit = this.limit + 15
       if ( this.limit >= this.current_length) {          
         this.current_index = 0         
         this.infiniteScroll.disabled = true
@@ -111,9 +114,10 @@ export class MessagesPage implements OnInit {
         this.infiniteScroll.complete()
         this.first_line = false
       }                 
-  }else{
-    this.infiniteScroll.complete()
-  } 
+    }else{
+      
+      this.infiniteScroll.complete()
+    } 
   }
   scrollToBottom(value) {
     setTimeout(()=>{   
@@ -140,6 +144,12 @@ export class MessagesPage implements OnInit {
   ionViewDidEnter (){ 
     
   }
+  imageClick(post){
+    var image_post={
+        url:post
+    }
+    this.imageModal.openModal(image_post,true)
+  } 
   showChat(){
     console.log("ca")
     this.emptyChat()
@@ -280,16 +290,15 @@ export class MessagesPage implements OnInit {
     if (isLoaded) {
       // setTimeout(() => {                
         //
-        console.log(this.limit)
-        console.log(this.limit-10)
-        console.log(index +"index")        
+      if(this.first_line){      
         if(this.limit >= index &&  index >= this.limit-5){
           this.scrollToBottom(0)          
         }    
-        event.target.parentElement.parentElement.classList.add('img-loaded');
+      }      
+        event.target.parentElement.classList.add('img-loaded');
       // }, 500);      
     } else {
-        // event.target.parentElement.parentElement.classList.remove('img-loaded');
+        event.target.parentElement.classList.remove('img-loaded');
     }
   }
   gotoGroups(){

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Get Me There</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card  class="itinerary-card">                                
+      <ion-card-header>     
+          Jack's Retreat Map and Direction 
+      </ion-card-header>
+      <ion-card-content class="content-card">
+          <ion-img (click)="imageClick('../../assets/images/s1.png')" src="../../assets/images/s1.png"></ion-img>          
+          <br>
+
+          <div class="ion-text-justify" style="font-size: 15px;">Directions are as follows & shown on map attached:</div>  
+          <ion-item lines="none">
+              <div class="ion-text-justify" style="font-size: 12px;">Drive from Frankton, along State Highway 6 and enter into Jacks Point.</div>
+          </ion-item>
+          <ion-item lines="none">
+              <div class="ion-text-justify" style="font-size: 12px;">Drive down Maori Jack Road towards the Clubhouse.</div>
+          </ion-item>
+          <ion-item lines="none">
+              <div class="ion-text-justify" style="font-size: 12px;">Drive past the road into the Clubhouse, and follow the road around past tennis courts & playground on your left, and then turn right into Lodge Rd, drive through the gates and head up the hill (Ignore the 'Private no cars allowed' sign).</div>
+          </ion-item>
+          <ion-item lines="none">
+              <div class="ion-text-justify" style="font-size: 12px;">At top of hill turn right into Preserve Drive.</div>
+          </ion-item>
+          <ion-item lines="none">
+              <div class="ion-text-justify" style="font-size: 12px;">Follow Preserve Drive road around, take the 3rd road on the left into Hidden Island Rd, then right into Back Shed Rd.</div>
+          </ion-item>   
+          <br>
+          <ion-item lines="none">
+              <div class="ion-text-justify" style="font-size: 12px;">Venue/house is at end on the right.  Turn into courtyard at stone wall on right, just past a large tussock covered mound.</div>
+          </ion-item> 
+          <ion-item lines="none" center-text>
+              <div class="ion-text-center" style="font-size: 12px;"><a (click)=openLink()>See on Google Maps</a></div>
+          </ion-item> 
+      </ion-card-content>   
+    </ion-card> 
+</ion-content>
