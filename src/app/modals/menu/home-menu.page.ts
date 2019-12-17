@@ -134,18 +134,18 @@ export class HomeMenuPage implements OnInit {
   }
 
   updateStatus(value){
-    var message = "you are declining the invitation"
+    var message = "You are Declining the Invitation"
     if(value){
-      message = "you are accepting the invitation"
+      message = "You are Accepting the Invitation"
     }
     this.actionSheet.confirmationMessage(message).then(data=>{
       if(data){
         this.guestService.updateStatus(this.authServ.userGuestDetails,value).then(data=>{                       
           if(value){
-            this.actionSheet.customAlert("Welcome!","Thanks for Accepting the invitation")
-            this.plusOnePrompt()
+            this.actionSheet.customAlert("Welcome!","Thanks for Accepting the Invitation.")
+            // this.plusOnePrompt()
           }else{
-            this.actionSheet.customAlert("Ow..","Hope You Change your Mind!")
+            this.actionSheet.customAlert("Ow.. Boo!","Hope You Change your Mind.")
           }                   
           this.tranServe.reRoute("/")
         })

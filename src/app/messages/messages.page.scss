@@ -1,6 +1,6 @@
 
 .message {
-  padding: 7px;
+  padding: 3px;
   border-radius: 5px;
   margin-bottom: 4px;
   max-width: 90vw;
@@ -60,8 +60,9 @@
 }
 .username{
   text-transform: capitalize;
-  margin-bottom:5px;
+  // margin-bottom:5px;
   font-size: 15px;
+  font-weight: 500
   // color:#3DBCC3;
  }
 
@@ -78,11 +79,13 @@
   border: 1px solid var(--ion-color-medium);
   border-radius: 10px;
   background: #fff;
-  resize: none;
+  // resize: none;
   padding-left: 10px;
   padding-right: 10px;
+  // max-height: 30vh !important;
+  // overflow: visible
+
 }
- 
 .msg-btn {
   --padding-start: 0.5em;
   --padding-end: 0.5em;

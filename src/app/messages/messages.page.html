@@ -131,7 +131,7 @@
 </ion-content>
 <ion-footer >
   <ion-toolbar color="light">
-      <ion-row no-padding align-items-center>
+      <ion-row no-padding align-items-center [hidden]=hide_image>
           <ion-col size="12">
               <div><ion-spinner class="spinner-loader-class" [hidden]=!uploading ></ion-spinner></div>
             <ion-img [src]="temp_image" 
@@ -140,9 +140,12 @@
           </ion-col>
     </ion-row>
     <ion-row no-padding align-items-center>
-      <ion-col size="10">
+      <ion-col size="10" >
         <ion-textarea  *ngIf="chat$ | async as chat"
-         autosize class="message-input" maxRows="4"
+         class="message-input" maxRows="5"
+         rows= "1"
+         autosize 
+         autoGrow=true 
          (ionFocus)="seen_chat()"
          [(ngModel)]="newMsg" 
          (keydown.enter)="submit($event,chat.id,chat.group_name)"
