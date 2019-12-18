@@ -40,7 +40,7 @@
             <ion-label slot="start" color="primary" >
                 Plus Guests : <ion-text> {{this.authServ.userGuestDetails.extra}}</ion-text>
             </ion-label>
-      </ion-item> -->
+      </ion-item> -->    
       <ion-item *ngIf=!isAdmin (click)="changeDecision()" lines="none" >        
           <ion-icon color="primary" slot="start" name="mail"></ion-icon>    
           <ion-label slot="start"  color="primary" *ngIf="this.authServ.userGuestDetails.will_come;else notAttending">
@@ -64,12 +64,17 @@
               Log-Out
           </ion-label>
       </ion-item>
+      <ion-item (click)="changePassword()" lines="none" >      
+          <ion-icon slot="start" color="primary" name="unlock"></ion-icon>
+          <ion-label slot="start" color="primary" >
+              Reset Password
+          </ion-label>
+      </ion-item>
       <ion-item (click)="closeModal" lines="none">   
-      <ion-icon slot="start"name="contact" [style.color]=userColor ></ion-icon>
+        <ion-icon slot="start"name="contact" [style.color]=userColor ></ion-icon>
           <ion-label slot="start" [style.color]=userColor>          
             {{currentUser}}
         </ion-label>
-      </ion-item>
-  
+      </ion-item>    
   </ion-toolbar>
 </ion-footer>

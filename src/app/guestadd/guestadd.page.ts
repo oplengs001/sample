@@ -21,7 +21,7 @@ export class GuestaddPage implements OnInit {
     chat_id : [],
     isAdmin: false,
     forRsvp : true,
-    will_come : null,
+    will_come : false,
     notif_count:0,        
     color: this.getRandomColor()
 
@@ -68,7 +68,7 @@ export class GuestaddPage implements OnInit {
         chat_id : [],      
         isAdmin,
         forRsvp: true,
-        will_come : null,
+        will_come : false,
         notif_count :0,                
         color: this.getRandomColor()
       }    
@@ -123,7 +123,7 @@ export class GuestaddPage implements OnInit {
       chat_id : [],
       isAdmin: false,
       forRsvp: true,
-      will_come : null,
+      will_come : false,
       notif_count : 0,            
       color: this.getRandomColor()
     };

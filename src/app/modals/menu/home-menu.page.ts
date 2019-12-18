@@ -82,6 +82,7 @@ export class HomeMenuPage implements OnInit {
  
     this.currentUser = `${this.authServ.userGuestDetails["first_name"]} ${this.authServ.userGuestDetails["last_name"]}`  
     this.isAdmin = this.authServ.isAdmin()    
+    
     this.userColor = this.authServ.userGuestDetails["color"]
     this.currentUID = this.authServ.userGuestDetails["uid"]
   }
@@ -99,7 +100,7 @@ export class HomeMenuPage implements OnInit {
     this.actionSheet.confirmationMessage(`You Are changing your Response to ${decision}`).then((res)=>{
       if(res){     
         var rsvp = !this.authServ.userGuestDetails.will_come           
-        this.updateStatus(rsvp)
+        this.updateStatus(rsvp,false)
       }
     })
 
@@ -133,7 +134,7 @@ export class HomeMenuPage implements OnInit {
     await modal.present();
   }
 
-  updateStatus(value){
+  updateStatus(value,first_log?:boolean){
     var message = "You are Declining the Invitation"
     if(value){
       message = "You are Accepting the Invitation"
@@ -142,11 +143,14 @@ export class HomeMenuPage implements OnInit {
       if(data){
         this.guestService.updateStatus(this.authServ.userGuestDetails,value).then(data=>{                       
           if(value){
-            this.actionSheet.customAlert("Welcome!","Thanks for Accepting the Invitation.")
+            this.actionSheet.customAlert("Welcome!","Thanks for Accepting the Invitation.")            
             // this.plusOnePrompt()
           }else{
             this.actionSheet.customAlert("Ow.. Boo!","Hope You Change your Mind.")
-          }                   
+          }
+          if(first_log){
+            this.actionSheet.customAlert("Wait!",`Password reset email has been sent to your Email "${this.authServ.userGuestDetails["email"]}"`)     
+          }              
           this.tranServe.reRoute("/")
         })
       }
@@ -174,6 +178,17 @@ export class HomeMenuPage implements OnInit {
       }else{
       }
     })  
+  }
+  changePassword(){
+    this.actionSheet.confirmationMessage("Password Reset Request will be Sent or Your Email","").then(data=>{
+      if(data){
+        this.authServ.resetPassword( this.authServ.userGuestDetails["email"]).then(
+          data=>{
+            this.actionSheet.customAlert("Success!",`Check your Email "${this.authServ.userGuestDetails["email"]}" to reset your password!`)
+          }
+        )
+      }
+    })
   }
 }
 

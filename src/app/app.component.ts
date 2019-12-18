@@ -55,9 +55,9 @@ export class AppComponent {
           this.adminUser = data.isAdmin        
           this.forRsvp = data.forRsvp
           this.userID = data.uid
-          this.userDetails = data
-               
+          this.userDetails = data               
             if(this.forRsvp){
+              this.authService.resetPassword(data.email)
               this.transServe.reRoute("rsvp")
             }
           }
@@ -69,6 +69,7 @@ export class AppComponent {
   logout() {
     this.authService.logout();
   } 
+  
   isAdmin(){  
     this.adminUser = this.authService.isAdmin()
   }
