@@ -4,7 +4,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { ToastService } from '../services/toaster/toast-service';
 import { ActionClass } from '../gallery-action-sheet/actionsheet'
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { GeneralInfoService} from "../services/content/general-info.service"
 import {  Router } from '@angular/router';
 @Component({
   selector: 'app-guestadd',
@@ -28,13 +28,15 @@ export class GuestaddPage implements OnInit {
   };
   password : string;
   guestForm : FormGroup
+  api : string
   constructor(  
     private guestService : GuestAddService,
     private authService : AuthService,
     private toastService: ToastService,
     private actions : ActionClass,
     private formBuilder : FormBuilder,
-    private router : Router
+    private router : Router,
+    private gInfo : GeneralInfoService
     ) { 
       this.guestForm = this.formBuilder.group({
         first_name : ['', Validators.required],        
@@ -44,11 +46,15 @@ export class GuestaddPage implements OnInit {
           Validators.required,
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
         ])],          
-        password : ['123456', Validators.required],       
+        password : [this.getRandomPassword(), Validators.required],       
         isAdmin : [false, Validators.required],        
       });
     }
   ngOnInit() {
+    this.gInfo.getWeddingInfoTakeOne().subscribe(data=>{
+      var {admin_site} = data[0]
+      this.api = admin_site
+    })
   }
   addGuest() {            
     if(this.guestForm.valid){
@@ -164,6 +170,9 @@ export class GuestaddPage implements OnInit {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+  }
+  getRandomPassword(){
+   return  Math.floor(100000 + Math.random() * 900000)
   }
 }
 

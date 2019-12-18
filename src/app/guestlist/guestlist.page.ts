@@ -81,9 +81,9 @@ export class GuestlistPage implements OnInit {
 
     }
   }
+ 
   reRoute(page:string){
     console.log(page)
-    this.router.navigateByUrl(page);
+    this.router.navigateByUrl(page);  
   }
-
 }

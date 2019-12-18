@@ -27,6 +27,7 @@ export interface Info {
   invitation_last_text: string,  
   ref: DocumentReference,
   api:string
+  admin_site:string
 }
 @Injectable({
   providedIn: 'root'

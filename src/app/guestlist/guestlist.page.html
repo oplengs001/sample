@@ -12,7 +12,9 @@
 <ion-content> 
     
   <ion-list *ngIf="guest_array">
-      <ion-input [(ngModel)]="searchText" placeholder="Search.." style="width:100%"></ion-input>
+      <ion-item>
+        <ion-input [(ngModel)]="searchText" placeholder="Search.." ></ion-input>
+      </ion-item>
       <ion-list-header>
           <ion-row style="width:100%">
             <ion-col class="ion-text-left" (click)="changeSort('first_name')">
