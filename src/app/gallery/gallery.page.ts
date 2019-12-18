@@ -77,7 +77,10 @@ export class GalleryPage implements OnInit {
       (result) => {
         if(result == false){
           // no callbacks required as this opens a popup which returns async
-          this.imagePicker.requestReadPermission();
+          // this.imagePicker.requestReadPermission().then(data=>{
+          //     this.openImagePicker()
+          // });
+          this.imagePicker.requestReadPermission()
         }
         else if(result == true){
           this.imagePicker.getPictures({

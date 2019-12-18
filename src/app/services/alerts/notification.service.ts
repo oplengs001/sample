@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HTTP } from '@ionic-native/http/ngx';
 import { GeneralInfoService } from '../content/general-info.service'
+import { Guest } from "../guest-add/guest-add.service"
 @Injectable({
   providedIn: 'root'
 })
@@ -177,20 +178,24 @@ export class NotificationService {
         return response.error
       });
     }
-    welcomeEmail(first_name:string,last_name:string,email:string,number:string){
+    welcomeEmail(guest:Guest,password:string){
       this.gInfo.getWeddingInfoTakeOne().subscribe(data=>{
         var content = data[0]        
         var {api} = content
         let postData = {
-          first_name : first_name,
-          last_name : last_name,
-          email : email,
-          number : number
-        }
-        this.httpIon.sendRequest(`${api}//send`,{
+          "first_name" : guest.first_name,
+          "last_name" : guest.last_name,
+          "email" : guest.email,
+          "password" : password
+        }        
+        this.httpIon.setDataSerializer("json")
+        this.httpIon.sendRequest(`${api}/guests/send-invite-email`,{
           method:"post",
           data: postData,
-          headers: this.IonHeader,
+        }).then(data=>{
+          console.log(data)
+        }).catch(err=>{
+          console.log(err)
         })
       })
     }

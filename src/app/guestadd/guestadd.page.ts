@@ -5,6 +5,7 @@ import { ToastService } from '../services/toaster/toast-service';
 import { ActionClass } from '../gallery-action-sheet/actionsheet'
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { GeneralInfoService} from "../services/content/general-info.service"
+import { NotificationService } from "../services/alerts/notification.service"
 import {  Router } from '@angular/router';
 @Component({
   selector: 'app-guestadd',
@@ -36,7 +37,8 @@ export class GuestaddPage implements OnInit {
     private actions : ActionClass,
     private formBuilder : FormBuilder,
     private router : Router,
-    private gInfo : GeneralInfoService
+    private gInfo : GeneralInfoService,
+    private notifs : NotificationService
     ) { 
       this.guestForm = this.formBuilder.group({
         first_name : ['', Validators.required],        
@@ -96,6 +98,7 @@ export class GuestaddPage implements OnInit {
               this.guestService.addGuest(this.guest).then(() => {
                 this.toastService.showToast('Guest added');
                 this.actions.customAlert("Success!","Guest Added!")
+                this.notifs.welcomeEmail(this.guest,this.password)
                 this.emptyForm()
               }, err => {
                 this.actions.customAlert("Opps!",err.message)
