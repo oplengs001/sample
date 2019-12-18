@@ -43,9 +43,20 @@ export class HomePage {
     this.forRsvp = this.footerFunc.forRsvp 
     this.plt.ready()
       .then(() => {    
+        let connectSubscription = this.network.onConnect().subscribe(() => {
+          this.toastService.showToast("Network Detected")
+          // We just got a connection but we need to wait briefly
+           // before we determine the connection type. Might need to wait.
+          // prior to doing any api requests as well.
+          setTimeout(() => {
+            if (this.network.type === 'wifi') {
+              this.toastService.showToast("Connected")
+            }
+          }, 3000);
+        });
         let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-          console.log(' Please reconnect to the internet to use the Online features of the App');
-        });                    
+          this.toastService.showToast("Network Disconnected")
+        });
         this.fcm.onNotification().subscribe( async data => {
           console.log(data)
           // this.badge.increase(1);
