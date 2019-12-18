@@ -58,18 +58,19 @@
               </ion-label>           
           </ng-template>                  
       </ion-item>   
-      <ion-item (click)="logout()" lines="none" >      
-          <ion-icon slot="start" color="danger" name="arrow-back"></ion-icon>
-          <ion-label slot="start" color="danger" >
-              Log-Out
-          </ion-label>
-      </ion-item>
       <ion-item (click)="changePassword()" lines="none" >      
           <ion-icon slot="start" color="primary" name="unlock"></ion-icon>
           <ion-label slot="start" color="primary" >
               Reset Password
           </ion-label>
       </ion-item>
+      <ion-item (click)="logout()" lines="none" >      
+          <ion-icon slot="start" color="danger" name="arrow-back"></ion-icon>
+          <ion-label slot="start" color="danger" >
+              Log-Out
+          </ion-label>
+      </ion-item>
+
       <ion-item (click)="closeModal" lines="none">   
         <ion-icon slot="start"name="contact" [style.color]=userColor ></ion-icon>
           <ion-label slot="start" [style.color]=userColor>          

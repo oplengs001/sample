@@ -145,12 +145,22 @@ export class HomeMenuPage implements OnInit {
           if(value){
             this.actionSheet.customAlert("Welcome!","Thanks for Accepting the Invitation.")            
             // this.plusOnePrompt()
+            if(first_log){
+              setTimeout(()=>{
+                this.actionSheet.customAlert("",`Reset Password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
+              },2000)
+              
+            }
           }else{
             this.actionSheet.customAlert("Ow.. Boo!","Hope You Change your Mind.")
+            if(first_log){
+              setTimeout(()=>{
+                this.actionSheet.customAlert("",`Reset Password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
+              },2000)
+              
+            }
           }
-          if(first_log){
-            this.actionSheet.customAlert("Wait!",`Password reset email has been sent to your Email "${this.authServ.userGuestDetails["email"]}"`)     
-          }              
+       
           this.tranServe.reRoute("/")
         })
       }
@@ -180,7 +190,7 @@ export class HomeMenuPage implements OnInit {
     })  
   }
   changePassword(){
-    this.actionSheet.confirmationMessage("Password Reset Request will be Sent or Your Email","").then(data=>{
+    this.actionSheet.confirmationMessage("Password Reset Request will be Sent or Your email","").then(data=>{
       if(data){
         this.authServ.resetPassword( this.authServ.userGuestDetails["email"]).then(
           data=>{
