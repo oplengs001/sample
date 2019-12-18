@@ -235,9 +235,16 @@ export class ImagesService {
         );                       
         return userDocs.length ? combineLatest(userDocs) : of([]);
       }),map(arr => {        
-        arr.forEach(v => (joinKeys[(<any>v).uid] = v));
-        post = post.map(v => {          
-          return { ...v, user: joinKeys[v.uploaded_by] };
+        
+        arr.forEach(v => {          
+            if(v !== undefined){
+              (joinKeys[(<any>v).uid] = v)
+            }           
+          });
+        post = post.map(v => {
+          if(v !== undefined){      
+            return { ...v, user: joinKeys[v.uploaded_by] };
+          }
         });
         
         return post;

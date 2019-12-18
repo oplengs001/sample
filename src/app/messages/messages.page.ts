@@ -303,6 +303,9 @@ export class MessagesPage implements OnInit {
         event.target.parentElement.classList.remove('img-loaded');
     }
   }
+  parenting(){
+    console.log("parent")
+  }
   gotoGroups(){
     
   }

@@ -241,20 +241,26 @@ export class ChatService {
         return userDocs.length ? combineLatest(userDocs) : of([]);
       }),
       map(arr => {      
+        
         chat.images = []
-        arr.forEach(v => (joinKeys[(<any>v).uid] = v));
-        chat.messages = chat.messages.map(v => {     
-          
+        arr.forEach(v =>{
+          if(v!== undefined){
+            (joinKeys[(<any>v).uid] = v)
+          }
+        });
+        chat.messages = chat.messages.filter(v => {     
+          return joinKeys[v.uid]!==undefined          
+        }).map(v=>{   
           if(v.image !== "" && v.image !== undefined){
             chat.images.push({
              url:v.image,
              member :joinKeys[v.uid],
-             date : v.createdAt,
-         
+             date : v.createdAt,         
             })
           }
           return { ...v, user: joinKeys[v.uid] };
-        });                                 
+          }
+        );                                     
         return chat;
       })
       

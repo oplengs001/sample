@@ -50,7 +50,8 @@
       <!-- Responsive Layout with Ion Grid-->
         <!-- <div class="images-single" *ngSwitchCase="'regular'"> -->
         <div class="images-single" [hidden]="galleryType === 'pinterest'">
-          <div class="single-count-image" *ngFor="let post of GalleryPosts.slice(0,image_limit) | sort :'desc':'date_uploaded'; trackBy: trackByCreated;" >    
+          <div class="single-count-image" *ngFor="let post of GalleryPosts.slice(0,image_limit) | sort :'desc':'date_uploaded'; trackBy: trackByCreated;">
+            <div *ngIf="post.user">  
               <div *ngIf="OwnImages;then filteredImage;else allUser">                
               </div>
               <ng-template #filteredImage>                          
@@ -106,7 +107,8 @@
                           <ion-icon name="logo-twitter" (click)="actions.DirectSharingButton(post,'twitter')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>     
                       </ion-item>  
                   </ion-card>
-              </ng-template>                         
+              </ng-template> 
+            </div>                          
           </div>
           <ion-infinite-scroll threshold="150px"  (ionInfinite)="loadData($event)">
             <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="crescent">
@@ -116,24 +118,26 @@
         <!-- <div class="images" *ngSwitchCase="'pinterest'">     -->
         <div class="images" [hidden]="galleryType === 'regular'" >    
             <div class="one-image" *ngFor="let post of GalleryPosts.slice(0,image_limit) | sort :'desc':'date_uploaded'; trackBy: trackByCreated">
-              <div *ngIf="OwnImages;then filteredImage;else allUser">                       
-              </div>
-              <ng-template #filteredImage>
-                  <div (click)="imageClick(post)" *ngIf="post.user.uid ===  this.currentUser" class="frame-image">                
-                      <ion-skeleton-text animated></ion-skeleton-text>
-                      <ion-img [src]="post.url"
-                      (ionImgDidLoad)="imageLoaded($event,true)"                      
-                      ></ion-img>                                    
-                  </div>  
-              </ng-template>
-              <ng-template #allUser>
-                  <div (click)="imageClick(post)" class="frame-image">           
+              <div *ngIf="post.user">  
+                <div *ngIf="OwnImages;then filteredImage;else allUser">                       
+                </div>
+                <ng-template #filteredImage>
+                    <div (click)="imageClick(post)" *ngIf="post.user.uid ===  this.currentUser" class="frame-image">                
                         <ion-skeleton-text animated></ion-skeleton-text>
                         <ion-img [src]="post.url"
                         (ionImgDidLoad)="imageLoaded($event,true)"                      
-                        ></ion-img>                    
-                  </div>  
-              </ng-template>
+                        ></ion-img>                                    
+                    </div>  
+                </ng-template>
+                <ng-template #allUser>
+                    <div (click)="imageClick(post)" class="frame-image">           
+                          <ion-skeleton-text animated></ion-skeleton-text>
+                          <ion-img [src]="post.url"
+                          (ionImgDidLoad)="imageLoaded($event,true)"                      
+                          ></ion-img>                    
+                    </div>  
+                </ng-template>
+              </div>
             </div>
             <ion-infinite-scroll threshold="150px"  (ionInfinite)="loadData($event)">
               <!-- <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="crescent">
