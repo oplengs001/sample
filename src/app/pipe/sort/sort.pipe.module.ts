@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { SortPipe } from './sort.pipe';
+import { SortPipe ,OrderByPipe,FilterPipe} from './sort.pipe';
 
 @NgModule({
-declarations: [SortPipe],
+declarations: [SortPipe,OrderByPipe,FilterPipe],
 imports: [],
-exports: [SortPipe],
+exports: [SortPipe,OrderByPipe,FilterPipe],
 })
 
 export class PipesModule {}

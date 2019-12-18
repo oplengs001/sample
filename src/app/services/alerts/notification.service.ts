@@ -1,23 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
-
+import { GeneralInfoService } from '../content/general-info.service'
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
-  private headers = new HttpHeaders()
-  .set('Content-Type', 'application/json' )
-  .set("Accept", "application/json")
-  .set('Authorization' , 'key=AIzaSyDSNAyyH5RbR6bQaOQ6O26t-iUw0_GCVYA')
-
   private IonHeader = {
     "Content-Type": "application/json",
     "Authorization" :'key=AIzaSyDSNAyyH5RbR6bQaOQ6O26t-iUw0_GCVYA'
   }
-  constructor( 
-    public http: HttpClient,
-    public httpIon : HTTP        
+  constructor(     
+    public httpIon : HTTP,
+    public gInfo : GeneralInfoService
     ) { }    
     createNotif(topic:string,group_name : string ,sender_id:string,content:any){    
       var object_returns : any
@@ -182,6 +176,22 @@ export class NotificationService {
         console.log(response.error);
         return response.error
       });
-      }
-    
+    }
+    welcomeEmail(first_name:string,last_name:string,email:string,number:string){
+      this.gInfo.getWeddingInfoTakeOne().subscribe(data=>{
+        var content = data[0]        
+        var {api} = content
+        let postData = {
+          first_name : first_name,
+          last_name : last_name,
+          email : email,
+          number : number
+        }
+        this.httpIon.sendRequest(`${api}//send`,{
+          method:"post",
+          data: postData,
+          headers: this.IonHeader,
+        })
+      })
+    }
 }

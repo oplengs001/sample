@@ -11,7 +11,8 @@
 
 <ion-content> 
     
-  <ion-list>
+  <ion-list *ngIf="guest_array">
+      <ion-input [(ngModel)]="searchText" placeholder="Search.." style="width:100%"></ion-input>
       <ion-list-header>
           <ion-row style="width:100%">
             <ion-col class="ion-text-left" (click)="changeSort('first_name')">
@@ -22,7 +23,9 @@
             </ion-col>
           </ion-row>
       </ion-list-header>
-    <div *ngFor="let guest of (guest_array | sort :sortFlow:sortValue )" (click)="expandItem(guest)" >    
+    <!-- <div *ngFor="let guest of (guest_array | sort :sortFlow:sortValue )" (click)="expandItem(guest)" >     -->
+  
+    <div *ngFor="let guest of (guest_array | orderBy:sortValue:sortFlow | filter:searchText:'first_name')" (click)="expandItem(guest)" >    
         <!-- <ion-label class="guests"> -->
           <ion-item *ngIf="(guest.isAdmin == false)" >   
               <ion-row style="width:100%">

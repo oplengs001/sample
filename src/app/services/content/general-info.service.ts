@@ -26,6 +26,7 @@ export interface Info {
   weddingTimeText : string,
   invitation_last_text: string,  
   ref: DocumentReference,
+  api:string
 }
 @Injectable({
   providedIn: 'root'

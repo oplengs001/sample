@@ -13,6 +13,8 @@ export class GuestlistPage implements OnInit {
   private guest_array : any
   private sortValue :any
   private sortFlow : any
+  private sorting : any
+  private searchText : string
   constructor(
     private guestServ: GuestAddService ,
     private router : Router) { }
@@ -20,11 +22,11 @@ export class GuestlistPage implements OnInit {
   ngOnInit() {
     this.guests = this.guestServ.getGuests();
     this.guests.subscribe(data=>{
-      this.guest_array = data
+      this.guest_array = data      
       this.guestSummary(data)
     })
     this.sortValue = "first_name"
-    this.sortFlow = "asc"
+    this.sortFlow = false
   }
   guestSummary(guests) {
     var attending=0,n_attending=0,all_guest=0,pendings=0
@@ -54,10 +56,10 @@ export class GuestlistPage implements OnInit {
   }
   changeSort(value:string){
     if(value === this.sortValue){
-      if(this.sortFlow === "asc"){
-        this.sortFlow = "desc"
+      if(this.sortFlow){
+        this.sortFlow = false
       }else{
-        this.sortFlow = "asc"
+        this.sortFlow = true
       }
     }
     this.sortValue = value
@@ -83,4 +85,5 @@ export class GuestlistPage implements OnInit {
     console.log(page)
     this.router.navigateByUrl(page);
   }
+
 }
