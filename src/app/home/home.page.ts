@@ -11,6 +11,7 @@ import {  Router ,NavigationExtras} from '@angular/router';
 import { myEnterAnimation, myLeaveAnimation} from '../animations/animations'
 import { FooterComponent} from '../footer/footer.component'
 import { WeatherService} from  '../services/weather/weather.service'
+import { Network } from '@ionic-native/network/ngx';
 // import { Badge } from '@ionic-native/badge/ngx';
 @Component({
   selector: 'app-home',
@@ -36,12 +37,15 @@ export class HomePage {
     private footerFunc : FooterComponent,
     private guestFunc : GuestAddService, 
     private weatherServ : WeatherService,
-
+    private network: Network
     // private badge: Badge
     ) {
     this.forRsvp = this.footerFunc.forRsvp 
     this.plt.ready()
-      .then(() => {                        
+      .then(() => {    
+        let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+          console.log(' Please reconnect to the internet to use the Online features of the App');
+        });                    
         this.fcm.onNotification().subscribe( async data => {
           console.log(data)
           // this.badge.increase(1);
@@ -145,7 +149,9 @@ export class HomePage {
   ngOnInit() {
     this.subscribeToTopic()
     this.weatherServ.getQtown().then(data=>{
-      this.weather = data 
+      this.weather = data
+      this.weather.weather = data.weather || "../assets/icon/set/PartlyCloudyDay.png"
+      this.weather.temperature = data.temperature || "7"
       console.log(this.weather)       
     })     
   }

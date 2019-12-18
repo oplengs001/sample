@@ -24,7 +24,7 @@
                   <span class="today_weather ion-text-center">{{cpeak_today.snow_mm}}mm</span>
                 </ion-card-header>
                 <ion-card-content no-padding class="content-no-background">
-                  <ion-slides [options]="{slidesPerView: 5}"  *ngIf="cpeak_hourly" class="hourly-slides">
+                  <ion-slides [options]="{slidesPerView: 5}" pager="true"  *ngIf="cpeak_hourly" class="hourly-slides">
                         <ion-slide *ngFor="let weather of cpeak_hourly">                                      
                             <ion-item lines="none">                              
                                 <ion-label class="slider-font ion-text-center">

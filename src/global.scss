@@ -31,7 +31,8 @@
     // width: 100% !important; 
  }
  .weather-pager .swiper-pagination {
-     top:40vh !important
+     top:40vh !important;
+     z-index: -1 !important;
  }
 .pinch-zoom-content{
     width: 100% !important;  

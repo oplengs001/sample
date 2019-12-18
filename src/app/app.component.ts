@@ -34,7 +34,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router : Router,
     private transServe : TransitionsService,
-    private network: Network,    
+    
     
   ) {
     this.initializeApp();
