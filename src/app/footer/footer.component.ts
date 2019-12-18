@@ -96,7 +96,6 @@ export class FooterComponent   {
         this.forRsvp = forRsvp
         this.will_come = will_come
         this.notif_count = notif_count    
-        console.log(this.will_come)
         this.notif_hide = notif_count!==0 ? false : true 
        const currentChatId = this.currentChats.map(arr=>arr.name),
        newChatid = chat_id,      
@@ -106,7 +105,9 @@ export class FooterComponent   {
         //forSubscription = this.currentChats.length ===0? newChatid :newItem
         
         //normal initialize subscription        
-        if(forRemoved.length !==0){this.removeSub(forRemoved)}
+        if(forRemoved.length !==0){
+          this.removeSub(forRemoved)
+        }
         if(forSubscription.length !==0){
           this.chatServ.getUserChat(forSubscription).then(data=>{          
             this.resubs(forSubscription,data,uid)    
@@ -130,6 +131,7 @@ export class FooterComponent   {
         subs : chatSub,
         name : entered[index]
       })
+      this.fcm.subscribeToTopic(entered[index])
     })
     console.log(this.GCsubsList)
     this.authServ.userChatSubs = this.GCsubsList
@@ -242,10 +244,11 @@ export class FooterComponent   {
   }
   remItem(forRemoved) {    
     for(var i in forRemoved){
+      this.fcm.unsubscribeFromTopic(forRemoved[i])
       const index = this.currentChats.findIndex((e) => e.name === forRemoved[i])
       const subIndex = this.GCsubsList.findIndex((e) => e.name === forRemoved[i])
       this.currentChats.splice(index,1)
-      this.GCsubsList[subIndex]["subs"].unsubscribe()
+      this.GCsubsList[subIndex]["subs"].unsubscribe()      
     }            
   }
 }
