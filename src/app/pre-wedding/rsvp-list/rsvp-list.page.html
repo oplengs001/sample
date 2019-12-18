@@ -1,25 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Reponse List</ion-title>
+    <ion-title>R.S.V.P Response History</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-      <div *ngFor="let notif of this.announcementServices.RsvpNotif">
-        <ion-item (click)="notif.status==='unread'?updateNotif(notif):'unreadNotif'" [class]="notif.status==='read'?'readNotif':'unreadNotif'">        
+      <div *ngFor="let notif of (this.announcementServices.RsvpNotif | sort :'desc':'createdAt' )">
+        <ion-item (click)="notif.status==='unread'?updateNotif(notif):'unreadNotif'" [class]="notif.status==='read'?'readNotif':'unreadNotif'">
           <ion-label>
-            <h2>{{ notif.title }}</h2>     
-            <h2 *ngIf="notif.focus==='will attend'; else notAttending">          
-                <ion-text color="success">Will Attend</ion-text>             
-            </h2>         
-            <p>{{ notif.body }} </p>                             
-            <ng-template #notAttending>
-              <h2>
-                <ion-text color="danger">Will Not Attend</ion-text>                   
-              </h2>            
-            </ng-template>
+            <h2>{{notif.guest }}</h2>
+            <p>Changed status to</p>
+            <p>by {{notif.createdAt | date:'h:mm a MM/dd/yyyy' }}</p>
           </ion-label>
+          <h2 slot="end" *ngIf="notif.focus==='will attend'; else notAttending">        
+              <ion-badge color="success">Will Attend</ion-badge>                          
+          </h2>         
+                                 
+          <ng-template #notAttending>
+            <h2 slot="end">
+              <ion-badge color="danger">Will Not Attend</ion-badge>                             
+            </h2>            
+          </ng-template>
         </ion-item>
       </div>
     </ion-list>

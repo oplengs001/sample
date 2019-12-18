@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
-
+import { PipesModule } from '../../pipe/sort/sort.pipe.module'
 import { RsvpListPage } from './rsvp-list.page';
 
 const routes: Routes = [
@@ -19,6 +19,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    PipesModule,
     RouterModule.forChild(routes)
   ],
   declarations: [RsvpListPage]

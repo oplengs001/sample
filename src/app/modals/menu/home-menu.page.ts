@@ -147,7 +147,7 @@ export class HomeMenuPage implements OnInit {
             // this.plusOnePrompt()
             if(first_log){
               setTimeout(()=>{
-                this.actionSheet.customAlert("",`Reset Password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
+                this.actionSheet.customAlert("",`reset Password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
               },2000)
               
             }
@@ -155,7 +155,7 @@ export class HomeMenuPage implements OnInit {
             this.actionSheet.customAlert("Ow.. Boo!","Hope You Change your Mind.")
             if(first_log){
               setTimeout(()=>{
-                this.actionSheet.customAlert("",`Reset Password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
+                this.actionSheet.customAlert("",`reset Password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
               },2000)
               
             }

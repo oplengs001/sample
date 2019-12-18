@@ -142,7 +142,9 @@ export class GuestAddService {
         body: `${first_name} ${last_name} responded "${decision}" on the RSVP`,
         createdAt : Date.now(),
         status : "unread",
-        focus : decision
+        focus : decision,
+        guest : `${first_name} ${last_name}`,
+        guest_uid : uid 
     }         
     this.notificationService.AdminNotif(notif.title,notif.body)  
     return this.announcementService.saveNotif(notif).then(()=>{

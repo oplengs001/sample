@@ -19,6 +19,8 @@ export interface AdminNotification{
   createdAt: number,  
   focus : string,
   status: string,
+  guest: string,
+  guest_uid: string,
 }
 @Injectable({
   providedIn: 'root'
