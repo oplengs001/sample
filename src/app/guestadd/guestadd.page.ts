@@ -172,7 +172,7 @@ export class GuestaddPage implements OnInit {
     return color;
   }
   getRandomPassword(){
-   return  Math.floor(100000 + Math.random() * 900000)
+   return  String(Math.floor(100000 + Math.random() * 900000))
   }
 }
 
