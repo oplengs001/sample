@@ -29,10 +29,8 @@
     </ion-card>
     <div #events *ngFor="let announcement of (announcements | sort :'desc':'date_posted' )">
       <ion-card class="card-class">
-          <ion-item class="item-class" lines="none">
-            <ion-icon class="icon-announcement"  name="megaphone" slot="end"></ion-icon>
-            
-            <ion-label slot="start">{{ announcement.title }}</ion-label> 
+          <ion-item class="item-class" lines="none">                
+            <ion-label slot="start" style="overflow:visible;white-space:pre-wrap">{{ announcement.title }}</ion-label> 
             <ion-icon slot="end" name="flash"  color="medium"></ion-icon>    
           </ion-item>          
           <ion-card-content class="ion-text-justify card-body">

@@ -334,7 +334,11 @@ export class MessagesPage implements OnInit {
     var {inbox} = group
         inbox.map((member)=>{
         this.guest.getGuestSingle(member.user_id).then(data=>{
-            this.current_members.push(data)
+            console.log(data)
+            if(data){
+              this.current_members.push(data)
+            }
+    
         })
      
       })

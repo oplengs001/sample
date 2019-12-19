@@ -40,7 +40,11 @@ export class CreateGroupPage implements OnInit {
   } 
   ionViewDidEnter (){     
     this.AuthServ.getAllUsers().then(data=>{
+      data = data.map(user=>{
+        return {...user, full_name : `${user.first_name} ${user.last_name}`}
+      })
       this.guests_array = data
+      console.log(data)
     })
 
     if(!this.EditingModal){     
@@ -48,8 +52,14 @@ export class CreateGroupPage implements OnInit {
       for(var i in inbox){            
         let user = inbox[i]            
          this.AuthServ.getUserDataByID(user.user_id).then((data=>{
-          this.group_array.push(data)
-          this.original_array.push(data)
+    
+          if(data){
+            data.full_name = `${data.first_name} ${data.last_name}`
+            this.group_array.push(data)
+            this.original_array.push(data)
+          }
+
+          console.log(this.group_array)
         }))         
       }
       this.GroupForm.controls['group_id'].setValue(this.group_details.id);
