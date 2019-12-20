@@ -1,7 +1,7 @@
 ion-content{
     // background : url(../../assets/images/gradient4.jpg) no-repeat center center;
     // background-size: cover;     
-    --background: url(../../../assets/images/gradient4.jpg)  no-repeat center center;
+    // --background: url(../../../assets/images/gradient4.jpg)  no-repeat center center;
     --background-size: cover;  
 }
 .content-card{
@@ -19,16 +19,16 @@ ion-content{
 
 
     ion-item{
-        --background:#00000000
+        // --background:#00000000
     }
 }
 .event-name{
     font-size:20px
 }
 .itinerary-card{
-    --background: #ffffff7a;
+    // --background: #ffffff7a;
     color: #000000
 }
 .itinerary-item{
-    --background:#dfe4f400
+    // --background:#dfe4f400
 }
