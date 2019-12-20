@@ -11,17 +11,94 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>     
-    <ion-card-header>
-      <ion-card-title  class="ion-text-center">Tom and Ingga Reccomended Accommodation</ion-card-title>  
-      <img src="../../assets/images/accomodation.jpg" class="img-container" />
-    </ion-card-header>
-    <ion-card-content>
-        <div class="ion-text-center">
-          Queenstown, New Zealand has a huge range of accommodation styles to suit every age and stage, style and budget. see more info at <a (click)="openLink('https://www.queenstownnz.co.nz/accommodation/')"> www.queenstownnz.co.nz/accommodation</a>
-        </div>
-    </ion-card-content>
-  </ion-card>  
-  
+  <ion-slides pager=true class="rentals">
+    <ion-slide>
+        <ion-card class="recom-card">
+            <ion-card-header >
+              <ion-card-title  class="ion-text-center recom-text" >Tom & Ingga Reccomendations</ion-card-title>  
+              <img src="../../assets/images/accomodation-lux.jpg" class="img-container" />
+            </ion-card-header>
+            <ion-card-header class=lux-hotel>       
+              <ion-card-title>
+                  Luxury Villas
+              </ion-card-title>
+              <ion-card-subtitle>
+                  Sotheby’s International Realty
+              </ion-card-subtitle>  
+            </ion-card-header>
+            <ion-card-content>
+                <div class="ion-text-justify lux-details">
+                    For luxury villa rentals, we’ve had an amazing experience booking with Sotheby’s Rentals. All their properties are of exceptional standards and they provide timely and quality service. Please mention that you are a part of our party so that they can find the best villa for in close proximity to us.
+                </div>
+                <div>
+                    <ion-item class="ion-text-justify">
+                        Contact: Michelle Arona   
+                    </ion-item>
+                    <ion-item>
+                        Email: michelle.arona@nzsir.com
+                    </ion-item>
+                    <ion-item>
+                        Mobile/Whatsapp: +64 2153 9114
+                    </ion-item>  
+                    <ion-item>
+                      <a href="http://nzsothebysrealty.com/luxury-rentals">http://nzsothebysrealty.com/luxury-rentals</a>
+                    </ion-item>  
+                </div>                    
+            </ion-card-content>
+        </ion-card>  
+    </ion-slide>
+    <ion-slide>
+        <ion-card class="recom-card">  
+            <ion-card-header>
+              <ion-card-title  class="ion-text-center recom-text" >Airbnb</ion-card-title>   
+              <img src="../../assets/images/airbnb.jpg" class="img-container" />
+            </ion-card-header>
+            <ion-card-header class=lux-hotel>       
+                <ion-card-title>
+                    Airbnb
+                </ion-card-title>
+                <ion-card-subtitle>
+                    Book unique places to stay 
+                </ion-card-subtitle>  
+              </ion-card-header>
+            <ion-card-content>
+                <div class="ion-text-justify lux-details">
+                    Escape To A Home Away From Home. Unique Listings. Unique Hosts. Just For You. Plan Your Holiday Today with Airbnb. Easy Booking. Easy Living. 5.3mil Listings Worldwide. Paris. LA. London.Tokyo. Pay Less Upfront. Room. Apartment. Villa. Types: Villas, Apartments.
+                </div>
+                <div>                  
+                    <ion-item lines=none>
+                      <a href="https://www.airbnb.com/">www.airbnb.com</a>
+                    </ion-item>  
+                </div>  
+            </ion-card-content>
+        </ion-card>  
+    </ion-slide>
+    <ion-slide>
+        <ion-card class="recom-card">  
+            <ion-card-header>
+              <ion-card-title  class="ion-text-center recom-text" >Queenstown Accommodation</ion-card-title>   
+              <img src="../../assets/images/accomodation.jpg" class="img-container" />
+            </ion-card-header>
+            <ion-card-header class=lux-hotel>       
+                <ion-card-title>
+                    Queenstown Accommodation
+                </ion-card-title>
+                <ion-card-subtitle>
+                    Find Your Queenstown Accommodation
+                </ion-card-subtitle>  
+              </ion-card-header>
+            <ion-card-content>
+                <div class="ion-text-justify lux-details">
+                    Queenstown, New Zealand has a huge range of accommodation styles to suit every age and stage, style and budget
+                </div>
+                <div>                  
+                    <ion-item lines=none>
+                        <a (click)="openLink('https://www.queenstownnz.co.nz/accommodation/')"> www.queenstownnz.co.nz/accommodation</a>
+                    </ion-item>  
+                </div>  
+            </ion-card-content>
+        </ion-card>  
+    </ion-slide>   
+  </ion-slides> 
 </ion-content>
 

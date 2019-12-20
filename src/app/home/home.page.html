@@ -47,18 +47,24 @@
       <div class="card-title">PHOTOS<br>
         <ion-button color="primary" class="home_buttons">LIVE FEED</ion-button>
       </div>
+  </ion-card> 
+  <ion-card (click)="reRoute('accomodations')">    
+      <img class="card-image" src="/assets/images/accomodation-lux.jpg"/>
+      <div class="card-title">ACCOMMODATION<br>
+        <ion-button color="primary" class="home_buttons">WHERE TO STAY</ion-button>
+      </div>
+  </ion-card>
+  <ion-card  (click)="reRouteActivity('Dining')" >
+    <img class="card-image" src="/assets/images/dining2.jpg"/>
+    <div class="card-title">FOOD & DRINKS<br>
+      <ion-button color="primary" class="home_buttons">WHERE TO EAT</ion-button>
+    </div>
   </ion-card>
   <ion-card (click)="reRoute('home-tab')">    
       <img class="card-image" src="/assets/images/see_and_do.jpg"/>
-      <div class="card-title">SEE & DO<br>
+      <div class="card-title">ACTIVITIES<br>
         <ion-button color="primary" class="home_buttons">WHAT TO DO</ion-button>
       </div>
-  </ion-card>  
-  <ion-card  (click)="reRouteActivity('Dining')" >
-    <img class="card-image" src="/assets/images/dining2.jpg"/>
-    <div class="card-title">DINING<br>
-      <ion-button color="primary" class="home_buttons">WHERE TO EAT</ion-button>
-    </div>
   </ion-card>
 </ion-content>
 <!-- </div> -->

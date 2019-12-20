@@ -35,11 +35,7 @@ export class HomeMenuPage implements OnInit {
       url: '/getting-there',
       icon: 'airplane'
     },    
-    {
-      title: 'Accommodation',
-      url: '/accomodations',
-      icon: 'bed'
-    },
+   
     {
       title: 'Rentals',
       url: '/rentals',
@@ -51,15 +47,20 @@ export class HomeMenuPage implements OnInit {
       icon: 'rainy'
     },
     {
-      title: 'What To Do',
+      title: 'Accommodation',
+      url: '/accomodations',
+      icon: 'bed'
+    },
+    {
+      title: 'Food & Drinks',
+      url: 'dining',
+      icon: 'restaurant'
+    },
+    {
+      title: 'Activities',
       url: '/home-tab',
       icon: 'walk'
     },
-    {
-      title: 'What To Eat',
-      url: 'dining',
-      icon: 'restaurant'
-    }
 
   ]; 
 

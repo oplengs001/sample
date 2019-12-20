@@ -3,4 +3,25 @@
     width: 100vw;
     -o-object-fit: cover;
     object-fit: cover;
+    padding-top:10px
+  }
+  ion-item{
+    font-size: 12px;
+    --padding-start: 0px;
+  }
+  .lux-hotel{
+    padding-top: 0px;
+    padding-bottom :0px
+  }
+
+  .lux-details{
+    font-size: 13px;
+  }
+
+  .recom-text{
+    font-size: 19px;
+  }
+  .recom-card{
+    min-height: 87vh;
+    margin-top:5px !important
   }
