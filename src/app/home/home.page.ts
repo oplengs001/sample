@@ -174,7 +174,7 @@ export class HomePage {
     if(this.scrollDepthTriggered) {
       return;
     }
-
+    
     console.log(this.scrollDepthTriggered);
     const scrollElement = await $event.target.getScrollElement();
     // minus clientHeight because trigger is scrollTop
@@ -187,7 +187,8 @@ export class HomePage {
     if(currentScrollDepth > triggerDepth) {
       console.log(`Scrolled to ${targetPercent}%`);
       // this ensures that the event only triggers once
-      this.scrollDepthTriggered = true;
+      // this.scrollDepthTriggered = true;
+      this.scrollDepthTriggered = false;
       // do your analytics tracking here
     }else{
       this.scrollDepthTriggered = false;

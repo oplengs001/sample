@@ -2,11 +2,11 @@
 
 <ion-app *ngIf="(authService.user | async)">
   
-  <ion-fab horizontal="end" vertical="top" slot="fixed" *ngIf=adminUser>
+  <ion-fab horizontal="start" vertical="bottom" slot="fixed" class="bow-tie-fab" *ngIf=adminUser>
     <ion-fab-button color="dark">
       <ion-icon name="bowtie"></ion-icon>
     </ion-fab-button>
-    <ion-fab-list>
+    <ion-fab-list side="top">
       <ion-fab-button (click)="reRoute('guestlist')" color="light" data-desc="Guest List">
         <ion-icon name="person-add"></ion-icon>
       </ion-fab-button>
@@ -34,8 +34,8 @@
       <gl-background-video src="../assets/video/background-video.mp4" poster="../assets/video/background-video-image.png" [hidden]="hideLogin"></gl-background-video>
       <ion-slides [options]="slideOptions" pager="true" [hidden]="hideSlide" >
           <ion-slide>
-            <div class="slide-content" >             
-                <img src="../assets/images/couple2.jpg">                                                                                            
+            <div class="slide-content" >
+                <img src="../assets/images/couple2.jpg">
                 <h1 class="wc-text">Tom & Ingga</h1>
                 <p> Joyfully invite you to their <br> wedding celebration</p>
                 <br>

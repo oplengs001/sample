@@ -17,17 +17,11 @@
     <ion-icon name="ios-arrow-down"></ion-icon>
   </ion-fab-button>
 </ion-fab>
-<ion-content class="card-background-page" *ngIf=!forRsvp forceOverscroll=false [scrollEvents]="true" (ionScroll)="logScrolling($event)">
-  <ion-card  (click)="reRoute('ceremony')" >
-      <img class="card-image" src="/assets/images/activities.jpg"/>
-      <div class="card-title">WEDDING ITINERARY<br>
-        <ion-button color="primary" class="home_buttons">SEE MORE</ion-button>
-      </div>
-  </ion-card>
+<ion-content class="card-background-page" *ngIf=!forRsvp forceOverscroll=false [scrollEvents]="true">
   <ion-card (click)="reRoute('weather')">   
       <img class="card-image" src="/assets/images/weather.jpg"/>
       <div class="card-title weather">         
-          <div class="country ion-text-center">QUEENSTOWN</div>           
+          <div class="country ion-text-center">QUEENSTOWN WEATHER</div>           
           <ion-row class="home-weather" *ngIf=weather>
             <ion-col>        
                   <!-- <ion-icon class="home-label-icon" name="partly-sunny"></ion-icon> -->
@@ -42,6 +36,12 @@
         <ion-button color="primary" class="home_buttons">SNOW REPORT</ion-button>
       </div>      
   </ion-card> 
+  <ion-card  (click)="reRoute('ceremony')" >
+      <img class="card-image" src="/assets/images/activities.jpg"/>
+      <div class="card-title">WEDDING ITINERARY<br>
+        <ion-button color="primary" class="home_buttons">SEE MORE</ion-button>
+      </div>
+  </ion-card>
   <ion-card  (click)="reRoute('gallery')" >
       <img class="card-image" src="/assets/images/events.jpg"/>
       <div class="card-title">PHOTOS<br>

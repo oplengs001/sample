@@ -11,6 +11,7 @@
     object-fit: cover !important;
 }
 .wedding-info{
+    height: 80vh;
     ion-card-header{
         padding-bottom: 0px !important
     }
@@ -18,6 +19,20 @@
         padding-top: 0px !important
     }
   
+}
+.details-card{
+    ion-icon{
+        font-size: 20px;
+    }
+    ion-textarea{
+        font-size: 14px        
+    }
+    ion-input{
+        font-size: 14px   
+    }
+    label{
+        font-size: 14px   
+    }
 }
 .event-card{
     height: 550px !important;

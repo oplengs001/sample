@@ -15,7 +15,6 @@ import { LoadingController,ModalController } from '@ionic/angular';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import {NgxImageCompressService} from 'ngx-image-compress';
 import { GettingTherePage } from "../modals/getting-there/getting-there.page"
-import { SlidingContentService, Itinerary } from "../services/content/sliding-content.service"
 // declare var google;
 @Injectable({
   providedIn: 'root'
@@ -57,22 +56,11 @@ export class CeremonyPage implements OnInit, AfterViewInit {
      private actions : ActionClass,
      public loadingController: LoadingController,
      private imageCompress: NgxImageCompressService,
-     private modalController : ModalController,
-     private contentServe : SlidingContentService
+     private modalController : ModalController,     
   ) {
     this.createDirectionForm();
   }
-  slidesDidLoad(
-    slides: IonSlides,
-    // speed: 1000,
-    ) {
-    slides.startAutoplay();
-    slides.options ={
-      autoplay: {
-        delay: 8000,
-      },
-    }
-  }
+ 
   saveItem(){    
     this.infoService.updateInfo(this.info.ref,this.info)
   }
@@ -88,9 +76,7 @@ export class CeremonyPage implements OnInit, AfterViewInit {
     this.authServ.currentUserData().then(data=>{
       this.isAdmin = data.isAdmin
     })
-    this.contentServe.getEvents().subscribe(data=>{
-      this.events =  data.sort((a, b) => a.position - b.position)    
-    })
+
     
   }  
   createDirectionForm() {

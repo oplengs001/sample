@@ -21,34 +21,18 @@
               (ionBlur)="saveItem()"    
               readonly="{{!isAdmin}}"
               ></ion-input>
-          </ion-card-title>
-        <ion-card-subtitle >
-          <ion-textarea  class="card-textarea" autoGrow=true   
-            [(ngModel)]="info.location_place"  
-            (ionBlur)="saveItem()"    
-            readonly="{{!isAdmin}}"
-            ></ion-textarea >
-        </ion-card-subtitle>        
-      </ion-card-header>    
-      <ion-card-content>        
-        <ion-textarea class="ion-text-justify" autoGrow=true  
-        [(ngModel)]="info.place_description"  
-        (ionBlur)="saveItem()"    
-        readonly="{{!isAdmin}}"
-        ></ion-textarea>        
-      </ion-card-content>
-  </ion-card>
-  <ion-card  >
-        <ion-item>
-            <ion-icon name="map" slot="start"  color="medium" ></ion-icon> 
-                <ion-textarea   
-                [(ngModel)]="info.location_place"  
-                (ionBlur)="saveItem()"    
-                readonly="{{!isAdmin}}"
-                autoGrow=true 
-                ></ion-textarea>            
-          </ion-item>
-        <ion-item>
+          </ion-card-title>        
+      </ion-card-header>   
+      <ion-item  class="details-card">
+          <ion-icon name="map" slot="start"  color="medium" ></ion-icon> 
+              <ion-textarea   
+              [(ngModel)]="info.location_place"  
+              (ionBlur)="saveItem()"    
+              readonly="{{!isAdmin}}"
+              autoGrow=true 
+              ></ion-textarea>            
+        </ion-item>
+        <ion-item class="details-card">
           <ion-icon name="calendar" slot="start"  color="medium"></ion-icon>        
               <ion-input   
               [(ngModel)]="info.weddingDate"  
@@ -56,53 +40,19 @@
               readonly="{{!isAdmin}}"
               ></ion-input>     
         </ion-item>
-        <ion-item (click)=openMap()>
+        <ion-item (click)=openMap() class="details-card">
             <ion-icon name="car" slot="start"  color="medium"></ion-icon>        
-              <label> Get Directions <a></a></label>   
-              <ion-icon  slot="end" style="background: #00000000" color="medium"  name="eye"></ion-icon> 
-        </ion-item>      
-  </ion-card>       
-  <ion-card class="welcome-card"> 
-      <ion-card-header>
-        <ion-card-title>Events</ion-card-title>
-        <ion-card-subtitle>Wedding Schedule</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content class="slides-content">
-        <ion-slides pager=true #slider [options]={delay:100} (ionSlidesDidLoad)="slidesDidLoad(slider)" class="rentals" >
-          <ion-slide *ngFor="let event of (events | sort :'asc':'position')">
-              <ion-card class="wedding-info event-card">
-                  <img src="{{event.image_url}}" (click)="changeImage()" alt="" />
-                    <ion-card-header>
-                      <ion-card-title >
-                          <ion-input class="card-title-input"
-                          [(ngModel)]="event.name"  
-                          
-                          readonly="{{!isAdmin}}"
-                            ></ion-input>
-                        </ion-card-title>
-                      <ion-card-subtitle >
-                        <ion-textarea  class="card-textarea" autoGrow=true   
-                          [(ngModel)]="event.schedule"  
-                  
-                          readonly="{{!isAdmin}}"
-                          ></ion-textarea >
-                      </ion-card-subtitle>        
-                    </ion-card-header>    
-                    <ion-card-content>        
-                      <ion-textarea class="ion-text-left" autoGrow=true  
-                        [(ngModel)]="event.location"  
-              
-                        readonly="{{!isAdmin}}"
-                      ></ion-textarea>    
-                      
-                    </ion-card-content>
-                </ion-card>
-          </ion-slide>          
-        </ion-slides>
-        <br>
-        <!-- <ion-button fill="outline" expand="block" (click)="reRoute('gallery')">View Photos</ion-button> -->
+            <label> Get Directions <a></a></label>   
+            <ion-icon  slot="end" style="background: #00000000" color="medium"  name="eye"></ion-icon> 
+        </ion-item>
+      <ion-card-content>        
+        <ion-textarea class="ion-text-justify" autoGrow=true  
+        [(ngModel)]="info.place_description"  
+        (ionBlur)="saveItem()"    
+        readonly="{{!isAdmin}}"
+        ></ion-textarea>        
       </ion-card-content>
-  </ion-card> 
+  </ion-card>      
   <!-- <ion-card class="welcome-card"> 
         <ion-card-header>
           <ion-card-title>Latest Photos</ion-card-title>
