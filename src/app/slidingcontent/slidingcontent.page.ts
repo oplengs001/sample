@@ -149,6 +149,9 @@ export class SlidingcontentPage implements OnInit {
       this.topResto = data[0].dining_list
     })
     }
+    saveItem(event){
+      this.contentServe.updateEventDetails(event.ref,event)
+    }
     expandItem(item): void {
       if (item.expanded) {
         item.expanded = false;

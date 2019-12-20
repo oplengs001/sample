@@ -32,10 +32,45 @@
       </ion-card> 
     </div>
     <div [hidden]="!Itinerary">  
-
-      <div *ngIf="(events|async)?.length !== 0;else items"> 
-        <ion-reorder-group  (ionItemReorder)="doReorder($event)" disabled="false" *ngIf="isAdmin;else nonAdmin">
-              <!-- <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">                                 -->
+        <div *ngIf="(events|async)?.length !== 0;else items">
+          <ion-card class="wedding-info" *ngFor="let event of (event_data   | sort :'asc':'position')" >          
+              <img src="{{event.image_url}}" alt="" />
+                <ion-card-header>
+                  <ion-card-title >
+                      <ion-input class="card-title-input"
+                        [(ngModel)]="event.name"  
+                        (ionBlur)="saveItem(event)"
+                        readonly="{{!isAdmin}}"
+                        ></ion-input>
+                    </ion-card-title>        
+                </ion-card-header>   
+                <ion-item class="details-card">
+                    <ion-icon name="time" slot="start"  color="medium"></ion-icon>        
+                        <ion-input   
+                        [(ngModel)]="event.schedule"      
+                        (ionBlur)="saveItem(event)"            
+                        readonly="{{!isAdmin}}"
+                        ></ion-input>     
+                  </ion-item> 
+                <ion-item class="details-card">
+                    <ion-icon name="map" slot="start"  color="medium"></ion-icon>        
+                        <ion-input   
+                        [(ngModel)]="event.location"    
+                        (ionBlur)="saveItem(event)"              
+                        readonly="{{!isAdmin}}"
+                        ></ion-input>     
+                </ion-item>                                      
+                <ion-card-content>        
+                  <ion-textarea class="ion-text-justify" autoGrow=true  
+                  [(ngModel)]="event.details"
+                  (ionBlur)="saveItem(event)"
+                  readonly="{{!isAdmin}}"
+                  ></ion-textarea>        
+                </ion-card-content>        
+          </ion-card>                                                                   
+        </div>   
+      <!-- <div *ngIf="(events|async)?.length !== 0;else items"> 
+        <ion-reorder-group  (ionItemReorder)="doReorder($event)" disabled="false" *ngIf="isAdmin;else nonAdmin">              
                 <ion-card class="content-card" *ngFor="let event of (event_data   | sort :'asc':'position')" >  
                     <ion-item lines="none"> 
                         <ion-reorder slot=start></ion-reorder> 
@@ -47,8 +82,7 @@
                       <ion-card-subtitle>Time: {{event.schedule}} </ion-card-subtitle>
                       <ion-card-subtitle>{{event.location}}</ion-card-subtitle>
                     </ion-card-header> 
-                </ion-card>                                                               
-            <!-- </ion-reorder-group><br>                 -->
+                </ion-card>                                                                     
         </ion-reorder-group>    
         <ng-template #nonAdmin>
             <ion-card  *ngFor="let event of (event_data  | sort :'asc':'position' )" (click)="expandItem(event)"  class="itinerary-card">                                
@@ -61,9 +95,7 @@
               <ion-card-content class="content-card">
                   <app-expandable expandHeight="100vh" [expanded]="event.expanded">  
                   <ion-img src="{{event.image_url}}"></ion-img>
-                  <br>
-                  <!-- <ion-card-title>{{event.name}}</ion-card-title>     -->
-                  <!-- <ion-card-subtitle>{{event.schedule}} </ion-card-subtitle> -->
+                  <br>        
                   <div class="ion-text-justify" style="font-size: 12px;">{{event.location}}
                       <ion-text *ngIf="event.name === 'Pre-Dinner Drinks'" class="ion-text-justify" style="font-size: 12px;"> at <a (click)=openReception()>The Grille at Eichardt</a></ion-text>
                   </div>                                              
@@ -79,6 +111,6 @@
           <h2 class="ion-text-center">To Be Announce!</h2>
           <p class="ion-text-center"><b>Wait for further Announcement</b><br>
              you will be notified when Events are added in this Itinerary!</p>
-      </ng-template>  
+      </ng-template>   -->
     </div>
 </ion-content>

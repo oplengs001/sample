@@ -27,9 +27,39 @@
 .admin-img{
     height:30vh
 }
+.card-title-input{
+
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    
+}
+.wedding-info{
+   height: 100%;
+    ion-card-header{
+        padding-bottom: 0px !important
+    }
+    ion-card-content{
+        padding-top: 0px !important
+    }
+  
+}
+.details-card{
+    ion-icon{
+        font-size: 20px;
+    }
+    ion-textarea{
+        font-size: 14px        
+    }
+    ion-input{
+        font-size: 14px   
+    }
+    label{
+        font-size: 14px   
+    }
+}
 ion-content{
     // background : url(../../assets/images/gradient4.jpg) no-repeat center center;
     // background-size: cover;     
-    --background: url(../../assets/images/gradient4.jpg)  no-repeat center center;
-    --background-size: cover;  
+    // --background: url(../../assets/images/gradient4.jpg)  no-repeat center center;
+    // --background-size: cover;  
 }

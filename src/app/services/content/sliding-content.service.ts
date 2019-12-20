@@ -13,6 +13,7 @@ export interface Itinerary {
   position : number,
   image_ref : string,
   schedule : string,
+  details: string
 }
 
 @Injectable({
@@ -58,6 +59,17 @@ export class SlidingContentService {
     item.position = to;        
     eventRef.update(item).then(()=>{
       console.log("updated")
+      this.notif.ItineraryNotif("Event Itinerary Update!",`${item.name}`)
+    }).catch((error)=>{
+      console.log(error)
+    });
+  }
+  async updateEventDetails(eventRef:DocumentReference, eventItem :any){   
+    // delete eventItem.ref
+    // delete eventItem.id    
+    // console.log(eventRef)
+    var item = <Itinerary>eventItem       
+    eventRef.update(item).then(()=>{      
       this.notif.ItineraryNotif("Event Itinerary Update!",`${item.name}`)
     }).catch((error)=>{
       console.log(error)
