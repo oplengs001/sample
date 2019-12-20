@@ -5,30 +5,30 @@
               <ion-icon slot="start" name="ios-arrow-back"></ion-icon>            
           </ion-button>     
       </ion-buttons>
-    <ion-title>Wedding Schedule</ion-title>
+    <ion-title>Wedding Itinerary</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content >
   <div *ngIf="info">
-  <ion-card [hidden]="CardHide" class="wedding-info">
+  <ion-card class="wedding-info">
     <img src="{{info.wedding_image}}" (click)="changeImage()" alt="" />
       <ion-card-header>
-        <ion-card-subtitle>
-          <ion-textarea  autoGrow=true   
+        <ion-card-title >
+            <ion-input class="card-title-input"
+              [(ngModel)]="info.location_name"  
+              (ionBlur)="saveItem()"    
+              readonly="{{!isAdmin}}"
+              ></ion-input>
+          </ion-card-title>
+        <ion-card-subtitle >
+          <ion-textarea  class="card-textarea" autoGrow=true   
             [(ngModel)]="info.location_place"  
             (ionBlur)="saveItem()"    
             readonly="{{!isAdmin}}"
             ></ion-textarea >
-        </ion-card-subtitle>
-        <ion-card-title>
-          <ion-input   
-           [(ngModel)]="info.location_name"  
-           (ionBlur)="saveItem()"    
-           readonly="{{!isAdmin}}"
-           ></ion-input>
-        </ion-card-title>
+        </ion-card-subtitle>        
       </ion-card-header>    
       <ion-card-content>        
         <ion-textarea class="ion-text-justify" autoGrow=true  
@@ -63,6 +63,47 @@
         </ion-item>      
   </ion-card>       
   <ion-card class="welcome-card"> 
+      <ion-card-header>
+        <ion-card-title>Events</ion-card-title>
+        <ion-card-subtitle>Wedding Schedule</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content class="slides-content">
+        <ion-slides pager=true #slider [options]={delay:100} (ionSlidesDidLoad)="slidesDidLoad(slider)" class="rentals" >
+          <ion-slide *ngFor="let event of (events | sort :'asc':'position')">
+              <ion-card class="wedding-info event-card">
+                  <img src="{{event.image_url}}" (click)="changeImage()" alt="" />
+                    <ion-card-header>
+                      <ion-card-title >
+                          <ion-input class="card-title-input"
+                          [(ngModel)]="event.name"  
+                          
+                          readonly="{{!isAdmin}}"
+                            ></ion-input>
+                        </ion-card-title>
+                      <ion-card-subtitle >
+                        <ion-textarea  class="card-textarea" autoGrow=true   
+                          [(ngModel)]="event.schedule"  
+                  
+                          readonly="{{!isAdmin}}"
+                          ></ion-textarea >
+                      </ion-card-subtitle>        
+                    </ion-card-header>    
+                    <ion-card-content>        
+                      <ion-textarea class="ion-text-left" autoGrow=true  
+                        [(ngModel)]="event.location"  
+              
+                        readonly="{{!isAdmin}}"
+                      ></ion-textarea>    
+                      
+                    </ion-card-content>
+                </ion-card>
+          </ion-slide>          
+        </ion-slides>
+        <br>
+        <!-- <ion-button fill="outline" expand="block" (click)="reRoute('gallery')">View Photos</ion-button> -->
+      </ion-card-content>
+  </ion-card> 
+  <!-- <ion-card class="welcome-card"> 
         <ion-card-header>
           <ion-card-title>Latest Photos</ion-card-title>
           <ion-card-subtitle>Gallery </ion-card-subtitle>
@@ -73,9 +114,8 @@
               <ion-img class="imageCard" [src]="post.url"></ion-img>
             </ion-slide>          
           </ion-slides>
-          <br>
-          <!-- <ion-button fill="outline" expand="block" (click)="reRoute('gallery')">View Photos</ion-button> -->
+          <br>          
         </ion-card-content>
-  </ion-card> 
+  </ion-card>  -->
   </div>
 </ion-content>

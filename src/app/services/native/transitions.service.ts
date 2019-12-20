@@ -16,7 +16,7 @@ export class TransitionsService {
     reRoute(location : string){
       let options: NativeTransitionOptions = {
         direction: 'left',
-        duration: 400,
+        duration: 100,
         // slowdownfactor: -1,
         // slidePixels: 20,
         // iosdelay: 100,
@@ -28,10 +28,13 @@ export class TransitionsService {
       this.nativePageTransitions.slide(options)
       this.router.navigateByUrl(location);          
     }
+    reRouteNoAnimation(location : string){       
+      this.router.navigateByUrl(location);          
+    }
     reRouteActivity(content:string){
       let options: NativeTransitionOptions = {
         direction: 'left',
-        duration: 400,
+        duration: 100,
         // slowdownfactor: -1,
         // slidePixels: 20,
         // iosdelay: 100,
@@ -59,7 +62,7 @@ export class TransitionsService {
     backButtonTrans(){
       let options: NativeTransitionOptions = {
         direction: 'right',
-        duration: 400,
+        duration: 100,
         // slowdownfactor: -1,
         // slidePixels: 20,
         // iosdelay: 100,

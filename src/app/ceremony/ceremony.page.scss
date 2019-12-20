@@ -19,6 +19,29 @@
     }
   
 }
+.event-card{
+    height: 64vh !important;
+}
+.slides-content{
+    padding-left: unset;
+    padding-right: unset;
+    -webkit-padding-start: 0px !important;
+    padding-inline-start: 0px !important;
+    -webkit-padding-end: 0px !important;
+    padding-inline-end: 0px !important;
+    padding-top: 0px !important;
+}
+.card-title-input{
+
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    
+}
+.card-textarea{
+
+    --padding-bottom: 0px;
+    
+}
 .native-input[disabled].sc-ion-input-ios {
     opacity: 1 !important;
 }

@@ -190,6 +190,9 @@ export class FooterComponent   {
   goToItinerary (){
     this.transServe.reRouteActivityNoAnimation("Itinerary")
   }  
+  reRoute(loc:string){
+    this.transServe.reRouteNoAnimation(loc)
+  }
   ionViewDidEnter (){        
   }
   ionViewDidLeave(){ 
