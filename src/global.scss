@@ -34,6 +34,19 @@
      top:40vh !important;
      z-index: -1 !important;
  }
+
+ .accoms .swiper-pagination-bullet-active {
+
+    --bullet-background-active: #488aff !important;
+  }
+  
+  .accoms .swiper-pagination {
+    top: 54vh !important;
+    z-index: -1 !important;
+  }
+  .pre-wedding-menu-button{
+    font-size: 25px !important;
+  }
 .pinch-zoom-content{
     width: 100% !important;  
     height: 100% !important;   

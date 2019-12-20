@@ -15,6 +15,14 @@
   font-family: 'notified-medium';
   src: url("../assets/fonts/GothamRoundedMedium.ttf") format('truetype');    
 };
+@font-face {
+  font-family: 'roboto';
+  src: url("../assets/fonts/roboto.ttf") format('truetype');    
+};
+@font-face {
+  font-family: 'sail-reguar';
+  src: url("../assets/fonts/Sail-Regular.ttf") format('truetype');    
+};
 .page-centered-element {
     position: absolute;
     left: 0;
@@ -104,7 +112,8 @@
           margin: 15vh 0 15px 0;       
           object-fit: cover;
           
-          border: 7px solid #d3dcfa;
+          // border: 7px solid #d3dcfa;
+          border :7px solid #507ebb
         }
       }
   

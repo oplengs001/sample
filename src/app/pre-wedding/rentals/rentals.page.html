@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
       <ion-buttons slot="start">
-          <ion-button color="dark" (click)="this.homeMenu.openModal()">
+          <ion-button  class="pre-wedding-menu-button" color="dark" (click)="this.homeMenu.openModal()">
               <ion-icon name="menu"></ion-icon>
           </ion-button>
           <ion-menu-button></ion-menu-button>
@@ -13,7 +13,7 @@
 <ion-content>
   <ion-slides  pager="true" class="rentals">
     <ion-slide >
-      <ion-card>     
+      <ion-card class="rental-card">     
           <ion-card-header>
             <ion-card-title  class="ion-text-center">Car Rental</ion-card-title>  
             <img src="../../assets/images/car_rental.jpg" class="img-container"/>
@@ -36,7 +36,7 @@
       </ion-card>
     </ion-slide>
     <ion-slide >
-      <ion-card>     
+      <ion-card class="rental-card">   
           <ion-card-header>
             <ion-card-title  class="ion-text-center">Ski Rental</ion-card-title>
             <img src="../../assets/images/ski_rental.jpg" class="img-container"/>
