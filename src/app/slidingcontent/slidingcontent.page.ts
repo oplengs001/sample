@@ -150,7 +150,12 @@ export class SlidingcontentPage implements OnInit {
     })
     }
     saveItem(event){
-      this.contentServe.updateEventDetails(event.ref,event)
+      if(this.isAdmin){
+        this.contentServe.updateEventDetails(event.ref,event)
+      }else{
+        console.log("none")
+      }
+      // 
     }
     expandItem(item): void {
       if (item.expanded) {
