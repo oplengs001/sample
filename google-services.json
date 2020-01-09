@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "246177144815-8ug2ocma5lh3hptjj75jq7gihhrn6mis.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ionicframework.sampleproject",
+            "certificate_hash": "7bfe4628f5a2cd42dc9058e316c20581c8105b33"
+          }
+        },
+        {
           "client_id": "246177144815-5vn1ggku4b3fvn4qqpl4h4e5gd7t1f3e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -38,6 +46,65 @@
             {
               "client_id": "246177144815-bef3i3d7jab7j7cltue92bbsubr1t0rk.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "246177144815-3p9kc43hkcakue544bmiouddocvbvrof.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.psg.wedvite"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246177144815:android:5d8ad0903289ccc47ea01a",
+        "android_client_info": {
+          "package_name": "com.psg.wedvite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246177144815-u6vh1s5jl275045mn0i4nobd9t599buf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.psg.wedvite",
+            "certificate_hash": "7bfe4628f5a2cd42dc9058e316c20581c8105b33"
+          }
+        },
+        {
+          "client_id": "246177144815-k8gdj7q9me5i9uh3gfgkmma4pdpenc26.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.psg.wedvite",
+            "certificate_hash": "3674345760a9e0d760f24b74c2297b21a4dd7f97"
+          }
+        },
+        {
+          "client_id": "246177144815-bef3i3d7jab7j7cltue92bbsubr1t0rk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqimNQnvWZgtWS1qQzhpB6Dr9QcZgxn1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246177144815-bef3i3d7jab7j7cltue92bbsubr1t0rk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "246177144815-3p9kc43hkcakue544bmiouddocvbvrof.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.psg.wedvite"
+              }
             }
           ]
         }
