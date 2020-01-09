@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>246177144815-apg4neucpphspgdb1cva6pr7vgi8i12b.apps.googleusercontent.com</string>
+	<string>246177144815-3p9kc43hkcakue544bmiouddocvbvrof.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.246177144815-apg4neucpphspgdb1cva6pr7vgi8i12b</string>
+	<string>com.googleusercontent.apps.246177144815-3p9kc43hkcakue544bmiouddocvbvrof</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>246177144815-5vn1ggku4b3fvn4qqpl4h4e5gd7t1f3e.apps.googleusercontent.com</string>
+	<string>246177144815-6qkdvtd8jjl64dkdi0h59l5vgj088f0f.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCgk7UcNyyNwSrBwggG2cbsV4rd-qPinO4</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.ionicframework.sampleproject</string>
+	<string>com.psg.wedvite</string>
 	<key>PROJECT_ID</key>
 	<string>sampleproject-79081</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:246177144815:ios:670055485a5a7cc67ea01a</string>
+	<string>1:246177144815:ios:84972fe19c8ccab17ea01a</string>
 	<key>DATABASE_URL</key>
 	<string>https://sampleproject-79081.firebaseio.com</string>
 </dict>
