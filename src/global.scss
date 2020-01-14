@@ -38,12 +38,14 @@
  .accoms .swiper-pagination-bullet-active {
 
     --bullet-background-active: #488aff !important;
-  }
-  
+  } 
   .accoms .swiper-pagination {    
-    top: 0vh !important;
-    
-    z-index: -1 !important;
+    top: 5.5% !important;
+    position: fixed !important;
+    z-index: 2 !important;
+    bottom:unset !important;
+    left:unset !important;
+    background : #ffffff
   }
   .pre-wedding-menu-button{
     font-size: 25px !important;
