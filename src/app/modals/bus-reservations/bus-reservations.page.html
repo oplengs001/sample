@@ -1,9 +1,22 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>bus-reservations</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+    <ion-toolbar>
+      <ion-title>Bus Reservations</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeModal()">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 <ion-content>
+  
+  <ion-item *ngFor="let guest of (guests)">
+    <ion-label>        
+        <h2 style="text-transform: capitalize"> {{guest.first_name}} {{guest.last_name}} <ion-icon class="font-icon" name="bus"></ion-icon></h2>  
+        <p>Seat Count:<b> {{guest.bus_reservation}}</b><br></p>  
+        <p> Status:<b> {{guest.reservation_status?'Approved':'for Approval'}}</b><br></p>  
+    </ion-label>
+    <h2 slot="end">        
+        <ion-badge color="{{guest.reservation_status?'success':'warning'}}">{{guest.bus_reservation}} seats</ion-badge>                          
+    </h2>  
+  </ion-item>
 
 </ion-content>

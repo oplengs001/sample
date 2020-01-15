@@ -9,6 +9,8 @@ import { GuestAddService } from "../../services/guest-add/guest-add.service"
 import { AnnouncementSaveService  } from "../../services/announcements/announcement-save.service"
 import { Network } from '@ionic-native/network/ngx';
 import { ThrowStmt } from '@angular/compiler';
+import { DietRestPage } from "../../modals/diet-rest/diet-rest.page"
+import { BusReservationsPage } from "../../modals/bus-reservations/bus-reservations.page"
 @Component({
   selector: 'app-home-menu',
   templateUrl: './home-menu.page.html',
@@ -71,7 +73,7 @@ export class HomeMenuPage implements OnInit {
     private tranServe :TransitionsService,
     private footer : FooterComponent,
     private guestService : GuestAddService, 
-    private annServe  :AnnouncementSaveService,    
+    private annServe  :AnnouncementSaveService,        
 
   ) {     
   
@@ -105,6 +107,20 @@ export class HomeMenuPage implements OnInit {
       }
     })
 
+  }
+  async openBusReservations(){
+    const modal: HTMLIonModalElement =
+    await this.modalctrl.create({
+       component: BusReservationsPage,         
+    });          
+    await modal.present();
+  }
+  async openDietRestrictions(){
+    const modal: HTMLIonModalElement =
+    await this.modalctrl.create({
+       component: DietRestPage,         
+    });          
+    await modal.present();
   }
   async closeModal(url?:string) {  
     if(url==="dining"){

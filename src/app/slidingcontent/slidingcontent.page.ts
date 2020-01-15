@@ -12,7 +12,7 @@ import { SlidingContentService, Itinerary } from "../services/content/sliding-co
 import { GeneralInfoService ,Info} from "../services/content/general-info.service"
 import { GettingTherePage } from "../modals/getting-there/getting-there.page"
 import { BusReservationsPage } from "../modals/bus-reservations/bus-reservations.page"
-import { DietRestPage } from "../modals/diet-rest/diet-rest.page"
+
 @Component({
   selector: 'app-slidingcontent',
   templateUrl: './slidingcontent.page.html',
@@ -137,7 +137,7 @@ export class SlidingcontentPage implements OnInit {
   }
   async openRestrictions(){
     this.actions.DietPrompt().then(data=>{
-      
+
     })
   }
   ngOnInit() {    

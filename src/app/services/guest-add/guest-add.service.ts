@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
-import { map, take, timestamp } from 'rxjs/operators';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference, DocumentChangeAction } from '@angular/fire/firestore';
+import { map, take,filter, timestamp, reduce } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { debug } from 'util';
@@ -22,15 +22,16 @@ export interface Guest {
   diet_restriction: string,
   bus_reservation:  number
   reservation_status : boolean
-
 }
 @Injectable({
   providedIn: 'root'
 })
 export class GuestAddService {
   private guests: Observable<Guest[]>;
+  private restricted_guests: Observable<Guest[]>;
+  private bus_reservations: Observable<Guest[]>;
   private GuestCollection: AngularFirestoreCollection<Guest>;
-
+  
   constructor(
     
     private afs: AngularFirestore,
@@ -47,13 +48,36 @@ export class GuestAddService {
         });
       })
     );
+    this.restricted_guests = this.GuestCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })    
+    )    
+    this.bus_reservations = this.GuestCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })    
+    )   
   }
 
   getGuests(): Observable<Guest[]> {
   
     return this.guests;
   }
-  
+  getRestrictedGuests(): Observable<Guest[]> {
+    return this.restricted_guests
+  }
+  getBusReservations(): Observable<Guest[]> {
+    return this.restricted_guests
+  }
   getGuest(id: string): Observable<Guest> {
     console.log(id)
     return this.GuestCollection.doc<Guest>(id).valueChanges().pipe(
@@ -65,6 +89,7 @@ export class GuestAddService {
       })
     );
   }
+
   getGuestSingle(id: string):Promise<any> {
   return  firestore().collection("guests").doc(`${id}`).get().then( userGuestProfile=>{
       
