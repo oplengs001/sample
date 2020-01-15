@@ -11,6 +11,8 @@ import { ViewingcontentPage } from '../viewingcontent/viewingcontent.page'
 import { SlidingContentService, Itinerary } from "../services/content/sliding-content.service"
 import { GeneralInfoService ,Info} from "../services/content/general-info.service"
 import { GettingTherePage } from "../modals/getting-there/getting-there.page"
+import { BusReservationsPage } from "../modals/bus-reservations/bus-reservations.page"
+import { DietRestPage } from "../modals/diet-rest/diet-rest.page"
 @Component({
   selector: 'app-slidingcontent',
   templateUrl: './slidingcontent.page.html',
@@ -120,6 +122,23 @@ export class SlidingcontentPage implements OnInit {
           component: GettingTherePage,         
     });          
     await modal.present();
+  }
+ 
+  // async openReservations(){
+  //   const modal: HTMLIonModalElement =
+  //   await this.modalController.create({
+  //      component: BusReservationsPage,         
+  //   });          
+  //   await modal.present();
+  // }
+  async openReservation(){
+    this.actions.busReservationPropmpt().then(data=>{
+    })
+  }
+  async openRestrictions(){
+    this.actions.DietPrompt().then(data=>{
+      
+    })
   }
   ngOnInit() {    
     // this.isAdmin = this.authServ.isAdmin()

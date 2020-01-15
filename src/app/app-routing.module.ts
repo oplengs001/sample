@@ -40,6 +40,8 @@ const routes: Routes = [
   { path: 'rsvp-admin', loadChildren: './rsvp/rsvp-admin/rsvp-admin.module#RsvpAdminPageModule' },
   { path: 'messages-details', loadChildren: './modals/messages-details/messages-details.module#MessagesDetailsPageModule' },
   { path: 'getting-there', loadChildren: './modals/getting-there/getting-there.module#GettingTherePageModule' },
+  { path: 'bus-reservations', loadChildren: './modals/bus-reservations/bus-reservations.module#BusReservationsPageModule' },
+  { path: 'diet-rest', loadChildren: './modals/diet-rest/diet-rest.module#DietRestPageModule' },
 ];
 
 @NgModule({

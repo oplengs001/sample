@@ -1,27 +1,46 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>R.S.V.P Response History</ion-title>
+    <ion-title>Admin Notifications</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
       <div *ngFor="let notif of (this.announcementServices.RsvpNotif | sort :'desc':'createdAt' )">
-        <ion-item (click)="notif.status==='unread'?updateNotif(notif):'unreadNotif'" [class]="notif.status==='read'?'readNotif':'unreadNotif'">
-          <ion-label>
-            <h2 style="text-transform: capitalize">{{notif.guest }}</h2>
-            <p>Changed status to</p>
-            <p>by {{notif.createdAt | date:'h:mm a MM/dd/yyyy' }}</p>
-          </ion-label>
-          <h2 slot="end" *ngIf="notif.focus==='will attend'; else notAttending">        
-              <ion-badge color="success">Will Attend</ion-badge>                          
-          </h2>         
-                                 
-          <ng-template #notAttending>
-            <h2 slot="end">
-              <ion-badge color="danger">Will Not Attend</ion-badge>                             
-            </h2>            
-          </ng-template>
+        <ion-item (click)="notif.status==='unread'?updateNotif(notif):'unreadNotif'" [class]="notif.status==='read'?'readNotif':'unreadNotif'">  
+
+            <ion-label *ngIf="notif.title==='Diet Restriction'">        
+              <h2>Diet Restriction <ion-icon class="font-icon" name="restaurant"></ion-icon></h2>
+              <h2 styl e="text-transform: capitalize">{{notif.guest }}</h2>
+              <p class="restriction">Requesting a Diet Restriction:<br> "{{notif.focus}}" <br> for his/her meal</p>
+              <p>by {{notif.createdAt | date:'h:mm a MM/dd/yyyy' }}</p>
+            </ion-label>
+            <ion-label *ngIf="notif.title==='Bus Reservation'">
+             
+              <h2>Bus Reservation <ion-icon class="font-icon" name="bus"></ion-icon></h2>
+              <h2 styl e="text-transform: capitalize">{{notif.guest }}</h2>
+              <p>Requesting to Reserve {{notif.focus}} seat/s</p>
+              <p>by {{notif.createdAt | date:'h:mm a MM/dd/yyyy' }}</p>
+            </ion-label>
+            <h2 slot="end" *ngIf="notif.title==='Bus Reservation'">        
+                <ion-badge color="success">{{notif.focus}} seats</ion-badge>                          
+            </h2>         
+
+          <!-- Bus Reservations-->    
+              <ion-label *ngIf="notif.title==='RSVP Response'">
+           
+                <h2>RSVP Response <ion-icon class="font-icon" name="mail"></ion-icon></h2>
+                <h2 style="text-transform: capitalize">{{notif.guest }}</h2>
+                <p>Status update</p>
+                <p>by {{notif.createdAt | date:'h:mm a MM/dd/yyyy' }}</p>
+              </ion-label>
+              <h2 slot="end" *ngIf="notif.focus==='will attend' && notif.title==='RSVP Response'">        
+                  <ion-badge color="success">Will Attend</ion-badge>                          
+              </h2>         
+                                    
+              <h2 slot="end" *ngIf="notif.focus==='will not attend' && notif.title==='RSVP Response'">        
+                  <ion-badge color="danger">Will Not Attend</ion-badge>                             
+              </h2>                             
         </ion-item>
       </div>
     </ion-list>

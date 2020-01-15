@@ -24,7 +24,10 @@ export class GuestaddPage implements OnInit {
     forRsvp : true,
     will_come : false,
     notif_count:0,        
-    color: this.getRandomColor()
+    color: this.getRandomColor(),
+    diet_restriction: "None",
+    bus_reservation : 0,
+    reservation_status : false
 
   };
   password : string;
@@ -77,8 +80,11 @@ export class GuestaddPage implements OnInit {
         isAdmin,
         forRsvp: true,
         will_come : false,
-        notif_count :0,                
-        color: this.getRandomColor()
+        notif_count :0,            
+        color: this.getRandomColor(),
+        diet_restriction: "None",
+        bus_reservation : 0,
+        reservation_status : false
       }    
       this.password = password
       let message = "You are about to add a Guest"
@@ -134,7 +140,10 @@ export class GuestaddPage implements OnInit {
       forRsvp: true,
       will_come : false,
       notif_count : 0,            
-      color: this.getRandomColor()
+      color: this.getRandomColor(),
+      diet_restriction: "None",
+      bus_reservation : 0,
+      reservation_status : false
     };
     this.guestForm.setValue(
       {

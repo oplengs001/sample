@@ -31,7 +31,7 @@
       <ion-item *ngIf=isAdmin (click)="gotoRsvpList()" lines="none">      
           <ion-icon slot="start" color="success"name="checkmark-circle"></ion-icon>
           <ion-label slot="start" color="success" >  
-              RSVP Notifs
+              Admin Notifs
           </ion-label>       
           <ion-badge *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
         </ion-item>

@@ -54,18 +54,32 @@
                   </ion-item> 
                 <ion-item class="details-card">
                     <ion-icon name="map" slot="start"  color="medium"></ion-icon>        
-                        <ion-input   
+                        <ion-textarea    
                         [(ngModel)]="event.location"    
                         (ionBlur)="saveItem(event)"              
                         readonly="{{!isAdmin}}"
-                        ></ion-input>     
+                        autoGrow=true 
+                        rows="1"
+                        ></ion-textarea >     
                 </ion-item>                                      
                 <ion-card-content>        
                   <ion-textarea class="ion-text-justify" autoGrow=true  
+                  class="card-details-input ion-text-justify" 
                   [(ngModel)]="event.details"
                   (ionBlur)="saveItem(event)"
                   readonly="{{!isAdmin}}"
-                  ></ion-textarea>        
+                  ></ion-textarea>      
+                  <div *ngIf="event.name === 'Pick Up'" class="ion-text-justify"> 
+                      <section class="buttons-pick-up">   
+                        <ion-button expand="block" fill="outline" color="dark" (click)=openMap()>  <ion-icon name="map"></ion-icon> Get Directions </ion-button>
+                        <ion-button expand="block" fill="outline" color="dark" (click)=openReservation()>  <ion-icon name="bus"></ion-icon>Bus Reservation</ion-button>                                             
+                      </section>                                
+                  </div>
+                  <div *ngIf="event.name === 'Dinner'" class="ion-text-justify"> 
+                      <section class="buttons-pick-up">                     
+                        <ion-button expand="block" fill="outline" color="dark" (click)=openRestrictions()>DIETARY RESTRICTONS</ion-button>                                             
+                      </section>                                
+                  </div>                    
                 </ion-card-content>        
           </ion-card>                                                                   
         </div>   

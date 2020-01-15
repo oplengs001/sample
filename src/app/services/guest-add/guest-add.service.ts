@@ -19,6 +19,10 @@ export interface Guest {
   will_come : boolean
   notif_count : number,  
   color : string,
+  diet_restriction: string,
+  bus_reservation:  number
+  reservation_status : boolean
+
 }
 @Injectable({
   providedIn: 'root'
@@ -132,6 +136,17 @@ export class GuestAddService {
   updateGuestCount(uid:string,count:number):Promise<void>{        
     return this.GuestCollection.doc(uid).update({
       extra: count
+    })
+  }
+  updateDietaryRestriction(uid:string,diet_restriction:string):Promise<void>{        
+    return this.GuestCollection.doc(uid).update({
+      diet_restriction: diet_restriction
+    })
+  }
+  updateBusReservation(uid:string,seat_count:number):Promise<void>{        
+    return this.GuestCollection.doc(uid).update({
+      bus_reservation: seat_count,
+      reservation_status: false
     })
   }
   updateStatus(userDetails : any ,will_come:boolean):Promise<void>{  

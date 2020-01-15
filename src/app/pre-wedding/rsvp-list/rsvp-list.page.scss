@@ -1,6 +1,18 @@
 .readNotif{
-    --background: lavender;
+    --background: white;
 }
 .unreadNotif{
-    --background: lightyellow;
+    --background: lavender;
+}
+
+.restriction{
+    display: inline-block;
+    word-wrap:break-word;
+    white-space: normal;
+}
+
+.font-icon{
+    font-size: 30px;
+    position: absolute;
+    right: 15px;
 }

@@ -37,6 +37,8 @@ import { HomeMenuPageModule } from '../app/modals/menu/home-menu.module'
 import { FlightMapPageModule } from '../app/modals/map/flight-map.module'
 import { MessagesDetailsPageModule } from '../app/modals/messages-details/messages-details.module'
 import { GettingTherePageModule } from '../app/modals/getting-there/getting-there.module'
+import { DietRestPageModule } from '../app/modals/diet-rest/diet-rest.module'
+import { BusReservationsPageModule } from '../app/modals/bus-reservations/bus-reservations.module'
 import { ImagePageModule } from '../app/modals/photos/image/image.module'
 import { IonicSelectableModule } from 'ionic-selectable';
 import { ComponentsModule } from "../app/componenthandler/components.module"
@@ -69,7 +71,9 @@ import 'gl-ionic-background-video';
     ViewingcontentPageModule,
     IonicSelectableModule,
     GettingTherePageModule,
-    MessagesDetailsPageModule
+    MessagesDetailsPageModule,
+    DietRestPageModule,
+    BusReservationsPageModule
    
   ],
   providers: [

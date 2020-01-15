@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Dietary Restriction</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeModal()">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+<ion-content>
+    <ion-card>
+        <img src="../../../assets/images/vegan.jpg" />
+      <ion-card-header>
+        <ion-card-title>Hello There!</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="ion-text-justify">
+        We want to provide an Amazing food for you, We will accomodate your Dietary Restriction, for a great experience dining with us <br>
+        Please Indicate your Dietary Restriction Below,
+        <ion-item>
+            <ion-label position="floating">Your Dietary Restriction Here</ion-label>
+            <ion-input [(ngModel)]=this.diet_restriction></ion-input>
+        </ion-item>
+        <ion-button fill="solid" expand="block" color="dark"  (click)=confirmRestriction()>
+          Confirm
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+  
+
+</ion-content>

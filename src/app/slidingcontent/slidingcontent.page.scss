@@ -27,11 +27,21 @@
 .admin-img{
     height:30vh
 }
+.card-details-input{
+    font-size: 14px !important
+
+}
+.buttons-pick-up{
+
+    ion-button{
+        font-size:14px;
+    }
+}
 .card-title-input{
 
     --padding-top: 0px;
     --padding-bottom: 0px;
-    
+    font-size:20px !important
 }
 .wedding-info{
    height: 100%;
