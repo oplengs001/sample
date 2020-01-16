@@ -1,7 +1,7 @@
 import { Component, OnInit ,ViewChild } from '@angular/core';
 import { TransitionsService } from '../services/native/transitions.service';
 import { ActivatedRoute } from '@angular/router';
-import { IonReorderGroup } from '@ionic/angular';
+import { IonReorderGroup, LoadingController } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
@@ -14,6 +14,10 @@ import { GettingTherePage } from "../modals/getting-there/getting-there.page"
 import { BusReservationsPage } from "../modals/bus-reservations/bus-reservations.page"
 import { FooterComponent } from '../footer/footer.component';
 import { SharedComponent } from '../shared-component/shared';
+import { ImagesService } from '../services/uploads/images.service';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { NgxImageCompressService } from 'ngx-image-compress';
 
 @Component({
   selector: 'app-slidingcontent',
@@ -34,16 +38,22 @@ export class SlidingcontentPage implements OnInit {
   events: Observable<Itinerary[]>;
   event_data : any
   lastPosition : number
+  info : any
   private contentSubs : Subscription;
   constructor(
     private transServe : TransitionsService,
     private authServ : AuthService,
     private actions : ActionClass,
     private route : ActivatedRoute,
+    private imageService : ImagesService,
+    private imagePicker : ImagePicker,
     private contentServe : SlidingContentService,
     private modalController : ModalController,
     private generalInfo : GeneralInfoService,
     private sharedComps : SharedComponent,
+    private webview : WebView,
+    public loadingController: LoadingController,
+    private imageCompress: NgxImageCompressService,
   ) {   
     this.Dining = false
     this.Itinerary = false   
@@ -170,6 +180,12 @@ export class SlidingcontentPage implements OnInit {
     this.generalInfo.getWeddingInfoTakeOne().subscribe(data=>{      
       this.topResto = data[0].dining_list
     })
+    this.generalInfo.getInfo().subscribe(data=>{
+      if(data){
+        console.log(data)
+        this.info = data[0]//to be edit for more user
+      }  
+    })
     }
     saveItem(event){
       if(this.isAdmin){
@@ -178,6 +194,9 @@ export class SlidingcontentPage implements OnInit {
         console.log("none")
       }
       // 
+    }
+    saveItemWeddingInfo(){    
+      this.generalInfo.updateInfo(this.info.ref,this.info)
     }
     expandItem(item): void {
       if (item.expanded) {
@@ -198,5 +217,56 @@ export class SlidingcontentPage implements OnInit {
       window.open(url, '_system');
     }
 
+    changeImage(){
+      if(this.isAdmin){
+          this.actions.confirmationMessage("your about to change to wedding image").then(res=>{
+            if(res){
+              this.openImagePicker()
+            }else{
+              return null
+            }
+          })
+      }else{
+        return null
+      }
+    }
+    openImagePicker(){
+      this.imagePicker.hasReadPermission().then(
+        (result) => {
+          if(result == false){
+            // no callbacks required as this opens a popup which returns async
+            this.imagePicker.requestReadPermission();
+          }
+          else if(result == true){
+            this.imagePicker.getPictures({
+              maximumImagesCount: 1,
+              quality: 20
+            }).then(
+              (results) => {
+                for (var i = 0; i < results.length; i++) {
+                  this.uploadImageToFirebase(results[i]);
+                }
+              }, (err) => console.log(err)
+            );
+          }
+        }, (err) => {
+          console.log(err);
+        });
+    }
+    async uploadImageToFirebase(image){
+      image = this.webview.convertFileSrc(image);       
+      const loading = await this.loadingController.create({
+        message: 'Saving Image',     
+      });
+      await loading.present();
+      // var image = "/assets/images/Itinerary/arrival.jpg"    
+      this.imageCompress.compressFile(image,-1,50,50).then(res=>{
+        this.imageService.saveAppGalleryRef(res,"app-gallery").then(photo => {    
+          this.info.wedding_image = photo.url           
+          this.saveItemWeddingInfo()
+          loading.dismiss()        
+        })
+      })
     
+    }
 }

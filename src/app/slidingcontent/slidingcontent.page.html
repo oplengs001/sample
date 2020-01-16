@@ -32,6 +32,47 @@
       </ion-card> 
     </div>
     <div [hidden]="!Itinerary">  
+        <ion-card class="wedding-info" *ngIf="info">
+            <img src="{{info.wedding_image}}" (click)="changeImage()" alt="" />
+              <ion-card-header>
+                <ion-card-title >
+                    <ion-input class="card-title-input"
+                      [(ngModel)]="info.location_name"  
+                      (ionBlur)="saveItemWeddingInfo()"    
+                      readonly="{{!isAdmin}}"
+                      ></ion-input>
+                  </ion-card-title>        
+              </ion-card-header>   
+              <ion-item  class="details-card">
+                  <ion-icon name="map" slot="start"  color="medium" ></ion-icon> 
+                      <ion-textarea   
+                      [(ngModel)]="info.location_place"  
+                      (ionBlur)="saveItemWeddingInfo()"    
+                      readonly="{{!isAdmin}}"
+                      autoGrow=true 
+                      ></ion-textarea>            
+                </ion-item>
+                <ion-item class="details-card">
+                  <ion-icon name="calendar" slot="start"  color="medium"></ion-icon>        
+                      <ion-input   
+                      [(ngModel)]="info.weddingDate"  
+                      (ionBlur)="saveItemWeddingInfo()"    
+                      readonly="{{!isAdmin}}"
+                      ></ion-input>     
+                </ion-item>
+                <ion-item (click)=openMap() class="details-card">
+                    <ion-icon name="car" slot="start"  color="medium"></ion-icon>        
+                    <label> Get Directions <a></a></label>   
+                    <ion-icon  slot="end" style="background: #00000000" color="medium"  name="eye"></ion-icon> 
+                </ion-item>
+              <ion-card-content>        
+                <ion-textarea class="ion-text-justify" autoGrow=true  
+                [(ngModel)]="info.place_description"  
+                (ionBlur)="saveItemWeddingInfo()"    
+                readonly="{{!isAdmin}}"
+                ></ion-textarea>        
+              </ion-card-content>
+          </ion-card>
         <div *ngIf="(events|async)?.length !== 0;else items">
           <ion-card class="wedding-info" *ngFor="let event of (event_data   | sort :'asc':'position')" >          
               <img src="{{event.image_url}}" alt="" />
