@@ -3,6 +3,7 @@ import { IonSlides } from '@ionic/angular';
 import {  Router } from '@angular/router';
 import { TransitionsService } from '../services/native/transitions.service';
 import { FooterComponent } from '../footer/footer.component';
+import { SharedComponent } from '../shared-component/shared';
 @Component({
   selector: 'app-home-tab',
   templateUrl: './home-tab.page.html',
@@ -17,7 +18,7 @@ export class HomeTabPage implements OnInit, OnDestroy {
   };
   constructor(
     private router: Router,
-    private footer : FooterComponent,
+    private sharedComps : SharedComponent,
     private transServe : TransitionsService
   ) { 
     this.items = [

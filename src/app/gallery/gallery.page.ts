@@ -10,7 +10,7 @@ import { ImagePage } from '../modals/photos/image/image.page'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
 import { LoadingController, IonInfiniteScroll } from '@ionic/angular';
 import { NgxImageCompressService } from 'ngx-image-compress';
-import { FooterComponent } from '../footer/footer.component';
+import { SharedComponent } from '../shared-component/shared';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.page.html',
@@ -39,7 +39,7 @@ export class GalleryPage implements OnInit {
     private actions : ActionClass ,
     private _elementRef: ElementRef,  
     private imageCompress: NgxImageCompressService,
-    private footer : FooterComponent
+    private sharedComps : SharedComponent,
     
   ) { } 
   imageLoaded(event,isLoaded: boolean) {    

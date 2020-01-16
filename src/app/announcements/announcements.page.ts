@@ -3,8 +3,9 @@ import { AnnouncementSaveService , Announcement } from "../services/announcement
 import { TransitionsService } from '../services/native/transitions.service';
 import { GuestAddService } from '../services/guest-add/guest-add.service';
 import { AuthService } from '../services/auth/auth.service'
-import { FooterComponent} from "../footer/footer.component"
-import { Observable } from 'rxjs';
+import { SharedComponent } from '../shared-component/shared';
+import { FooterComponent } from '../footer/footer.component';
+
 
 @Component({
   selector: 'app-announcements',
@@ -20,8 +21,9 @@ export class AnnouncementsPage implements OnInit   {
     private announcementService : AnnouncementSaveService,
     private transServe : TransitionsService,
     private authServ : AuthService,
-    private guestFunc : GuestAddService,
-    private footer : FooterComponent
+    private guestFunc : GuestAddService,    
+    private sharedComps : SharedComponent,
+    private footer  : FooterComponent
   ) { }
   ngAfterViewInit(){  
     this.ngForDetails.changes.subscribe(t => {   

@@ -13,6 +13,7 @@ import { GeneralInfoService ,Info} from "../services/content/general-info.servic
 import { GettingTherePage } from "../modals/getting-there/getting-there.page"
 import { BusReservationsPage } from "../modals/bus-reservations/bus-reservations.page"
 import { FooterComponent } from '../footer/footer.component';
+import { SharedComponent } from '../shared-component/shared';
 
 @Component({
   selector: 'app-slidingcontent',
@@ -42,7 +43,7 @@ export class SlidingcontentPage implements OnInit {
     private contentServe : SlidingContentService,
     private modalController : ModalController,
     private generalInfo : GeneralInfoService,
-    private footer : FooterComponent,
+    private sharedComps : SharedComponent,
   ) {   
     this.Dining = false
     this.Itinerary = false   

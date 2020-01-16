@@ -7,6 +7,7 @@ import { async } from '@angular/core/testing';
 import { debug } from 'util';
 import { Subscription } from 'rxjs';
 import { FooterComponent } from '../footer/footer.component'
+import { SharedComponent } from '../shared-component/shared';
 @Component({
   selector: 'app-message-list',
   templateUrl: './message-list.page.html',
@@ -19,7 +20,8 @@ export class MessageListPage implements OnInit {
     private authServ : AuthService,
     private navCtrl : NavController,
     private chatServ : ChatService,
-    private footer : FooterComponent
+    private footer : FooterComponent,
+    private sharedComps : SharedComponent,
   ) { }
 
 
