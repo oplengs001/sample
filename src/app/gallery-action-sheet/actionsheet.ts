@@ -117,22 +117,19 @@ export class ActionClass implements OnInit {
           text: 'Twitter',     
           icon: 'logo-twitter',
           handler: () => {
-              this.shareToTwitter(ImgFile,url)
-            console.log('Delete clicked');
+              this.shareToTwitter(ImgFile,url)      
           }
         }, {
           text: 'Instagram',     
           icon: 'logo-instagram',
           handler: () => {
-              this.shareToInsta(ImgFile,url)
-            console.log('Delete clicked');
+              this.shareToInsta(ImgFile,url)      
           }
         },{
           text: 'WhatsApp',     
           icon: 'logo-whatsapp',
           handler: () => {
-              this.shareToWhatsApp(ImgFile,url)
-            console.log('Delete clicked');
+              this.shareToWhatsApp(ImgFile,url)      
           }
         },{
           text: 'Cancel',
