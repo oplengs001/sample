@@ -19,12 +19,12 @@ export class MessageListPage implements OnInit {
     private authServ : AuthService,
     private navCtrl : NavController,
     private chatServ : ChatService,
-    private footerClass : FooterComponent
+    private footer : FooterComponent
   ) { }
 
 
   ngOnInit(){
-   this.currentChats = this.footerClass.currentChats
+   this.currentChats = this.footer.currentChats
 
   }
   ionViewDidLeave (){  
@@ -35,13 +35,13 @@ export class MessageListPage implements OnInit {
     if(this.authServ.userGuestDetails){
       isAdmin = this.authServ.userGuestDetails["isAdmin"]
       if(isAdmin){      
-        this.footerClass.getAllGC()
+        this.footer.getAllGC()
       }
     }else{
       this.authServ.currentUserData().then(data=>{     
         isAdmin = data.isAdmin    
         if(isAdmin){      
-          this.footerClass.getAllGC()
+          this.footer.getAllGC()
         }
       })
     }       

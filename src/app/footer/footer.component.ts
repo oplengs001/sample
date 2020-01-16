@@ -7,7 +7,10 @@ import { ChatService } from '../services/chat/chat.service';
 import { Badge } from '@ionic-native/badge/ngx';
 import { GuestAddService, Guest} from "../services/guest-add/guest-add.service"
 import { AnnouncementSaveService  } from "../services/announcements/announcement-save.service"
+import { myEnterAnimation, myLeaveAnimation} from '../animations/animations'
 import { Observable, Subscription } from 'rxjs';
+import { HomeMenuPage } from '../modals/menu/home-menu.page'
+import { ModalController  } from '@ionic/angular';
 import { debug } from 'util';
 @Component({
   selector: 'app-footer',
@@ -39,7 +42,9 @@ export class FooterComponent   {
     private authServ : AuthService,
     private badge: Badge,
     private guestServe : GuestAddService,   
-    private announcementServices : AnnouncementSaveService
+    private announcementServices : AnnouncementSaveService,
+    public modalctrl: ModalController,
+    
     ) {
     this.inbox_hide = true
     this.GCsubs = new Subscription()
@@ -257,5 +262,14 @@ export class FooterComponent   {
       this.currentChats.splice(index,1)
       this.GCsubsList[subIndex]["subs"].unsubscribe()      
     }            
+  }
+  async openMenu() {
+    const modal: HTMLIonModalElement =
+       await this.modalctrl.create({
+          component: HomeMenuPage,     
+          enterAnimation: myEnterAnimation,
+          leaveAnimation: myLeaveAnimation
+    });          
+    await modal.present();
   }
 }

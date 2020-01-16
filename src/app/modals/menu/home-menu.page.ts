@@ -40,12 +40,12 @@ export class HomeMenuPage implements OnInit {
     },    
    
     {
-      title: 'Rentals',
+      title: 'Rentals & Transportation',
       url: '/rentals',
       icon: 'pricetag'
     },   
     {
-      title: 'Wedding Weather',
+      title: 'What to Wear',
       url: '/wedding-weather',
       icon: 'rainy'
     },
@@ -64,7 +64,26 @@ export class HomeMenuPage implements OnInit {
       url: '/home-tab',
       icon: 'walk'
     },
-
+    {
+      title: 'Announcements',
+      url: 'notifs',
+      icon: 'notifications'
+    },
+    {
+      title: 'Photos',
+      url: 'photos',
+      icon: 'images'
+    },
+    {
+      title: 'Itinerary',
+      url: 'itinerary',
+      icon: 'list-box'
+    },
+    {
+      title: 'Messages',
+      url: 'messages',
+      icon: 'chatboxes'
+    },
   ]; 
 
   constructor(
@@ -134,6 +153,14 @@ export class HomeMenuPage implements OnInit {
   async closeModal(url?:string) {  
     if(url==="dining"){
       this.gotoDining()
+    }else if (url === "notifs"){
+      this.tranServe.reRouteNoAnimation("announcements")
+    }else if (url === "itinerary"){
+      this.tranServe.reRouteActivityNoAnimation("Itinerary")
+    }else if (url === "photos"){
+      this.tranServe.reRouteNoAnimation("gallery")
+    }else if (url === "messages"){
+      this.tranServe.reRouteNoAnimation("message-list")
     }
     await this.modalctrl.dismiss();
   }

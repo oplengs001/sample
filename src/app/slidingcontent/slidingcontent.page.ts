@@ -12,6 +12,7 @@ import { SlidingContentService, Itinerary } from "../services/content/sliding-co
 import { GeneralInfoService ,Info} from "../services/content/general-info.service"
 import { GettingTherePage } from "../modals/getting-there/getting-there.page"
 import { BusReservationsPage } from "../modals/bus-reservations/bus-reservations.page"
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-slidingcontent',
@@ -40,7 +41,8 @@ export class SlidingcontentPage implements OnInit {
     private route : ActivatedRoute,
     private contentServe : SlidingContentService,
     private modalController : ModalController,
-    private generalInfo : GeneralInfoService    
+    private generalInfo : GeneralInfoService,
+    private footer : FooterComponent,
   ) {   
     this.Dining = false
     this.Itinerary = false   

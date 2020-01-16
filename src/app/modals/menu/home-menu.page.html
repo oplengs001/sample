@@ -1,6 +1,6 @@
 <ion-header translucent>
     <ion-toolbar mode="ios">
-      <ion-title class="pre-title">PRE-WEDDING MENU</ion-title>      
+      <ion-title class="pre-title">WEDDING MENU</ion-title>      
     </ion-toolbar>
   </ion-header>
 <ion-content fullscreen >  
@@ -27,18 +27,18 @@
   </div>
 </ion-content>
 <ion-footer  class="modal-content">
-  <ion-toolbar>
+  <ion-toolbar class="tool-bar">
       <ion-item *ngIf=isAdmin (click)="gotoRsvpList()" lines="none">      
           <ion-icon slot="start" color="success"name="checkmark-circle"></ion-icon>
           <ion-label slot="start" color="success" >  
-              Admin Notifs
+              Admin Notification
           </ion-label>       
           <ion-badge *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
       </ion-item>
       <ion-item *ngIf=isAdmin (click)="openBusReservations()" lines="none">      
           <ion-icon slot="start" color="primary"name="bus"></ion-icon>
           <ion-label slot="start" color="primary" >  
-              Reservations
+              Bus Reservations
           </ion-label>
       </ion-item>
       <ion-item *ngIf=isAdmin (click)="openDietRestrictions()" lines="none">      

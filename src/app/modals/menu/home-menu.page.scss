@@ -2,7 +2,17 @@
     margin-left: 20%
     
 }
-
+.tool-bar{
+  ion-item{
+    --min-height: 10px;
+    ion-label{
+      font-size:15px
+    }
+    ion-icon{
+      font-size: 20px;
+    }
+  }
+}
 .pre-title{
     margin-left: 12%
 }
@@ -17,7 +27,12 @@ $ease--out-quad: cubic-bezier(.25,.46,.450,.94);
  background: none !important
 }
 .side-menu{
-  font-family: "notified-medium"
+  font-family: "notified-medium";
+  ion-item{
+    ion-label{
+      font-size: 15px;
+    }
+  }
 }
 %on-top {
   z-index: 100;
