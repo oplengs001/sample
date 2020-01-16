@@ -24,13 +24,20 @@ $s--far: ($s--near * 3);
 
 $ease--out-quad: cubic-bezier(.25,.46,.450,.94);
 .list-md{
- background: none !important
+ background: none !important;
+ padding-top: 0px;
+ padding-bottom: 0px;
 }
 .side-menu{
   font-family: "notified-medium";
   ion-item{
+    --min-height: 10px;
+    height: 38px;
     ion-label{
       font-size: 15px;
+    }
+    ion-icon{
+      font-size: 20px;
     }
   }
 }
