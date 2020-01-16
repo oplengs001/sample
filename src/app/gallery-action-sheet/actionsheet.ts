@@ -491,7 +491,8 @@ export class ActionClass implements OnInit {
             if (data.reason !== "") {
               // logged in!
               this.guestService.updateBusReservationStatus(uid,"declined").then(()=>{      
-                this.notifService.ConfirmationEmail(uid,"reservation","approved",data.reason)
+                this.notifService.ConfirmationEmail(uid,"reservation","declined",data.reason)
+                
               })      
             } else {              
               this.toaster.showToast("Reason Cannot be Empty")
@@ -521,7 +522,7 @@ export class ActionClass implements OnInit {
         }
       },
       {
-        text: 'Reject',    
+        text: 'Decline',    
         icon: 'close-circle',    
         handler: () => {
           this.reserveReasonPrompt(user_id)
