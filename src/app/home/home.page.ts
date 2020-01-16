@@ -160,6 +160,7 @@ export class HomePage {
   ngOnInit() {
     this.subscribeToTopic()
     this.weatherServ.getQtown().then(data=>{
+      console.log(data)
       this.weather = data
       this.weather.weather = data.weather || "../assets/icon/set/PartlyCloudyDay.png"
       this.weather.temperature = data.temperature || "7"

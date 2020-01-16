@@ -2,18 +2,32 @@
   <ion-slides class="swiper-no-swiping" [hidden]="hideSlide" *ngIf=info  >
       <ion-slide>
         <div class="slide-content" >
-            <!-- <p> {{info.b_father_name}} & {{info.b_mother_name}} </p> -->            
-            <p> {{info.b_mother_name}} &  {{info.g_mother_name}} </p>
-            <p> {{info.b_mother_name}} &  {{info.g_mother_name}} </p>
+            <!-- <p> {{info.b_father_name}} & {{info.b_mother_name}} </p> -->   
+            <ion-row>
+                <ion-col>
+                    <p> {{info.g_mother_name}} </p> 
+                    <p >and</p>
+                    <p> {{info.g_father_name}} <img [src]=cross_src class="cross-img1"></p> 
+                </ion-col>
+                <ion-col>
+                    <p> {{info.b_mother_name}} </p>
+                    <p >and</p>
+                    <p> {{info.b_father_name}} <img [src]=cross_src class="cross-img2"></p> 
+                </ion-col>            
+            </ion-row>               
             <p class=under-text> {{info.invitation_f_text}} </p>
             <h1 class="wc-text">{{info.groom_name}} & {{info.bride_name}}</h1>
             <br><br>
-            <!-- <p> {{info.weddingDateText}} -->
+            <p> {{info.weddingDateText}}</p>
             <!-- <br> {{info.weddingYearText}}</p>           -->
             <!-- <p> {{info.weddingTimeText}}
-                <br> </p> -->       
-            <p> {{info.location_place}}
-                <br> </p>
+                <br> </p> --> 
+                <br>      
+            <p> {{info.wedding_location_rsvp}}
+                <br>            
+  
+                {{info.wedding_address_rsvp}}
+            </p>
             <br><br><br><br>
             <!-- <p> {{info.invitation_last_text}}</p> -->
             <br><br>

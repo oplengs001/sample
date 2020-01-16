@@ -43,7 +43,8 @@ export class WeatherService {
     return this.http.get(
       this.config.qtown_api_endpoint).toPromise()
       .then(data => 
-      {             
+      {          
+        console.log(data)   
         return  {
           weather : this.weatherIcon(data["weather"][0].icon),
           temperature : Math.round(data["main"]["feels_like"] - 273.15)

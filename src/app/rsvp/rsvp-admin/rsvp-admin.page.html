@@ -31,13 +31,6 @@
           ></ion-input>
       </ion-item> 
       <ion-item>
-          <ion-label position="stacked">Groom Mother Name</ion-label>
-          <ion-input   
-          [(ngModel)]="info.g_mother_name"  
-          (ionBlur)="saveItem()"            
-          ></ion-input>
-      </ion-item> 
-      <!-- <ion-item>
           <ion-label position="stacked">Bride Father Name</ion-label>
           <ion-input   
           [(ngModel)]="info.b_father_name"  
@@ -45,12 +38,19 @@
           ></ion-input>
       </ion-item> 
       <ion-item>
-          <ion-label position="stacked">Bride Mother Name</ion-label>
+          <ion-label position="stacked">Groom Father Name</ion-label>
           <ion-input   
-          [(ngModel)]="info.b_mother_name"  
+          [(ngModel)]="info.g_father_name"  
           (ionBlur)="saveItem()"            
           ></ion-input>
-      </ion-item>  -->
+      </ion-item> 
+      <ion-item>
+          <ion-label position="stacked">Groom Mother Name</ion-label>
+          <ion-input   
+          [(ngModel)]="info.g_mother_name"  
+          (ionBlur)="saveItem()"            
+          ></ion-input>
+      </ion-item> 
       <ion-item>
           <ion-label position="stacked">Welcome Note</ion-label>
           <ion-textarea  
@@ -66,10 +66,17 @@
           ></ion-input>
       </ion-item>  
       <ion-item>
-            <ion-label position="stacked">Wedding Date Year Text</ion-label>
+            <ion-label position="stacked">Wedding Location</ion-label>
             <ion-input   
-            [(ngModel)]="info.weddingYearText"  
-            (ionBlur)="saveItem()"            
+            [(ngModel)]="info.wedding_location_rsvp"  
+            (ionBlur)="saveItem()"             
+            ></ion-input>
+        </ion-item> 
+        <ion-item>
+            <ion-label position="stacked">Wedding Address</ion-label>
+            <ion-input   
+            [(ngModel)]="info.wedding_address_rsvp"  
+            (ionBlur)="saveItem()"             
             ></ion-input>
         </ion-item> 
       <!-- <ion-item>
@@ -79,12 +86,12 @@
           (ionBlur)="saveItem()"            
           ></ion-input>
       </ion-item> -->
-      <ion-item>
+      <!-- <ion-item>
           <ion-label position="stacked">Wedding Location</ion-label>
           <ion-input   
           [(ngModel)]="info.location_place"  
           (ionBlur)="saveItem()"            
           ></ion-input>
-      </ion-item>
+      </ion-item> -->
     </ion-list>
 </ion-content>

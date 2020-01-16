@@ -21,7 +21,7 @@ export interface Guest {
   color : string,
   diet_restriction: string,
   bus_reservation:  number
-  reservation_status : boolean
+  reservation_status : string
 }
 @Injectable({
   providedIn: 'root'

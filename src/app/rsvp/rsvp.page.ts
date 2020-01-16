@@ -13,11 +13,15 @@ import { AuthService } from '../services/auth/auth.service';
 export class RsvpPage implements OnInit {
   info : any
   isAdmin : boolean
+  cross_src : string
   constructor(
     private home : HomeMenuPage,
     private authServ :AuthService,
     private gInfo  :GeneralInfoService
-  ) { }
+  ) {
+
+    this.cross_src = "../../assets/images/cross.png"
+   }
     
   ngOnInit() {  
      

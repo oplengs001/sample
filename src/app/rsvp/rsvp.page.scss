@@ -11,6 +11,7 @@
     font-weight: 200
   }
   p{
+    margin-bottom: 0px !important;
     font-family: "roboto" !important;
   }
   ion-button{
@@ -31,11 +32,12 @@
       text-align: center;    
 
       .slide-content {
-        padding-top: 20vh !important;
+        padding-top: 15vh !important;
         background:rgba(1, 2, 3, 0.78)  !important;
         position: absolute;
         top:0;bottom:0;left:0;right:0;
-        padding: 30px 5%;
+        padding: 30px 3%;
+
         p {
           margin-top: 0px;
           font-family: notified-light;
@@ -45,6 +47,11 @@
         }             
       }
       
+    }
+    ion-row{
+      margin-bottom: 20px;
+      margin-right: 7px;
+      margin-left: -10px;
     }
     ion-slide:first-child{
       background : url("../../assets/images/church.jpg") no-repeat center center;
@@ -58,4 +65,13 @@
         margin-top:30px
     }
   }  
- 
+  .cross-img1{
+    height: 20px;
+    position: absolute;
+    text-align: left;
+  }
+  .cross-img2{
+    height: 20px;
+    position: absolute;
+    text-align: left;
+  }

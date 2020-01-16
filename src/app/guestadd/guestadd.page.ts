@@ -27,7 +27,7 @@ export class GuestaddPage implements OnInit {
     color: this.getRandomColor(),
     diet_restriction: "None",
     bus_reservation : 0,
-    reservation_status : false
+    reservation_status : "pending"
 
   };
   password : string;
@@ -84,7 +84,7 @@ export class GuestaddPage implements OnInit {
         color: this.getRandomColor(),
         diet_restriction: "None",
         bus_reservation : 0,
-        reservation_status : false
+        reservation_status : "pending"
       }    
       this.password = password
       let message = "You are about to add a Guest"
@@ -143,7 +143,7 @@ export class GuestaddPage implements OnInit {
       color: this.getRandomColor(),
       diet_restriction: "None",
       bus_reservation : 0,
-      reservation_status : false
+      reservation_status : "pending"
     };
     this.guestForm.setValue(
       {

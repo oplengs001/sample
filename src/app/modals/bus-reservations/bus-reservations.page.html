@@ -11,11 +11,13 @@
   <ion-item *ngFor="let guest of (guestServe.bus_guests)">
     <ion-label>        
         <h2 style="text-transform: capitalize"> {{guest.first_name}} {{guest.last_name}} <ion-icon class="font-icon" name="bus"></ion-icon></h2>  
-        <p>Seat Count:<b> {{guest.bus_reservation}}</b><br></p>  
-        <p> Status:<b> {{guest.reservation_status?'Approved':'for Approval'}}</b><br></p>  
+        <p>Seat Count:<b> {{guest.bus_reservation }}</b><br></p>  
+        <p> Status:<b style="text-transform: capitalize"> {{guest.reservation_status }}</b><br></p>  
     </ion-label>
     <h2 slot="end">        
-        <ion-badge color="{{guest.reservation_status?'success':'warning'}}">{{guest.bus_reservation}} seats</ion-badge>                          
+        <ion-badge *ngIf="guest.reservation_status==='approved'" color="success">{{guest.bus_reservation}} seat/s</ion-badge>    
+        <ion-badge *ngIf="guest.reservation_status==='pending'"  color="warning">{{guest.bus_reservation}} seat/s</ion-badge>    
+        <ion-badge *ngIf="guest.reservation_status==='declined'"  color="danger">{{guest.bus_reservation}} seat/s</ion-badge>                          
     </h2>  
   </ion-item>
 
