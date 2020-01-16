@@ -173,7 +173,12 @@ export class GuestAddService {
   updateBusReservation(uid:string,seat_count:number):Promise<void>{        
     return this.GuestCollection.doc(uid).update({
       bus_reservation: seat_count,
-      reservation_status: false
+      reservation_status: "pending"
+    })
+  }
+  updateBusReservationStatus(uid:string,status:string):Promise<void>{        
+    return this.GuestCollection.doc(uid).update({      
+      reservation_status: status
     })
   }
   updateStatus(userDetails : any ,will_come:boolean):Promise<void>{  

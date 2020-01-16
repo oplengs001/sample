@@ -9,6 +9,7 @@ import { LoadingController } from '@ionic/angular';
 import { GuestAddService } from "../services/guest-add/guest-add.service"
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { async } from 'q';
+import { NotificationService } from '../services/alerts/notification.service';
 @Injectable({
     providedIn: 'root'
 })
@@ -26,7 +27,8 @@ export class ActionClass implements OnInit {
     private modalCtrl : ModalController,
     private loadingController: LoadingController,
     private guestService : GuestAddService,
-    private announcements : AnnouncementSaveService
+    private announcements : AnnouncementSaveService,
+    private notifService : NotificationService
   ) { }
 
   ngOnInit() {      
@@ -331,7 +333,9 @@ export class ActionClass implements OnInit {
         {
           name: 'count',
           placeholder: 'Number of Seats',
-          type: "number"
+          type: 'number',
+          min: 1,
+          max: 10
         },       
       ],
       buttons: [
@@ -346,7 +350,17 @@ export class ActionClass implements OnInit {
           handler: async data => {
             console.log(data)
             if (data.count !== "0" && data.count !== "") {
-              // logged in!
+              // logged in!'
+              if(data.count >11 ){                
+                this.toaster.showToast("Your only allowed to reserved (10 seats)'")
+                this.busReservationPropmpt()
+                return
+              }  
+              if(data.count <=0 ){         
+                this.toaster.showToast("Enter a valid seat number'")
+                this.busReservationPropmpt()
+                return
+              }
               var userDetails = this.authServ.userGuestDetails,
                 {first_name,last_name,uid } = userDetails
 
@@ -375,7 +389,7 @@ export class ActionClass implements OnInit {
 
             } else {              
               this.toaster.showToast("Reservation Count Cannot be Empty")
-              this.busReservationPropmpt ()
+              this.busReservationPropmpt()
             }
           }
         }   
@@ -429,7 +443,8 @@ export class ActionClass implements OnInit {
                     }                
                     this.announcements.saveNotif(notif).then(()=>{
                       this.customAlert(`Alrighty!`,`We will notify the Event Planner with this Dietary Restriction "${data.restrict}" to provide a meal that will meet your dietary needs."`)
-                    })               
+                      this.notifService.ConfirmationEmail(uid,"diet")
+                    })
                   })                              
                 }else{
 
@@ -450,6 +465,86 @@ export class ActionClass implements OnInit {
    })
    return returning_data
   }
+  async reserveReasonPrompt(uid:string):Promise<any>{
+    
+    var returning_data
+    let alert = await this.alertController.create({
+      header: 'Rejecting Reason',
+      message: 'Please Provide your reason for rejecting this reservation, (this will be included in the email that the guest will received)',
+      inputs: [
+        {
+          name: 'reason',          
+          type: "text"
+        },       
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },{
+          text: 'Enter',
+          handler: async data => {
+            console.log(data)
+            if (data.reason !== "") {
+              // logged in!
+              this.guestService.updateBusReservationStatus(uid,"declined").then(()=>{      
+                this.notifService.ConfirmationEmail(uid,"reservation","approved",data.reason)
+              })      
+            } else {              
+              this.toaster.showToast("Reason Cannot be Empty")
+              this.reserveReasonPrompt(uid)
+            }
+          }
+        }   
+      ]
+    });
+   await alert.present();   
+   await alert.onDidDismiss().then(res=>{
+    returning_data = res.data
+   })
+   return returning_data
+  }
+  async reserveConfirmPrompt(user_id:string):Promise<any>{     
+    let choice
+    var buttons = [        
+      {
+        text: 'Approve',    
+        icon: 'checkmark-circle',      
+        handler: () => {       
+          this.guestService.updateBusReservationStatus(user_id,"approved").then(data=>{
+            this.notifService.ConfirmationEmail(user_id,"reservation","approved")
+            // this.customAlert(`Alrighty!`,`We will notify the Event Planner with this Dietary Restriction "${data.restrict}" to provide a meal that will meet your dietary needs."`)
+          })
+        }
+      },
+      {
+        text: 'Reject',    
+        icon: 'close-circle',    
+        handler: () => {
+          this.reserveReasonPrompt(user_id)
+        }
+      },{
+        text: 'Cancel',
+        icon: 'close',   
+        handler: () => {          
+          console.log('Cancel clicked');
+        }
+      }
+    ]       
+    const options = await this.actionSheetController.create({
+      buttons: buttons
+    });
+    await options.present();
+    await options.onDidDismiss().then(res=>{   
+     choice = res.role
+    })
+    return choice
+  }
+
+
   // imageUploadTest(){
   //   // var image = this.webview.convertFileSrc("../../assets/images/g1.jpg");
   //   var image = "../../assets/images/g4.jpg";

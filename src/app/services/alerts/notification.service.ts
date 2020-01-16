@@ -199,4 +199,25 @@ export class NotificationService {
         })
       })
     }
+    ConfirmationEmail(guest_id:string,type:string,response?:string,reason?:string){
+      this.gInfo.getWeddingInfoTakeOne().subscribe(data=>{
+        var api_url = type==="diet"?"/guests/diet-restriction-confirmation":"/guests/bus-reservation-response"
+        var content = data[0]        
+        var {api} = content
+        let postData = {
+          "id" : guest_id,
+          "response" : response,    
+          "reason" :reason 
+        }        
+        this.httpIon.setDataSerializer("json")
+        this.httpIon.sendRequest(`${api}${api_url}`,{
+          method:"post",
+          data: postData,
+        }).then(data=>{
+          console.log(data)
+        }).catch(err=>{
+          console.log(err)
+        })
+      })
+    }
 }
