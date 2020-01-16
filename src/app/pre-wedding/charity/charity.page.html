@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button  class="pre-wedding-menu-button" color="dark" (click)="this.homeMenu.openModal()">
+                <ion-icon name="menu"></ion-icon>
+            </ion-button>
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      <ion-title>Wedding Gifts</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content *ngIf=charity>
+    <ion-card>     
+      <ion-card-header>
+        <ion-card-title  class="ion-text-center">{{charity.charity_title}} </ion-card-title>  
+        <img src="{{charity.charity_image}} " class="img-container" />
+      </ion-card-header>
+      <ion-card-content>
+          <div class="ion-text-center">{{charity.charity_text}} </div><br>  
+      </ion-card-content>
+    </ion-card>  
+  </ion-content>
+  

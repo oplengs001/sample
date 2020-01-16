@@ -84,6 +84,11 @@ export class HomeMenuPage implements OnInit {
       url: 'messages',
       icon: 'chatboxes'
     },
+    {
+      title: 'Wedding Gift',
+      url: 'charity',
+      icon: 'gift'
+    }
   ]; 
 
   constructor(
