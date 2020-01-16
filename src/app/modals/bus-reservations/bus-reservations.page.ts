@@ -13,17 +13,12 @@ export class BusReservationsPage implements OnInit {
   public guestsSubs : Subscription;
   constructor(
     private modalCtrl: ModalController,
-    private guestCtrl: GuestAddService,
-    private authServ : AuthService
+    private guestServe: GuestAddService,
+    private authServ : AuthService,
   ) { }
 
   ngOnInit() {
-  this.guestsSubs = this.guestCtrl.getBusReservations().subscribe(data=>{
-         this.guests = data.filter(guest => guest.bus_reservation !== undefined && guest.bus_reservation !== 0)        
-    })
-  }
-  ngOnDestroy(){
-    this.guestsSubs.unsubscribe()
+ 
   }
   async closeModal() {  
     await this.modalCtrl.dismiss();

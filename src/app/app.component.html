@@ -2,11 +2,11 @@
 
 <ion-app *ngIf="(authService.user | async)">
   
-  <ion-fab horizontal="start" vertical="bottom" slot="fixed" class="bow-tie-fab" *ngIf=adminUser>
+  <ion-fab horizontal="end" vertical="top" slot="fixed" class="bow-tie-fab" *ngIf=adminUser>
     <ion-fab-button color="dark">
       <ion-icon name="bowtie"></ion-icon>
     </ion-fab-button>
-    <ion-fab-list side="top">     
+    <ion-fab-list side="left">     
       <ion-fab-button (click)="reRoute('guestlist')" color="light" data-desc="Guest List">
         <ion-icon name="person-add"></ion-icon>
       </ion-fab-button>

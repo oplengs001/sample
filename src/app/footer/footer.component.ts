@@ -71,6 +71,10 @@ export class FooterComponent   {
           this.announcementServices.RsvpNotif = data     
           this.announcementServices.RsvpNotifCount = this.countUnreadAdminNotif(data);
         })
+        this.guestServe.getRestrictedGuests().subscribe( async data=>{              
+          this.guestServe.diet_guests = data.filter(guest => guest.diet_restriction !== undefined && guest.diet_restriction !== "none" && guest.diet_restriction !== "")   
+          this.guestServe.bus_guests = data.filter(guest => guest.bus_reservation !== undefined && guest.bus_reservation !== 0)     
+        })    
       }else{           
         this.userDataSubscribe(chat_id,uid)     
       }      

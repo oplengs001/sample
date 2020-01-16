@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GuestAddService, Guest } from "../services/guest-add/guest-add.service"
-import { Observable } from 'rxjs';
+import { Observable ,Subscription} from 'rxjs';
 import {  Router } from '@angular/router';
 @Component({
   selector: 'app-guestlist',
@@ -15,18 +15,31 @@ export class GuestlistPage implements OnInit {
   private sortFlow : any
   private sorting : any
   private searchText : string
+  private guestSubs : Subscription
   constructor(
     private guestServ: GuestAddService ,
     private router : Router) { }
     public items: any = [];
   ngOnInit() {
-    this.guests = this.guestServ.getGuests();
-    this.guests.subscribe(data=>{
+    // this.guestSubs = this.guestServ.getGuests().subscribe(data=>{
+    //   this.guest_array = data      
+    //   this.guestSummary(data)
+    // })
+    // this.sortValue = "first_name"
+    // this.sortFlow = false
+  }
+  ionViewDidEnter() {
+    this.guestSubs = this.guestServ.getGuests().subscribe(data=>{
+      console.log(data)
       this.guest_array = data      
       this.guestSummary(data)
-    })
+    })    
+
     this.sortValue = "first_name"
     this.sortFlow = false
+  }
+  ionViewDidLeave(){   
+    // this.guestSubs.unsubscribe()
   }
   guestSummary(guests) {
     var attending=0,n_attending=0,all_guest=0,pendings=0

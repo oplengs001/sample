@@ -31,7 +31,9 @@ export class GuestAddService {
   private restricted_guests: Observable<Guest[]>;
   private bus_reservations: Observable<Guest[]>;
   private GuestCollection: AngularFirestoreCollection<Guest>;
-  
+  public all_guests : any
+  public diet_guests : any
+  public bus_guests : any
   constructor(
     
     private afs: AngularFirestore,
@@ -76,7 +78,7 @@ export class GuestAddService {
     return this.restricted_guests
   }
   getBusReservations(): Observable<Guest[]> {
-    return this.restricted_guests
+    return this.bus_reservations
   }
   getGuest(id: string): Observable<Guest> {
     console.log(id)

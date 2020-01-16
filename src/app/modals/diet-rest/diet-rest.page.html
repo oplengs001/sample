@@ -8,7 +8,7 @@
   </ion-header>
 <ion-content>
   
-  <ion-item *ngFor="let guest of (guests)">
+  <ion-item *ngFor="let guest of (guestServe.diet_guests)">
     <ion-label>        
         <h2 style="text-transform: capitalize"> {{guest.first_name}} {{guest.last_name}} <ion-icon class="font-icon" name="restaurant"></ion-icon></h2>  
         <p>Diet Restriction:<br><b> "{{guest.diet_restriction}}"</b> <br> </p>  

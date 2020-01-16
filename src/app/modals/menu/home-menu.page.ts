@@ -26,6 +26,7 @@ export class HomeMenuPage implements OnInit {
   private userDetail : any  
   private currentUID : string
   private userColor : string
+  private diet_details : any
   appPages = [
     {
       title: 'VISAS',
@@ -81,13 +82,17 @@ export class HomeMenuPage implements OnInit {
   ionViewDidEnter(){       
    
   }
+  
   ngOnInit() {        
  
     this.currentUser = `${this.authServ.userGuestDetails["first_name"]} ${this.authServ.userGuestDetails["last_name"]}`  
     this.isAdmin = this.authServ.isAdmin()    
     
     this.userColor = this.authServ.userGuestDetails["color"]
-    this.currentUID = this.authServ.userGuestDetails["uid"]
+    this.currentUID = this.authServ.userGuestDetails["uid"]  
+  }
+  ionViewDidLeave(){
+
   }
   gotoRsvpList(){
     this.closeModal()
@@ -115,12 +120,16 @@ export class HomeMenuPage implements OnInit {
     });          
     await modal.present();
   }
-  async openDietRestrictions(){
-    const modal: HTMLIonModalElement =
+  async openDietRestrictions(){      
+    const modal :HTMLIonModalElement =
     await this.modalctrl.create({
-       component: DietRestPage,         
-    });          
+      component: DietRestPage,     
+      componentProps: {
+        guests :  this.diet_details
+      }    
+    }); 
     await modal.present();
+
   }
   async closeModal(url?:string) {  
     if(url==="dining"){

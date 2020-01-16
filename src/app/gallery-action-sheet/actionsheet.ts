@@ -423,7 +423,7 @@ export class ActionClass implements OnInit {
                   this.guestService.updateDietaryRestriction(uid,data.restrict).then(()=>{
                     let notif : AdminNotification ={
                       title: "Diet Restriction",
-                      body: `${first_name} ${last_name} noted that "${data.restric}" for his/her meal`,
+                      body: `${first_name} ${last_name} noted that "${data.restrict}" for his/her meal`,
                       createdAt : Date.now(),
                       status : "unread",
                       focus : data.restrict,
