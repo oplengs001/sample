@@ -219,13 +219,16 @@ export class MessagesPage implements OnInit {
   submit(event,chatId,group_name) {       
     event.preventDefault()
     var message = this.newMsg
-      if(this.newMsg === '' || this.newMsg.length === 0 || !message.replace(/\s/g, '').length ){
+      if(this.newMsg === '' || this.newMsg.length === 0 || !message.replace(/\s/g, '').length ){//single image sent
         if(!this.hide_image){
-          this.cs.sendMessage(chatId, group_name,this.newMsg,this.temp_image).then(data=>{
-            this.hide_image = true
-            this.newMsg = ''
-            this.seen_chat()
-            this.temp_image = ''
+
+          this.hide_image = true
+          var newMsg = this.newMsg        
+          var temp_image = this.temp_image = ''
+          this.seen_chat()
+          this.newMsg = ''
+          this.temp_image = ''
+          this.cs.sendMessage(chatId, group_name,newMsg,temp_image).then(data=>{     
             // this.scrollToBottom(500)
           }); 
         }
@@ -233,11 +236,17 @@ export class MessagesPage implements OnInit {
       }else{
         
         this.newMsg = this.newMsg.trim();
-        this.cs.sendMessage(chatId, group_name,this.newMsg,this.temp_image).then(data=>{
-          this.hide_image = true
-          this.newMsg = ''
-          this.seen_chat()
-          this.temp_image = ''
+        this.hide_image = true
+        var newMsg = this.newMsg        
+        var temp_image = this.temp_image = ''
+        this.seen_chat()
+        this.newMsg = ''
+        this.temp_image = ''
+        this.cs.sendMessage(chatId, group_name,newMsg,temp_image).then(data=>{
+          // this.hide_image = true
+          // this.newMsg = ''
+          // this.seen_chat()
+          // this.temp_image = ''
           // this.scrollToBottom(500)
         });   
       }
