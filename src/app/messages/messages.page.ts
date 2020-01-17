@@ -17,6 +17,7 @@ import { ModalController, } from '@ionic/angular';
 import { MessagesDetailsPage } from "../modals/messages-details/messages-details.page"
 import { GuestAddService} from "../services/guest-add/guest-add.service"
 import { ImagePage } from "../modals/photos/image/image.page"
+import { Keyboard} from '@ionic-native/keyboard/ngx';
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.page.html',
@@ -63,7 +64,8 @@ export class MessagesPage implements OnInit {
     private platform : Platform,
     private modalctrl : ModalController,
     private guest : GuestAddService,
-    private imageModal: ImagePage
+    private imageModal: ImagePage,
+    private keyboard : Keyboard
   ) {    
   
   }
@@ -242,6 +244,7 @@ export class MessagesPage implements OnInit {
         this.seen_chat()
         this.newMsg = ''
         this.temp_image = ''
+        this.keyboard.show()
         this.cs.sendMessage(chatId, group_name,newMsg,temp_image).then(data=>{
           // this.hide_image = true
           // this.newMsg = ''
