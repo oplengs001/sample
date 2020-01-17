@@ -119,7 +119,7 @@
         </div>     
         <!-- <div class="images" *ngSwitchCase="'pinterest'">     -->
         <div class="images" [hidden]="galleryType === 'regular'" >    
-            <div class="one-image" *ngFor="let post of GalleryPosts.slice(0,image_limit) | sort :'desc':'date_uploaded'; trackBy: trackByCreated">
+            <div class="one-image" *ngFor="let post of GalleryPosts.slice(0,image_limit).reverse() | sort :'desc':'date_uploaded'; trackBy: trackByCreated">
               <div *ngIf="post.user">  
                 <div *ngIf="OwnImages;then filteredImage;else allUser">                       
                 </div>

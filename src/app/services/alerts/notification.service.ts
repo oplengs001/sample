@@ -207,7 +207,7 @@ export class NotificationService {
         let postData = {
           "id" : guest_id,
           "response" : response,    
-          "reservation_decline_reason" :reason 
+          "reason" :reason 
         }        
         this.httpIon.setDataSerializer("json")
         this.httpIon.sendRequest(`${api}${api_url}`,{

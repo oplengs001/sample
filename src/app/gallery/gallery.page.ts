@@ -69,7 +69,7 @@ export class GalleryPage implements OnInit {
     data.subscribe( data=>{
       console.log(data)
       this.images_length = data.length
-      this.GalleryPosts = data
+      this.GalleryPosts = data.reverse()
     })
   });  
   this.currentUser = this.authServ.currentUserId();
