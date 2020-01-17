@@ -93,7 +93,7 @@
   }
   .notified-text-up{
     font-family: "notified-light" !important;
-    font-size: 3vh !important;
+    font-size: 3vh !important;   
   }
   .notified-text-custom{
     font-family: "roboto" !important;
@@ -113,9 +113,9 @@
     font-size: 18px !important
   }
   .slide-icon{
-    width: 70vw;
-    height: 70vh;
-    border-radius: 38px;
+    width: 60vw;
+
+    border-radius: 25px;
     // position: absolute;
     display: unset;
     top: 0;
@@ -188,7 +188,7 @@
         // background:rgba(6, 87, 197, 0.45) !important;
         position: absolute;
         top:0;bottom:0;left:0;right:0;
-        padding: 30px 5%;
+        padding: 10px 5%;
         p {
           margin-top: 0px;
           font-family: "roboto" !important;  
