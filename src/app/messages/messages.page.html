@@ -144,17 +144,14 @@
         <ion-textarea  *ngIf="chat$ | async as chat"
          class="message-input" maxRows="5"
          rows= "1"
-         autosize 
+         autosize
          autoGrow=true 
          (ionFocus)="seen_chat()"
-         [(ngModel)]="newMsg" 
+         [(ngModel)]="newMsg"
          (keydown.enter)="submit($event,chat.id,chat.group_name)"
+         id="textarea"
           ></ion-textarea>
-          <textarea rows="1" cols="80" class="message" id="textarea"></textarea>
-          <label for="textarea" ion-button icon-only round outline class="send" (click)="submit($event,chat.id,chat.group_name)"><ion-icon name="md-send"></ion-icon></label>
-
-
-
+          <label  [hidden]="newMsg === ''" *ngIf="chat$ | async as chat" for="textarea" ion-button icon-only round outline class="send" (click)="submit($event,chat.id,chat.group_name)"><ion-icon name="md-send"></ion-icon></label>
       </ion-col>
       <ion-col size="2" *ngIf="chat$ | async as chat">
         <ion-button [hidden]="newMsg === ''" expand="block" fill="clear" color="primary" [disabled]="uploading"  class="msg-btn"(click)="submit($event,chat.id,chat.group_name)">
