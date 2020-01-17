@@ -37,11 +37,11 @@
   //  border: 7px solid #ffffff;
 }
 .icon-first{
-  border-radius: 50%;
+  border-radius: 50% !important;;
   width: 40vw !important;
   height: 40vw !important;     
-  margin: 17vh 0 -20px 0;  
-  object-fit: cover;
+  margin: 17vh 0 -20px 0 !important;;  
+  object-fit: cover !important;;
   // border: 7px solid #d3dcfa;
   // border :7px solid #2cc0e8;
   //  border: 4px solid #e6e6e7;
@@ -92,14 +92,13 @@
     margin-top: 30vh;
   }
   .notified-text-up{
-  font-family: "roboto" !important;
-    font-size: 5vh !important;
-    margin-top: 17vh;
+    font-family: "notified-light" !important;
+    font-size: 3vh !important;
   }
   .notified-text-custom{
-  font-family: "roboto" !important;
+    font-family: "roboto" !important;
     font-size:4.5vh;
-    margin-top: 17vh;
+    margin-top: 35vh;
   }
   .h6-text{
   font-family: "roboto" !important;    
@@ -112,6 +111,18 @@
   }
   .first-p{
     font-size: 18px !important
+  }
+  .slide-icon{
+    width: 70vw;
+    height: 70vh;
+    border-radius: 38px;
+    // position: absolute;
+    display: unset;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 12%;
+    text-align: center; 
   }
   .content {
     text-align: center;
@@ -173,6 +184,7 @@
       text-align: center;    
  
       .slide-content {
+        border-radius: 20px;
         // background:rgba(6, 87, 197, 0.45) !important;
         position: absolute;
         top:0;bottom:0;left:0;right:0;
@@ -181,14 +193,11 @@
           margin-top: 0px;
           font-family: "roboto" !important;  
           font-size:15px 
-        }       
-        img{           
-          width: 120px;
-          height: 120px;
-        }
+        }          
       }
   
     }
+    
     ion-slide:first-child{
       // background-color: #d0e4f0 !important;
       background: url("../assets/images/login_cover.jpg");
@@ -196,23 +205,23 @@
       color: #1e2023 !important;
     }   
     ion-slide:nth-child(2){
-      background-color :#ffc1e5;
+      background: url("../assets/images/login_cover.jpg");
       background-size: cover;     
       color: #1e2023 !important;
     }     
     ion-slide:nth-child(3){
-      background-color :#FFFFFF;
+      background: url("../assets/images/login_cover.jpg");
       background-size: cover;    
       color: #1e2023 !important  
 
     }    
     ion-slide:nth-child(4){
-      background-color: #abddf0 !important;
+      background: url("../assets/images/login_cover.jpg");
       background-size: cover;    
       color: #1e2023 !important;
     } 
     ion-slide:nth-child(5){
-      background-color :#ffc1e5;
+      background: url("../assets/images/login_cover.jpg");
       background-size: cover;     
       color: #1e2023 !important;
     } 
