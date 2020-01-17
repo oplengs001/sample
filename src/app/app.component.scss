@@ -36,6 +36,17 @@
    border: 4px solid #e6e6e7;
   //  border: 7px solid #ffffff;
 }
+.icon-first{
+  border-radius: 50%;
+  width: 40vw;
+  height: 40vw;   
+  // margin: 15vh 0 15px 0;       
+  object-fit: cover;
+  
+  // border: 7px solid #d3dcfa;
+  // border :7px solid #2cc0e8;
+  //  border: 4px solid #e6e6e7;
+}
 .content{
   position: absolute;
   left: 0;
@@ -90,6 +101,10 @@
     font-family: "notified-light";    
     padding-left:20px;
     padding-right:20px
+  }
+  .first-title{
+    font-family: "notified-medium";
+    font-size: 5vh !important;
   }
   .content {
     text-align: center;
@@ -148,7 +163,7 @@
       text-align: center;    
  
       .slide-content {
-        background:rgba(6, 87, 197, 0.45) !important;
+        // background:rgba(6, 87, 197, 0.45) !important;
         position: absolute;
         top:0;bottom:0;left:0;right:0;
         padding: 30px 5%;
@@ -165,34 +180,38 @@
           object-fit: cover;
           
           // border: 7px solid #d3dcfa;
-          border :7px solid #507ebb
+          // border :7px solid #507ebb
         }
       }
   
     }
     ion-slide:first-child{
-      background : url("../assets/images/welcome.jpg") no-repeat center center;
-      background-size: cover;;
+      background-color: #abddf0 !important;
+      background-size: cover;
     }   
     ion-slide:nth-child(2){
-      background : url(../assets/images/see_and_do.jpg) no-repeat center center;
+      background-color :#f32b9f;
       background-size: cover;     
     }     
     ion-slide:nth-child(3){
-      background : url(../assets/images/notify.jpg) no-repeat center center;
-      background-size: cover;     
+      background-color :#FFFFFF;
+      background-size: cover;    
+      color: #1e2023 !important  
+
     }    
     ion-slide:nth-child(4){
-      background : url(../assets/images/chat.jpg) no-repeat center center;
-      background-size: cover;     
+      background-color: #abddf0 !important;
+      background-size: cover;    
+   
     } 
     ion-slide:nth-child(5){
-      background : url(../assets/images/memories.jpg) no-repeat center center;
+      background-color :#f32b9f;
       background-size: cover;     
     } 
     ion-slide:nth-child(6){
-      background : url(../assets/images/prepare.jpg) no-repeat center center;
-      background-size: cover;     
+      background-color :#FFFFFF;
+      background-size: cover;  
+      color: #1e2023  !important   
     }
     .slider .slider-pager {
       text-align: right;
