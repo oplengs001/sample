@@ -13,11 +13,29 @@
   <ion-content *ngIf=charity>
     <ion-card>     
       <ion-card-header>
-        <ion-card-title  class="ion-text-center">{{charity.charity_title}} </ion-card-title>          
+        <ion-card-title  class="ion-text-left">{{charity.charity_title}} </ion-card-title>          
       </ion-card-header>
       <ion-card-content>
-          <div class="ion-text-center">{{charity.charity_text}} </div><br>  
-      </ion-card-content>
-    </ion-card>  
+          <div class="ion-text-justify">{{charity.charity_text}} </div><br>  
+      </ion-card-content>      
+    </ion-card>
+    <ion-card (click)="expandItem(item)" *ngFor="let item of items" class="item-card">
+        <ion-card-header class="item-header">  
+            <ion-item lines="none">
+              <ion-icon slot="end" name="ios-arrow-down"></ion-icon>
+              <ion-card-title class="item-title">{{item.title}}</ion-card-title>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content class="ion-text-justify item-content">
+          <app-expandable expandHeight="100vh" [expanded]="item.expanded">
+              <img src="{{item.image_link}}" alt="" class="img-container"/>
+              <br>
+             {{item.text}}
+             <a (click)="openLink(item.url)"> 
+             {{item.url_tag}}
+             </a>
+          </app-expandable>
+        </ion-card-content>
+      </ion-card>  
   </ion-content>
   
