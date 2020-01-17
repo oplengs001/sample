@@ -54,7 +54,7 @@ export class AdminAnnouncementPage implements OnInit {
     if(this.message_body.title === '' || this.message_body.body === ''){
       this.actions.inputAlert()
     }else{
-      let message = "You are about to Create an Announcement"
+      let message = "You are about to create an announcement."
       this.actions.confirmationMessage(message).then(res=>{  
         if(res){     
           this.sendMessage() 

@@ -129,7 +129,7 @@ export class HomeMenuPage implements OnInit {
     
     let decision =this.authServ.userGuestDetails.will_come?"Decline":"Accept"
 
-    this.actionSheet.confirmationMessage(`You Are changing your Response to ${decision}`).then((res)=>{
+    this.actionSheet.confirmationMessage(`You are changing your response to ${decision}`).then((res)=>{
       if(res){     
         var rsvp = !this.authServ.userGuestDetails.will_come           
         this.updateStatus(rsvp,false)
@@ -170,7 +170,7 @@ export class HomeMenuPage implements OnInit {
     await this.modalctrl.dismiss();
   }
   async logout() {
-    this.actionSheet.confirmationMessage("Your About to Log-Out").then(res=>{
+    this.actionSheet.confirmationMessage("Your about to log-out").then(res=>{
       if(!res){
         return null
       }
@@ -193,27 +193,27 @@ export class HomeMenuPage implements OnInit {
   }
 
   updateStatus(value,first_log?:boolean){
-    var message = "You are Declining the Invitation"
+    var message = "You are declining the invitation"
     if(value){
-      message = "You are Accepting the Invitation"
+      message = "You are accepting the invitation"
     }
     this.actionSheet.confirmationMessage(message).then(data=>{
       if(data){
         this.guestService.updateStatus(this.authServ.userGuestDetails,value).then(data=>{                       
           if(value){
-            this.actionSheet.customAlert("Welcome!","Thanks for Accepting the Invitation.")            
+            this.actionSheet.customAlert("Welcome!","Thanks for accepting the invitation.")            
             // this.plusOnePrompt()
             if(first_log){
               setTimeout(()=>{
-                this.actionSheet.customAlert("",`reset Password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
+                this.actionSheet.customAlert("",`reset password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
               },2000)
               
             }
           }else{
-            this.actionSheet.customAlert("Ow.. Boo!","Hope You Change your Mind.")
+            this.actionSheet.customAlert("Ow.. Boo!","Hope you change your mind.")
             if(first_log){
               setTimeout(()=>{
-                this.actionSheet.customAlert("",`reset Password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
+                this.actionSheet.customAlert("",`reset password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
               },2000)
               
             }
@@ -227,7 +227,7 @@ export class HomeMenuPage implements OnInit {
   }
 
   plusOnePrompt(message?: string){
-    var r_message = message||"Do you have extra Guests Attending with you?"
+    var r_message = message||"Do you have extra Guests attending with you?"
     this.actionSheet.confirmationMessage(r_message,"","Hey There!").then(data=>{
       if(data){
       this.actionSheet.plusOnePrompt().then(data=>{
@@ -248,11 +248,11 @@ export class HomeMenuPage implements OnInit {
     })  
   }
   changePassword(){
-    this.actionSheet.confirmationMessage("Password Reset Request will be Sent or Your email","").then(data=>{
+    this.actionSheet.confirmationMessage("Password reset request will be sent or your email.","").then(data=>{
       if(data){
         this.authServ.resetPassword( this.authServ.userGuestDetails["email"]).then(
           data=>{
-            this.actionSheet.customAlert("Success!",`Check your Email "${this.authServ.userGuestDetails["email"]}" to reset your password!`)
+            this.actionSheet.customAlert("Success!",`Check your email "${this.authServ.userGuestDetails["email"]}" to reset your password!`)
           }
         )
       }

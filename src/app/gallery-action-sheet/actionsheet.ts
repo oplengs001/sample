@@ -36,8 +36,8 @@ export class ActionClass implements OnInit {
   }
   async DeleteConfirm(post) {
     const alert = await this.alertController.create({
-      header: 'Are You Sure?',
-      message: 'This Photo will be deleted',
+      header: 'Are you sure?',
+      message: 'This photo will be deleted',
       buttons: [
         {
           text: 'Cancel',
@@ -178,7 +178,7 @@ export class ActionClass implements OnInit {
   async confirmationMessage(message:string,notifBody?:string,header?:string):Promise<boolean> {
     let choice
     const alert = await this.alertController.create({
-      header: header||'Are You Sure?',
+      header: header||'Are you sure?',
       subHeader :notifBody||"",
       message: message,      
       buttons: [
@@ -328,7 +328,7 @@ export class ActionClass implements OnInit {
     var returning_data,confirmation
     let alert = await this.alertController.create({
       header: 'Bus Reservation',
-      message: 'Please Enter the Number of Seat You want to Reserve',
+      message: 'Please Enter the number of seat youu want to reserve',
       inputs: [
         {
           name: 'count',
@@ -352,25 +352,25 @@ export class ActionClass implements OnInit {
             if (data.count !== "0" && data.count !== "") {
               // logged in!'
               if(data.count >11 ){                
-                this.toaster.showToast("Your only allowed to reserved (10 seats)'")
+                this.toaster.showToast("Your only allowed to reserved (10 seats).")
                 this.busReservationPropmpt()
                 return
               }  
               if(data.count <=0 ){         
-                this.toaster.showToast("Enter a valid seat number'")
+                this.toaster.showToast("Enter a valid seat number.")
                 this.busReservationPropmpt()
                 return
               }
               var userDetails = this.authServ.userGuestDetails,
                 {first_name,last_name,uid } = userDetails
 
-              confirmation = await this.confirmationMessage(`This Reservation of (${data.count}) seat/s will be under your Name "${first_name} ${last_name}"`).then(message =>{
+              confirmation = await this.confirmationMessage(`This reservation of (${data.count}) seat/s will be under your Name "${first_name} ${last_name}".`).then(message =>{
                 if(message){     
                   var count = parseInt(data.count)
                   this.guestService.updateBusReservation(uid,count).then(()=>{
                     let notif : AdminNotification ={
                       title: "Bus Reservation",
-                      body: `${first_name} ${last_name} want to reserve (${count}) seat/s in the Bus`,
+                      body: `${first_name} ${last_name} want to reserve (${count}) seat/s in the Bus.`,
                       createdAt : Date.now(),
                       status : "unread",
                       focus : data.count,
@@ -378,8 +378,8 @@ export class ActionClass implements OnInit {
                       guest_uid : uid 
                   }                
                     this.announcements.saveNotif(notif).then(()=>{
-                      this.customAlert(`Alrighty!`,`This Seat Reservation Count of (${data.count}) will be sent to the Event Planner to Review and Confirm your Reservation,
-                      Wait for an Email Confirmation of your Request`)
+                      this.customAlert(`Alrighty!`,`This Seat Reservation Count of (${data.count}) will be sent to the Event Planner to review and confirm your reservation,
+                      wait for an Email confirmation of your request.`)
                     })               
                   })                              
                 }else{
@@ -388,7 +388,7 @@ export class ActionClass implements OnInit {
               })
 
             } else {              
-              this.toaster.showToast("Reservation Count Cannot be Empty")
+              this.toaster.showToast("Reservation count cannot be Empty")
               this.busReservationPropmpt()
             }
           }
@@ -452,7 +452,7 @@ export class ActionClass implements OnInit {
               })
 
             } else {              
-              this.toaster.showToast("Reservation Count Cannot be Empty")
+              this.toaster.showToast("Diet Restriction cannot be empty.")
               this.busReservationPropmpt ()
             }
           }

@@ -87,7 +87,7 @@ export class CeremonyPage implements OnInit, AfterViewInit {
   }
   changeImage(){
     if(this.isAdmin){
-        this.actions.confirmationMessage("your about to change to wedding image").then(res=>{
+        this.actions.confirmationMessage("Your about to change to wedding image").then(res=>{
           if(res){
             this.openImagePicker()
           }else{

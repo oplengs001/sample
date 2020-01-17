@@ -31,7 +31,7 @@
 
 <ion-app *ngIf="!(authService.user | async)">
   <ion-content force-overscroll="false">
-      <gl-background-video src="../assets/video/g/poster.mp4" poster="../assets/video/g/poster.png" [hidden]="hideLogin"></gl-background-video>
+      <!-- <gl-background-video src="../assets/video/g/poster.mp4" poster="../assets/video/g/poster.png" [hidden]="hideLogin"></gl-background-video> -->
       <ion-slides [options]="slideOptions" pager="true" [hidden]="hideSlide" >
           <ion-slide>
             <div class="slide-content" >
@@ -86,15 +86,26 @@
               </div>
           </ion-slide>                            
       </ion-slides>    
-    <div class="page-centered-element" [hidden]="hideLogin" >
-      <div class="content">
-        <h1 class="h1-text">Tom & Ingga</h1>
-        <h6 class="h6-text">Requesting the Honour of Your Presence to Celebrate Their Marriage</h6>
-        <div class="buttons-container">
-            <ion-input type="text" [(ngModel)]="email" placeholder="email"></ion-input>
-            <ion-input type="password" [(ngModel)]="password" placeholder="password"> </ion-input>
-          <ion-button (click)="login()" [disabled]="!email || !password" >Login</ion-button>
+    <div class="content" [hidden]="hideLogin" >
+      <div class="page-centered-element" >
+        <!-- <h1 class="h1-text">Tom & Ingga</h1> -->
+        <!-- <h6 class="h6-text">Requesting the Honour of Your Presence to Celebrate Their Marriage</h6> -->
+        <img class="icon-container" src="../assets/images/icon.png">
+        <h4 class="container-title" color="dark">WedVite</h4>
+        <div class="buttons-container"> 
+            <!-- <ion-input type="text" [(ngModel)]="email" color="dark" placeholder="Email"></ion-input> -->
+            <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input type="text" [(ngModel)]="email" color="dark" ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Password</ion-label>
+                <ion-input type="password" color="dark"  [(ngModel)]="password"></ion-input>
+              </ion-item>
+            <!-- <ion-input type="password" color="dark"  [(ngModel)]="password" placeholder="Password"> </ion-input> -->
+          <ion-button (click)="login()" [disabled]="!email || !password" color="dark"  >Login</ion-button>
         </div>
+        <h6 class="tags" color="dark">Made with ❤ in the Philippines by ProSource</h6>
       </div>
     </div>
   </ion-content>    

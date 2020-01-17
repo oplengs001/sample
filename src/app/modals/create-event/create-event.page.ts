@@ -49,7 +49,7 @@ export class CreateEventPage implements OnInit {
   }
   addEvent (formValues) {    
     var {event_name , event_location ,event_schedule} = formValues.value
-    let message = `Your about to Create this Event`
+    let message = `Your about to create this Event`
     this.actions.confirmationMessage(message).then(res=>{
       if(!res){
         return null
