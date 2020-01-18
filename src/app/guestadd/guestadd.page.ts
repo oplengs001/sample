@@ -26,7 +26,7 @@ export class GuestaddPage implements OnInit {
     will_come : false,
     notif_count:0,        
     color: this.getRandomColor(),
-    diet_restriction: "None",
+    diet_restriction: "none",
     bus_reservation : 0,
     reservation_status : "pending"
 
@@ -84,7 +84,7 @@ export class GuestaddPage implements OnInit {
         will_come : false,
         notif_count :0,            
         color: this.getRandomColor(),
-        diet_restriction: "None",
+        diet_restriction: "none",
         bus_reservation : 0,
         reservation_status : "pending"
       }    
@@ -145,7 +145,7 @@ export class GuestaddPage implements OnInit {
       will_come : false,
       notif_count : 0,            
       color: this.getRandomColor(),
-      diet_restriction: "None",
+      diet_restriction: "none",
       bus_reservation : 0,
       reservation_status : "pending"
     };
