@@ -25,7 +25,13 @@
             <h2 slot="end" *ngIf="notif.title==='Bus Reservation'">        
                 <ion-badge color="success">{{notif.focus}} seat/s</ion-badge>                          
             </h2>         
-
+            <ion-label *ngIf="notif.title==='RSVP Email'">
+           
+              <h2>RSVP Email <ion-icon class="font-icon" name="eye"></ion-icon></h2>
+              <h2 style="text-transform: capitalize">{{notif.guest }}</h2>
+              <p>{{notif.body}}</p>
+              <p>by {{notif.createdAt | date:'h:mm a MM/dd/yyyy' }}</p>
+            </ion-label>
           <!-- Bus Reservations-->    
               <ion-label *ngIf="notif.title==='RSVP Response'">
            

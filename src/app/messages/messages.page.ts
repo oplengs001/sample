@@ -1,5 +1,5 @@
 import { Component, OnInit ,ViewChild , ViewChildren ,QueryList} from '@angular/core';
-import { IonContent,IonInfiniteScroll  ,IonTextarea } from '@ionic/angular';
+import { IonContent,IonInfiniteScroll  ,IonButton,IonTextarea } from '@ionic/angular';
 import { ChatService } from '../services/chat/chat.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable,Subscription } from 'rxjs';
@@ -18,6 +18,7 @@ import { MessagesDetailsPage } from "../modals/messages-details/messages-details
 import { GuestAddService} from "../services/guest-add/guest-add.service"
 import { ImagePage } from "../modals/photos/image/image.page"
 import { Keyboard} from '@ionic-native/keyboard/ngx';
+
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.page.html',
@@ -28,6 +29,9 @@ export class MessagesPage implements OnInit {
   private ThisChat = new Subscription()
   @ViewChild(IonContent, {static: false}) content: IonContent;
   @ViewChild(IonInfiniteScroll, {static: false}) infiniteScroll: IonInfiniteScroll;
+
+  @ViewChild(IonTextarea,{static:false}) inputElement : IonTextarea;
+  @ViewChildren('sendButton') sendButton : IonButton;
   @ViewChildren('messages') messages: QueryList<any>;
 
   chat$: Observable<any>;
@@ -87,6 +91,10 @@ export class MessagesPage implements OnInit {
     });  
     // this.messages.changes.pipe(throttleTime(500))
   }  
+  stopBubble(event){
+    event.preventDefault();
+    event.stopPropagation();
+  }
   loadData(event) {      
     console.log("called")
     
@@ -219,7 +227,7 @@ export class MessagesPage implements OnInit {
 
   }
   submit(event,chatId,group_name) {       
-    event.preventDefault()
+    this.stopBubble(event)
     var message = this.newMsg
       if(this.newMsg === '' || this.newMsg.length === 0 || !message.replace(/\s/g, '').length ){//single image sent
         if(!this.hide_image){
@@ -236,7 +244,7 @@ export class MessagesPage implements OnInit {
         }
      
       }else{
-        
+        this.inputElement.setFocus()
         this.newMsg = this.newMsg.trim();
         this.hide_image = true
         var newMsg = this.newMsg        
@@ -244,7 +252,7 @@ export class MessagesPage implements OnInit {
         this.seen_chat()
         this.newMsg = ''
         this.temp_image = ''
-        this.keyboard.show()
+     
         this.cs.sendMessage(chatId, group_name,newMsg,temp_image).then(data=>{
           // this.hide_image = true
           // this.newMsg = ''
