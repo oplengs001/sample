@@ -10,6 +10,9 @@ export class NotificationService {
     "Content-Type": "application/json",
     "Authorization" :'key=AIzaSyDSNAyyH5RbR6bQaOQ6O26t-iUw0_GCVYA'
   }
+  private JsonHeader={
+    "Content-Type": "application/json",
+  }
   constructor(     
     public httpIon : HTTP,
     public gInfo : GeneralInfoService
@@ -181,17 +184,15 @@ export class NotificationService {
     welcomeEmail(guest:Guest,password:string){
       this.gInfo.getWeddingInfoTakeOne().subscribe(data=>{
         var content = data[0]        
-        var {api} = content
+        var {welcome_email_api,api} = content
         let postData = {
-          "first_name" : guest.first_name,
-          "last_name" : guest.last_name,
-          "email" : guest.email,
-          "password" : password
+          "guest": guest
         }        
         this.httpIon.setDataSerializer("json")
-        this.httpIon.sendRequest(`${api}/guests/send-invite-email`,{
+        this.httpIon.sendRequest(`${api}${welcome_email_api}`,{
           method:"post",
           data: postData,
+          headers : this.JsonHeader
         }).then(data=>{
           console.log(data)
         }).catch(err=>{

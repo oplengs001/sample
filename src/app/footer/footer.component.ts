@@ -71,7 +71,10 @@ export class FooterComponent   {
         this.announcementServices.getNotifs().subscribe(data=>{                
           this.announcementServices.RsvpNotif = data     
           this.announcementServices.RsvpNotifCount = this.countUnreadAdminNotif(data);
+          this.badge.set( this.announcementServices.RsvpNotifCount);  
+          
         })
+        
         this.guestServe.getRestrictedGuests().subscribe( async data=>{              
           this.guestServe.diet_guests = data.filter(guest => guest.diet_restriction !== undefined && guest.diet_restriction !== "none" && guest.diet_restriction !== "")   
           this.guestServe.bus_guests = data.filter(guest => guest.bus_reservation !== undefined && guest.bus_reservation !== 0)     

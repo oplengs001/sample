@@ -7,6 +7,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { GeneralInfoService} from "../services/content/general-info.service"
 import { NotificationService } from "../services/alerts/notification.service"
 import {  Router } from '@angular/router';
+import { ChatService } from '../services/chat/chat.service';
 @Component({
   selector: 'app-guestadd',
   templateUrl: './guestadd.page.html',
@@ -19,7 +20,7 @@ export class GuestaddPage implements OnInit {
     last_name: '', 
     number: '',
     email: '',    
-    chat_id : [],
+    chat_id : ["gchat"],
     isAdmin: false,
     forRsvp : true,
     will_come : false,
@@ -41,7 +42,8 @@ export class GuestaddPage implements OnInit {
     private formBuilder : FormBuilder,
     private router : Router,
     private gInfo : GeneralInfoService,
-    private notifs : NotificationService
+    private notifs : NotificationService,
+    private chats : ChatService
     ) { 
       this.guestForm = this.formBuilder.group({
         first_name : ['', Validators.required],        
@@ -61,7 +63,7 @@ export class GuestaddPage implements OnInit {
       this.api = admin_site
     })
   }
-  addGuest() {            
+  addGuest() {          
     if(this.guestForm.valid){
       let {
          first_name,
@@ -76,7 +78,7 @@ export class GuestaddPage implements OnInit {
         last_name,    
         number,
         email,
-        chat_id : [],      
+        chat_id: ["gchat"],
         isAdmin,
         forRsvp: true,
         will_come : false,
@@ -102,10 +104,12 @@ export class GuestaddPage implements OnInit {
             if(value.user){
               this.guest.uid = value.user.uid
               this.guestService.addGuest(this.guest).then(() => {
-                this.toastService.showToast('Guest added');
-                this.actions.customAlert("Success!","Guest Added!")
-                this.notifs.welcomeEmail(this.guest,this.password)
-                this.emptyForm()
+                this.chats.AddGuestToGeneral("gchat",this.guest.uid).then(()=>{
+                  this.toastService.showToast('Guest added');
+                  this.actions.customAlert("Success!","Guest Added!")
+                  this.notifs.welcomeEmail(this.guest,this.password)
+                  this.emptyForm()
+                })
               }, err => {
                 this.actions.customAlert("Opps!",err.message)
                 this.toastService.showToast('There was a problem adding your Guest '+err.message);       
@@ -135,7 +139,7 @@ export class GuestaddPage implements OnInit {
       last_name: '',
       number: '',
       email: '',    
-      chat_id : [],
+      chat_id : ["gchat"],
       isAdmin: false,
       forRsvp: true,
       will_come : false,

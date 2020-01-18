@@ -50,7 +50,7 @@
       <!-- Responsive Layout with Ion Grid-->
         <!-- <div class="images-single" *ngSwitchCase="'regular'"> -->
         <div class="images-single" [hidden]="galleryType === 'pinterest'">
-          <div class="single-count-image" *ngFor="let post of GalleryPosts.slice(0,image_limit) | sort :'desc':'date_uploaded'; trackBy: trackByCreated;">
+          <div class="single-count-image" *ngFor="let post of GalleryPosts | sort :'desc':'date_uploaded'; trackBy: trackByCreated;">
             <div *ngIf="post.user">  
               <div *ngIf="OwnImages;then filteredImage;else allUser">                
               </div>
@@ -113,13 +113,13 @@
             </div>                          
           </div>
           <ion-infinite-scroll threshold="150px"  (ionInfinite)="loadData($event)">
-            <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="crescent">
-            </ion-infinite-scroll-content>
+            <!-- <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="crescent">
+            </ion-infinite-scroll-content> -->
           </ion-infinite-scroll> 
         </div>     
         <!-- <div class="images" *ngSwitchCase="'pinterest'">     -->
         <div class="images" [hidden]="galleryType === 'regular'" >    
-            <div class="one-image" *ngFor="let post of GalleryPosts.slice(0,image_limit) | sort :'desc':'date_uploaded'; trackBy: trackByCreated">
+            <div class="one-image" *ngFor="let post of GalleryPosts| sort :'desc':'date_uploaded'; trackBy: trackByCreated">
               <div *ngIf="post.user">  
                 <div *ngIf="OwnImages;then filteredImage;else allUser">                       
                 </div>

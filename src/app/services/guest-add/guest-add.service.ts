@@ -13,7 +13,7 @@ export interface Guest {
   last_name: string,  
   number: string,
   email: string,
-  chat_id : [],
+  chat_id : any,
   isAdmin : boolean,
   forRsvp : boolean,
   will_come : boolean
@@ -129,6 +129,8 @@ export class GuestAddService {
       await this.afs.firestore.collection('guests').doc(user).get().then(guestData=>{
         let {chat_id} = guestData.data()
         if(!chat_id.includes(group_id)){
+          chat_id.push(group_id)
+        }else if(!chat_id.length){
           chat_id.push(group_id)
         }
         this.addGroupToGuest(user,chat_id) 

@@ -64,12 +64,12 @@ export class GalleryPage implements OnInit {
   ngOnInit() {       
    const source = this.imageService.getReferences();
   //  this.GalleryPosts = this.imageService.joinUsers(source);
-  this.image_limit = 12
+  
   this.imageService.joinUsers(source).then(data=>{ 
     data.subscribe( data=>{
       console.log(data)
       this.images_length = data.length
-      this.GalleryPosts = data.reverse()
+      this.GalleryPosts = data
     })
   });  
   this.currentUser = this.authServ.currentUserId();
@@ -123,13 +123,14 @@ export class GalleryPage implements OnInit {
   seeAll(){
     this.OwnImages = false
   } 
-  loadData(event) {      
+  loadData(event) {     
+    debugger 
     setTimeout(() => {         
 
       if(this.images_length !== undefined){                    
           this.image_limit = this.image_limit + 12
           if ( this.image_limit >= this.images_length) {          
-            this.infiniteScroll.disabled = true            
+            // this.infiniteScroll.disabled = true            
             this.image_limit = this.images_length
           }else{                             
             this.infiniteScroll.complete() 

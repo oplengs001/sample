@@ -5,7 +5,8 @@ import { NotificationService } from '../alerts/notification.service';
 import { Router } from '@angular/router';
 import { firestore } from 'firebase/app';
 import { map, switchMap,mergeMap ,take } from 'rxjs/operators';
-import { Observable, combineLatest, of  } from 'rxjs';
+import { Observable, combineLatest, of, merge  } from 'rxjs';
+import { debug } from 'util';
 
 export interface GroupChat {
   count: number,
@@ -84,7 +85,7 @@ export class ChatService {
   group_members_format (members:any,forEdit : boolean,group_id:string){
     return new Promise<any>(async(resolve, reject) => {
       if(forEdit){
-        let {inbox,messages} = await this.getChatByID(group_id),
+        let {inbox,messages,group_name,createdAt} = await this.getChatByID(group_id),
         unique = inbox.filter((o)=> members.indexOf(o.user_id) === -1),
         reduced = unique.map(user=>{
           inbox = this.remItem(inbox,user)
@@ -102,7 +103,9 @@ export class ChatService {
         })        
         resolve({
           inbox_format :inbox_format,
-          messages : messages
+          messages : messages,
+          group_name: group_name,
+          createdAt : createdAt
         })
       }else{
         var inbox_format = members.map((item)=>{
@@ -180,10 +183,17 @@ export class ChatService {
     const  uid  = await this.auth.currentUserId();
     var {group_name,group_id} = group_details    
     let format  = await this.group_members_format(group_members,forEdit,group_id)    
+    var gc_name = group_name,
+    createdAt = Date.now()
+
+    if(forEdit){
+      gc_name = format.group_name
+      createdAt = format.createdAt
+    }
     const data = {
       uid,
-      group_name : group_name, 
-      createdAt: Date.now(),
+      group_name : gc_name, 
+      createdAt: createdAt,
       count: 0,
       messages: format.messages,
       inbox: format.inbox_format
@@ -286,5 +296,25 @@ export class ChatService {
         resolve(chat)
       }) 
     })
+  }
+  async AddGuestToGeneral(group_id:string,guest_id:any):Promise<any>{
+    
+    let {inbox,messages,group_name,createdAt,uid} = await this.getChatByID(group_id)
+    inbox.push({
+      "messages_count":0,
+      "user_id":guest_id
+    })
+
+    const data = {
+      uid,
+      group_name : group_name, 
+      createdAt: createdAt,
+      count: 0,
+      messages: messages,
+      inbox: inbox
+    };
+  
+    return await this.afs.collection('chats').doc(group_id).set(data)        
+ 
   }
 }
