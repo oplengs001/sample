@@ -9,20 +9,24 @@
 
 <ion-content>
   <ion-list>
-    <ion-item>
+    <ion-item *ngIf="group_for_edit.id!=='gchat'">
       <b>Members:</b>
       <ion-button slot="end" *ngIf=isAdmin (click)=editGroup()>        
           Edit Group
       </ion-button>
     </ion-item>    
-    <ion-row *ngFor="let member of group_details.members" [hidden]="member.isAdmin" style="margin-left: 10px;">
+    <div *ngIf="group_for_edit.id!=='gchat'">
+      <ion-row *ngFor="let member of group_details.members" [hidden]="member.isAdmin"  style="margin-left: 10px;" >
         <ion-col class="ion-text-left">
             <ion-label  style.color="{{member.color}}" style="text-transform: capitalize;font-size:15px">   <b>{{member.first_name}}  {{member.last_name}} </b>  </ion-label>          
         </ion-col>            
         <ion-col class="ion-text-center">
           
         </ion-col>                
-    </ion-row>           
+    </ion-row> 
+  </div>
+    
+            
     <ion-item text-center>
           <ion-label  style="text-transform: capitalize;font-size:20px">   <b> Conversation Images </b>  </ion-label>         
     </ion-item>  

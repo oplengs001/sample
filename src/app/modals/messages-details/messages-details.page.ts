@@ -21,10 +21,12 @@ export class MessagesDetailsPage implements OnInit {
   ) { }
 
   ngOnInit() {    
+    
     this.isAdmin = this.auth.isAdmin()  
   }  
   async editGroup() {
     this.closeModal()
+
     const modal: HTMLIonModalElement =
        await this.modalController.create({
           component: CreateGroupPage,

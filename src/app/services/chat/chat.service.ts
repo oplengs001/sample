@@ -301,7 +301,7 @@ export class ChatService {
     
     let {inbox,messages,group_name,createdAt,uid} = await this.getChatByID(group_id)
     inbox.push({
-      "messages_count":0,
+      "message_count":0,
       "user_id":guest_id
     })
 
