@@ -27,6 +27,7 @@ export class AppComponent {
     initialSlide: 0,
     speed: 400,
   };
+  image_links : any
   constructor(
     public authService: AuthService,
     private platform: Platform,
@@ -106,7 +107,26 @@ export class AppComponent {
         }
       )
     })
-    
+    this.platform.ready().then(() => {
+        if (this.platform.is('ipad')) {
+          console.log("Hey iPad!");
+          this.image_links ={
+            s1: "../assets/images/login_icons/ipads1.png",
+            s2: "../assets/images/login_icons/ipads2.png",
+            s3: "../assets/images/login_icons/ipads3.png",
+            s4: "../assets/images/login_icons/ipads4.png "
+          }
+        }else{
+          this.image_links ={
+            s1: "../assets/images/login_icons/s1.png",
+            s2: "../assets/images/login_icons/s2.png",
+            s3: "../assets/images/login_icons/s3.png",
+            s4: "../assets/images/login_icons/s4.png "
+          }
+        }
+    });
+  
+  
   }
   goToItinerary(){
     this.transServe.reRouteActivityNoAnimation("Itinerary")
