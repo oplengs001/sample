@@ -361,6 +361,11 @@ export class ActionClass implements OnInit {
                 this.busReservationPropmpt()
                 return
               }
+              if(data.count % 1 != 0 ){         
+                this.toaster.showToast("Enter a valid seat number.")
+                this.busReservationPropmpt()
+                return
+              }
               var userDetails = this.authServ.userGuestDetails,
                 {first_name,last_name,uid } = userDetails
 
