@@ -234,7 +234,7 @@ export class MessagesPage implements OnInit {
 
           this.hide_image = true
           var newMsg = this.newMsg        
-          var temp_image = this.temp_image = ''
+          var temp_image = this.temp_image 
           this.seen_chat()
           this.newMsg = ''
           this.temp_image = ''
@@ -248,7 +248,7 @@ export class MessagesPage implements OnInit {
         this.newMsg = this.newMsg.trim();
         this.hide_image = true
         var newMsg = this.newMsg        
-        var temp_image = this.temp_image = ''
+        var temp_image = this.temp_image 
         this.seen_chat()
         this.newMsg = ''
         this.temp_image = ''
