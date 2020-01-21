@@ -87,33 +87,37 @@
     font-size: 6.5vh !important;
   }
   .notified-text{
-  font-family: "roboto" !important;
+   font-family: "notified-light" !important;
     font-size: 5vh !important;
     margin-top: 30vh;
+
   }
   .notified-text-up{
-    font-family: "notified-light" !important;
+    font-family: "notified-medium" !important;
     font-size: 3vh !important;   
+    font-weight: 600;
+    color: #1e2023 !important;
   }
   .notified-text-custom{
-    font-family: "roboto" !important;
+    font-family: "notified-light" !important;
     font-size:4.5vh;
     margin-top: 35vh;
+    font-weight: 600;
   }
   .h6-text{
-  font-family: "roboto" !important;    
+    font-family: "notified-light" !important;    
     padding-left:20px;
     padding-right:20px
   }
   .first-title{
-  font-family: "roboto" !important;
+    font-family: "notified-medium" !important;
     font-size: 5vh !important;
   }
   .first-p{
     font-size: 18px !important
   }
   .slide-icon{
-    width: 60vw;
+    width: 34vh;
 
     border-radius: 25px;
     // position: absolute;
@@ -190,9 +194,10 @@
         top:0;bottom:0;left:0;right:0;
         padding: 10px 5%;
         p {
-          margin-top: 0px;
-          font-family: "roboto" !important;  
-          font-size:15px 
+          margin-top: 5px;
+          font-family: "notified-light" !important;
+          font-size: 1.5vh;
+
         }          
       }
   

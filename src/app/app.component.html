@@ -32,7 +32,7 @@
 <ion-app *ngIf="!(authService.user | async)">
   <ion-content force-overscroll="false">
       <!-- <gl-background-video src="../assets/video/g/poster.mp4" poster="../assets/video/g/poster.png" [hidden]="hideLogin"></gl-background-video> -->
-      <ion-slides [options]="slideOptions" pager="true" [hidden]="hideSlide" *ngIf=image_links>
+      <ion-slides [options]="slideOptions" pager="true" [hidden]="hideSlide" *ngIf=image_links class="logins">
           <ion-slide>
             <div class="slide-content" >
                 <img class="icon-first" src="../assets/images/icon.png">

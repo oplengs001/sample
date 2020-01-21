@@ -35,17 +35,17 @@
      z-index: -1 !important;
  }
 
- .accoms .swiper-pagination-bullet-active {
+ .logins .swiper-pagination-bullet-active {
 
-    --bullet-background-active: #488aff !important;
+    --bullet-background-active: #1e2023 !important
   } 
-  .accoms .swiper-pagination {    
-    top: 5.5% !important;
-    position: fixed !important;
+  .logins .swiper-pagination {    
+    top: 30px !important;
+    // position: fixed !important;
     z-index: 2 !important;
     bottom:unset !important;
     left:unset !important;
-    background : #ffffff
+    // background : #ffffff
   }
   .pre-wedding-menu-button{
     font-size: 25px !important;
@@ -55,5 +55,5 @@
     height: 100% !important;   
 }
 .bow-tie-fab{
-  margin-top: 1.5vh !important;
+  margin-top: 2vh !important;
 }
