@@ -12,6 +12,7 @@ import { myEnterAnimation, myLeaveAnimation} from '../animations/animations'
 import { FooterComponent} from '../footer/footer.component'
 import { WeatherService} from  '../services/weather/weather.service'
 import { Network } from '@ionic-native/network/ngx';
+import { AnnouncementSaveService } from '../services/announcements/announcement-save.service';
 // import { Badge } from '@ionic-native/badge/ngx';
 @Component({
   selector: 'app-home',
@@ -37,7 +38,8 @@ export class HomePage {
     private footerFunc : FooterComponent,
     private guestFunc : GuestAddService, 
     private weatherServ : WeatherService,
-    private network: Network
+    private network: Network,
+    private annServe  :AnnouncementSaveService,   
     // private badge: Badge
     ) {
     this.forRsvp = this.footerFunc.forRsvp 
