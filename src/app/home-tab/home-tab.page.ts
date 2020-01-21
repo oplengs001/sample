@@ -4,6 +4,7 @@ import {  Router } from '@angular/router';
 import { TransitionsService } from '../services/native/transitions.service';
 import { FooterComponent } from '../footer/footer.component';
 import { SharedComponent } from '../shared-component/shared';
+import { AnnouncementSaveService } from '../services/announcements/announcement-save.service';
 @Component({
   selector: 'app-home-tab',
   templateUrl: './home-tab.page.html',
@@ -19,7 +20,8 @@ export class HomeTabPage implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private sharedComps : SharedComponent,
-    private transServe : TransitionsService
+    private transServe : TransitionsService,
+    private annServe : AnnouncementSaveService
   ) { 
     this.items = [
       { 

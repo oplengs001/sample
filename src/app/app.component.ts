@@ -23,6 +23,7 @@ export class AppComponent {
   forRsvp : boolean;
   userID : string;
   userDetails : any
+  image_class : string
   slideOptions = {
     initialSlide: 0,
     speed: 400,
@@ -116,6 +117,7 @@ export class AppComponent {
             s3: "../assets/images/login_icons/ipads3.png",
             s4: "../assets/images/login_icons/ipads4.png "
           }
+          this.image_class = "slide-icon tablet-view"
         }else{
           this.image_links ={
             s1: "../assets/images/login_icons/s1.png",
@@ -123,6 +125,7 @@ export class AppComponent {
             s3: "../assets/images/login_icons/s3.png",
             s4: "../assets/images/login_icons/s4.png "
           }
+          this.image_class = "slide-icon"
         }
     });
   

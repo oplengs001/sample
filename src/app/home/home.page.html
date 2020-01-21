@@ -8,10 +8,8 @@
       <ion-button  class="pre-wedding-menu-button" color="dark" (click)="openModal()">
           <ion-icon name="menu"></ion-icon>
       </ion-button>     
-      <ion-badge *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
-
-    </ion-buttons>
-  
+      <ion-badge (click)="openModal()" *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse pulse-on-button" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
+    </ion-buttons>  
   </ion-toolbar>
 </ion-header>
 <ion-fab vertical="bottom" horizontal="end" slot="fixed" [hidden]=scrollDepthTriggered>

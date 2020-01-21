@@ -11,6 +11,7 @@ import { ActionClass} from '../gallery-action-sheet/actionsheet'
 import { LoadingController, IonInfiniteScroll } from '@ionic/angular';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { SharedComponent } from '../shared-component/shared';
+import { AnnouncementSaveService } from '../services/announcements/announcement-save.service';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.page.html',
@@ -40,6 +41,7 @@ export class GalleryPage implements OnInit {
     private _elementRef: ElementRef,  
     private imageCompress: NgxImageCompressService,
     private sharedComps : SharedComponent,
+    private annServe : AnnouncementSaveService
     
   ) { } 
   imageLoaded(event,isLoaded: boolean) {    

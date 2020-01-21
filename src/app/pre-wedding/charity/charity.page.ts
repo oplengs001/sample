@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeMenuPage } from '../../modals/menu/home-menu.page'
 import { GeneralInfoService} from "../../services/content/general-info.service"
+import { AnnouncementSaveService } from 'src/app/services/announcements/announcement-save.service';
+import { SharedComponent } from 'src/app/shared-component/shared';
 @Component({
   selector: 'app-charity',
   templateUrl: './charity.page.html',
@@ -12,6 +14,8 @@ export class CharityPage implements OnInit {
   constructor( 
      private homeMenu: HomeMenuPage,
      private generalInfo : GeneralInfoService,
+     private annServe : AnnouncementSaveService,
+     private sharedComps : SharedComponent
      ) { 
       this.items = [      
         { 

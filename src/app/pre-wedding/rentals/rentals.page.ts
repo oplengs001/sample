@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeMenuPage } from '../../modals/menu/home-menu.page'
+import { AnnouncementSaveService } from 'src/app/services/announcements/announcement-save.service';
 @Component({
   selector: 'app-rentals',
   templateUrl: './rentals.page.html',
@@ -7,7 +8,9 @@ import { HomeMenuPage } from '../../modals/menu/home-menu.page'
 })
 export class RentalsPage implements OnInit {
 
-  constructor(private homeMenu: HomeMenuPage) { }
+  constructor(
+    private homeMenu: HomeMenuPage,
+    private annServe: AnnouncementSaveService) { }
 
   ngOnInit() {
   }

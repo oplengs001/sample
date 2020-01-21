@@ -8,6 +8,7 @@ import { debug } from 'util';
 import { Subscription } from 'rxjs';
 import { FooterComponent } from '../footer/footer.component'
 import { SharedComponent } from '../shared-component/shared';
+import { AnnouncementSaveService } from '../services/announcements/announcement-save.service';
 @Component({
   selector: 'app-message-list',
   templateUrl: './message-list.page.html',
@@ -22,6 +23,7 @@ export class MessageListPage implements OnInit {
     private chatServ : ChatService,
     private footer : FooterComponent,
     private sharedComps : SharedComponent,
+    private annServe : AnnouncementSaveService
   ) { }
 
 

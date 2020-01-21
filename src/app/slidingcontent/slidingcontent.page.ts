@@ -18,6 +18,7 @@ import { ImagesService } from '../services/uploads/images.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { NgxImageCompressService } from 'ngx-image-compress';
+import { AnnouncementSaveService } from '../services/announcements/announcement-save.service';
 
 @Component({
   selector: 'app-slidingcontent',
@@ -51,6 +52,7 @@ export class SlidingcontentPage implements OnInit {
     private modalController : ModalController,
     private generalInfo : GeneralInfoService,
     private sharedComps : SharedComponent,
+    private annServe : AnnouncementSaveService,
     private webview : WebView,
     public loadingController: LoadingController,
     private imageCompress: NgxImageCompressService,

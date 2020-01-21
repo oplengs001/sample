@@ -60,7 +60,7 @@ export class FooterComponent   {
       //  this.inbox_count = 0
       this.isAdmin = isAdmin
       this.forRsvp = forRsvp
-  
+    
       this.chatNotifSubs(chat_id)
       if(isAdmin){        
         this.fcm.subscribeToTopic("adminNotif")        
@@ -79,7 +79,8 @@ export class FooterComponent   {
           this.guestServe.diet_guests = data.filter(guest => guest.diet_restriction !== undefined && guest.diet_restriction !== "none" && guest.diet_restriction !== "")   
           this.guestServe.bus_guests = data.filter(guest => guest.bus_reservation !== undefined && guest.bus_reservation !== 0)     
         })    
-      }else{           
+      }else{         
+        this.announcementServices.RsvpNotifCount = 0  
         this.userDataSubscribe(chat_id,uid)     
       }      
     })

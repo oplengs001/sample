@@ -3,7 +3,8 @@
       <ion-buttons slot="start">
         <ion-button  class="pre-wedding-menu-button" color="light" (click)="sharedComps.openMenu()">
           <ion-icon name="menu"></ion-icon>
-        </ion-button>  
+        </ion-button>
+        <ion-badge *ngIf="this.announcementService.RsvpNotifCount>=1" slot="start" (click)="sharedComps.openMenu()" class="pulse pulse-on-button" color="danger">{{this.announcementService.RsvpNotifCount}}</ion-badge>
       </ion-buttons>
     <ion-title>
       Announcements
