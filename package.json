@@ -31,7 +31,7 @@
     "@ionic-native/firebase": "^5.12.0",
     "@ionic-native/geolocation": "^5.12.0",
     "@ionic-native/http": "^5.17.1",
-    "@ionic-native/image-picker": "^5.14.0",
+    "@ionic-native/image-picker": "^5.19.1",
     "@ionic-native/in-app-browser": "^5.15.0",
     "@ionic-native/ionic-webview": "^5.14.0",
     "@ionic-native/keyboard": "^5.19.1",

@@ -273,6 +273,7 @@ export class MessagesPage implements OnInit {
         }
         else if(result == true){
           this.imagePicker.getPictures({
+            disable_popover : true,
             maximumImagesCount: 1,
             quality : 15,            
           }).then(
