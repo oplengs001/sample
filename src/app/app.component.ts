@@ -115,7 +115,8 @@ export class AppComponent {
             s1: "../assets/images/login_icons/ipads1.png",
             s2: "../assets/images/login_icons/ipads2.png",
             s3: "../assets/images/login_icons/ipads3.png",
-            s4: "../assets/images/login_icons/ipads4.png "
+            s4: "../assets/images/login_icons/ipads4.png ",
+            s5: "../assets/images/login_icons/ipads5.png "
           }
           this.image_class = "slide-icon tablet-view"
         }else{
@@ -123,7 +124,8 @@ export class AppComponent {
             s1: "../assets/images/login_icons/s1.png",
             s2: "../assets/images/login_icons/s2.png",
             s3: "../assets/images/login_icons/s3.png",
-            s4: "../assets/images/login_icons/s4.png "
+            s4: "../assets/images/login_icons/s4.png ",
+            s5: "../assets/images/login_icons/s5.png "
           }
           this.image_class = "slide-icon"
         }
