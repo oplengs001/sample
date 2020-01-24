@@ -56,6 +56,7 @@
   background-size: cover;   
 }
 .page-centered-element {
+  background: url("../assets/images/login_cover.jpg");
     position: absolute;
     left: 0;
     right: 0;
@@ -240,7 +241,7 @@
       color: #1e2023 !important;
     } 
     ion-slide:nth-child(7){
-      background-color :#FFFFFF;
+      background: url("../assets/images/login_cover.jpg");
       background-size: cover;  
       color: #1e2023  !important   
     }
