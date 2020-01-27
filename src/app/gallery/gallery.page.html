@@ -58,7 +58,7 @@
               <ng-template #filteredImage>                          
                   <ion-card no-padding *ngIf="post.user.uid ===  this.currentUser">
                       <ion-card-header>
-                          <ion-item lines="none" no-padding >                            
+                          <ion-item lines="none" no-padding >                             
                               <ion-label>
                                 <!-- {{post.uploaded_by}} -->
                                 {{post.user.first_name}} {{post.user.last_name}} 
@@ -67,13 +67,111 @@
                               <ion-icon name="more" slot="end" (click)="actions.GalleryActionSheet(post)"></ion-icon>         
                           </ion-item>   
                       </ion-card-header>
-                      <ion-card-content class="image-card" (click)="imageClick(post)">                                    
-                            <ion-skeleton-text animated></ion-skeleton-text>
-                            <ion-img-viewer                           
-                            src="{{post.url}}"                      
-                            (ionImgDidLoad)="customImageLoaded($event,true)" 
-                            ></ion-img-viewer>                       
-                      </ion-card-content>  
+                      <ion-card-content *ngIf="post.images.length===1">
+                          <div class="image-card">
+                              <ion-skeleton-text animated></ion-skeleton-text>
+                              <ion-img-viewer  src="{{post.images[0].url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                          </div>
+                      </ion-card-content>
+                      <ion-card-content *ngIf="post.images.length===2" class="d-image">
+                          <div class="image-card">
+                              <ion-skeleton-text animated></ion-skeleton-text>
+                              <ion-img-viewer  src="{{post.images[0].url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                          </div>
+                          <div class="image-card">
+                              <ion-skeleton-text animated></ion-skeleton-text>
+                              <ion-img-viewer  src="{{post.images[1].url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                          </div>
+                      </ion-card-content>
+                      <ion-card-content *ngIf="post.images.length===3">
+                          <ion-row>
+                            <ion-col size="12">
+                              <div class="image-card">
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <ion-img-viewer  src="{{post.images[0].url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col size="6">
+                              <div class="image-card">
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <ion-img-viewer  src="{{post.images[1].url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                              </div>
+                            </ion-col>
+                            <ion-col size="6">
+                              <div class="image-card">
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <ion-img-viewer  src="{{post.images[2].url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+                      </ion-card-content>
+                      <ion-card-content *ngIf="post.images.length===4">
+                        <ion-row>
+                            <ion-col size="6">
+                              <div (click)="imageClick(post.images[0])" class="post-image">           
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                              </div>  
+                            </ion-col>
+                            <ion-col size="6">
+                              <div (click)="imageClick(post.images[1])" class="post-image">           
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                              </div> 
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                              <ion-col size="6">
+                                <div (click)="imageClick(post.images[2])" class="post-image">           
+                                    <ion-skeleton-text animated></ion-skeleton-text>
+                                    <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                </div> 
+                              </ion-col>
+                              <ion-col size="6">
+                                <div (click)="imageClick(post.images[3])" class="post-image">           
+                                    <ion-skeleton-text animated></ion-skeleton-text>
+                                    <ion-img [src]="post.images[3].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                </div> 
+                              </ion-col>
+                          </ion-row>
+                      </ion-card-content>
+                      <ion-card-content *ngIf="post.images.length>=5" >
+                        <ion-row>
+                          <ion-col size="12">
+                            <div (click)="imageClick(post.images[0])" class="post-image">           
+                                <ion-skeleton-text animated></ion-skeleton-text>
+                                <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                            </div>  
+                          </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col size="4">
+                                <div (click)="imageClick(post.images[1])" class="post-image">           
+                                    <ion-skeleton-text animated></ion-skeleton-text>
+                                    <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                </div> 
+                              </ion-col>
+                            <ion-col size="4">
+                              <div (click)="imageClick(post.images[2])" class="post-image">           
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                              </div> 
+                            </ion-col>
+                            <ion-col size="4">
+                              <div (click)="seeMoreClick(post)" class="post-image">           
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <div class="count_click"><span>{{post.images.length}}+</span></div>
+                                  <ion-img [src]="post.images[3].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                              </div> 
+                            </ion-col>
+                        </ion-row>
+                          <!-- <div *ngFor="let image of post.images| sort :'desc':'date_uploaded'; trackBy: trackByCreated"  class="image-card">
+                              <ion-skeleton-text animated></ion-skeleton-text>
+                              <ion-img-viewer  src="{{image.url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                          </div> -->
+                      </ion-card-content>
                       <ion-item class="icon-footer" lines="none">                                                                                            
                           <!-- <ion-icon name="logo-facebook" (click)="actions.DirectSharingButton(post,'fb')" color="medium" slot="end" style="margin-left: 4px; margin-bottom:15px"></ion-icon>                            
                           <ion-icon name="logo-instagram" (click)="actions.DirectSharingButton(post,'insta')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>    
@@ -81,7 +179,7 @@
                           <ion-icon name="logo-twitter" (click)="actions.DirectSharingButton(post,'twitter')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>      -->
                           <ion-icon name="share" (click)="actions.sharingActionSheet(post)" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon> 
                       </ion-item>                   
-                    </ion-card>
+                  </ion-card>
               </ng-template>  
               <ng-template #allUser>
                   <ion-card no-padding > 
@@ -95,13 +193,111 @@
                               <ion-icon name="more" slot="end" (click)="actions.GalleryActionSheet(post)"></ion-icon>         
                           </ion-item>   
                       </ion-card-header>
-                      <ion-card-content class="image-card" >                                
-                          <ion-skeleton-text animated></ion-skeleton-text>
-                          <ion-img-viewer                       
-                          src="{{post.url}}"                                                           
-                          (ionImgDidLoad)="customImageLoaded($event,true)"
-                          ></ion-img-viewer>                     
-                      </ion-card-content>   
+                      <ion-card-content *ngIf="post.images.length===1">
+                          <div class="image-card">
+                              <ion-skeleton-text animated></ion-skeleton-text>
+                              <ion-img-viewer  src="{{post.images[0].url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                          </div>
+                      </ion-card-content>
+                      <ion-card-content *ngIf="post.images.length===2" class="d-image">
+                          <div class="image-card">
+                              <ion-skeleton-text animated></ion-skeleton-text>
+                              <ion-img-viewer  src="{{post.images[0].url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                          </div>
+                          <div class="image-card">
+                              <ion-skeleton-text animated></ion-skeleton-text>
+                              <ion-img-viewer  src="{{post.images[1].url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                          </div>
+                      </ion-card-content>
+                      <ion-card-content *ngIf="post.images.length===3">
+                          <ion-row>
+                            <ion-col size="12">
+                              <div class="image-card">
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <ion-img-viewer  src="{{post.images[0].url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col size="6">
+                              <div class="image-card">
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <ion-img-viewer  src="{{post.images[1].url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                              </div>
+                            </ion-col>
+                            <ion-col size="6">
+                              <div class="image-card">
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <ion-img-viewer  src="{{post.images[2].url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+                      </ion-card-content>
+                      <ion-card-content *ngIf="post.images.length===4">
+                        <ion-row>
+                            <ion-col size="6">
+                              <div (click)="imageClick(post.images[0])" class="post-image">           
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                              </div>  
+                            </ion-col>
+                            <ion-col size="6">
+                              <div (click)="imageClick(post.images[1])" class="post-image">           
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                              </div> 
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                              <ion-col size="6">
+                                <div (click)="imageClick(post.images[2])" class="post-image">           
+                                    <ion-skeleton-text animated></ion-skeleton-text>
+                                    <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                </div> 
+                              </ion-col>
+                              <ion-col size="6">
+                                <div (click)="imageClick(post.images[3])" class="post-image">           
+                                    <ion-skeleton-text animated></ion-skeleton-text>
+                                    <ion-img [src]="post.images[3].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                </div> 
+                              </ion-col>
+                          </ion-row>
+                      </ion-card-content>
+                      <ion-card-content *ngIf="post.images.length>=5" >
+                        <ion-row>
+                          <ion-col size="12">
+                            <div (click)="imageClick(post.images[0])" class="post-image">           
+                                <ion-skeleton-text animated></ion-skeleton-text>
+                                <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                            </div>  
+                          </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col size="4">
+                                <div (click)="imageClick(post.images[1])" class="post-image">           
+                                    <ion-skeleton-text animated></ion-skeleton-text>
+                                    <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                </div> 
+                              </ion-col>
+                            <ion-col size="4">
+                              <div (click)="imageClick(post.images[2])" class="post-image">           
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                              </div> 
+                            </ion-col>
+                            <ion-col size="4">
+                              <div (click)="seeMoreClick(post)" class="post-image">           
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <div class="count_click"><span>{{post.images.length}}+</span></div>
+                                  <ion-img [src]="post.images[3].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                              </div> 
+                            </ion-col>
+                        </ion-row>
+                          <!-- <div *ngFor="let image of post.images| sort :'desc':'date_uploaded'; trackBy: trackByCreated"  class="image-card">
+                              <ion-skeleton-text animated></ion-skeleton-text>
+                              <ion-img-viewer  src="{{image.url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                          </div> -->
+                      </ion-card-content>
                       <ion-item class="icon-footer" lines="none">                                                                                            
                           <!-- <ion-icon name="logo-facebook" (click)="actions.DirectSharingButton(post,'fb')" color="medium" slot="end" style="margin-left: 4px; margin-bottom:15px"></ion-icon>                            
                           <ion-icon name="logo-instagram" (click)="actions.DirectSharingButton(post,'insta')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>    
@@ -120,7 +316,7 @@
         </div>     
         <!-- <div class="images" *ngSwitchCase="'pinterest'">     -->
         <div class="images" [hidden]="galleryType === 'regular'" >    
-            <div class="one-image" *ngFor="let post of GalleryPosts| sort :'desc':'date_uploaded'; trackBy: trackByCreated">
+            <div class="one-image" *ngFor="let post of all_images| sort :'desc':'date_uploaded'; trackBy: trackByCreated">
               <div *ngIf="post.user">  
                 <div *ngIf="OwnImages;then filteredImage;else allUser">                       
                 </div>
@@ -129,15 +325,13 @@
                         <ion-skeleton-text animated></ion-skeleton-text>
                         <ion-img [src]="post.url"
                         (ionImgDidLoad)="imageLoaded($event,true)"                      
-                        ></ion-img>                                    
+                        ></ion-img>
                     </div>  
                 </ng-template>
                 <ng-template #allUser>
                     <div (click)="imageClick(post)" class="frame-image">           
                           <ion-skeleton-text animated></ion-skeleton-text>
-                          <ion-img [src]="post.url"
-                          (ionImgDidLoad)="imageLoaded($event,true)"                      
-                          ></ion-img>                    
+                          <ion-img [src]="post.url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
                     </div>  
                 </ng-template>
               </div>

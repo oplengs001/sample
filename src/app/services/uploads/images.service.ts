@@ -16,11 +16,19 @@ export interface ImageItem {
   url : string,
   uploaded_by: string,
   date_uploaded: number,
-  file_name : string
+  file_name : string,
+  post_id?:string,
   comments?: [],
   likes?:[],
 }
-
+export interface GalleryItem {
+  uid?: string,
+  item_url:[],
+  uploaded_by: string,
+  date_uploaded: number,
+  comments?: [],
+  likes?:[],
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -54,6 +62,7 @@ export class ImagesService {
 
     this.ImageCollection = this.afs.collection<ImageItem>('images');
     this.AppGalleryCollection = this.afs.collection<ImageItem>('app-gallery');
+
     this.imageItem = this.ImageCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -95,7 +104,7 @@ export class ImagesService {
     }
   
   } 
-  uploadImage(imageURI,collection:string){
+  uploadImage(imageURI,collection:string,post_id?:string,){
     return new Promise<any>((resolve, reject) => {
       var uid = this.makeid(10)
       var itemRef = this.itemRef
@@ -113,6 +122,7 @@ export class ImagesService {
             itemRef.item_path = item_path       
             itemRef.uploaded_by = cUID
             itemRef.file_name  = file_name
+            itemRef.post_id = post_id
           })
           resolve(itemRef)
         }, err => {
@@ -123,8 +133,8 @@ export class ImagesService {
     
     })
   }
-  saveImageRef (imageURI):Promise <any>{      
-    return this.uploadImage(imageURI,"image").then((itemRef) => {            
+  saveImageRef (imageURI,post_id:string):Promise <any>{      
+    return this.uploadImage(imageURI,"image",post_id).then((itemRef) => {            
        this.addImageRef(itemRef,"image").then((added) => {
          console.log(added)
          return added

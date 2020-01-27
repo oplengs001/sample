@@ -43,6 +43,7 @@ const routes: Routes = [
   { path: 'bus-reservations', loadChildren: './modals/bus-reservations/bus-reservations.module#BusReservationsPageModule' },
   { path: 'diet-rest', loadChildren: './modals/diet-rest/diet-rest.module#DietRestPageModule' },
   { path: 'charity', loadChildren: './pre-wedding/charity/charity.module#CharityPageModule' },
+  { path: 'gallery-post', loadChildren: './modals/gallery-post/gallery-post.module#GalleryPostPageModule' },
 ];
 
 @NgModule({

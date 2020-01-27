@@ -40,6 +40,7 @@ import { MessagesDetailsPageModule } from '../app/modals/messages-details/messag
 import { GettingTherePageModule } from '../app/modals/getting-there/getting-there.module'
 import { DietRestPageModule } from '../app/modals/diet-rest/diet-rest.module'
 import { BusReservationsPageModule } from '../app/modals/bus-reservations/bus-reservations.module'
+import { GalleryPostPageModule } from '../app/modals/gallery-post/gallery-post.module'
 import { ImagePageModule } from '../app/modals/photos/image/image.module'
 import { IonicSelectableModule } from 'ionic-selectable';
 import { ComponentsModule } from "../app/componenthandler/components.module"
@@ -74,7 +75,8 @@ import 'gl-ionic-background-video';
     GettingTherePageModule,
     MessagesDetailsPageModule,
     DietRestPageModule,
-    BusReservationsPageModule
+    BusReservationsPageModule,
+    GalleryPostPageModule
    
   ],
   providers: [

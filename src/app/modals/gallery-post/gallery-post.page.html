@@ -1,0 +1,30 @@
+<ion-header no-border>
+    <ion-toolbar >
+      <ion-buttons slot="end">
+          <ion-button (click)="closeModal()"><ion-icon name="close"></ion-icon></ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+<ion-content>
+    <div class="images-single">
+        <div class="single-count-image">
+            <ion-card no-padding > 
+                <ion-card-header>
+                    <ion-item lines="none" no-padding >                             
+                        <ion-label>
+                          <!-- {{post.uploaded_by}} -->
+                          {{image_post.user.first_name}} {{image_post.user.last_name}} 
+                          <p>{{ image_post.date_uploaded | date:'short' }}</p>
+                        </ion-label>
+                    </ion-item>   
+                </ion-card-header>  
+                <ion-card-content class="d-image">
+                    <div *ngFor="let image of image_post.images| sort :'desc':'date_uploaded'; trackBy: trackByCreated"  class="image-card">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                        <ion-img-viewer  src="{{image.url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                    </div>
+                </ion-card-content>
+              </ion-card>
+        </div>
+    </div>
+</ion-content>

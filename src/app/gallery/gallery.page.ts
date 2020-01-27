@@ -7,6 +7,7 @@ import { ToastService } from '../services/toaster/toast-service';
 import { Observable } from 'rxjs';
 import { TransitionsService } from '../services/native/transitions.service';
 import { ImagePage } from '../modals/photos/image/image.page'
+import { GalleryPostPage } from '../modals/gallery-post/gallery-post.page'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
 import { LoadingController, IonInfiniteScroll } from '@ionic/angular';
 import { NgxImageCompressService } from 'ngx-image-compress';
@@ -19,11 +20,13 @@ import { AnnouncementSaveService } from '../services/announcements/announcement-
 })
 export class GalleryPage implements OnInit {
   @ViewChild(IonInfiniteScroll, {static: false}) infiniteScroll: IonInfiniteScroll;
-  private GalleryPosts: Observable<ImageItem[]>;
+  // private GalleryPosts: Observable<ImageItem[]>;
+  private GalleryPosts: any [];
   fileUploads: any[];
   galleryType = 'regular';
   imagePath : string;
   currentUser :string; 
+  all_images : any[]
   OwnImages: boolean;
   images_length : number;
 
@@ -36,6 +39,7 @@ export class GalleryPage implements OnInit {
     private webview : WebView,
     private transServe : TransitionsService,
     private imageModal: ImagePage,
+    private postModal : GalleryPostPage,
     private loadingCtrl : LoadingController,
     private actions : ActionClass ,
     private _elementRef: ElementRef,  
@@ -66,16 +70,38 @@ export class GalleryPage implements OnInit {
   ngOnInit() {       
    const source = this.imageService.getReferences();
   //  this.GalleryPosts = this.imageService.joinUsers(source);
-  
-  this.imageService.joinUsers(source).then(data=>{ 
-    data.subscribe( data=>{
-      console.log(data)
-      this.images_length = data.length
-      this.GalleryPosts = data
-    })
-  });  
-  this.currentUser = this.authServ.currentUserId();
+    
+    this.imageService.joinUsers(source).then(data=>{ 
+      data.subscribe( data=>{
+        this.GalleryPosts = []
+        this.all_images = data
+        this.images_length = data.length
+        // this.GalleryPosts = data
+        var groupi = this.groupBy('post_id')
+        var posts = groupi(data)
+        for (var key of Object.keys(posts)) {
+          this.GalleryPosts.push({
+                post_id : key,
+                images : posts[key],
+                date_uploaded : posts[key][0]['date_uploaded'],
+                user : posts[key][0]['user']
+            })
+        }
+        console.log(this.GalleryPosts)
+      })
+    });  
+    this.currentUser = this.authServ.currentUserId();
   }
+  groupBy = key => array =>
+      array.reduce((objectsByKeyValue, obj) => {     
+          const value = obj[key];
+          objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);   
+          return objectsByKeyValue;
+      }, []);
+
+
+  
+
   openImagePicker(){
     this.imagePicker.hasReadPermission().then(
       (result) => {
@@ -89,14 +115,12 @@ export class GalleryPage implements OnInit {
         else if(result == true){
           this.imagePicker.getPictures({
             disable_popover : true,
-            maximumImagesCount: 1,
+            maximumImagesCount: 10,
             quality : 15,
             
           }).then(
             (results) => {
-              for (var i = 0; i < results.length; i++) {
-                this.uploadImageToFirebase(results[i]);
-              }
+                this.uploadImageToFirebase(results);
             }, (err) => console.log(err)
           );
         }
@@ -104,21 +128,33 @@ export class GalleryPage implements OnInit {
         console.log(err);
       });
   }
-  uploadImageToFirebase(image){
-    image = this.webview.convertFileSrc(image);   
-    this.toaster.showToast("Image will be uploaded soon") 
-    this.imageCompress.compressFile(image,-1,50,50).then(res=>{
-      this.imageService.saveImageRef(res).then(photoURL => {    
-        this.toaster.showToast("image uploaded")
-      })
+  async uploadImageToFirebase(images){
+    this.toaster.showToast("Images will be uploaded soon") 
+    this.uploader(images).then(res=>{
+      this.toaster.showToast("image uploaded")
     })
-     
+  }
+  async uploader(images):Promise<any>{ 
+    var post_id = this.imageService.makeid(10)
+    for(var i in images){
+        var image = this.webview.convertFileSrc(images[i]);   
+        await this.imageCompress.compressFile(image,-1,50,50).then(res=>{
+          this.imageService.saveImageRef(res,post_id).then(photoURL => {    
+            console.log(photoURL)
+          })
+        })
+    }
+    return images
   }
   trackByCreated(i, post) {
     return post.date_uploaded;
   }
   imageClick(post){
     this.imageModal.openModal(post)
+  }
+  seeMoreClick(post){
+    console.log(post)
+    this.postModal.openModal(post)
   }
   postFilter(){
     this.OwnImages = true
