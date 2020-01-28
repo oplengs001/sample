@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HTTP } from '@ionic-native/http/ngx';
 import { GeneralInfoService } from '../content/general-info.service'
 import { Guest } from "../guest-add/guest-add.service"
+import { AuthService } from '../auth/auth.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,12 +12,10 @@ export class NotificationService {
     "Content-Type": "application/json",
     "Authorization" :'key=AIzaSyDSNAyyH5RbR6bQaOQ6O26t-iUw0_GCVYA'
   }
-  private JsonHeader={
-    "Content-Type": "application/json",
-  }
   constructor(     
     public httpIon : HTTP,
-    public gInfo : GeneralInfoService
+    public gInfo : GeneralInfoService,
+    public authServ : AuthService
     ) { }    
     createNotif(topic:string,group_name : string ,sender_id:string,content:any){    
       var object_returns : any
@@ -192,7 +192,10 @@ export class NotificationService {
         this.httpIon.sendRequest(`${api}${welcome_email_api}`,{
           method:"post",
           data: postData,
-          headers : this.JsonHeader
+          headers : {
+            "Content-Type": "application/json",
+            "Authorization": `WDV ${this.authServ.currentUserId()}`
+          }
         }).then(data=>{
           console.log(data)
         }).catch(err=>{
@@ -214,6 +217,9 @@ export class NotificationService {
         this.httpIon.sendRequest(`${api}${api_url}`,{
           method:"post",
           data: postData,
+          headers : {
+            "Authorization": `WDV ${this.authServ.currentUserId()}`
+          }
         }).then(data=>{
           console.log(data)
         }).catch(err=>{
