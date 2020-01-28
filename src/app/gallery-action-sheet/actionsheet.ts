@@ -83,7 +83,7 @@ export class ActionClass implements OnInit {
         text: 'Share',
         icon: 'share',
         handler: () => {
-          this.sharingActionSheet(post)
+          this.generalPostShare(post)
           console.log('Play clicked');
         }      
       },      

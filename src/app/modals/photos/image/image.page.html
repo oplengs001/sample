@@ -1,11 +1,8 @@
 
 <ion-header no-border>
     <ion-toolbar >
-      <ion-buttons slot="start" *ngIf="image_post.uploaded_by===current_user&&!hideDelete">
-            <ion-button  color="danger" (click)="actions.DeleteConfirm(image_post,'image')"><ion-icon name="trash"></ion-icon></ion-button>
-      </ion-buttons>
       <ion-buttons slot="end">
-            <ion-button (click)="closeModal()"><ion-icon name="close-circle"></ion-icon></ion-button>
+          <ion-icon color="primary"  name="close-circle" class="close-button" (click)="closeModal()"></ion-icon>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
@@ -23,14 +20,16 @@
 </ion-content>
 <ion-footer [hidden]="hideFooter" *ngIf=!hideFooter>
     <ion-item class="icon-footer" lines="none">                                                                                            
-        <ion-label slot="start">
+        <ion-label slot="start" style=" margin-bottom:15px">
             <!-- {{post.uploaded_by}} -->
             {{image_post.user.first_name}} {{image_post.user.last_name}} 
             <p>{{ image_post.date_uploaded | date:'short' }}</p>
           </ion-label>    
-        <ion-icon name="logo-facebook" (click)="actions.DirectSharingButton(image_post,'fb')" color="medium" slot="end" style="margin-left: 4px; margin-bottom:15px"></ion-icon>                            
+        <ion-icon name="trash" *ngIf="image_post.uploaded_by===current_user&&!hideDelete" color="danger" (click)="actions.DeleteConfirm(image_post,'image')" slot="end" style=" margin-bottom:15px" ></ion-icon>
+        <ion-icon name="share" (click)="actions.generalShare(image_post)" color="primary" slot="end" style=" margin-bottom:15px"></ion-icon>  
+        <!-- <ion-icon name="logo-facebook" (click)="actions.DirectSharingButton(image_post,'fb')" color="medium" slot="end" style="margin-left: 4px; margin-bottom:15px"></ion-icon>                            
         <ion-icon name="logo-instagram" (click)="actions.DirectSharingButton(image_post,'insta')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>    
         <ion-icon name="logo-whatsapp" (click)="actions.DirectSharingButton(image_post,'whats')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>  
-        <ion-icon name="logo-twitter" (click)="actions.DirectSharingButton(image_post,'twitter')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>     
+        <ion-icon name="logo-twitter" (click)="actions.DirectSharingButton(image_post,'twitter')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>      -->
     </ion-item> 
 </ion-footer>
