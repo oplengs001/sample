@@ -27,7 +27,6 @@ import { Badge } from '@ionic-native/badge/ngx'
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
-import { Base64 } from '@ionic-native/base64/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions/ngx';
@@ -97,7 +96,6 @@ import 'gl-ionic-background-video';
     Badge,
     ImagePicker,
     AppVersion,
-    Base64,
     AngularFirestore,
     NgxImageCompressService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

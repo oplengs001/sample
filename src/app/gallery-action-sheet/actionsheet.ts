@@ -118,7 +118,7 @@ export class ActionClass implements OnInit {
     let array = [];
     for (var _i = 0; _i < images.length; _i++) {
       const url = images[_i].url;
-      await this.imageService.downloadImageForBase64(url)
+      await this.imageService.downloadImageMultiple(url)
       .then(async ImgFile => {
         console.log('RESULT:', ImgFile)
         array.push(ImgFile)

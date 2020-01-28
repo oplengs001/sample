@@ -139,7 +139,7 @@ export class GalleryPage implements OnInit {
     var post_id = this.imageService.makeid(10)
     for(var i in images){
         var image = this.webview.convertFileSrc(images[i]);   
-        await this.imageCompress.compressFile(image,-1,50,50).then(res=>{
+        await this.imageCompress.compressFile(image,-1,50,35).then(res=>{
           this.imageService.saveImageRef(res,post_id).then(photoURL => {    
             console.log(photoURL)
           })

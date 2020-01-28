@@ -6,14 +6,16 @@
     width: 100%;
     object-fit: cover;
 }
-
+.img-container{
+  height: 100%;
+}
 .post-image{
   ion-skeleton-text{
-      height: 20vh;
-      width: 100%;
+      height: 30vh;
+      width: 80vw;
       object-fit: inherit;
       object-position: inherit;
-      position: absolute;
+      position: relative;
       visibility: visible;
       opacity : 1
   }

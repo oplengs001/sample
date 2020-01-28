@@ -7,7 +7,6 @@ import { Platform } from '@ionic/angular';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
 import 'firebase/storage';
-import { Base64 } from '@ionic-native/base64/ngx';
 import { map ,switchMap } from 'rxjs/operators';
 
 export interface ImageItem {
@@ -55,7 +54,7 @@ export class ImagesService {
     public platform: Platform,
     private file : File,
     private transfer: FileTransfer,
-    private base64 : Base64
+
     
     ) {  
     if (this.platform.is("ios")) this.storagePath = this.file.cacheDirectory + "/temp";
@@ -195,7 +194,7 @@ export class ImagesService {
       });
     })
   }
-  downloadImageForBase64(url):Promise<any>{        
+  downloadImageMultiple(url):Promise<any>{        
     return new Promise<any>((resolve, reject) => {
       const fileTransfer = this.transfer.create();
       return fileTransfer.download(url, this.file.dataDirectory + url).then((entry) => {
@@ -206,17 +205,6 @@ export class ImagesService {
           console.log(error);
           reject(error);
           // handle error
-      });
-    })
-  }
-  convertTo64(fpath):Promise<any>{   
-    return new Promise<any>((resolve, reject) => {
-    return this.base64.encodeFile(fpath).then((base64File: string) => {
-        console.log(base64File)
-        resolve(base64File)
-      }, (err) => {
-        alert(err)
-        reject(err)
       });
     })
   }

@@ -14,7 +14,7 @@
     <div class="images-single">
         <div class="single-count-image">
             <ion-card no-padding  *ngFor="let image of image_post.images| sort :'desc':'date_uploaded'; trackBy: trackByCreated"> 
-                <ion-card-content>
+                <ion-card-content class="img-container">
                     <div (click)="imageClick(image)" class="post-image">           
                         <ion-skeleton-text animated></ion-skeleton-text>
                         <ion-img [src]="image.url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
