@@ -194,10 +194,10 @@ export class ImagesService {
       });
     })
   }
-  downloadImageMultiple(url):Promise<any>{        
+  downloadImageMultiple(url,file_name:string):Promise<any>{        
     return new Promise<any>((resolve, reject) => {
       const fileTransfer = this.transfer.create();
-      return fileTransfer.download(url, this.file.dataDirectory + url).then((entry) => {
+      return fileTransfer.download(url, this.file.dataDirectory + file_name+".jpg").then((entry) => {
           console.log(entry);
           console.log('download complete: ' + entry.toURL());
           resolve(entry.toURL())

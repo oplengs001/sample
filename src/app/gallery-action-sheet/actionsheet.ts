@@ -117,8 +117,9 @@ export class ActionClass implements OnInit {
     this.showLoader()
     let array = [];
     for (var _i = 0; _i < images.length; _i++) {
-      const url = images[_i].url;
-      await this.imageService.downloadImageMultiple(url)
+      var url = images[_i].url;
+      var file_name = images[_i].file_name;
+      await this.imageService.downloadImageMultiple(url,file_name)
       .then(async ImgFile => {
         console.log('RESULT:', ImgFile)
         array.push(ImgFile)
@@ -126,6 +127,7 @@ export class ActionClass implements OnInit {
     }
     setTimeout(() => {
       this.loadingController.dismiss();
+      console.log(array)
     }, 500);
       const actionSheet = await this.actionSheetController.create({  
         buttons: [
