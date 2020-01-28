@@ -270,35 +270,55 @@ export class ActionClass implements OnInit {
     await alert.present();
   }
   shareToFacebook(ImageFile,url){
-    this.socialSharing.shareViaFacebook(null, ImageFile, url).then((res) => {
-      // Success
+    this.socialSharing.canShareVia("facebook",null, ImageFile, url).then((res) => {
+      this.socialSharing.shareViaFacebook(null, ImageFile, url).then((res) => {
+        // Success
+      }).catch((e) => {
+        console.log(e)
+        alert(e)
+      });
     }).catch((e) => {
       console.log(e)
-      alert("Can't find Facebook App In your Device")
+      alert("Can't find Facebook App in your Device")
     });
   }
   shareToInsta(ImageFile,url){
-    this.socialSharing.shareViaInstagram(null, ImageFile).then((res) => {
-      // Success
-    }).catch((e) => {
-      console.log(e)
-      alert("Can't find Instagram App In your Device")
+    this.socialSharing.canShareVia("instagram",null, ImageFile, url).then((res) => {
+        this.socialSharing.shareViaInstagram(null, ImageFile).then((res) => {
+          // Success
+        }).catch((e) => {
+          console.log(e)
+          alert(e)
+        });
+      }).catch((e) => {
+        console.log(e)
+        alert("Can't find Instagram App in your Device")
     });
   }
   shareToWhatsApp(ImageFile,url){
-    this.socialSharing.shareViaWhatsApp(null, ImageFile, url).then((res) => {
-      // Success
+    this.socialSharing.canShareVia("whatsapp",null, ImageFile, url).then((res) => {
+      this.socialSharing.shareViaWhatsApp(null, ImageFile, url).then((res) => {
+        // Success
+      }).catch((e) => {
+        console.log(e)
+        alert("e")
+      });
     }).catch((e) => {
       console.log(e)
-      alert("Can't find WhatsApp In your Device")
+      alert("Can't find WhatsApp App in your Device")
     });
   }
   shareToTwitter(ImageFile,url){
-    this.socialSharing.shareViaTwitter(null, ImageFile, url).then((res) => {
-      // Success
+    this.socialSharing.canShareVia("twitter",null, ImageFile, url).then((res) => {
+      this.socialSharing.shareViaTwitter(null, ImageFile, url).then((res) => {
+        // Success
+      }).catch((e) => {
+        console.log(e)
+        alert(e)
+      });
     }).catch((e) => {
       console.log(e)
-      alert("Can't find Twitter In your Device")
+      alert("Can't find Twitter App in your Device")
     });
   }
   showLoader() {
