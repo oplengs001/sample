@@ -44,6 +44,6 @@ export class MessagesDetailsPage implements OnInit {
     await this.modalController.dismiss();
   }
   imageClick(post){
-    this.imageModal.openModal(post,true)
+    this.imageModal.openImageModal(post,true,null,true)
   } 
 }

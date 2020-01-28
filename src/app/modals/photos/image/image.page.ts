@@ -12,7 +12,9 @@ import { async } from '@angular/core/testing';
 })
 export class ImagePage implements OnInit {
   image_post : any;
-  hideFooter : boolean
+  hideFooter : boolean;
+  hideDelete : boolean
+  current_user : string
   constructor(
     
     private modalctrl: ModalController,    
@@ -24,14 +26,22 @@ export class ImagePage implements OnInit {
   async closeModal() {  
     await this.modalctrl.dismiss();
   }
-  async openModal(post:any,hideFooter?:boolean) {
+  async openImageModal(
+    post:any,
+    hideFooter?:boolean,
+    currentUser?:string,
+    hideDelete?:boolean
+    
+    ) {
 
       const modal: HTMLIonModalElement =
       await this.modalctrl.create({
          component: ImagePage,     
          componentProps:{
            image_post : post,
-           hideFooter : hideFooter
+           hideFooter : hideFooter,
+           current_user : currentUser,
+           hideDelete : hideDelete
          },
          cssClass:"customModalClass",
       });          

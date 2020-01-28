@@ -158,7 +158,7 @@ export class MessagesPage implements OnInit {
     var image_post={
         url:post
     }
-    this.imageModal.openModal(image_post,true)
+    this.imageModal.openImageModal(image_post,true,null,true)
   } 
   showChat(){
     console.log("ca")
@@ -275,7 +275,7 @@ export class MessagesPage implements OnInit {
           this.imagePicker.getPictures({
             disable_popover : true,
             maximumImagesCount: 1,
-            quality : 15,            
+            quality : 80,            
           }).then(
             (results) => {
               for (var i = 0; i < results.length; i++) {

@@ -10,6 +10,7 @@ import { GuestAddService } from "../services/guest-add/guest-add.service"
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { async } from 'q';
 import { NotificationService } from '../services/alerts/notification.service';
+import { HTTP ,HTTPResponse} from '@ionic-native/http/ngx';
 @Injectable({
     providedIn: 'root'
 })
@@ -28,16 +29,23 @@ export class ActionClass implements OnInit {
     private loadingController: LoadingController,
     private guestService : GuestAddService,
     private announcements : AnnouncementSaveService,
-    private notifService : NotificationService
+    private notifService : NotificationService,
+    public httpIon : HTTP,
   ) { }
 
   ngOnInit() {      
 
   }
-  async DeleteConfirm(post) {
+  async DeleteConfirm(post,type:string) {
+    var images
+    if(type==="post"){
+     images = post.images
+    }else{
+      images = [post]
+    }
     const alert = await this.alertController.create({
       header: 'Are you sure?',
-      message: 'This photo will be deleted',
+      message: 'This will be deleted',
       buttons: [
         {
           text: 'Cancel',
@@ -49,10 +57,15 @@ export class ActionClass implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.imageService.removeImageRef(post,"image").then(async()=>{
-                this.toaster.showToast("Photo Deleted")
-                await this.modalCtrl.dismiss();
-            })
+            
+            for(var i in images){
+                var image = images[i]
+                this.imageService.removeImageRef(image,"image").then(async()=>{
+                  this.toaster.showToast("Photo Deleted")
+                  await this.modalCtrl.dismiss();
+              })
+            }
+           
           }
         }
       ]
@@ -77,7 +90,7 @@ export class ActionClass implements OnInit {
         role: 'destructive',
         icon: 'trash',
         handler: () => {
-          this.DeleteConfirm(post)
+          this.DeleteConfirm(post,"post")
           
         }
       },{
@@ -98,20 +111,29 @@ export class ActionClass implements OnInit {
  
     await actionSheet.present();
   }
+
   async sharingActionSheet(post) {
-    const {id ,url} = post    
+    const {id,images} = post    
     this.showLoader()
-    await this.imageService.downloadImage(url).then(async(ImgFile)=>{
-      setTimeout(() => {
-        this.loadingController.dismiss();
-      }, 500);
+    let array = [];
+    for (var _i = 0; _i < images.length; _i++) {
+      const url = images[_i].url;
+      await this.imageService.downloadImageForBase64(url)
+      .then(async ImgFile => {
+        console.log('RESULT:', ImgFile)
+        array.push(ImgFile)
+      })
+    }
+    setTimeout(() => {
+      this.loadingController.dismiss();
+    }, 500);
       const actionSheet = await this.actionSheetController.create({  
         buttons: [
         {
           text: 'Facebook',
           icon: 'logo-facebook',
           handler: () => {  
-            this.shareToFacebook(ImgFile,url)
+            this.shareToFacebook(array,null)
             console.log('Play clicked');
           }      
         },      
@@ -119,19 +141,19 @@ export class ActionClass implements OnInit {
           text: 'Twitter',     
           icon: 'logo-twitter',
           handler: () => {
-              this.shareToTwitter(ImgFile,url)      
+              this.shareToTwitter(array,null)      
           }
         }, {
           text: 'Instagram',     
           icon: 'logo-instagram',
           handler: () => {
-              this.shareToInsta(ImgFile,url)      
+              this.shareToInsta(array,null)      
           }
         },{
           text: 'WhatsApp',     
           icon: 'logo-whatsapp',
           handler: () => {
-              this.shareToWhatsApp(ImgFile,url)      
+              this.shareToWhatsApp(array,null)      
           }
         },{
           text: 'Cancel',
@@ -144,7 +166,7 @@ export class ActionClass implements OnInit {
       });
    
       await actionSheet.present();
-    })
+  
     // const ImgFile = await this.imageService.downloadImage(url)
 
   }
@@ -157,19 +179,19 @@ export class ActionClass implements OnInit {
       }, 500);
       switch(type){
         case "fb":
-            this.shareToFacebook(ImgFile,url)
+            this.shareToFacebook(ImgFile,null)
             console.log("fb")
         break
         case "twitter":
-            this.shareToTwitter(ImgFile,url)
+            this.shareToTwitter(ImgFile,null)
             console.log("tw")
         break
         case "insta":
-            this.shareToInsta(ImgFile,url)
+            this.shareToInsta(ImgFile,null)
             console.log("ins")
         break
         case "whats":
-            this.shareToWhatsApp(ImgFile,url)
+            this.shareToWhatsApp(ImgFile,null)
             console.log("wts")
         break
       }      

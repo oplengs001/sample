@@ -108,7 +108,7 @@ export class CeremonyPage implements OnInit, AfterViewInit {
         else if(result == true){
           this.imagePicker.getPictures({
             maximumImagesCount: 1,
-            quality: 20
+            quality: 80
           }).then(
             (results) => {
               for (var i = 0; i < results.length; i++) {

@@ -84,6 +84,7 @@ export class GalleryPage implements OnInit {
                 post_id : key,
                 images : posts[key],
                 date_uploaded : posts[key][0]['date_uploaded'],
+                uploaded_by : posts[key][0]['uploaded_by'],
                 user : posts[key][0]['user']
             })
         }
@@ -115,8 +116,8 @@ export class GalleryPage implements OnInit {
         else if(result == true){
           this.imagePicker.getPictures({
             disable_popover : true,
-            maximumImagesCount: 10,
-            quality : 15,
+            maximumImagesCount: 15,
+            quality : 80,
             
           }).then(
             (results) => {
@@ -150,7 +151,12 @@ export class GalleryPage implements OnInit {
     return post.date_uploaded;
   }
   imageClick(post){
-    this.imageModal.openModal(post)
+    this.imageModal.openImageModal(
+      post,
+      false,
+      this.currentUser,
+      false
+    )
   }
   seeMoreClick(post){
     console.log(post)

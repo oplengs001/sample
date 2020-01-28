@@ -22,7 +22,7 @@
 <ion-content>
     <ion-fab horizontal="end" vertical="bottom"slot="fixed" >
         <ion-fab-button color="primary" > 
-          <ion-icon name="camera"></ion-icon>
+          <ion-icon name="add"></ion-icon>
         </ion-fab-button>
         <ion-fab-list side="top">
           <ion-fab-button (click)="openImagePicker()"color="primary" data-desc="Upload Image">
@@ -288,7 +288,7 @@
                             <ion-col size="4">
                               <div (click)="seeMoreClick(post)" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
-                                  <div class="count_click"><span>{{post.images.length}}+</span></div>
+                                  <div class="count_click"><span>{{post.images.length - 4}}+</span></div>
                                   <ion-img [src]="post.images[3].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
                               </div> 
                             </ion-col>
