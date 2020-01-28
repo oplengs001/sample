@@ -130,9 +130,11 @@ export class GalleryPage implements OnInit {
       });
   }
   async uploadImageToFirebase(images){
-    this.toaster.showToast("Images will be uploaded soon") 
     this.uploader(images).then(res=>{
-      this.toaster.showToast("image uploaded")
+      if(res.length>0){
+        this.toaster.showToast("Images will be uploaded soon")
+        this.toaster.showToast("image uploaded")
+      }
     })
   }
   async uploader(images):Promise<any>{ 
