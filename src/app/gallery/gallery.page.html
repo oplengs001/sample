@@ -88,7 +88,7 @@
                             <ion-col size="6">
                                 <div (click)="imageClick(post.images[1])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
                                 </div>  
                             </ion-col>
                         </ion-row>
@@ -224,7 +224,7 @@
                             <ion-col size="6">
                                 <div (click)="imageClick(post.images[1])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
                                 </div>  
                             </ion-col>
                         </ion-row>
