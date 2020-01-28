@@ -1,5 +1,5 @@
 import { OnInit,Injectable} from '@angular/core';
-import { ActionSheetController ,AlertController} from '@ionic/angular';
+import { ActionSheetController ,AlertController, Platform} from '@ionic/angular';
 import { ModalController, } from '@ionic/angular';
 import { ToastService } from '../services/toaster/toast-service';
 import { ImagesService ,ImageItem } from "../services/uploads/images.service"
@@ -11,6 +11,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { async } from 'q';
 import { NotificationService } from '../services/alerts/notification.service';
 import { HTTP ,HTTPResponse} from '@ionic-native/http/ngx';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -30,6 +31,7 @@ export class ActionClass implements OnInit {
     private guestService : GuestAddService,
     private announcements : AnnouncementSaveService,
     private notifService : NotificationService,
+    private platform : Platform,
     public httpIon : HTTP,
   ) { }
 
@@ -172,6 +174,28 @@ export class ActionClass implements OnInit {
     // const ImgFile = await this.imageService.downloadImage(url)
 
   }
+  async generalPostShare(post) {
+    const {id,images} = post    
+    this.showLoader()
+    let array = [];
+    for (var _i = 0; _i < images.length; _i++) {
+      var url = images[_i].url;
+      var file_name = images[_i].file_name;
+      await this.imageService.downloadImageMultiple(url,file_name)
+      .then(async ImgFile => {
+        console.log('RESULT:', ImgFile)
+        array.push(ImgFile)
+      })
+    }
+    setTimeout(() => {
+      this.loadingController.dismiss();
+      console.log(array)
+    }, 500);
+    this.generalShare(array,null)
+  
+    // const ImgFile = await this.imageService.downloadImage(url)
+
+  }
   async DirectSharingButton(post,type){
     const {id ,url} = post    
     this.showLoader()
@@ -253,6 +277,14 @@ export class ActionClass implements OnInit {
     })
     return choice
   }
+  generalShare(ImageFile,url){
+    this.socialSharing.share(null,null, ImageFile).then((res) => {
+      // Success
+    }).catch((e) => {
+      console.log(e)
+      alert(e)
+    });
+  }
   async inputAlert (){
     const alert = await this.alertController.create({
       header: "Warning",
@@ -270,56 +302,60 @@ export class ActionClass implements OnInit {
     await alert.present();
   }
   shareToFacebook(ImageFile,url){
-    this.socialSharing.canShareVia("facebook",null, ImageFile, url).then((res) => {
+    if(this.platform.is("ios")){
       this.socialSharing.shareViaFacebook(null, ImageFile, url).then((res) => {
         // Success
       }).catch((e) => {
         console.log(e)
         alert(e)
       });
-    }).catch((e) => {
-      console.log(e)
-      alert("Can't find Facebook App in your Device")
-    });
-  }
-  shareToInsta(ImageFile,url){
-    this.socialSharing.canShareVia("instagram",null, ImageFile, url).then((res) => {
-        this.socialSharing.shareViaInstagram(null, ImageFile).then((res) => {
-          // Success
-        }).catch((e) => {
-          console.log(e)
-          alert(e)
-        });
-      }).catch((e) => {
-        console.log(e)
-        alert("Can't find Instagram App in your Device")
-    });
-  }
-  shareToWhatsApp(ImageFile,url){
-    this.socialSharing.canShareVia("whatsapp",null, ImageFile, url).then((res) => {
-      this.socialSharing.shareViaWhatsApp(null, ImageFile, url).then((res) => {
-        // Success
-      }).catch((e) => {
-        console.log(e)
-        alert("e")
-      });
-    }).catch((e) => {
-      console.log(e)
-      alert("Can't find WhatsApp App in your Device")
-    });
-  }
-  shareToTwitter(ImageFile,url){
-    this.socialSharing.canShareVia("twitter",null, ImageFile, url).then((res) => {
-      this.socialSharing.shareViaTwitter(null, ImageFile, url).then((res) => {
+    }else{
+      this.socialSharing.share(null,null, ImageFile).then((res) => {
         // Success
       }).catch((e) => {
         console.log(e)
         alert(e)
       });
+    }
+  }
+  shareToInsta(ImageFile,url){
+    if(this.platform.is("ios")){
+      this.socialSharing.share(null,null, ImageFile).then((res) => {
+        // Success
+      }).catch((e) => {
+        console.log(e)
+        alert(e)
+      });
+    }else{
+      this.socialSharing.shareViaInstagram(null, ImageFile).then((res) => {
+        // Success
+      }).catch((e) => {
+        console.log(e)
+        alert(e)
+      });
+    }
+   
+  }
+  shareToWhatsApp(ImageFile,url){
+    this.socialSharing.shareViaWhatsApp(null, ImageFile, url).then((res) => {
+      // Success
     }).catch((e) => {
       console.log(e)
-      alert("Can't find Twitter App in your Device")
+      alert("e")
     });
+  }
+  shareToTwitter(ImageFile,url){
+      this.socialSharing.shareViaTwitter(null, ImageFile, url).then((res) => {
+        // Success
+      }).catch((e) => {
+        console.log(e)
+        if(e==="not available"){
+          alert("image shared")
+        }else{
+          alert(e)
+        }
+      });
+    
   }
   showLoader() {
     this.loaderToShow = this.loadingController.create({
