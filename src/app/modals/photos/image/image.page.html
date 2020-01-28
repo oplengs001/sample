@@ -1,13 +1,12 @@
 
 <ion-header no-border>
     <ion-toolbar >
-      <ion-buttons slot="start">
+      <ion-buttons slot="start" *ngIf="image_post.uploaded_by===current_user&&!hideDelete">
+            <ion-button  color="danger" (click)="actions.DeleteConfirm(image_post,'image')"><ion-icon name="trash"></ion-icon></ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
             <ion-button (click)="closeModal()"><ion-icon name="close-circle"></ion-icon></ion-button>
       </ion-buttons>
-      <ion-buttons slot="end" *ngIf="image_post.uploaded_by===current_user&&!hideDelete">
-          <ion-button  color="danger" (click)="actions.DeleteConfirm(image_post,'image')"><ion-icon name="trash"></ion-icon></ion-button>
-      </ion-buttons>
-
     </ion-toolbar>
   </ion-header>
 <ion-content>

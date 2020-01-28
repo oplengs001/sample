@@ -6,57 +6,39 @@
     width: 100%;
     object-fit: cover;
 }
-.d-image{
-    display:flex;
-    flex-direction: column;
-    .image-card{
-      flex:50%;
-      margin-bottom: 5px;
-    }
-}
 
-  .image-card {
-    ion-skeleton-text{
-        // height: 60vh;
-        // width: 90vw;
-        height: 100%;
-        width: 100%;
+.post-image{
+  ion-skeleton-text{
+      height: 20vh;
+      width: 100%;
+      object-fit: inherit;
+      object-position: inherit;
+      position: absolute;
+      visibility: visible;
+      opacity : 1
+  }
+  ion-img{
 
-        min-height:  30vh;
-        // min-width:  90vw;
-        // object-fit: inherit;
-        // object-position: inherit;
-        // position: absolute;
-        visibility: visible;
-        opacity : 1
-    }
-    ion-img-viewer {
-        height: 60vh;
-        width: 90vw;
-        // height: 100%;
-        // width: 100%;
-        // max-height:  60vh;
-        // max-width: 100vw;
-        animation: fadein .5s;
-        transition: visibility 0s linear, opacity .5s linear;
+      height: 100%;
+      width: 100%;
+      animation: fadein .5s;
+      transition: visibility 0s linear, opacity .5s linear;
+      opacity: 0;
+      visibility:hidden;
+      object-fit: cover;
+  }
+  &.img-loaded {
+      background-color: transparent;
+      border: 0;
+  
+      ion-img {
         opacity: 1;
-        visibility:hidden;
-        object-fit: cover;    
-    }   
-    &.img-loaded {
-        background-color: transparent;
-        border: 0;
-    
-        ion-img-viewer {
-          opacity: 1;
-          visibility: visible;
-        }
-        ion-img-viewer::after {
-          visibility: hidden;
-        }
-        ion-skeleton-text {
-          display: none;
-          visibility: hidden;
-        }
+        visibility: visible;
       }
+  
+      ion-skeleton-text {
+        display: none;
+        visibility: hidden;
+      }
+    }
 }

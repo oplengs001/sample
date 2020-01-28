@@ -11,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import {FCM} from '@ionic-native/fcm/ngx';
 import { AutosizeModule } from 'ngx-autosize';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
-import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 import { AppComponent } from './app.component';
 // import { FooterComponent } from './footer/footer.component'
 import { AppRoutingModule } from './app-routing.module';
@@ -65,7 +64,6 @@ import 'gl-ionic-background-video';
     HttpClientModule,
     AutosizeModule,
     PinchZoomModule,
-    NgxIonicImageViewerModule,
     CreateGroupPageModule,
     HomeMenuPageModule,
     FlightMapPageModule,

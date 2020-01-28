@@ -69,7 +69,6 @@
     "moment": "^2.24.0",
     "ngx-autosize": "^1.6.4",
     "ngx-image-compress": "^8.0.3",
-    "ngx-ionic-image-viewer": "0.0.1",
     "ngx-pinch-zoom": "^2.0.2",
     "rxjs": "^6.5.2",
     "rxjs-observable": "0.0.7",
