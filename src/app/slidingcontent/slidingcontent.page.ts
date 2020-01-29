@@ -148,6 +148,9 @@ export class SlidingcontentPage implements OnInit {
   //   await modal.present();
   // }
   async openReservation(count?:number,resend?:boolean){
+    if(count ===0){
+      count = null
+    }
     this.actions.busReservationPropmpt(count,resend).then(data=>{
       console.log(data)
       this.authServ.currentUserData().then(data=>{
@@ -157,6 +160,9 @@ export class SlidingcontentPage implements OnInit {
     })
   }
   async openRestrictions(restrict?:string){
+    if(restrict === "none"){
+      restrict = ""
+    }
     this.actions.DietPrompt(restrict).then(data=>{
 
     })

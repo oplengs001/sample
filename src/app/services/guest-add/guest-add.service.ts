@@ -199,6 +199,7 @@ export class GuestAddService {
     return this.announcementService.saveNotif(notif).then(()=>{
        this.GuestCollection.doc(uid).update({
         will_come: will_come, 
+        rsvp_response_date: Date.now(),
         color : userDetails.color || this.getRandomColor(),
         forRsvp : false
       })

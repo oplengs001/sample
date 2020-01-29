@@ -69,6 +69,7 @@ export class HomePage {
         let disconnectSubscription = this.network.onDisconnect().subscribe(() => {    
           if(this.connection_status === "connected"){
             this.connection_status = "disconneted"
+            this.toastService.tryDismissAll()
             this.toastService.showStayingToast("Network Disconnected")        
           }
         });

@@ -108,8 +108,7 @@ export class HomeMenuPage implements OnInit {
   }
   
   ngOnInit() {        
- 
-    this.currentUser = `${this.authServ.userGuestDetails["first_name"]} ${this.authServ.userGuestDetails["last_name"]}`  
+
     this.isAdmin = this.authServ.isAdmin()    
     
     this.userColor = this.authServ.userGuestDetails["color"]

@@ -63,7 +63,8 @@
                     slot="start" 
                     *ngIf="this.authServ.userGuestDetails.reservation_status === 'pending'"
                     (click)="this.actionSheet.busReservationPropmpt(authServ.userGuestDetails.bus_reservation)" 
-                    color="warning">({{authServ.userGuestDetails.bus_reservation}}) seats<ion-text color="warning" >Pending </ion-text>
+                    class="bus-seat"
+                    color="warning">({{authServ.userGuestDetails.bus_reservation}}) Bus {{authServ.userGuestDetails.bus_reservation==1?'seat':'seats'}}:<ion-text color="warning" > Pending</ion-text>
           </ion-label>   
           <ion-icon 
                    color="success" slot="start" name="bus"
@@ -74,7 +75,8 @@
                   slot="start"
                   (click)="this.actionSheet.busReservationPropmpt(authServ.userGuestDetails.bus_reservation,true)" 
                   *ngIf="this.authServ.userGuestDetails.reservation_status === 'approved'"
-                  color="success">({{authServ.userGuestDetails.bus_reservation}}) seats <ion-text color="success" >Approved </ion-text>
+                  class="bus-seat"
+                  color="success">({{authServ.userGuestDetails.bus_reservation}}) Bus {{authServ.userGuestDetails.bus_reservation==1?'seat':'seats'}}: <ion-text color="success" >Approved </ion-text>
           </ion-label>    
       </ion-item>
       <ion-item *ngIf=!isAdmin (click)="changeDecision()" lines="none" >        
@@ -110,7 +112,7 @@
       <ion-item (click)="closeModal" lines="none">   
         <ion-icon slot="start"name="contact" [style.color]=userColor ></ion-icon>
           <ion-label slot="start" [style.color]=userColor>          
-            {{currentUser}}
+              {{this.authServ.userGuestDetails["first_name"]}} {{this.authServ.userGuestDetails["last_name"]}}
         </ion-label>
       </ion-item>    
   </ion-toolbar>

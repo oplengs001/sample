@@ -475,8 +475,10 @@ export class ActionClass implements OnInit {
                       guest_uid : uid 
                   }                
                     this.announcements.saveNotif(notif).then(()=>{
+                      this.notifService.AdminNotif('Bus Reservation',`${first_name} ${last_name} want to reserve (${count}) seat/s in the Bus.`)
                       this.customAlert(`Alrighty!`,`This Seat Reservation Count of (${data.count}) will be sent to the Event Planner to review and confirm your reservation,
                       wait for an Email confirmation of your request.`)
+
                     })               
                   })                              
                 }else{
