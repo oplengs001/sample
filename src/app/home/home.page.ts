@@ -46,8 +46,14 @@ export class HomePage {
     this.forRsvp = this.footerFunc.forRsvp 
     this.plt.ready()
       .then(() => {    
+        console.log(this.network.type )
+        if(this.network.type !== "none"){
+          this.connection_status = "connected"
+        }else{
+          this.toastService.showStayingToast("Network Disconnected") 
+        }
         let connectSubscription = this.network.onConnect().subscribe(() => {
- 
+          
           if(this.connection_status !== "connected"){
             this.toastService.showToast("Network Detected")
             this.connection_status = "connected"
@@ -61,7 +67,7 @@ export class HomePage {
         let disconnectSubscription = this.network.onDisconnect().subscribe(() => {    
           if(this.connection_status === "connected"){
             this.connection_status = "disconneted"
-            this.toastService.showToast("Network Disconnected")        
+            this.toastService.showStayingToast("Network Disconnected")        
           }
         });
         this.fcm.onNotification().subscribe( async data => {

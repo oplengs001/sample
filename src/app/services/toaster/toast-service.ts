@@ -24,6 +24,14 @@ export class ToastService {
       position: "top"
     }).then(toast => toast.present());
   }
+  showStayingToast(msg) {    
+    this.toastCtrl.create({
+      message: msg,
+      position: "top",
+      color: 'danger',
+      showCloseButton: true,
+    }).then(toast => toast.present());
+  }
   showNotif(msg:string,chat_data:any){
    this.toastCtrl.create({
       header: msg,     
