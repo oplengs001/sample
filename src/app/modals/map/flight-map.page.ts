@@ -49,6 +49,11 @@ export class FlightMapPage implements OnInit {
       flight_time : "Flight time: 2 to 3 hours",
       details : "Fly from Sydney, Melbourne, Brisbane or the Gold Coast directly to Queenstown International Airport."
     },
+    {
+      continent : "Australia",
+      flight_time : "Flight time: 2 to 3 hours",
+      details : "Fly from Sydney, Melbourne, Brisbane or the Gold Coast directly to Queenstown International Airport."
+    },
   ]
   }
 

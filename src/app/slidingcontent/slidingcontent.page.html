@@ -114,7 +114,7 @@
                   <div *ngIf="event.name === 'Pick Up'" class="ion-text-justify"> 
                       <section class="buttons-pick-up">   
                         <ion-button expand="block" fill="outline" color="dark" (click)=openMap()>  <ion-icon name="map"></ion-icon> Get Directions</ion-button>
-                        <ion-button *ngIf="authServ.userGuestDetails.reservation_status.length===0||authServ.userGuestDetails.reservation_status === 'declined'" expand="block" fill="outline" color="dark" (click)=openReservation(authServ.userGuestDetails.bus_reservation)>  <ion-icon name="bus"></ion-icon>Bus Reservation</ion-button>
+                        <ion-button *ngIf="authServ.userGuestDetails.reservation_status === '' ||authServ.userGuestDetails.reservation_status === 'declined'" expand="block" fill="outline" color="dark" (click)=openReservation(authServ.userGuestDetails.bus_reservation)>  <ion-icon name="bus"></ion-icon>Bus Reservation</ion-button>
                         <ion-button *ngIf="authServ.userGuestDetails.reservation_status === 'pending'" expand="block" fill="outline" color="warning" (click)="openReservation(authServ.userGuestDetails.bus_reservation)"> <ion-icon name="bus"></ion-icon>Pending Reservation</ion-button>
                         <ion-button *ngIf="authServ.userGuestDetails.reservation_status === 'approved'" expand="block" fill="outline" color="success" (click)="openReservation(authServ.userGuestDetails.bus_reservation,true)">  <ion-icon name="bus"></ion-icon>{{authServ.userGuestDetails.bus_reservation}} seats Approved</ion-button>
                       </section>                                

@@ -1,28 +1,37 @@
 .img-container{
     height: 40vh;
     width: 100%;
+    object-fit: contain;
     // -o-object-fit: cover;
     // object-fit: cover;
 }
 .map_button{
-  opacity: 0
+  opacity: 1
 }
 .europe{
   position: absolute;
-  top: 8vh;
-  left: 2vw;
+  top: 12vh;
+  left: 1vw;
 }
 .africa{
   position: absolute;
   left: 6vw;
-  bottom: 55vh;
+  bottom: 65vh;
 }
 .asia{
   position: absolute;
-  left: 32vw;
-  bottom: 65vh;
+  left: 33vw;
+  bottom: 69vh;
+  height: 3vh;
+  width: 2vw;
 }
-
+.ph{
+  position: absolute;
+  left: 35vw;
+  bottom: 72vh;
+  height: 3vh;
+  width: 2vw;
+}
 .n_america{ 
   position: absolute;
   right: 13vw;
@@ -31,10 +40,11 @@
 .s_america{ 
   position: absolute;
   right: 4vw;
-  bottom: 55vh;
+  bottom: 62vh;
 }
 .australia{
   position: absolute;
-  left: 41vw;
-  bottom: 55vh;
+  left: 43vw;
+  bottom: 62vh;
+  height: 6vh;
 }
