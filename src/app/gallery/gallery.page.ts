@@ -13,6 +13,7 @@ import { LoadingController, IonInfiniteScroll } from '@ionic/angular';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { SharedComponent } from '../shared-component/shared';
 import { AnnouncementSaveService } from '../services/announcements/announcement-save.service';
+
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.page.html',
@@ -29,6 +30,7 @@ export class GalleryPage implements OnInit {
   all_images : any[]
   OwnImages: boolean;
   images_length : number;
+  private currentPostID : string
 
   image_limit : number
   constructor(
@@ -88,8 +90,11 @@ export class GalleryPage implements OnInit {
                 user : posts[key][0]['user']
             })
         }
+        this.imageService.getByPostID(this.currentPostID)
+     
       })
     });
+ 
     this.currentUser = this.authServ.currentUserId();
   }
   groupBy = key => array =>
@@ -161,7 +166,8 @@ export class GalleryPage implements OnInit {
   }
   seeMoreClick(post){
     var {post_id} = post
-    this.imageService.getByPostID(post_id)
+    this.currentPostID = post_id
+    this.imageService.getByPostID(this.currentPostID)
     this.postModal.openModal(post_id)
   }
   postFilter(){
@@ -170,8 +176,7 @@ export class GalleryPage implements OnInit {
   seeAll(){
     this.OwnImages = false
   } 
-  loadData(event) {     
-    debugger 
+  loadData(event) {      
     setTimeout(() => {         
 
       if(this.images_length !== undefined){                    

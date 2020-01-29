@@ -24,7 +24,6 @@ export class GalleryPostPage implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authServ.currentUserId();
-    // this.imageService.getByPostID(this.post_id)
   }
 
   imageLoaded(event,isLoaded: boolean) {    

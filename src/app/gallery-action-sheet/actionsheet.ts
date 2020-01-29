@@ -40,6 +40,7 @@ export class ActionClass implements OnInit {
   }
   async DeleteConfirm(post,type:string) {
     var images
+    console.log(type)
     if(type==="post"){
      images = post.images
       

@@ -47,7 +47,7 @@ export class ImagesService {
     url : '',
     uploaded_by: '',
     file_name : '',
-    date_uploaded: Date.now(),
+    date_uploaded: 0,
   };
   
   constructor(
@@ -100,7 +100,12 @@ export class ImagesService {
     return this.currentPost
   }
   getByPostID(post_id:string):void{
-    this.currentPost = this.GalleryPosts.find(item=>item.post_id === post_id)
+   
+    if(post_id){
+      this.currentPost = this.GalleryPosts.find(item=>item.post_id === post_id)
+      console.log(this.currentPost)
+    }
+   
   }
   addImageRef(imageRef: ImageItem[],collection:string): Promise<any> {
     if(collection === "image"){
@@ -117,7 +122,7 @@ export class ImagesService {
       var uid = this.makeid(10)
       var itemRef = this.itemRef
       var cUID = this.authServ.currentUserId()
-      
+        
       let imageRef = this.storageRef.child(collection).child(uid);  
       this.encodeImageUri(imageURI, function(image64){
         imageRef.putString(image64, 'data_url')
@@ -131,6 +136,7 @@ export class ImagesService {
             itemRef.uploaded_by = cUID
             itemRef.file_name  = file_name
             itemRef.post_id = post_id
+            itemRef.date_uploaded = Date.now()
           })
           resolve(itemRef)
         }, err => {
@@ -185,9 +191,6 @@ export class ImagesService {
     const {file_name,post_id} = post
     this.deleteImageRef(file_name,collection)
     .then(()=>{
-      if(type==="image"){  
-        this.getByPostID(post_id)
-      }
       return this.deleteImageStorage(file_name,collection)
     })
     // .catch(err=>{ console.log(err) return err})
