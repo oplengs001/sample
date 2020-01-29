@@ -40,6 +40,7 @@ export class SlidingcontentPage implements OnInit {
   event_data : any
   lastPosition : number
   info : any
+  user_details : any
   private contentSubs : Subscription;
   constructor(
     private transServe : TransitionsService,
@@ -146,8 +147,13 @@ export class SlidingcontentPage implements OnInit {
   //   });          
   //   await modal.present();
   // }
-  async openReservation(){
-    this.actions.busReservationPropmpt().then(data=>{
+  async openReservation(count?:number,resend?:boolean){
+    this.actions.busReservationPropmpt(count,resend).then(data=>{
+      console.log(data)
+      this.authServ.currentUserData().then(data=>{
+        this.isAdmin = data.isAdmin
+        this.user_details = data
+      })
     })
   }
   async openRestrictions(){
@@ -161,6 +167,7 @@ export class SlidingcontentPage implements OnInit {
     this.hideElements = true
     this.authServ.currentUserData().then(data=>{
       this.isAdmin = data.isAdmin
+      this.user_details = data
     })
     this.events = this.contentServe.getEvents()
     

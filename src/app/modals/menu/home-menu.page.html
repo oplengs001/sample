@@ -52,7 +52,31 @@
             <ion-label slot="start" color="primary" >
                 Plus Guests : <ion-text> {{this.authServ.userGuestDetails.extra}}</ion-text>
             </ion-label>
-      </ion-item> -->    
+      </ion-item> -->   
+      <ion-item *ngIf=!isAdmin lines="none" >       
+
+          <ion-icon color="warning" slot="start"  name="bus" 
+                    (click)="this.actionSheet.busReservationPropmpt(authServ.userGuestDetails.bus_reservation)" 
+                    *ngIf="this.authServ.userGuestDetails.reservation_status === 'pending'">
+          </ion-icon>    
+          <ion-label 
+                    slot="start" 
+                    *ngIf="this.authServ.userGuestDetails.reservation_status === 'pending'"
+                    (click)="this.actionSheet.busReservationPropmpt(authServ.userGuestDetails.bus_reservation)" 
+                    color="warning">({{authServ.userGuestDetails.bus_reservation}}) seats<ion-text color="warning" >Pending </ion-text>
+          </ion-label>   
+          <ion-icon 
+                   color="success" slot="start" name="bus"
+                   (click)="this.actionSheet.busReservationPropmpt(authServ.userGuestDetails.bus_reservation,true)" 
+                   *ngIf="this.authServ.userGuestDetails.reservation_status === 'approved'">
+            </ion-icon>    
+          <ion-label 
+                  slot="start"
+                  (click)="this.actionSheet.busReservationPropmpt(authServ.userGuestDetails.bus_reservation,true)" 
+                  *ngIf="this.authServ.userGuestDetails.reservation_status === 'approved'"
+                  color="success">({{authServ.userGuestDetails.bus_reservation}}) seats <ion-text color="success" >Approved </ion-text>
+          </ion-label>    
+      </ion-item>
       <ion-item *ngIf=!isAdmin (click)="changeDecision()" lines="none" >        
           <ion-icon color="primary" slot="start" name="mail"></ion-icon>    
           <ion-label slot="start"  color="primary" *ngIf="this.authServ.userGuestDetails.will_come;else notAttending">

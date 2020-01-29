@@ -409,16 +409,23 @@ export class ActionClass implements OnInit {
    })
    return returning_data
   }
-  async busReservationPropmpt():Promise<any>{
+  async busReservationPropmpt(count?:number,resend?:boolean):Promise<any>{
     var returning_data,confirmation
+    var message =""
+    if(resend){
+      message = `Note:You already have ${count} reservation, submitting new seat count will set your approved request to pending`
+    }else{
+      message = "Please Enter the number of seat you want to reserve"
+    }
     let alert = await this.alertController.create({
       header: 'Bus Reservation',
-      message: 'Please Enter the number of seat youu want to reserve',
+      message: message,
       inputs: [
         {
           name: 'count',
           placeholder: 'Number of Seats',
           type: 'number',
+          value: count,
           min: 1,
           max: 10
         },       
