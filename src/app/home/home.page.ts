@@ -26,6 +26,7 @@ export class HomePage {
   public forRsvp : boolean
   private scrollDepthTriggered = false;
   private weather : any
+  public connection_status : string
   constructor(
     private fcm: FCM, 
     public plt: Platform,
@@ -46,18 +47,22 @@ export class HomePage {
     this.plt.ready()
       .then(() => {    
         let connectSubscription = this.network.onConnect().subscribe(() => {
-          this.toastService.showToast("Network Detected")
-          // We just got a connection but we need to wait briefly
-           // before we determine the connection type. Might need to wait.
-          // prior to doing any api requests as well.
-          setTimeout(() => {
-            if (this.network.type === 'wifi') {
-              this.toastService.showToast("Connected")
-            }
-          }, 3000);
+ 
+          if(this.connection_status !== "connected"){
+            this.toastService.showToast("Network Detected")
+            this.connection_status = "connected"
+            setTimeout(() => {
+              if (this.network.type === 'wifi') {
+                this.toastService.showToast("Connected")
+              }
+            }, 3000);
+          }
         });
-        let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-          this.toastService.showToast("Network Disconnected")
+        let disconnectSubscription = this.network.onDisconnect().subscribe(() => {    
+          if(this.connection_status === "connected"){
+            this.connection_status = "disconneted"
+            this.toastService.showToast("Network Disconnected")        
+          }
         });
         this.fcm.onNotification().subscribe( async data => {
           console.log(data)
