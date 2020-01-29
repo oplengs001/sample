@@ -32,6 +32,11 @@ export class ToastService {
       showCloseButton: true,
     }).then(toast => toast.present());
   }
+  tryDismissAll(){
+    try {
+      this.toastCtrl.dismiss();
+   } catch(e) {}
+  }
   showNotif(msg:string,chat_data:any){
    this.toastCtrl.create({
       header: msg,     

@@ -55,10 +55,12 @@ export class HomePage {
         let connectSubscription = this.network.onConnect().subscribe(() => {
           
           if(this.connection_status !== "connected"){
+         
             this.toastService.showToast("Network Detected")
             this.connection_status = "connected"
             setTimeout(() => {
               if (this.network.type === 'wifi') {
+                this.toastService.tryDismissAll()
                 this.toastService.showToast("Connected")
               }
             }, 3000);

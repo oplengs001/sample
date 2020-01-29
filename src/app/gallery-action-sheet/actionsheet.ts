@@ -106,8 +106,11 @@ export class ActionClass implements OnInit {
         }
       }
     ]  
-    if(this.authServ.currentUserId() !== uploaded_by){          
-      buttons.splice(1,1)
+   
+    if(!this.authServ.isAdmin()){
+      if(this.authServ.currentUserId() !== uploaded_by){
+        buttons.splice(1,1)
+      }
     }
     const actionSheet = await this.actionSheetController.create({
       buttons: buttons

@@ -2,6 +2,7 @@ import { Component, OnInit,Injectable } from '@angular/core';
 import { ModalController, } from '@ionic/angular';
 import { ActionClass} from '../../../gallery-action-sheet/actionsheet'
 import { async } from '@angular/core/testing';
+import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-image',
   templateUrl: './image.page.html',
@@ -15,13 +16,16 @@ export class ImagePage implements OnInit {
   hideFooter : boolean;
   hideDelete : boolean
   current_user : string
+  isAdmin : boolean
   constructor(
     
     private modalctrl: ModalController,    
-    private actions : ActionClass
+    private actions : ActionClass,
+    private authServ : AuthService
     ) { }
 
   ngOnInit() {
+    this.isAdmin = this.authServ.isAdmin()
   }
   async closeModal() {  
     await this.modalctrl.dismiss();

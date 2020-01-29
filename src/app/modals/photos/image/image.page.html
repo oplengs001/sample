@@ -24,7 +24,7 @@
             {{image_post.user.first_name}} {{image_post.user.last_name}} 
             <p>{{ image_post.date_uploaded | date:'short' }}</p>
           </ion-label>    
-        <ion-icon name="trash" *ngIf="image_post.uploaded_by===current_user&&!hideDelete" color="danger" (click)="actions.DeleteConfirm(image_post,'image')" slot="end" style=" margin-bottom:15px" ></ion-icon>
+        <ion-icon name="trash" *ngIf="image_post.uploaded_by===current_user&&!hideDelete||isAdmin" color="danger" (click)="actions.DeleteConfirm(image_post,'image')" slot="end" style=" margin-bottom:15px" ></ion-icon>
         <ion-icon name="share" (click)="actions.generalShare(image_post)" color="primary" slot="end" style=" margin-bottom:15px"></ion-icon>  
         <!-- <ion-icon name="logo-facebook" (click)="actions.DirectSharingButton(image_post,'fb')" color="medium" slot="end" style="margin-left: 4px; margin-bottom:15px"></ion-icon>                            
         <ion-icon name="logo-instagram" (click)="actions.DirectSharingButton(image_post,'insta')" color="medium" slot="end" style=" margin-bottom:15px"></ion-icon>    
