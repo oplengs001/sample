@@ -608,6 +608,41 @@ export class ActionClass implements OnInit {
    })
    return returning_data
   }
+  async forgotPassword():Promise<any>{
+    console.log("hohoho")
+    var returning_data
+    let alert = await this.alertController.create({
+      header: 'Hello',
+      message: 'Please enter your email so we can send a reset password email for you',
+      inputs: [
+        {
+          name: 'email',          
+          type: "text"
+        },       
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },{
+          text: 'Enter',
+          handler: async rer => {
+            
+            this.authServ.resetPassword( rer.email ).then( data=>{
+                this.customAlert("Success!",`Check your email "${rer.email}" to reset your password!`)
+              }
+            ).catch(e =>{
+              console.log(e)
+            })
+          }
+        }   
+      ]
+    });
+    await alert.present();
+  }
   async reserveConfirmPrompt(user_id:string):Promise<any>{     
     let choice
     var buttons = [        

@@ -118,6 +118,7 @@
                 <ion-label position="floating">Password</ion-label>
                 <ion-input type="password" color="dark"  [(ngModel)]="password"></ion-input>
               </ion-item>
+              <p (click)="actions.forgotPassword()" class="f-pass">Forgot password?</p>
             <!-- <ion-input type="password" color="dark"  [(ngModel)]="password" placeholder="Password"> </ion-input> -->
           <ion-button (click)="login()" [disabled]="!email || !password" color="dark"  >Login</ion-button>
         </div>

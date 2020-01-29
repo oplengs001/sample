@@ -93,6 +93,14 @@
     margin-top: 30vh;
 
   }
+  .f-pass{
+    margin-top: 5px;
+    color: #222528ab;
+    font-size: 12px;
+    text-align: left !important;
+    margin-left: 15px;
+
+  }
   .notified-text-up{
     font-family: "notified-medium" !important;
     font-size: 3vh !important;   
@@ -207,7 +215,7 @@
       }
   
     }
-    
+  
     ion-slide:first-child{
       // background-color: #d0e4f0 !important;
       background: url("../assets/images/login_cover.jpg");

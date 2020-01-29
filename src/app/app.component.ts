@@ -7,6 +7,7 @@ import { TransitionsService } from './services/native/transitions.service';
 import { IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ToastService } from "../app/services/toaster/toast-service"
+import { ActionClass } from './gallery-action-sheet/actionsheet';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +36,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router: Router,
     private transServe: TransitionsService,
-
+    private actions : ActionClass,
     private toaster: ToastService
   ) {
     this.initializeApp();
@@ -69,7 +70,7 @@ export class AppComponent {
   logout() {
     this.authService.logout();
   }
-
+  
   isAdmin() {
     this.adminUser = this.authService.isAdmin()
   }
