@@ -161,7 +161,6 @@ export class MessagesPage implements OnInit {
     this.imageModal.openImageModal(image_post,true,null,true)
   } 
   showChat(){
-    console.log("ca")
     this.emptyChat()
     this.currentUser = this.auth.currentUserId()
     this.seen_chat()   

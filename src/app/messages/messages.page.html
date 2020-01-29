@@ -16,7 +16,7 @@
     <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="crescent">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  <ion-grid *ngIf="chat$ | async as chat;else chatHolder">
+  <ion-grid *ngIf="chat$ | async as chat">
     <ion-row #messages *ngFor="let msg of chat.messages.slice(current_index,current_length);let i = index; trackBy: trackByCreated" 
     [ngClass]="msg.user.uid !== currentUser?'':'ion-justify-content-end'">
         <ion-col size="auto" *ngIf="msg.user.uid !== currentUser" class="message other-message">   
@@ -30,7 +30,7 @@
             ></ion-img>
           </div>         
           <span>{{ msg.content }}</span>
-          <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>        
+          <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>
         </ion-col>  
         <!-- <ion-col size="auto" *ngIf="msg.user.uid === currentUser" class="message my-message"> -->
         <ion-col size="auto" *ngIf="msg.user.uid === currentUser" class="message my-message ion-justify-content-end">
@@ -50,7 +50,7 @@
         </ion-col> -->
       </ion-row>                
   </ion-grid>   
-  <ng-template #chatHolder>
+  <ng-template #chatHolder >
       <ion-grid>
         <ion-row class="ion-justify-content-end" >     
             <!-- <ion-col size="auto" *ngIf="msg.user.uid === currentUser" class="message my-message"> -->
@@ -59,16 +59,16 @@
               <span><ion-skeleton-text style="width:10vw" animated></ion-skeleton-text></span>
               <div class="time" text-right><br><ion-skeleton-text style="width:100vw" animated></ion-skeleton-text> </div>
             </ion-col>  
-          </ion-row> 
-          <ion-row >     
+        </ion-row> 
+        <ion-row >     
               <!-- <ion-col size="auto" *ngIf="msg.user.uid === currentUser" class="message my-message"> -->
               <ion-col size="auto" class="message other-message">
                 <!-- <b class="username">{{ msg.user.first_name}} {{ msg.user.last_name }}</b><br> -->
                 <span><ion-skeleton-text style="width:10vw" animated></ion-skeleton-text></span>
                 <div class="time" text-right><br><ion-skeleton-text style="width:100vw" animated></ion-skeleton-text> </div>
               </ion-col>  
-          </ion-row>
-          <ion-row >     
+        </ion-row>
+        <ion-row >     
               <!-- <ion-col size="auto" *ngIf="msg.user.uid === currentUser" class="message my-message"> -->
               <ion-col size="auto" class="message other-message">
                 <!-- <b class="username">{{ msg.user.first_name}} {{ msg.user.last_name }}</b><br> -->

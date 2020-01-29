@@ -9,6 +9,7 @@ import { GuestAddService, Guest} from "../services/guest-add/guest-add.service"
 import { AnnouncementSaveService  } from "../services/announcements/announcement-save.service"
 import { Observable, Subscription } from 'rxjs';
 import { debug } from 'util';
+import { disableDebugTools } from '@angular/platform-browser';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -85,16 +86,18 @@ export class FooterComponent   {
   }   
   getAllGC(){
     this.chatServ.getAllChatOnce().then(data=>{   
-      data.map(chat=>{        
-        this.fcm.subscribeToTopic(data.id)
+      data.map(chat=>{
+        console.log(chat)
+        this.fcm.subscribeToTopic(chat.id)
         this.currentChats = this.pushToArray(this.currentChats,chat,this.authServ.currentUserId(),true)
       })        
     })  
   }
-  adminUnsubscribeAllChat(){
-    this.chatServ.getAllChatOnce().then(data=>{   
-      data.map(chat=>{        
-        this.fcm.unsubscribeFromTopic(data.id)
+  adminUnsubscribeAllChat():Promise<any>{
+    return this.chatServ.getAllChatOnce().then(data=>{   
+      data.map(chat=>{
+        console.log(chat)
+        this.fcm.unsubscribeFromTopic(chat.id)
       })        
     })  
   }
@@ -151,26 +154,25 @@ export class FooterComponent   {
     console.log(this.GCsubsList)
     this.authServ.userChatSubs = this.GCsubsList
   }
-  unsubscribeAllChat(){
+  unsubscribeAllChat():Promise<any>{
     if(this.authServ.userGuestDetails["isAdmin"]){
       this.fcm.unsubscribeFromTopic("adminNotif")
       this.fcm.unsubscribeFromTopic("enappd")
-      this.adminUnsubscribeAllChat()
+     return this.adminUnsubscribeAllChat()
     }else{
-      if(this.authServ.userChatSubs){
-        for(var i = 0 ; i < this.authServ.userChatSubs.length ; i++ ){
-          console.log(this.authServ.userChatSubs[i].name)
-          this.authServ.userChatSubs[i].subs.unsubscribe()  
-          this.fcm.unsubscribeFromTopic(this.authServ.userChatSubs[i].name)
-      
-        }
-      }
+    
       this.fcm.unsubscribeFromTopic("adminNotif")
-      this.fcm.unsubscribeFromTopic("enappd")
+      this.fcm.unsubscribeFromTopic("enappd")  
+      for(var i = 0 ; i < this.authServ.userChatSubs.length ; i++ ){
+        console.log(this.authServ.userChatSubs[i].name)
+        this.authServ.userChatSubs[i].subs.unsubscribe()  
+        this.fcm.unsubscribeFromTopic(this.authServ.userChatSubs[i].name)
+    
+      }
       this.GCsubsList = []
       this.authServ.userChatSubs = []
+      return this.adminUnsubscribeAllChat()
     }
-
   } 
   removeSub(items){
     

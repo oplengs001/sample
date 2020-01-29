@@ -169,7 +169,7 @@ export class HomeMenuPage implements OnInit {
     await this.modalctrl.dismiss();
   }
   async logout() {
-    this.actionSheet.confirmationMessage("Your about to log-out").then(res=>{
+    this.actionSheet.confirmationMessage("Your about to log-out").then( async res=>{
       if(!res){
         return null
       }
@@ -177,7 +177,7 @@ export class HomeMenuPage implements OnInit {
       console.log(this.authServ.userChatSubs)
       
       this.footer.clearBadge()
-      this.footer.unsubscribeAllChat()    
+      await this.footer.unsubscribeAllChat()    
       this.authServ.logout()
     })
   }
