@@ -121,7 +121,7 @@
                   </div>
                   <div *ngIf="event.position === 5" class="ion-text-justify"> 
                       <section class="buttons-pick-up">                     
-                        <ion-button expand="block" fill="outline" color="dark" (click)=openRestrictions()>DIETARY RESTRICTONS</ion-button>                                             
+                        <ion-button expand="block" fill="outline" color="dark" (click)=openRestrictions(authServ.userGuestDetails.diet_restriction)>DIETARY RESTRICTONS</ion-button>                                             
                       </section>                                
                   </div>                    
                 </ion-card-content>        

@@ -156,8 +156,8 @@ export class SlidingcontentPage implements OnInit {
       })
     })
   }
-  async openRestrictions(){
-    this.actions.DietPrompt().then(data=>{
+  async openRestrictions(restrict?:string){
+    this.actions.DietPrompt(restrict).then(data=>{
 
     })
   }

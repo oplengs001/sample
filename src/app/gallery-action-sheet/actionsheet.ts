@@ -498,7 +498,7 @@ export class ActionClass implements OnInit {
    })
    return returning_data
   }
-  async DietPrompt():Promise<any>{
+  async DietPrompt(restrict):Promise<any>{
     var returning_data,confirmation
     let alert = await this.alertController.create({
       header: 'Diet Restriction',
@@ -507,7 +507,8 @@ export class ActionClass implements OnInit {
         {
           name: 'restrict',
           placeholder: 'Tell us about your Diet Restrictions',
-          type: "text"
+          type: "text",
+          value: restrict
         },       
       ],
       buttons: [
