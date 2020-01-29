@@ -6,31 +6,35 @@
     // object-fit: cover;
 }
 .map_button{
-  opacity: 0
+  opacity: 0;
+  
 }
 .europe{
   position: absolute;
-  top: 12vh;
+  top: 6vh;
   left: 1vw;
+  height: 12vh;
 }
 .africa{
   position: absolute;
   left: 6vw;
-  bottom: 65vh;
+  bottom: 61vh;
+  height: 11vh;
+
 }
 .asia{
   position: absolute;
-  left: 33vw;
-  bottom: 69vh;
-  height: 3vh;
+  left: 31vw;
+  bottom: 65vh;
+  height: 6vh;
   width: 2vw;
 }
 .ph{
   position: absolute;
-  left: 35vw;
-  bottom: 72vh;
-  height: 3vh;
-  width: 2vw;
+  left: 39vw;
+  bottom: 68vh;
+  height: 6vh;
+  width: 6vw;
 }
 .n_america{ 
   position: absolute;

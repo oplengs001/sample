@@ -101,15 +101,15 @@
                         (ionBlur)="saveItem(event)"              
                         readonly="{{!isAdmin}}"
                         autoGrow=true 
-                        rows="1"
                         ></ion-textarea >     
                 </ion-item>                                      
                 <ion-card-content>        
-                  <ion-textarea class="ion-text-justify" autoGrow=true  
+                  <ion-textarea class="ion-text-justify"
                   class="card-details-input ion-text-justify" 
                   [(ngModel)]="event.details"
                   (ionBlur)="saveItem(event)"
                   readonly="{{!isAdmin}}"
+                  autoGrow=true  
                   ></ion-textarea>      
                   <div *ngIf="event.name === 'Pick Up'" class="ion-text-justify"> 
                       <section class="buttons-pick-up">   
