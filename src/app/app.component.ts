@@ -58,7 +58,7 @@ export class AppComponent {
           this.userID = data.uid
           this.userDetails = data           
           if (this.forRsvp) {
-            this.authService.resetPassword(data.email)
+            // this.authService.resetPassword(data.email)
             this.transServe.reRoute("rsvp")
           }
         }

@@ -609,8 +609,6 @@ export class ActionClass implements OnInit {
    return returning_data
   }
   async forgotPassword():Promise<any>{
-    console.log("hohoho")
-    var returning_data
     let alert = await this.alertController.create({
       header: 'Hello',
       message: 'Please enter your email so we can send a reset password email for you',

@@ -202,20 +202,20 @@ export class HomeMenuPage implements OnInit {
           if(value){
             this.actionSheet.customAlert("Welcome!","Thanks for accepting the invitation.")            
             // this.plusOnePrompt()
-            if(first_log){
-              setTimeout(()=>{
-                this.actionSheet.customAlert("",`reset password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
-              },2000)
+            // if(first_log){
+            //   setTimeout(()=>{
+            //     this.actionSheet.customAlert("",`reset password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
+            //   },2000)
               
-            }
+            // }
           }else{
             this.actionSheet.customAlert("Ow.. Boo!","Hope you change your mind.")
-            if(first_log){
-              setTimeout(()=>{
-                this.actionSheet.customAlert("",`reset password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
-              },2000)
+            // if(first_log){
+            //   setTimeout(()=>{
+            //     this.actionSheet.customAlert("",`reset password request was sent to your email ("${this.authServ.userGuestDetails["email"]})"`)     
+            //   },2000)
               
-            }
+            // }
           }
        
           this.tranServe.reRoute("/")
