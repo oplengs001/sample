@@ -37,6 +37,8 @@ export class ImagesService {
   private imageItemHome: Observable<ImageItem[]>;
   private ImageCollection: AngularFirestoreCollection<ImageItem>;
   private AppGalleryCollection: AngularFirestoreCollection<ImageItem>;
+  public GalleryPosts : any []
+  public currentPost : any []
   storageRef = firebase.storage().ref();
   storagePath: string
   itemRef : ImageItem =
@@ -93,6 +95,12 @@ export class ImagesService {
   }
   getRefHome(): Observable<ImageItem[]> {
     return this.imageItemHome
+  }
+  getCurrentPost():any{
+    return this.currentPost
+  }
+  getByPostID(post_id:string):void{
+    this.currentPost = this.GalleryPosts.find(item=>item.post_id === post_id)
   }
   addImageRef(imageRef: ImageItem[],collection:string): Promise<any> {
     if(collection === "image"){
@@ -171,11 +179,15 @@ export class ImagesService {
   deleteImageStorage(imageName:string,collection:string){
     this.storageRef.child(collection).child(imageName).delete()
     console.log("deleted")
+
   }
-  async removeImageRef (post:any,collection:string){
-    const {file_name} = post
+  async removeImageRef (post:any,collection:string,type?:string){
+    const {file_name,post_id} = post
     this.deleteImageRef(file_name,collection)
     .then(()=>{
+      if(type==="image"){  
+        this.getByPostID(post_id)
+      }
       return this.deleteImageStorage(file_name,collection)
     })
     // .catch(err=>{ console.log(err) return err})

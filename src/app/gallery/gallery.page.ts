@@ -21,7 +21,7 @@ import { AnnouncementSaveService } from '../services/announcements/announcement-
 export class GalleryPage implements OnInit {
   @ViewChild(IonInfiniteScroll, {static: false}) infiniteScroll: IonInfiniteScroll;
   // private GalleryPosts: Observable<ImageItem[]>;
-  private GalleryPosts: any [];
+
   fileUploads: any[];
   galleryType = 'regular';
   imagePath : string;
@@ -73,14 +73,14 @@ export class GalleryPage implements OnInit {
     
     this.imageService.joinUsers(source).then(data=>{ 
       data.subscribe( data=>{
-        this.GalleryPosts = []
+        this.imageService.GalleryPosts = []
         this.all_images = data
         this.images_length = data.length
         // this.GalleryPosts = data
         var groupi = this.groupBy('post_id')
         var posts = groupi(data)
         for (var key of Object.keys(posts)) {
-          this.GalleryPosts.push({
+          this.imageService.GalleryPosts.push({
                 post_id : key,
                 images : posts[key],
                 date_uploaded : posts[key][0]['date_uploaded'],
@@ -88,9 +88,8 @@ export class GalleryPage implements OnInit {
                 user : posts[key][0]['user']
             })
         }
-        console.log(this.GalleryPosts)
       })
-    });  
+    });
     this.currentUser = this.authServ.currentUserId();
   }
   groupBy = key => array =>
@@ -161,8 +160,9 @@ export class GalleryPage implements OnInit {
     )
   }
   seeMoreClick(post){
-    console.log(post)
-    this.postModal.openModal(post)
+    var {post_id} = post
+    this.imageService.getByPostID(post_id)
+    this.postModal.openModal(post_id)
   }
   postFilter(){
     this.OwnImages = true

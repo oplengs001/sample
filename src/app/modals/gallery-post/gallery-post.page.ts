@@ -2,6 +2,8 @@ import { Component, OnInit ,Injectable} from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ImagePage } from '../photos/image/image.page';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ImagesService } from 'src/app/services/uploads/images.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-gallery-post',
@@ -12,17 +14,19 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   providedIn: 'root'
 })
 export class GalleryPostPage implements OnInit {
-  private image_post: any
   private currentUser : string
   constructor(
     private modalctrl: ModalController,    
     private imageModal: ImagePage,
-    private authServ : AuthService
+    private authServ : AuthService,
+    private imageService : ImagesService
   ) { }
 
   ngOnInit() {
     this.currentUser = this.authServ.currentUserId();
+    // this.imageService.getByPostID(this.post_id)
   }
+
   imageLoaded(event,isLoaded: boolean) {    
     if (isLoaded) {
       // setTimeout(() => {        
@@ -33,9 +37,9 @@ export class GalleryPostPage implements OnInit {
         event.target.parentElement.classList.remove('img-loaded');
     }
   }
-  imageClick(post){
+  imageClick(image){
     this.imageModal.openImageModal(
-      post,
+      image,
       false,
       this.currentUser,
       false
@@ -44,14 +48,14 @@ export class GalleryPostPage implements OnInit {
   async closeModal() {  
     await this.modalctrl.dismiss();
   }
-  async openModal(post:any,hideFooter?:boolean) {
+  async openModal(post_id:string,hideFooter?:boolean) {
 
+     
       const modal: HTMLIonModalElement =
       await this.modalctrl.create({
          component: GalleryPostPage,     
          componentProps:{
-           image_post : post,
-           hideFooter : hideFooter
+          hideFooter : hideFooter
          },
          cssClass:"customModalClass",
       });          

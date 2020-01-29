@@ -42,6 +42,7 @@ export class ActionClass implements OnInit {
     var images
     if(type==="post"){
      images = post.images
+      
     }else{
       images = [post]
     }
@@ -62,7 +63,7 @@ export class ActionClass implements OnInit {
             
             for(var i in images){
                 var image = images[i]
-                this.imageService.removeImageRef(image,"image").then(async()=>{
+                this.imageService.removeImageRef(image,"image",type).then(async()=>{
                   this.toaster.showToast("Photo Deleted")
                   await this.modalCtrl.dismiss();
               })

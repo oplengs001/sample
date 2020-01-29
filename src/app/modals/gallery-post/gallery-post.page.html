@@ -1,9 +1,9 @@
 <ion-header no-border>
     <ion-toolbar >
-        <ion-label>
+        <ion-label class="name-holder">
             <!-- {{post.uploaded_by}} -->
-            {{image_post.user.first_name}} {{image_post.user.last_name}} 
-            <p>{{ image_post.date_uploaded | date:'short' }}</p>
+            {{this.imageService.currentPost.user.first_name}} {{this.imageService.currentPost.user.last_name}} 
+            <p class="name-holder"> {{ this.imageService.currentPost.date_uploaded | date:'short' }}</p>
         </ion-label>
       <ion-buttons slot="end">
         <ion-icon color="primary"  name="close-circle" class="close-button" (click)="closeModal()"></ion-icon>
@@ -13,7 +13,7 @@
 <ion-content>
     <div class="images-single">
         <div class="single-count-image">
-            <ion-card no-padding  *ngFor="let image of image_post.images| sort :'desc':'date_uploaded'; trackBy: trackByCreated"> 
+            <ion-card no-padding  *ngFor="let image of this.imageService.currentPost.images | sort :'desc':'date_uploaded'; trackBy: trackByCreated"> 
                 <ion-card-content class="img-container">
                     <div (click)="imageClick(image)" class="post-image">           
                         <ion-skeleton-text animated></ion-skeleton-text>

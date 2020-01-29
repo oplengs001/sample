@@ -8,14 +8,13 @@
   </ion-header>
 <ion-content>
     <div class="pincher" >           
-       
      <!-- Block parent element -->
-     <div class="blocker">
-        <pinch-zoom class="pincher" >
-          <img src="{{image_post.url}}"class="img-on-zoom">
-        </pinch-zoom>
-     </div>                                                      
-  </div>
+      <div class="blocker">
+          <pinch-zoom class="pincher">
+            <img src="{{image_post.url}}"class="img-on-zoom">
+          </pinch-zoom>
+      </div>                                                      
+    </div>
   
 </ion-content>
 <ion-footer [hidden]="hideFooter" *ngIf=!hideFooter>
