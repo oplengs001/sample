@@ -64,10 +64,8 @@ export class FooterComponent   {
       this.chatNotifSubs(chat_id)
       if(isAdmin){        
         this.fcm.subscribeToTopic("adminNotif")        
-        // this.getAllGC()
-        // this.chatServ.getAllChat().subscribe(data=>{
-        //   console.log(data)
-        // })
+        this.getAllGC()
+     
         this.announcementServices.getNotifs().subscribe(data=>{                
           this.announcementServices.RsvpNotif = data     
           this.announcementServices.RsvpNotifCount = this.countUnreadAdminNotif(data);
@@ -88,9 +86,17 @@ export class FooterComponent   {
   getAllGC(){
     this.chatServ.getAllChatOnce().then(data=>{   
       data.map(chat=>{        
+        this.fcm.subscribeToTopic(data.id)
         this.currentChats = this.pushToArray(this.currentChats,chat,this.authServ.currentUserId(),true)
       })        
-   })  
+    })  
+  }
+  adminUnsubscribeAllChat(){
+    this.chatServ.getAllChatOnce().then(data=>{   
+      data.map(chat=>{        
+        this.fcm.unsubscribeFromTopic(data.id)
+      })        
+    })  
   }
   chatNotifSubs(chat_ids){
     for(var i in chat_ids ){      
@@ -149,6 +155,7 @@ export class FooterComponent   {
     if(this.authServ.userGuestDetails["isAdmin"]){
       this.fcm.unsubscribeFromTopic("adminNotif")
       this.fcm.unsubscribeFromTopic("enappd")
+      this.adminUnsubscribeAllChat()
     }else{
       if(this.authServ.userChatSubs){
         for(var i = 0 ; i < this.authServ.userChatSubs.length ; i++ ){
