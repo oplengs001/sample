@@ -10,17 +10,21 @@
 </ion-header>
 
 
-<ion-content class="message-bg" [scrollEvents]="true"  forceOverscroll=false> 
+<ion-content class="message-bg" [scrollEvents]="false"  fullscreen=false> 
+  
   <!-- <div class="ion-text-center" [hidden]="SeeMore" >{{Scroll_Message}} </div> -->
-  <ion-infinite-scroll threshold={{scrollThreshold}}  (ionInfinite)="loadData($event)"  position="top">
-    <ion-infinite-scroll-content [hidden]="hide_scroll" loading-spinner="crescent">
+  <ion-infinite-scroll   threshold={{scrollThreshold}}  (ionInfinite)="loadData($event)"  position="top">
+    <ion-infinite-scroll-content   [hidden]="hide_scroll" loading-spinner="crescent">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  <ion-grid *ngIf="chat$ | async as chat">
-    <ion-row #messages *ngFor="let msg of chat.messages.slice(current_index,current_length);let i = index; trackBy: trackByCreated" 
+  <ion-grid *ngIf="chat$ | async as chat" class="chat-grid" [hidden]="hide_chat">
+    <!-- <div [innerHTML]="chatHTML"></div> -->
+    <!-- <ion-row #messages *ngFor="let msg of chat.messages.slice(current_index,current_length);let i = index; trackBy: trackByCreated" 
+    [ngClass]="msg.user.uid !== currentUser?'':'ion-justify-content-end'"> -->
+    <ion-row #messages *ngFor="let msg of chat.messages;let i = index; trackBy: trackByCreated" 
     [ngClass]="msg.user.uid !== currentUser?'':'ion-justify-content-end'">
+
         <ion-col size="auto" *ngIf="msg.user.uid !== currentUser" class="message other-message">   
-        <!-- <ion-col size="9" *ngIf="msg.user.uid !== currentUser" class="message other-message">    -->
           <div class="username" [style.color]=msg.user.color><b >{{ msg.user.first_name}}  {{ msg.user.last_name }}</b><br></div>
           <div class="image_container">
             <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
@@ -32,9 +36,8 @@
           <span>{{ msg.content }}</span>
           <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>
         </ion-col>  
-        <!-- <ion-col size="auto" *ngIf="msg.user.uid === currentUser" class="message my-message"> -->
+     
         <ion-col size="auto" *ngIf="msg.user.uid === currentUser" class="message my-message ion-justify-content-end">
-          <!-- <b class="username">{{ msg.user.first_name}} {{ msg.user.last_name }}</b><br> -->
           <div class="image_container">
             <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
             <ion-img [src]="msg.image"
@@ -45,10 +48,8 @@
             <span>{{ msg.content }}</span>
             <div class="time" text-right><br>{{ msg.createdAt | date:'h:mm a' }}</div>          
         </ion-col>
-        <!-- <ion-col size="auto" *ngIf="msg.group_notif" class="message my-message ion-justify-content-center">         
-              <span>{{ msg.content }}</span>       
-        </ion-col> -->
-      </ion-row>                
+    
+    </ion-row>                
   </ion-grid>   
   <ng-template #chatHolder >
       <ion-grid>
@@ -129,7 +130,7 @@
   </ng-template>
 
 </ion-content>
-<ion-footer >
+<ion-footer class="footer-css">
   <ion-toolbar color="light">
       <ion-row no-padding align-items-center [hidden]=hide_image>
           <ion-col size="12">
@@ -141,7 +142,7 @@
     </ion-row>
     <ion-row no-padding align-items-center>
       <ion-col size="10" >
-        <ion-textarea  *ngIf="chat$ | async as chat"
+        <ion-textarea 
          #message_input
          class="message-input" maxRows="5"
          rows= "1"
@@ -149,7 +150,7 @@
          autoGrow=true 
          (ionFocus)="seen_chat()"
          [(ngModel)]="newMsg" 
-         (keydown.enter)="submit($event,chat.id,chat.group_name)"
+         (keydown.enter)="submit($event,chat_id,gcName)"
           ></ion-textarea>
       </ion-col>
       <ion-col size="2" *ngIf="chat$ | async as chat">

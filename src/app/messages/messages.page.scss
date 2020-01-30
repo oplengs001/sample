@@ -1,4 +1,9 @@
-
+.chat-grid{
+  // bottom:0;
+}
+ion-content{
+  -webkit-overflow-scrolling: auto !important;
+}
 .message {
   padding: 3px;
   border-radius: 5px;
@@ -12,6 +17,9 @@
     
   }
 }
+.footer-css{
+  // padding-bottom: 20vh;
+}
 .backto{
   font-size:15px
 }
@@ -19,12 +27,16 @@
   --background: var( --ion-color-primary);
   color:#ffffff
 }
-
+.toolbar-has-focus{
+  position: static !important;
+}
 .message-bg{
   // background: url(../../assets/images/chat_bg.jpg);
   --background: url("/assets/images/chat_bg.jpg") ;
   --background-size: cover;  
+  // bottom:
 
+  // bottom: 69px;
   // --ion-background-color:var(--ion-color-medium);
 }
 .imageloading {

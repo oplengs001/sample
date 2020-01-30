@@ -37,7 +37,7 @@ export class MessagesPage implements OnInit {
   chat$: Observable<any>;
   public newMsg: string; 
   currentUser :string;  
-  id: any;
+  chat_id: any;
   limit:number
   current_index :number
   current_group : any
@@ -53,6 +53,8 @@ export class MessagesPage implements OnInit {
   device_platform : string
   scrollThreshold : string
   gcName : string
+  chatHTML: string
+  hide_chat : boolean
   private first_line = true
   constructor(
     public cs: ChatService,
@@ -83,12 +85,23 @@ export class MessagesPage implements OnInit {
       this.device_platform = "android"
       this.scrollThreshold = "30%"
     }
+   
   }
   ngAfterViewInit(){  
     this.route.queryParams.subscribe(params => {
-      this.id = params["group_id"];        
+      this.chat_id = params["group_id"];        
       this.showChat()    
     });  
+    this.inputElement.ionFocus.subscribe(()=>{
+      console.log("focused")
+      setTimeout(()=>{
+        this.scrollToBottom(0)
+      },300)
+ 
+    })
+    this.keyboard.onKeyboardDidShow().subscribe(()=>{
+
+    })
     // this.messages.changes.pipe(throttleTime(500))
   }  
   stopBubble(event){
@@ -130,7 +143,7 @@ export class MessagesPage implements OnInit {
     } 
   }
   scrollToBottom(value) {
-    setTimeout(()=>{   
+    setTimeout(()=>{
       this.content.scrollToBottom(value);
     },150)
   }
@@ -138,7 +151,7 @@ export class MessagesPage implements OnInit {
    
   }
   seen_chat(){
-    this.cs.seen_chat(this.id).then(seen =>{        
+    this.cs.seen_chat(this.chat_id).then(seen =>{        
       if(seen.continue){
         this.footerFunc.SubrcibeToOwnTopics()
         this.footerFunc.ClearNotifs(seen.count)
@@ -154,32 +167,38 @@ export class MessagesPage implements OnInit {
   ionViewDidEnter (){ 
     
   }
+  ionViewWillLeave() {
+
+  }
   imageClick(post){
     var image_post={
         url:post
     }
     this.imageModal.openImageModal(image_post,true,null,true)
   } 
-  showChat(){
+  async showChat(){
+    
+    this.hide_chat = true
     this.emptyChat()
     this.currentUser = this.auth.currentUserId()
     this.seen_chat()   
-    this.cs.joinUsers(this.cs.get(this.id)).then(data=>{
+await this.cs.joinUsers(this.cs.get(this.chat_id)).then(data=>{
+     
       this.chat$ = data      
- 
+  
       // this.scrollToBottom(0)   
       // this.scrollToBottom(500)
       
       this.ThisChat = data.subscribe(data=>{    
-          
         this.gcName = data.group_name        
         this.current_images = data.images.reverse()
+
         this.current_group = data
         this.getMembers(data)
-        if(this.id == data.id){
-          let from_seen = false
-          if(this.current_length === data.messages.length){
-            from_seen = true
+        if(this.chat_id == data.id){
+          let from_seen = false //check if view is from seen no new value
+          if(this.current_length === data.messages.length){//check if view is from seen no new value
+            from_seen = true 
           }
           this.current_length = data.messages.length 
           
@@ -189,21 +208,50 @@ export class MessagesPage implements OnInit {
             this.limit = this.current_length
           }else{
           
-            if(!from_seen){
+            if(!from_seen){ //if new chat , therefore add limit
               this.limit++
               this.infiniteScroll.disabled = false    
-              this.hide_scroll = false  
-              this.scrollToBottom(0)   
+              this.hide_scroll = true  
+              this.scrollToBottom(0)
+              this.hide_chat = false
             }else{
               this.scrollToBottom(500)
             }
           } 
+          // this.initialTemplate(data.messages)
           this.current_index = this.current_length-this.limit  
         }
          
       })         
-    }); 
+    });
   }
+  // initialTemplate(messages:any){
+  //   messages = messages.slice(this.current_index ,this.current_length).reverse()
+  //   for(var i in messages){
+  //     var msg = messages[i]
+  //     var otherHTML = `
+      
+  //     <ion-row #messages class="ion-justify-content-end">
+  //       <ion-col size="auto" class="message other-message">   
+  //         <div class="username" style="{color:${msg.user.color}}"><b >${ msg.user.first_name}  ${ msg.user.last_name }</b><br></div>
+  //         <div class="image_container">
+  //           <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
+  //           <ion-img [src]="msg.image"
+  //           (ionImgDidLoad)="imageLoaded($event,true,i,current_length)"
+  //           (click)= imageClick(msg.image)
+  //           ></ion-img>
+  //         </div>         
+  //         <span>${ msg.content }</span>
+  //         <div class="time" text-right><br>{{${ msg.createdAt} | date:'h:mm a' }}</div>
+  //       </ion-col>  
+
+  //     </ion-row>
+
+  //     `
+  //     // var currentHTML =
+  //     this.chatHTML = otherHTML + this.chatHTML;
+  //   }
+  // }
   emptyChat(){
     this.ThisChat.unsubscribe()
     this.current_index = undefined
@@ -314,7 +362,7 @@ export class MessagesPage implements OnInit {
         //  
       if(this.first_line){      
         if(this.limit >= index &&  index >= this.limit-5){
-          this.scrollToBottom(0)          
+          this.scrollToBottom(0)
         }    
       }      
         event.target.parentElement.classList.add('img-loaded');
@@ -330,7 +378,7 @@ export class MessagesPage implements OnInit {
     
   }
   trackByCreated(i, msg) {    
-    
+
     return msg.createdAt;
   }  
   async openDetails() {    
@@ -354,7 +402,6 @@ export class MessagesPage implements OnInit {
     var {inbox} = group
         inbox.map((member)=>{
         this.guest.getGuestSingle(member.user_id).then(data=>{
-            console.log(data)
             if(data){
               this.current_members.push(data)
             }
