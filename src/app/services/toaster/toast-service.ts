@@ -37,7 +37,7 @@ export class ToastService {
       this.toastCtrl.dismiss();
    } catch(e) {}
   }
-  showNotif(msg:string,chat_data:any){
+  showNotif(msg:string,data:any){
    this.toastCtrl.create({
       header: msg,     
       position: 'top',
@@ -47,13 +47,15 @@ export class ToastService {
           side: 'start',        
           text: 'OK',
           handler: () => {
-            var url = this.url_links[chat_data.type]
+            var url = this.url_links[data.type]
+            
             // if(chat_data.type ==="chat"){
             //  url = url+`?group_id=${chat_data.group}`
             // }else{
 
             // }
-            this.router.navigateByUrl(url);
+            if(data.type === "announcement")
+            this.router.navigateByUrl("/announcement");
             console.log(url)
         
           }
