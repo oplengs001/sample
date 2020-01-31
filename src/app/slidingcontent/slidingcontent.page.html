@@ -67,7 +67,8 @@
                     <ion-icon  slot="end" style="background: #00000000" color="medium"  name="eye"></ion-icon> 
                 </ion-item>
               <ion-card-content>        
-                <ion-textarea class="ion-text-justify" autoGrow=true  
+                <ion-textarea class="ion-text-justify" 
+                autoGrow=true  
                 [(ngModel)]="info.place_description"  
                 (ionBlur)="saveItemWeddingInfo()"    
                 readonly="{{!isAdmin}}"
@@ -109,7 +110,8 @@
                   [(ngModel)]="event.details"
                   (ionBlur)="saveItem(event)"
                   readonly="{{!isAdmin}}"
-                  autoGrow=true  
+                  autoGrow=true 
+                  
                   ></ion-textarea>      
                   <div *ngIf="event.name === 'Pick Up'" class="ion-text-justify"> 
                       <section class="buttons-pick-up">   

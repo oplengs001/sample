@@ -1,7 +1,7 @@
 import { Component, OnInit ,ViewChild } from '@angular/core';
 import { TransitionsService } from '../services/native/transitions.service';
 import { ActivatedRoute } from '@angular/router';
-import { IonReorderGroup, LoadingController } from '@ionic/angular';
+import { IonReorderGroup, LoadingController,IonTextarea } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
@@ -28,6 +28,7 @@ import { AnnouncementSaveService } from '../services/announcements/announcement-
 export class SlidingcontentPage implements OnInit {  
   @ViewChild(IonContent, {static: false}) ioncontent: IonContent;
   @ViewChild(IonReorderGroup, {static: false}) reorderGroup: IonReorderGroup;
+  @ViewChild(IonTextarea, {static:false}) ionTextarea: IonTextarea;
   content :string
   topResto : any = []
   event_it : any = []
@@ -71,6 +72,14 @@ export class SlidingcontentPage implements OnInit {
     this.contentServe.updateEventItem(fromRef,fromData,to)
     this.contentServe.updateEventItem(toRef,toData,from)
     ev.detail.complete();
+  }
+  checkTextarea(){
+    return this.ionTextarea.getInputElement().then((element) => {
+      if(element.style.height == '0px'){
+       return  element.style.height = 'auto';
+      } else {
+        setTimeout(()=> this.checkTextarea(),100)};
+      })
   }
   toggleReorderGroup() {
     
@@ -197,6 +206,7 @@ export class SlidingcontentPage implements OnInit {
     })
     this.generalInfo.getInfo().subscribe(data=>{
       if(data){
+        this.checkTextarea()
         console.log(data)
         this.info = data[0]//to be edit for more user
       }  
