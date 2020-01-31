@@ -118,7 +118,7 @@ export class HomePage {
             }else if(data.type === "announcement"){
               var uid = await this.authServ.currentUserId();   
               this.footerFunc.addBadge()
-              // this.toastService.showNotif("New Announcement!",data)
+              this.toastService.showNotif("New Announcement!",data)
               this.guestFunc.updateNotifCount(uid,"increment")
             }else if(data.type === "adminNotif"){
               if(this.authServ.isAdmin){

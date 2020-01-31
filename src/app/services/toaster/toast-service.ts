@@ -42,26 +42,28 @@ export class ToastService {
       header: msg,     
       position: 'top',
       showCloseButton: true,
-      // buttons: [
-      //   {
-      //     side: 'start',        
-      //     text: 'Show',
-      //     handler: () => {
-      //       var url = this.url_links[chat_data.type]
-      //       if(chat_data.type ==="chat"){
-      //        url = url+`?group_id=${chat_data.group}`
-      //       }
-      //       console.log(url)
-      //       this.router.navigateByUrl(url);
-      //     }
-      //   }, {
-      //     text: 'Close',
-      //     role: 'cancel',
-      //     handler: () => {
-      //       console.log('Cancel clicked');
-      //     }
-      //   }
-      // ]
+      buttons: [
+        {
+          side: 'start',        
+          text: 'Show',
+          handler: () => {
+            var url = this.url_links[chat_data.type]
+            if(chat_data.type ==="chat"){
+             url = url+`?group_id=${chat_data.group}`
+            }else{
+              this.router.navigateByUrl(url);
+            }
+            console.log(url)
+        
+          }
+        }, {
+          text: 'Close',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
     }).then(toast => toast.present());
   }
 }
