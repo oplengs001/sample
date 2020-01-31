@@ -45,7 +45,7 @@ export class ToastService {
       buttons: [
         {
           side: 'start',        
-          text: 'Show',
+          text: 'OK',
           handler: () => {
             var url = this.url_links[chat_data.type]
             // if(chat_data.type ==="chat"){
