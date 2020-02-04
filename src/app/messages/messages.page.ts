@@ -71,12 +71,13 @@ export class MessagesPage implements OnInit {
     private modalctrl : ModalController,
     private guest : GuestAddService,
     private imageModal: ImagePage,
-    private keyboard : Keyboard
+    private keyboard : Keyboard,
   ) {    
   
   }
 
   ngOnInit(){
+    
     // this.temp_image_css = "sent-img"
     if(this.platform.is("ios")){
       this.device_platform = "ios"

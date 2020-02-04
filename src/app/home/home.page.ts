@@ -28,6 +28,7 @@ export class HomePage {
   private scrollDepthTriggered = false;
   private weather : any
   public connection_status : string
+  private currentRoute : string
   constructor(
     private fcm: FCM, 
     public plt: Platform,
@@ -42,6 +43,7 @@ export class HomePage {
     private weatherServ : WeatherService,
     private network: Network,
     private annServe  :AnnouncementSaveService,   
+
     // private badge: Badge
     ) {
     this.forRsvp = this.footerFunc.forRsvp 
@@ -53,6 +55,7 @@ export class HomePage {
         }else{
           this.toastService.showStayingToast("Network Disconnected") 
         }
+      
         let connectSubscription = this.network.onConnect().subscribe(() => {
           
           if(this.connection_status !== "connected"){
@@ -102,20 +105,23 @@ export class HomePage {
                 }
               };
               this.transition.reRouteActivityNoAnimation("Itinerary")              
-            } 
+            }else if(data.type === "adminNotif"){
+              this.transition.reRoute("/rsvp-list")
+            }
           } else {
             if(data.type === "chat"){
-              // var uid = await this.authServ.currentUserId();        
-              if (data.sender_id === uid){
-                
-              }else{
+              var uid = await this.authServ.currentUserId();        
+              if (data.sender_id !== uid){
                 // this.footerFunc.SubrcibeToOwnTopics()
-                this.toastService.messageNotif(`New Message! (${data.title})`, data);
+        
                 // this.localNotifications.schedule({
                 //   title: data.title,
                 //   text: data.content,
                 //   foreground: true,
                 // });
+                this.toastService.messageNotif(`New message! (${data.title})`, data);
+              }else{
+              
               }
            
               if(!this.authServ.isAdmin){
@@ -127,7 +133,7 @@ export class HomePage {
               this.footerFunc.addBadge()
               // this.toastService.showNotif("New Announcement!",data)
               this.guestFunc.updateNotifCount(uid,"increment")
-              this.toastService.showNotif(`New Announcement!`, data);
+              this.toastService.showNotif(`New announcement!`, data);
               // this.localNotifications.schedule({
               //   title: "New Announcement!",
               //   text: data.data_body,
@@ -140,7 +146,7 @@ export class HomePage {
                 //   text: data.data_body,
                 //   foreground: true
                 // });
-                // this.toastService.showNotif("New RSVP Response!",data.data_body)
+                this.toastService.adminToast("New admin notification!",data.data_body)
               }
               
             }

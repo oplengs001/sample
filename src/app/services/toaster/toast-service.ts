@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
-import {  Router } from '@angular/router';
+import {  Router, ActivatedRoute } from '@angular/router';
+import { TransitionsService } from '../native/transitions.service';
 @Injectable({
   providedIn: 'root'
 })
 export class ToastService {
   private url_links = {
-    announcement:"/announcement",
+    announcement:"/announcements",
     chat:"/messages"
     }
     
   constructor( 
     private toastCtrl: ToastController,
-    private router: Router
+    private router: Router,
+    private trans : TransitionsService,
+    private a_route : ActivatedRoute
     ) {
     
    }
@@ -37,8 +40,13 @@ export class ToastService {
       this.toastCtrl.dismiss();
    } catch(e) {}
   }
+  getUrl(){
+    return this.router.url
+    
+  }
   showNotif(msg:string,data:any){
   this.tryDismissAll()
+
    this.toastCtrl.create({
       header: msg,     
       position: 'top',
@@ -48,28 +56,48 @@ export class ToastService {
           side: 'start',        
           text: 'OK',
           handler: () => {
-            this.router.navigateByUrl("/announcement");
+            this.router.navigateByUrl("/announcements");
           }
         }
       ]
     }).then(toast => toast.present());
   }
   messageNotif(msg:string,data:any){
-  this.tryDismissAll()
+  var url = `/messages?group_id=${data.group}`
+  if(url === this.getUrl()){
+    return null 
+  }else{
+    this.tryDismissAll()
     this.toastCtrl.create({
        header: msg,     
        position: 'top',
-       showCloseButton: true,
        buttons: [
          {
            side: 'start',        
-           text: 'OK',
+           text: 'Show',
            handler: () => {
-             var url = `messages?group_id=${data.group}`
              this.router.navigateByUrl(url);
            }
          }
        ]
      }).then(toast => toast.present());
    }
+  }
+ 
+   adminToast(msg:string,data:any){
+    this.tryDismissAll()
+      this.toastCtrl.create({
+         header: msg,     
+         position: 'top',
+         buttons: [
+           {
+             side: 'start',        
+             text: 'Show',
+             handler: () => {
+              this.trans.reRoute("/rsvp-list")
+             }
+           }
+         ]
+       }).then(toast => toast.present());
+     }
 }

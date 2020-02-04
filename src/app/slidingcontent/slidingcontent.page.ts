@@ -88,6 +88,7 @@ export class SlidingcontentPage implements OnInit {
   }
   ionViewDidEnter(){
    this.contentSubs = this.route.queryParams.subscribe(params => {
+     console.log(params)
       this.content = params["content"];    
    
       if(this.content ==="Dining"){
