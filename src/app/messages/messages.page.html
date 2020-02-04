@@ -142,7 +142,7 @@
     </ion-row>
     <ion-row no-padding align-items-center>
       <ion-col size="10" >
-        <ion-textarea 
+        <ion-textarea  *ngIf="chat$ | async as chat"
          #message_input
          class="message-input" maxRows="5"
          rows= "1"
@@ -150,7 +150,7 @@
          autoGrow=true 
          (ionFocus)="seen_chat()"
          [(ngModel)]="newMsg" 
-         (keydown.enter)="submit($event,chat_id,gcName)"
+         (keydown.enter)="submit($event,chat.id,chat.group_name)"
           ></ion-textarea>
       </ion-col>
       <ion-col size="2" *ngIf="chat$ | async as chat">

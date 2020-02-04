@@ -93,16 +93,7 @@ export class MessagesPage implements OnInit {
       this.chat_id = params["group_id"];        
       this.showChat()    
     });  
-    this.inputElement.ionFocus.subscribe(()=>{
-      console.log("focused")
-      setTimeout(()=>{
-        this.scrollToBottom(0)
-      },500)
- 
-    })
-    this.keyboard.onKeyboardDidShow().subscribe(()=>{
-
-    })
+   
     // this.messages.changes.pipe(throttleTime(500))
   }  
   stopBubble(event){
@@ -152,6 +143,10 @@ export class MessagesPage implements OnInit {
    
   }
   seen_chat(){
+    console.log("focused")
+    setTimeout(()=>{
+      this.scrollToBottom(0)
+    },500)
     this.cs.seen_chat(this.chat_id).then(seen =>{        
       if(seen.continue){
         this.footerFunc.SubrcibeToOwnTopics()
@@ -161,12 +156,15 @@ export class MessagesPage implements OnInit {
       }
     })
   }
+  InitFocusListener(){
+ 
+  }
   ionViewDidLeave(){
     // this.current_length   
  
   }
   ionViewDidEnter (){ 
-    
+
   }
   ionViewWillLeave() {
 
@@ -222,7 +220,7 @@ export class MessagesPage implements OnInit {
           } 
           this.current_index = this.current_length-this.limit  
         }
-         
+      
       })         
     });
   }
