@@ -63,6 +63,7 @@ export class GuestaddPage implements OnInit {
       this.api = admin_site
     })
   }
+  
   addGuest() {          
     if(this.guestForm.valid){
       let {
@@ -73,6 +74,13 @@ export class GuestaddPage implements OnInit {
          password,
          isAdmin         
        }  = this.guestForm.value
+       var 
+       forRsvp = true
+       ,will_come = false
+      if(isAdmin){
+        forRsvp = false,
+        will_come = true
+      }
       this.guest ={
         first_name,
         last_name,    
@@ -80,14 +88,14 @@ export class GuestaddPage implements OnInit {
         email,
         chat_id: ["gchat"],
         isAdmin,
-        forRsvp: true,
-        will_come : false,
+        forRsvp: forRsvp,
+        will_come : will_come,
         notif_count :0,            
         color: this.getRandomColor(),
         diet_restriction: "none",
         bus_reservation : 0,
         reservation_status : "pending"
-      }    
+      }
       this.password = password
       let message = "You are about to add a Guest"
       this.actions.confirmationMessage(message).then(res=>{
@@ -155,7 +163,7 @@ export class GuestaddPage implements OnInit {
         last_name: '',     
         number: '',
         email: '',   
-        password :'',        
+        password :this.getRandomPassword(),        
         isAdmin: false,
       }
     )
