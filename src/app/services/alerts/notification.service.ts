@@ -30,6 +30,7 @@ export class NotificationService {
           {
             "type":"chat",
             "group": topic,
+            "title":group_name,
             "content" : `${content.first_name} ${content.last_name}: ${content.content}`,
             "vibrate": "300",
             "sender_id" : sender_id,
