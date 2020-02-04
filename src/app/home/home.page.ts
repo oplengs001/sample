@@ -13,8 +13,7 @@ import { FooterComponent} from '../footer/footer.component'
 import { WeatherService} from  '../services/weather/weather.service'
 import { Network } from '@ionic-native/network/ngx';
 import { AnnouncementSaveService } from '../services/announcements/announcement-save.service';
-import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notification/ngx';
-
+// import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 // import { Badge } from '@ionic-native/badge/ngx';
 @Component({
   selector: 'app-home',
@@ -43,7 +42,6 @@ export class HomePage {
     private weatherServ : WeatherService,
     private network: Network,
     private annServe  :AnnouncementSaveService,   
-    private localNotifications: PhonegapLocalNotification
     // private badge: Badge
     ) {
     this.forRsvp = this.footerFunc.forRsvp 
@@ -112,20 +110,12 @@ export class HomePage {
                 
               }else{
                 // this.footerFunc.SubrcibeToOwnTopics()
-                // this.toastService.showNotif("New Message From!", data);
-                this.localNotifications.requestPermission().then(
-                  (permission) => {
-                    if (permission === 'granted') {
-                
-                      // Create the notification
-                      this.localNotifications.create(
-                        data.title, {
-                          body: data.content,
-                          }
-                        );
-                    }
-                  }
-                );
+                this.toastService.messageNotif(`New Message! (${data.title})`, data);
+                // this.localNotifications.schedule({
+                //   title: data.title,
+                //   text: data.content,
+                //   foreground: true,
+                // });
               }
            
               if(!this.authServ.isAdmin){
@@ -137,34 +127,19 @@ export class HomePage {
               this.footerFunc.addBadge()
               // this.toastService.showNotif("New Announcement!",data)
               this.guestFunc.updateNotifCount(uid,"increment")
-              this.localNotifications.requestPermission().then(
-                (permission) => {
-                  if (permission === 'granted') {
-              
-                    // Create the notification
-                    this.localNotifications.create(
-                      "New Announcement" ,{
-                        body: data.data_body,
-                        }
-                      );
-                  }
-                }
-              );
+              this.toastService.showNotif(`New Announcement!`, data);
+              // this.localNotifications.schedule({
+              //   title: "New Announcement!",
+              //   text: data.data_body,
+              //   foreground: true
+              // });
             }else if(data.type === "adminNotif"){
               if(this.authServ.isAdmin){
-                this.localNotifications.requestPermission().then(
-                  (permission) => {
-                    if (permission === 'granted') {
-                
-                      // Create the notification
-                      this.localNotifications.create(
-                        "Admin Notifications" ,{
-                          body: data.data_body,
-                          }
-                        );
-                    }
-                  }
-                );
+                // this.localNotifications.schedule({
+                //   title: "Admin Notification",
+                //   text: data.data_body,
+                //   foreground: true
+                // });
                 // this.toastService.showNotif("New RSVP Response!",data.data_body)
               }
               

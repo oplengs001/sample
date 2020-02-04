@@ -38,6 +38,7 @@ export class ToastService {
    } catch(e) {}
   }
   showNotif(msg:string,data:any){
+  this.tryDismissAll()
    this.toastCtrl.create({
       header: msg,     
       position: 'top',
@@ -47,20 +48,28 @@ export class ToastService {
           side: 'start',        
           text: 'OK',
           handler: () => {
-            var url = this.url_links[data.type]
-            
-            // if(chat_data.type ==="chat"){
-            //  url = url+`?group_id=${chat_data.group}`
-            // }else{
-
-            // }
-            if(data.type === "announcement")
             this.router.navigateByUrl("/announcement");
-            console.log(url)
-        
           }
         }
       ]
     }).then(toast => toast.present());
   }
+  messageNotif(msg:string,data:any){
+  this.tryDismissAll()
+    this.toastCtrl.create({
+       header: msg,     
+       position: 'top',
+       showCloseButton: true,
+       buttons: [
+         {
+           side: 'start',        
+           text: 'OK',
+           handler: () => {
+             var url = `messages?group_id=${data.group}`
+             this.router.navigateByUrl(url);
+           }
+         }
+       ]
+     }).then(toast => toast.present());
+   }
 }
