@@ -27,6 +27,7 @@ import { Badge } from '@ionic-native/badge/ngx'
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions/ngx';
@@ -92,6 +93,7 @@ import 'gl-ionic-background-video';
     NativeGeocoder,
     Keyboard,
     FileTransfer,
+    LocalNotifications,
     Network,
     Badge,
     ImagePicker,

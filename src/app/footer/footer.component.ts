@@ -179,12 +179,9 @@ export class FooterComponent   {
     this.remItem(items)      
   }
   dataSet(data,uid){
-    
     this.currentChats = this.pushToArray(this.currentChats,data,uid,false)
     this.inbox_count = this.countInbox(this.currentChats,uid)       
     this.inbox_hide = this.inbox_count!==0 ? false : true
-    
-
   }
   addBadge():void{
     this.badge.increase(1)

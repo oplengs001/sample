@@ -36,6 +36,7 @@
     "@ionic-native/in-app-browser": "^5.15.0",
     "@ionic-native/ionic-webview": "^5.14.0",
     "@ionic-native/keyboard": "^5.19.1",
+    "@ionic-native/local-notifications": "^5.20.0",
     "@ionic-native/native-geocoder": "^5.12.0",
     "@ionic-native/native-page-transitions": "^5.14.0",
     "@ionic-native/network": "^5.16.0",
@@ -54,7 +55,9 @@
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-geolocation": "^4.0.2",
-    "cordova-plugin-inappbrowser": "^3.1.0",
+    "cordova-plugin-ionic-keyboard": "2.2.0",
+    "cordova-plugin-ionic-webview": "4.1.3",
+    "cordova-plugin-local-notification": "^0.9.0-beta.2",
     "cordova-plugin-nativegeocoder": "^3.2.2",
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-telerik-imagepicker": "^2.3.3",
@@ -90,8 +93,6 @@
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
     "cordova-plugin-device": "^2.0.2",
-    "cordova-plugin-ionic-keyboard": "^2.1.3",
-    "cordova-plugin-ionic-webview": "^4.1.1",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
@@ -114,8 +115,6 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-geolocation": {},
       "cordova-plugin-nativegeocoder": {
         "LOCATION_WHEN_IN_USE_DESCRIPTION": "Use geocoder service"
@@ -130,7 +129,6 @@
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": "to choose photos"
       },
       "com.telerik.plugins.nativepagetransitions": {},
-      "cordova-plugin-inappbrowser": {},
       "cordova-plugin-badge": {},
       "cordova-plugin-x-socialsharing": {
         "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
@@ -140,7 +138,10 @@
       "cordova-plugin-network-information": {},
       "cordova-plugin-advanced-http": {
         "OKHTTP_VERSION": "3.10.0"
-      }
+      },
+      "cordova-plugin-local-notification": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
       "ios",

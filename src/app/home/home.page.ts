@@ -13,6 +13,7 @@ import { FooterComponent} from '../footer/footer.component'
 import { WeatherService} from  '../services/weather/weather.service'
 import { Network } from '@ionic-native/network/ngx';
 import { AnnouncementSaveService } from '../services/announcements/announcement-save.service';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 // import { Badge } from '@ionic-native/badge/ngx';
 @Component({
   selector: 'app-home',
@@ -41,6 +42,7 @@ export class HomePage {
     private weatherServ : WeatherService,
     private network: Network,
     private annServe  :AnnouncementSaveService,   
+    private localNotifications: LocalNotifications
     // private badge: Badge
     ) {
     this.forRsvp = this.footerFunc.forRsvp 
@@ -105,12 +107,17 @@ export class HomePage {
           } else {
             if(data.type === "chat"){
               // var uid = await this.authServ.currentUserId();        
-              // if (data.sender_id === uid){
+              if (data.sender_id === uid){
                 
-              // }else{
-              //   this.footerFunc.SubrcibeToOwnTopics()
-              //   this.toastService.showNotif("New Message From!", data);
-              // }
+              }else{
+                // this.footerFunc.SubrcibeToOwnTopics()
+                // this.toastService.showNotif("New Message From!", data);
+                this.localNotifications.schedule({
+                  title: data.group,
+                  text: data.content,
+                });
+              }
+           
               if(!this.authServ.isAdmin){
                 this.footerFunc.addBadge()
               }
@@ -118,11 +125,18 @@ export class HomePage {
             }else if(data.type === "announcement"){
               var uid = await this.authServ.currentUserId();   
               this.footerFunc.addBadge()
-              this.toastService.showNotif("New Announcement!",data)
+              // this.toastService.showNotif("New Announcement!",data)
               this.guestFunc.updateNotifCount(uid,"increment")
+              this.localNotifications.schedule({
+                title: "New Announcement!",
+                text: data.data_body,
+              });
             }else if(data.type === "adminNotif"){
               if(this.authServ.isAdmin){
-                
+                this.localNotifications.schedule({
+                  title: "New Admin Notification",
+                  text: data.data_body,
+                });
                 // this.toastService.showNotif("New RSVP Response!",data.data_body)
               }
               

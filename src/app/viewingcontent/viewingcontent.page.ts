@@ -16,7 +16,7 @@ export class ViewingcontentPage implements OnInit {
   async closeModal (){
     this.mdlctrl.dismiss()
   }
-  openLink(url){
-    window.open(url, '_system');
+openLink(url){
+    // window.open(url, '_system');
   }
 }

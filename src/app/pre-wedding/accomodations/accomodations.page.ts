@@ -17,6 +17,6 @@ export class AccomodationsPage implements OnInit {
   ngOnInit() {
   }
   openLink(url){
-    window.open(url, '_system');
+    // window.open(url, '_system');
   }
 }

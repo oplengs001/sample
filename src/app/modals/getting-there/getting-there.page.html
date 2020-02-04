@@ -14,7 +14,7 @@
       </ion-card-header>
       <ion-card-content class="content-card">
           <ion-img (click)="imageClick('../../assets/images/s1.png')" src="../../assets/images/s1.png"></ion-img>                          
-                <div  style="font-size: 15px;" class="ion-text-right"><a (click)=openLink()>See on Google Maps</a></div>       
+                <div  style="font-size: 15px;" class="ion-text-right"> <a *ngIf="info" href={{info.coordinates}}>See on Google Maps</a></div>       
           <div class="ion-text-justify" style="font-size: 15px;">Directions are as follows & shown on map attached:</div>  
           <ion-item lines="none">
               <div class="ion-text-justify" style="font-size: 12px;">Drive from Frankton, along State Highway 6 and enter into Jacks Point.</div>

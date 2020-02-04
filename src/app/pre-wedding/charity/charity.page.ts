@@ -78,6 +78,6 @@ export class CharityPage implements OnInit {
     }
   }
   openLink(url){
-    window.open(url, '_system');
+    // window.open(url, '_system');
   }
 }

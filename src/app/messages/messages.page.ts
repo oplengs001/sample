@@ -182,14 +182,15 @@ export class MessagesPage implements OnInit {
     this.emptyChat()
     this.currentUser = this.auth.currentUserId()
     this.seen_chat()   
-await this.cs.joinUsers(this.cs.get(this.chat_id)).then(data=>{
-     
+    await this.cs.joinUsers(this.cs.get(this.chat_id)).then(data=>{
+      
       this.chat$ = data      
-  
+      console.log(data)
       // this.scrollToBottom(0)   
       // this.scrollToBottom(500)
       
       this.ThisChat = data.subscribe(data=>{    
+        console.log(data)
         this.gcName = data.group_name        
         this.current_images = data.images.reverse()
 

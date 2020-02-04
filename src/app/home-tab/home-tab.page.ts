@@ -136,7 +136,7 @@ export class HomeTabPage implements OnInit, OnDestroy {
     
   }
   openLink(url){
-    window.open(url, '_system');
+    // window.open(url, '_system');
   }
   ngOnDestroy(){
 

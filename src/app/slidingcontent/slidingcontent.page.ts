@@ -237,10 +237,10 @@ export class SlidingcontentPage implements OnInit {
         });
       }
     }
-    openReception(){    
-      var url = 'https://www.google.com/maps/search/?api=1&query=-45.033001,168.660799'
-      window.open(url, '_system');
-    }
+    // openReception(){    
+    //   var url = 'https://www.google.com/maps/search/?api=1&query=-45.033001,168.660799'
+    //   window.open(url, '_system');
+    // }
 
     changeImage(){
       if(this.isAdmin){
