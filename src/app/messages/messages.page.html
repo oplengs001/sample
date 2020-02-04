@@ -17,7 +17,7 @@
     <ion-infinite-scroll-content   [hidden]="hide_scroll" loading-spinner="crescent">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  <ion-grid *ngIf="chat$ | async as chat" class="chat-grid" [hidden]="hide_chat">
+  <ion-grid *ngIf="chat$ | async as chat" class="chat-grid">
     <!-- <div [innerHTML]="chatHTML"></div> -->
     <!-- <ion-row #messages *ngFor="let msg of chat.messages.slice(current_index,current_length);let i = index; trackBy: trackByCreated" 
     [ngClass]="msg.user.uid !== currentUser?'':'ion-justify-content-end'"> -->

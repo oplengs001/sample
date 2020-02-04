@@ -96,7 +96,7 @@ export class MessagesPage implements OnInit {
       console.log("focused")
       setTimeout(()=>{
         this.scrollToBottom(0)
-      },300)
+      },500)
  
     })
     this.keyboard.onKeyboardDidShow().subscribe(()=>{
@@ -178,7 +178,7 @@ export class MessagesPage implements OnInit {
   } 
   async showChat(){
     
-    this.hide_chat = true
+
     this.emptyChat()
     this.currentUser = this.auth.currentUserId()
     this.seen_chat()   
@@ -209,50 +209,23 @@ export class MessagesPage implements OnInit {
             this.limit = this.current_length
           }else{
           
-            if(!from_seen){ //if new chat , therefore add limit
+            if(!from_seen){ 
               this.limit++
               this.infiniteScroll.disabled = false    
               this.hide_scroll = true  
               this.scrollToBottom(0)
-              this.hide_chat = false
+              
             }else{
               this.scrollToBottom(500)
             }
           } 
-          // this.initialTemplate(data.messages)
           this.current_index = this.current_length-this.limit  
         }
          
       })         
     });
   }
-  // initialTemplate(messages:any){
-  //   messages = messages.slice(this.current_index ,this.current_length).reverse()
-  //   for(var i in messages){
-  //     var msg = messages[i]
-  //     var otherHTML = `
-      
-  //     <ion-row #messages class="ion-justify-content-end">
-  //       <ion-col size="auto" class="message other-message">   
-  //         <div class="username" style="{color:${msg.user.color}}"><b >${ msg.user.first_name}  ${ msg.user.last_name }</b><br></div>
-  //         <div class="image_container">
-  //           <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
-  //           <ion-img [src]="msg.image"
-  //           (ionImgDidLoad)="imageLoaded($event,true,i,current_length)"
-  //           (click)= imageClick(msg.image)
-  //           ></ion-img>
-  //         </div>         
-  //         <span>${ msg.content }</span>
-  //         <div class="time" text-right><br>{{${ msg.createdAt} | date:'h:mm a' }}</div>
-  //       </ion-col>  
 
-  //     </ion-row>
-
-  //     `
-  //     // var currentHTML =
-  //     this.chatHTML = otherHTML + this.chatHTML;
-  //   }
-  // }
   emptyChat(){
     this.ThisChat.unsubscribe()
     this.current_index = undefined

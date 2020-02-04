@@ -43,6 +43,7 @@ export class SlidingcontentPage implements OnInit {
   info : any
   user_details : any
   private contentSubs : Subscription;
+  private eventSubs : Subscription
   constructor(
     private transServe : TransitionsService,
     private authServ : AuthService,
@@ -95,11 +96,36 @@ export class SlidingcontentPage implements OnInit {
       }else if(this.content === "Itinerary"){
         this.Dining =false
         this.Itinerary = true
+        this.events = this.contentServe.getEvents()
+    
+        this.eventSubs = this.events.subscribe(data =>{
+          console.log(data)      
+          if(data.length > this.event_data){  
+            this.tba = true
+            this.hideElements = false
+            this.ioncontent.scrollToBottom(1000);   
+          }else{
+            this.tba = false
+            this.hideElements = true
+          }
+          this.event_data =  data.sort((a, b) => a.position - b.position)     
+          
+          this.lastPosition = this.event_data.length === 0? -1: this.event_data[this.event_data.length-1].position
+          // this.event_data = this.addExpansion(this.event_data)
+        })
+        this.generalInfo.getInfo().subscribe(data=>{
+          if(data){
+            // this.checkTextarea()
+            console.log(data)
+            this.info = data[0]//to be edit for more user
+          }  
+        })
       }               
     }); 
   }
   ionViewDidLeave(){
     this.contentSubs.unsubscribe()
+    this.eventSubs.unsubscribe()
   }
   async addEvent() {
 
@@ -184,33 +210,11 @@ export class SlidingcontentPage implements OnInit {
       this.isAdmin = data.isAdmin
       this.user_details = data
     })
-    this.events = this.contentServe.getEvents()
-    
-    this.events.subscribe(data =>{
-      console.log(data)      
-      if(data.length > this.event_data){  
-        this.tba = true
-        this.hideElements = false
-        this.ioncontent.scrollToBottom(1000);   
-      }else{
-        this.tba = false
-        this.hideElements = true
-      }
-      this.event_data =  data.sort((a, b) => a.position - b.position)     
-      
-      this.lastPosition = this.event_data.length === 0? -1: this.event_data[this.event_data.length-1].position
-      // this.event_data = this.addExpansion(this.event_data)
-    })
+  
     this.generalInfo.getWeddingInfoTakeOne().subscribe(data=>{      
       this.topResto = data[0].dining_list
     })
-    this.generalInfo.getInfo().subscribe(data=>{
-      if(data){
-        this.checkTextarea()
-        console.log(data)
-        this.info = data[0]//to be edit for more user
-      }  
-    })
+     
     }
     saveItem(event){
       if(this.isAdmin){
