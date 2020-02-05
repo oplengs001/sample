@@ -5,6 +5,7 @@
     </ion-buttons>
     <ion-title *ngIf="chat$ | async as chat" (click)=openDetails() >
       {{ chat.group_name }}
+      <span class="tapper"><br> tap here for group info </span>
     </ion-title>
   </ion-toolbar>
 </ion-header>

@@ -46,7 +46,7 @@
     "angularfire2": "^5.2.1",
     "com.telerik.plugins.nativepagetransitions": "^0.6.5",
     "cordova-android": "^8.0.0",
-    "cordova-ios": "5.0.1",
+    "cordova-ios": "^5.1.1",
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-advanced-http": "^2.3.0",
     "cordova-plugin-badge": "^0.8.8",
@@ -141,8 +141,8 @@
       "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ]
   }
 }

@@ -335,7 +335,7 @@ export class MessagesPage implements OnInit {
         //  
       if(this.first_line){      
         if(this.limit >= index &&  index >= this.limit-5){
-          this.scrollToBottom(0)
+          // this.scrollToBottom(0)
         }    
       }      
         event.target.parentElement.classList.add('img-loaded');

@@ -22,6 +22,7 @@ export class AppComponent {
   hideSlide: boolean;
   forRsvp: boolean;
   userID: string;
+  isAndroid : boolean
   userDetails: any
   image_class: string
   slideOptions = {
@@ -106,7 +107,11 @@ export class AppComponent {
           s4: "../assets/images/login_icons/s4.png ",
           s5: "../assets/images/login_icons/s5.png "
         }
+      
         this.image_class = "slide-icon"
+      }
+      if(this.platform.is("android")){
+        this.isAndroid = true
       }
     });
 

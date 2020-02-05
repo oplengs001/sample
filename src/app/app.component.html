@@ -13,7 +13,7 @@
       <ion-fab-button (click)="reRoute('admin-announcement')"color="light" data-desc="Create Announcement">
         <ion-icon name="megaphone"></ion-icon>     
       </ion-fab-button>
-      <ion-fab-button (click)="reRoute('admin-messaging')" color="light" data-desc="Create/Edit Group">
+      <ion-fab-button (click)="reRoute('admin-messaging')" color="light" data-desc="Create Group Chat">
         <ion-icon name="contacts"></ion-icon>        
       </ion-fab-button>
       <ion-fab-button (click)="goToItinerary()" color="light" data-desc="Edit Itinerary">
@@ -42,7 +42,7 @@
                 <!-- <p> "Some Welcome Messsage and Intro About the App"</p>                 -->
             </div>
           </ion-slide>  
-          <ion-slide>
+          <ion-slide *ngIf=isAndroid>
               <ion-card  class="slide-content">   
                   <h1 class="notified-text-up">Digital Wedding<br> Static Page</h1>      
                   <img [class]="image_class" src="{{image_links.s5}}">
