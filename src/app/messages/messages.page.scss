@@ -116,14 +116,26 @@ ion-content{
     visibility: visible;
     opacity : 1
   } 
+
+  .loader-image{
+    height: 25vh;
+    width: 50vw;
+    object-fit: inherit;
+    object-position: inherit;
+    // position: absolute;
+    visibility: visible;
+    opacity : 1
+  }
   ion-img {
     
-    opacity: 0;
+    opacity: 1;
     visibility: hidden;
     max-width: 50vw !important;
     height: 0vh ;
+    
     // position: absolute
   }
+  
   &.img-loaded {
     // background-color: transparent;
     // border: 0;
@@ -131,12 +143,18 @@ ion-content{
     max-width: 50vw !important;
 
     ion-img {
-      
+      height: 25vh !important;
+      object-fit: cover;
+      object-position: inherit;
       opacity: 1;
       visibility: visible;
-      height: 100% !important;
+      // height: 100% !important;
     }
 
+    .loader-image{
+      display: none;
+      visibility: hidden;
+    }
     ion-skeleton-text {
       display: none;
       visibility: hidden;

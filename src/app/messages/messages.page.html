@@ -28,10 +28,12 @@
         <ion-col size="auto" *ngIf="msg.user.uid !== currentUser" class="message other-message">   
           <div class="username" [style.color]=msg.user.color><b >{{ msg.user.first_name}}  {{ msg.user.last_name }}</b><br></div>
           <div class="image_container">
-            <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
+            <!-- <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text> -->
+            <img class="loader-image"  src="../../assets/images/icon.png" *ngIf="msg.image" >
             <ion-img [src]="msg.image"
             (ionImgDidLoad)="imageLoaded($event,true,i,current_length)"
             (click)= imageClick(msg.image)
+            alt=loading
             ></ion-img>
           </div>         
           <span>{{ msg.content }}</span>
@@ -40,10 +42,12 @@
      
         <ion-col size="auto" *ngIf="msg.user.uid === currentUser" class="message my-message ion-justify-content-end">
           <div class="image_container">
-            <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text>
+            <!-- <ion-skeleton-text *ngIf="msg.image" animated></ion-skeleton-text> -->
+            <img class="loader-image" src="../../assets/images/icon.png"  *ngIf="msg.image">
             <ion-img [src]="msg.image"
             (ionImgDidLoad)="imageLoaded($event,true,i,current_length)"
             (click)= imageClick(msg.image)
+            alt=loading
             ></ion-img>   
           </div>       
             <span>{{ msg.content }}</span>
