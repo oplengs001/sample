@@ -11,22 +11,27 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>     
-    <ion-card-header>
+<ion-content >
+  <ion-card >     
+    <ion-card-header >
       <ion-card-title  class="ion-text-center"></ion-card-title>
-      <img src="../../assets/images/new-zealand.jpg" />
+      <img [src]="gInfo.general_info.visas.image_path" />
     </ion-card-header>
-    <ion-card-content >
-      <h2 class="ion-text-left"><b>Filipino Citizen</b></h2>
-      <p>
-          If you are a Filipino Citizen visiting New Zealand you will need a Visa.<a href='https://www.immigration.govt.nz/contact/offices/philippines'> click here </a> 
-      </p>
-      <br>
-      <h2 class="ion-text-left"><b>Every Other Country</b></h2>
-      <p >
-          To find out whether your citizenship requires a Visa for entry to New Zealand please visit New Zealand Immigration’s Passport Wizard<a  href='https://www.immigration.govt.nz/new-zealand-visas/options/visit/explore-visitor-visa-options'> click here </a> 
-      </p>
-     </ion-card-content>
+    <ion-card-content class="ion-text-justify">
+      <h2 class="ion-text-justify"><b>FILIPINO CITIZEN</b></h2>
+          Please note that as of WedVite’s launch date, Philippine passport holders are required to apply for a visa to enter New Zealand.
+          <a href='https://www.immigration.govt.nz/contact/offices/philippines'> click here </a> 
+      <br><br>
+      <h2 class="ion-text-justify"><b>NEW ZEALAND ELECTRONIC TRAVEL AUTHORITY (NZETA)</b></h2>
+          As of 1 October 2019 the New Zealand government has implemented an electronic visa waiver for 
+          eligible passport holders. Please note that as of 1 October 2019 it is now obligatory for citizens of all 60 visa waiver countries
+          (such as US, Canada, UK, Malaysia, Italy, Singapore, Japan, Spain and others) to apply for the NZeTA. To learn more about NZeTA you may visit
+          <a  href='https://www.immigration.govt.nz/new-zealand-visas/apply-for-a-visa/about-visa/nzeta'> click here</a> 
+          <br><br>
+          To apply for the NZeTA you may visit  <a  href='https://nzeta.immigration.govt.nz/'>nzeta.immigration.govt.nz/</a> 
+          <br><br>
+          If you are unsure whether your passport requires a visa or simply an NZeTA please visit New Zealand immigration’s passport wizard
+          <a  href='https://www.immigration.govt.nz/new-zealand-visas/options/visit/explore-visitor-visa-options'> click here </a>
+      </ion-card-content>
   </ion-card>  
 </ion-content>

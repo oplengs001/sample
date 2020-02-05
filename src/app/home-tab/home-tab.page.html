@@ -20,22 +20,97 @@
           Queenstown is a natural playground providing an incredible backdrop for a range of sights to see and things to do for adventurers of all persuasions.
       </ion-card-content>
   </ion-card >
-  <ion-card (click)="expandItem(item)" *ngFor="let item of items" class="item-card">
-    <ion-card-header class="item-header">  
-        <ion-item lines="none">
-          <ion-icon slot="end" name="ios-arrow-down"></ion-icon>
-          <ion-card-title class="item-title">{{item.title}}</ion-card-title>
-        </ion-item>
-    </ion-card-header>
-    <ion-card-content class="ion-text-center item-content">
-      <app-expandable expandHeight="70vh" [expanded]="item.expanded">
-          <img src="{{item.image_link}}" alt="" class="img-container"/>
-          <br>
-         {{item.text}}
-         <a href="{{item.url}}"> 
-         {{item.url_tag}}
-         </a>
-      </app-expandable>
-    </ion-card-content>
-  </ion-card>
+  <ion-card (click)="expandItem(this.items[0])" class="item-card">
+      <ion-card-header class="item-header">  
+          <ion-item lines="none">
+            <ion-icon slot="end" name="ios-arrow-down"></ion-icon>
+            <ion-card-title class="item-title">Skiing & Snowboarding</ion-card-title>
+          </ion-item>
+      </ion-card-header>
+      <ion-card-content class="ion-text-justify item-content">
+        <app-expandable expandHeight="140vh" [expanded]="this.items[0].expanded">
+            <img src="/assets/images/activities/ski1.jpg" alt="" class="img-container"/>
+            <br>
+            Queenstown is nestled in the heart of the Southern Alps, boasting magnificent mountains for skiers and snowboarders of all levels.
+            There are four ski areas near Queenstown: Coronet Peak being the closest (just 25 minutes from town centre) and 
+            Treble Cone being the farthest (1 hour drive). Our favourite, so far, though is The Remarkables (35-45 minutes from town), with their Ice Bar on 
+            top of the mountain making it a unique place to have a hot cup of chocolate or a glass of champagne. For more information on skiing and snowboarding in Queenstown you can visit
+             <br>
+           <a href="https://www.queenstownnz.co.nz/things-to-do/skiing-and-snowboarding/ "> 
+            QUEENSTOWN SNOWBOARDING 
+           </a>
+           <br><br>
+           For information on ski or snowboard rentals you can visit 
+           <a href="https://www.queenstownnz.co.nz/things-to-do/skiing-and-snowboarding/ski-and-snowboard-hire/"> 
+            SKI AND SNOWBOARD HIRE
+           </a>
+           <br><br>
+           Alternatively, you can also visit the ski resort sites to get more information on lift passes, rentals and lessons: 
+           <br> 
+           <ion-list>
+             <ion-item>
+                <ion-avatar slot="start">
+                    <img src="../../assets/images/resorts/cp.jpg" class="mini_icons"> 
+                  </ion-avatar>
+                  <ion-label>
+                      <a href="https://www.coronetpeak.co.nz/winter/"> 
+                      Coronet Peak 
+                      </a>
+                  </ion-label>
+             </ion-item>
+             <ion-item>
+                <ion-avatar slot="start">
+                    <img src="../../assets/images/resorts/remark.jpg" class="mini_icons"> 
+                  </ion-avatar>
+                  <ion-label>
+                      <a href="https://www.theremarkables.co.nz/"> 
+                       The Remarkables
+                      </a>
+                  </ion-label>
+             </ion-item>
+             <ion-item>
+                <ion-avatar slot="start">
+                    <img src="../../assets/images/resorts/cadrona.png" class="mini_icons"> 
+                  </ion-avatar>
+                  <ion-label>
+                      <a href="https://www.cardrona.com/winter/"> 
+                       Cardrona
+                      </a>
+                  </ion-label>
+             </ion-item>
+             <ion-item>
+                <ion-avatar slot="start">
+                    <img src="../../assets/images/resorts/treble.png" class="mini_icons"> 
+                  </ion-avatar>
+                  <ion-label>
+                      <a href="https://www.treblecone.com/"> 
+                        Treble Cone 
+                      </a>
+                  </ion-label>
+             </ion-item>
+           </ion-list>
+        </app-expandable>
+      </ion-card-content>
+    </ion-card>
+    <div *ngFor="let item of items ;let i = index;" >
+        <ion-card (click)="expandItem(item)"  *ngIf="i!==0"class="item-card">
+            <ion-card-header class="item-header" >  
+                <ion-item lines="none">
+                  <ion-icon slot="end" name="ios-arrow-down"></ion-icon>
+                  <ion-card-title class="item-title">{{item.title}}</ion-card-title>
+                </ion-item>
+            </ion-card-header>
+            <ion-card-content class="ion-text-center item-content">
+              <app-expandable expandHeight="70vh" [expanded]="item.expanded">
+                  <img src="{{item.image_link}}" alt="" class="img-container"/>
+                  <br>
+                 {{item.text}}
+                 <a href="{{item.url}}"> 
+                 {{item.url_tag}}
+                 </a>
+              </app-expandable>
+            </ion-card-content>
+          </ion-card>
+    </div>
+
 </ion-content>

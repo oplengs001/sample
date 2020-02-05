@@ -13,6 +13,7 @@ import { FooterComponent} from '../footer/footer.component'
 import { WeatherService} from  '../services/weather/weather.service'
 import { Network } from '@ionic-native/network/ngx';
 import { AnnouncementSaveService } from '../services/announcements/announcement-save.service';
+import { GeneralInfoService } from '../services/content/general-info.service';
 // import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 // import { Badge } from '@ionic-native/badge/ngx';
 @Component({
@@ -43,7 +44,7 @@ export class HomePage {
     private weatherServ : WeatherService,
     private network: Network,
     private annServe  :AnnouncementSaveService,   
-
+  
     // private badge: Badge
     ) {
     this.forRsvp = this.footerFunc.forRsvp 
@@ -205,6 +206,7 @@ export class HomePage {
       this.weather.temperature = data.temperature || "7"
       console.log(this.weather)       
     })     
+  
   }
   scrollToBottom(){
     this.content.scrollToBottom(500);

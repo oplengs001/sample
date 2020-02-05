@@ -1,6 +1,12 @@
 .img-container{
-    height: 40vh;
+    height: 30vh;
     width: 100vw;
     -o-object-fit: cover;
     object-fit: cover;
+}
+ion-card-header{
+    padding-bottom:0px
+}
+ion-card-content{
+    padding-top:0px
 }

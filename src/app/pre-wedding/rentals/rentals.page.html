@@ -7,47 +7,59 @@
           <ion-badge (click)="sharedComps.openMenu()" *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse pulse-on-button" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
           <ion-menu-button></ion-menu-button>
       </ion-buttons>
-    <ion-title>Rentals</ion-title>
+    <ion-title>Rentals & Transportation</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-slides  pager="true" class="rentals">
-    <ion-slide >
       <ion-card class="rental-card">     
           <ion-card-header>
-            <ion-card-title  class="ion-text-center">Car Rental</ion-card-title>  
-            <img src="../../assets/images/car_rental.jpg" class="img-container"/>
+            <img [src]="gInfo.general_info.rentals.image_path" class="img-container" />
+            <!-- <img src="../../assets/images/menu/rental.jpg" class="img-container"/> -->
           </ion-card-header>
           <ion-card-content>
-              <div class="ion-text-center">
-                  Most Recommended Car Rental Service<br>
-                    <a href='https://www.avis.co.nz/en/locations/nz/queenstown/zqn?utm_source=GMB&utm_medium=organic&utm_campaign=Queenstown-Airport'> 
-                    AVIS Queenstown
-                    </a> <br>and <br>
-                    <a href='https://www.hertz.co.nz/p/car-rentals/new-zealand/queenstown/queenstown-airport?utm_source=google&utm_medium=local&utm_campaign=gmb_listing&utm_content=queenstown%20airport'> 
-                    Hertz Queenstown 
-                    </a>  <br>  
-                    for more information about transport services and rental you can go at 
-                    <a href='https://www.queenstownnz.co.nz/plan/services/transport-services/rental-cars/'> 
-                    www.queenstownnz.co.nz/plan/services/transport-services/rental-cars
-                    </a>        
+              <div class="ion-text-justify">
+                  Good news! Queenstown is a very small town and it only takes 15 minutes to get from the airport 
+                  to the centre of Queenstown where all the hotels, restaurants and shops can be found.<br>
+                  <br>
+                  Although taxis and ubers are readily available, if you plan on visiting ski resorts or wineries we highly recommend renting a vehicle for the duration of your stay. 
+                  There are multiple car hire facilities in Queenstown and we do recommend 
+                  <a href='https://www.avis.co.nz/en/locations/nz/queenstown/zqn?utm_source=GMB&utm_medium=organic&utm_campaign=Queenstown-Airport'> 
+                    AVIS Queenstown </a> or 
+                  <a href='https://www.hertz.co.nz/p/car-rentals/new-zealand/queenstown/queenstown-airport?utm_source=google&utm_medium=local&utm_campaign=gmb_listing&utm_content=queenstown%20airport'> 
+                      Hertz Queenstown 
+                  </a>
+                  <br><br>
+                  <b>Tip: book a 4WD vehicle and make sure the vehicle comes with snow chains if you plan on going up to the ski resorts as roads can become icy or slippery due to snowfall.  </b>
+                  <br> <br>
+                  For public transportation from the airport: 
+                  <br> <br>
+                  <b>Taxis:</b> It takes around NZD$40-50 to get a taxi from the airport to the centre of Queenstown with Blue Bubble Taxis or Green Cabs.<br><br>
+                  <b>Buses:</b> Ritchies Connectabus has got busses leaving every 20 minutes from the airport to the centre, costing NZD$12. 
+                  Take Connectabus 11/12 to head straight to the centre of town. If you are planning to travel by bus more often, buy a GoCard at the airport.
+
+                  <br><br>
+                  <h2 class="ion-text-justify"><b>Getting Around Queenstown</b></h2>
+                  The centre of Queenstown is small and charming, making it easy and to get around on foot! Queenstown encourages people to walk, bike or cycle around town with perfect lakeside roads dedicated to pedestrians and cyclists. 
+                  <br><br>
+                  <h2 class="ion-text-justify"><b>Buses</b></h2>
+                  There are also public buses available to take you up to the ski resorts: 
+                  <br><br>
+                  <h2 class="ion-text-left">The Remarkables  <a href="https://www.theremarkables.co.nz/transport/">www.theremarkables.co.nz/transport/</a></h2>
+                  <h2 class="ion-text-left">Coronet Peak   <a href="https://www.coronetpeak.co.nz/transport/">www.coronetpeak.co.nz/transport/</a></h2>
+                  <br><br>
+
+
+                  Want to see more of the surroundings using <b>public busses? Line 10/11</b> runs frequently between Queenstown centre 
+                  to The Remarkables Park and Arrowtown. A day pass costs NZD $33. If you are planning to stay in Queenstown for a longer period of time 
+                  and you prefer to travel by bus, go get yourself a GoCard. The GoCard costs NZD $5 and it needs to be topped up with another 10
+                  to use it but if you are planning to move around by bus, the GoCard will be saving you a lot of money! Without it, a one-way ride
+                  will cost you NZD $5 but with your GoCard, <b>all rides including up to Arrowtown will be only NZD $2.</b><br> You can get the card at Queenstown Airport, 
+                  O’Connell’s Mall kiosk, or any buses that are part of the $2 bus network. 
+                  The buses run from 6 am in the morning until 12 am midnight. To know more about GoCard visit 
+                  <br><a href="www.orc.govt.nz/public-transport/queenstown-buses/fares-and-gocards">www.orc.govt.nz/public-transport/queenstown-buses/fares-and-gocards</a>     
               </div>
           </ion-card-content>
       </ion-card>
-    </ion-slide>
-    <ion-slide >
-      <ion-card class="rental-card">   
-          <ion-card-header>
-            <ion-card-title  class="ion-text-center">Ski Rental</ion-card-title>
-            <img src="../../assets/images/ski_rental.jpg" class="img-container"/>
-          </ion-card-header>
-          <ion-card-content>
-              <div class="ion-text-center">
-                  Hiring Ski & Snowboarding equipment is easy and there's plenty of choice. see more info at <a href='https://www.queenstownnz.co.nz/things-to-do/skiing-and-snowboarding/ski-and-snowboard-hire/'>www.queenstownnz.co.nz/things-to-do/skiing-and-snowboarding/ski-and-snowboard-hire</a>
-              </div>
-          </ion-card-content>
-        </ion-card> 
-    </ion-slide>   
-  </ion-slides> 
+     
 </ion-content>

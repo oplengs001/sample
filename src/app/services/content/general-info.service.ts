@@ -28,7 +28,10 @@ export interface Info {
   ref: DocumentReference,
   api:string
   welcome_email_api:string
-  admin_site:string
+  admin_site:string,
+  visas:any,
+  rentals:any,
+  getting_there: any
 }
 @Injectable({
   providedIn: 'root'
@@ -36,7 +39,7 @@ export interface Info {
 export class GeneralInfoService {
   private g_info: Observable<Info[]>;
   private g_infoCollection :AngularFirestoreCollection<Info>
-
+  public general_info: any
   constructor(
     private afs: AngularFirestore,
   ) {
@@ -65,8 +68,8 @@ export class GeneralInfoService {
   getWeddingInfoTakeOne(){    
     return this.g_infoCollection.
       valueChanges().pipe(take(1),map(
-        (info) => info
+        (info) => info 
       )
-  )
-} 
+    ) 
+  } 
 }

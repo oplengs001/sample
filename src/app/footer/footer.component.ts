@@ -10,6 +10,7 @@ import { AnnouncementSaveService  } from "../services/announcements/announcement
 import { Observable, Subscription } from 'rxjs';
 import { debug } from 'util';
 import { disableDebugTools } from '@angular/platform-browser';
+import { GeneralInfoService } from '../services/content/general-info.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -41,7 +42,7 @@ export class FooterComponent   {
     private badge: Badge,
     private guestServe : GuestAddService,   
     private announcementServices : AnnouncementSaveService,
-    
+    private gInfo : GeneralInfoService
     ) {
     this.inbox_hide = true
     this.GCsubs = new Subscription()
@@ -51,12 +52,16 @@ export class FooterComponent   {
 
   ngOnInit() {
     this.SubrcibeToOwnTopics()    
+
   }
 
   SubrcibeToOwnTopics() {
  
     this.authServ.currentUserData().then( async(data)=>{  
-   
+      this.gInfo.getWeddingInfoTakeOne().subscribe(data=>{
+        this.gInfo.general_info = data[0] 
+        console.log(data)
+      })  
       let {chat_id , isAdmin ,uid ,forRsvp} = data 
       //  this.inbox_count = 0
       this.isAdmin = isAdmin
