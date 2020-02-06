@@ -50,14 +50,19 @@ export class ToastService {
    this.toastCtrl.create({
       header: msg,     
       position: 'top',
-      showCloseButton: true,
-      closeButtonText: 'Dismiss',
       buttons: [
         {
           side: 'start',        
           text: 'OK',
           handler: () => {
             this.router.navigateByUrl("/announcements");
+          }
+        },
+        {
+          side: 'end',        
+          text: 'Dismiss',
+          handler: () => {
+            return null
           }
         }
       ]
@@ -72,8 +77,6 @@ export class ToastService {
     this.toastCtrl.create({
        header: msg,     
        position: 'top',
-       showCloseButton: true,
-       closeButtonText: 'Dismiss',
        buttons: [
          {
            side: 'start',        
@@ -81,7 +84,14 @@ export class ToastService {
            handler: () => {
              this.router.navigateByUrl(url);
            }
-         }
+         },
+         {
+          side: 'end',        
+          text: 'Dismiss',
+          handler: () => {
+            return null
+          }
+        }
        ]
      }).then(toast => toast.present());
    }
@@ -92,8 +102,6 @@ export class ToastService {
       this.toastCtrl.create({
          header: msg,     
          position: 'top',
-         showCloseButton: true,
-         closeButtonText: 'Dismiss',
          buttons: [
            {
              side: 'start',        
@@ -101,7 +109,14 @@ export class ToastService {
              handler: () => {
               this.trans.reRoute("/rsvp-list")
              }
-           }
+           },
+           {
+            side: 'end',        
+            text: 'Dismiss',
+            handler: () => {
+              return null
+            }
+          }
          ]
        }).then(toast => toast.present());
      }
