@@ -73,7 +73,7 @@ export class CreateGroupPage implements OnInit {
   }){}
   createGroupForm() {
     this.GroupForm = this.fb.group({
-      group_id: ['', Validators.required],
+      group_id: [''],
       group_name: ['', Validators.required],
     });
   }
@@ -98,8 +98,13 @@ export class CreateGroupPage implements OnInit {
       new_array = this.group_array,
       reduced_array =[], 
       {value}= formValues,
-      {group_name , group_id } = value,    
-      chat_group = {
+      {group_name , group_id } = value
+      if(group_id){
+        group_id = group_id
+      }else{
+        group_id = group_name
+      }
+      var chat_group = {
         group_id : group_id,
         group_name : group_name
       },group_members = this.group_array.map(data=>{

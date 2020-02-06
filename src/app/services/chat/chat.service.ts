@@ -185,11 +185,12 @@ export class ChatService {
     let format  = await this.group_members_format(group_members,forEdit,group_id)    
     var gc_name = group_name,
     createdAt = Date.now()
-
-    if(forEdit){
-      gc_name = format.group_name
-      createdAt = format.createdAt
-    }
+   
+    // if(forEdit){
+    //   gc_name = format.group_name
+    //   createdAt = format.createdAt
+    // }
+    
     const data = {
       uid,
       group_name : gc_name, 
@@ -198,6 +199,7 @@ export class ChatService {
       messages: format.messages,
       inbox: format.inbox_format
     };
+  
     return await this.afs.collection('chats').doc(group_id).set(data)        
   }
   async sendMessage(chatId,group_name,content, image_url) :Promise <any>{

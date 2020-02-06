@@ -51,6 +51,7 @@ export class ToastService {
       header: msg,     
       position: 'top',
       showCloseButton: true,
+      closeButtonText: 'Dismiss',
       buttons: [
         {
           side: 'start',        
@@ -71,6 +72,8 @@ export class ToastService {
     this.toastCtrl.create({
        header: msg,     
        position: 'top',
+       showCloseButton: true,
+       closeButtonText: 'Dismiss',
        buttons: [
          {
            side: 'start',        
@@ -89,6 +92,8 @@ export class ToastService {
       this.toastCtrl.create({
          header: msg,     
          position: 'top',
+         showCloseButton: true,
+         closeButtonText: 'Dismiss',
          buttons: [
            {
              side: 'start',        

@@ -10,7 +10,7 @@
   <ion-content fullscreen>
       <form [formGroup]="GroupForm" (ngSubmit)="addGroup(GroupForm)">
       <ion-list>           
-            <ion-item>
+            <ion-item hidden=true>
                 <ion-label position="stacked">Group ID</ion-label>
                 <ion-input formControlName="group_id" [readonly]="SavingModal" value={{group_details.id}}></ion-input>
             </ion-item>

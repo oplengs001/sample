@@ -198,6 +198,7 @@ export class HomePage {
     await modal.present();
   }
   ngOnInit() {
+   
     this.subscribeToTopic()
     this.weatherServ.getQtown().then(data=>{
       console.log(data)
