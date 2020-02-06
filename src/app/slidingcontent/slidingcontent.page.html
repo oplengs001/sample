@@ -19,13 +19,38 @@
             <ion-card-title  class="ion-text-center"> Tom & Ingga's <br>Top Recommended Restaurants</ion-card-title>              
           </ion-card-header>   
       </ion-card>   
-      <ion-card class="content-card" *ngFor="let resto of topResto" (click)="OpenDining(resto)">
-          <ion-img src="{{resto.image_url}}"></ion-img>
-          <ion-card-header> 
-            <ion-card-title>{{resto.name}}</ion-card-title>    
-            <ion-card-subtitle>{{resto.location}}</ion-card-subtitle>
-          </ion-card-header>   
-      </ion-card>     
+      <div *ngFor="let dine of dines" >
+        <ion-card (click)="expandItem(dine)" class="item-card">
+          <ion-card-header class="item-header" >  
+              <ion-item lines="none">
+                <ion-icon slot="end" name="ios-arrow-down"></ion-icon>
+                <ion-card-title class="item-title">{{dine.title}}</ion-card-title>
+              </ion-item>
+          </ion-card-header>
+          <ion-card-content class="ion-text-center item-content">
+            <app-expandable expandHeight="300vh" [expanded]="dine.expanded">
+              <div scroll="true">
+                  <ion-list>
+                      <div *ngFor="let resto of dine.restaurants"> 
+                          <ion-card class="content-card" (click)="OpenDining(resto)">
+                              
+                              <ion-img src="{{resto.image_url}}"></ion-img>
+                              <ion-card-header> 
+                                <ion-card-title>{{resto.name}}</ion-card-title>    
+                                <ion-card-subtitle>{{resto.location}}</ion-card-subtitle>
+                              </ion-card-header>
+                          </ion-card>
+                      </div>
+                    </ion-list>
+              </div>
+              
+            </app-expandable>
+          </ion-card-content>
+        </ion-card>
+      </div>
+  
+
+
       <ion-card class="content-card">
           <ion-card-header> 
             <ion-card-subtitle class="ion-text-center">see more at <br><a href="https://www.queenstownnz.co.nz/places-to-eat-and-drink/">queenstown places to Eat & Drink </a></ion-card-subtitle>

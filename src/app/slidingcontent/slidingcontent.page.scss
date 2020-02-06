@@ -31,6 +31,11 @@
     font-size: 14px !important
 
 }
+.resto-content{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top:0 !important;
+}
 .buttons-pick-up{
 
     ion-button{
@@ -69,6 +74,29 @@
 }
 ion-textarea{
     height: auto !important;
+}
+.item-header{
+    padding-bottom: 0px !important;
+}
+.item-title{
+    font-size: 18px !important;
+    font-weight: 550
+}
+.item-content{
+    padding-top: 0px !important;
+}
+.item-card{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: unset;
+    margin-right: unset;
+    -webkit-margin-start: 0px;
+    margin-inline-start: 0px;
+    -webkit-margin-end: 0px;
+    margin-inline-end: 0px;
+    border-radius: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 ion-content{
     // background : url(../../assets/images/gradient4.jpg) no-repeat center center;

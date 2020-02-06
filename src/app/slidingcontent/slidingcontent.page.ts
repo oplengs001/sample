@@ -42,6 +42,8 @@ export class SlidingcontentPage implements OnInit {
   lastPosition : number
   info : any
   user_details : any
+  divisions:any
+  dines : any = []
   private contentSubs : Subscription;
   private eventSubs : Subscription
   constructor(
@@ -62,6 +64,24 @@ export class SlidingcontentPage implements OnInit {
   ) {   
     this.Dining = false
     this.Itinerary = false   
+    this.divisions = [
+      { 
+        expanded: false,
+        title : "Fine Dining"
+      },
+      { 
+        expanded: false,
+        title : "Casual"
+      },
+      { 
+        expanded: false,
+        title : "Dessert & Sweet Shops"
+      },
+      { 
+        expanded: false,
+        title : "Drinks"
+      },
+    ]
   }
   doReorder(ev: any) {    
     var 
@@ -214,6 +234,21 @@ export class SlidingcontentPage implements OnInit {
   
     this.generalInfo.getWeddingInfoTakeOne().subscribe(data=>{      
       this.topResto = data[0].dining_list
+      
+      this.topResto = this.topResto.reduce(function (r, a) {
+          r[a.type] = r[a.type] || [];
+          r[a.type].push(a);
+          return r;
+      }, Object.create(null));
+      var top_resto = this.topResto
+      for (var key of Object.keys(top_resto)) {
+        console.log(top_resto[key])
+        this.dines.push({
+          title : key,
+          restaurants : top_resto[key],
+          expanded : false,
+        })
+      }
     })
      
     }
@@ -232,14 +267,15 @@ export class SlidingcontentPage implements OnInit {
       if (item.expanded) {
         item.expanded = false;
       } else {
-        this.event_data.map(listItem => {
-          if (item == listItem) {
-            listItem.expanded = !listItem.expanded;
-          } else {
-            listItem.expanded = false;
-          }
-          return listItem;
-        });
+        item.expanded = true;
+        // this.dines.map(listItem => {
+        //   if (item == listItem) {
+        //     listItem.expanded = !listItem.expanded;
+        //   } else {
+        //     listItem.expanded = false;
+        //   }
+        //   return listItem;
+        // });
       }
     }
     // openReception(){    
