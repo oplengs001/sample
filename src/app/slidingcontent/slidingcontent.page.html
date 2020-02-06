@@ -19,7 +19,7 @@
             <ion-card-title  class="ion-text-center"> Tom & Ingga's <br>Top Recommended Restaurants</ion-card-title>              
           </ion-card-header>   
       </ion-card>   
-      <div *ngFor="let dine of dines" >
+      <div *ngFor="let dine of contentServe.dines;let i = index" >
         <ion-card (click)="expandItem(dine)" class="item-card">
           <ion-card-header class="item-header" >  
               <ion-item lines="none">
@@ -32,7 +32,7 @@
               <div scroll="true">
                   <ion-list>
                       <div *ngFor="let resto of dine.restaurants"> 
-                          <ion-card class="content-card" (click)="OpenDining(resto)">
+                          <ion-card class="content-card" (click)="OpenDining(resto,i)">
                               
                               <ion-img src="{{resto.image_url}}"></ion-img>
                               <ion-card-header> 

@@ -14,7 +14,8 @@ export class WeatherService {
     app_key : "517f65cb2270dd87f82bc1059680ec6e",
     app_id2 : "dfbbd7b2",
     app_key2 : "acd9f9997c49af151e9727de8018d236",
-    qtown_api_endpoint : "https://api.openweathermap.org/data/2.5/weather?id=963516&APPID=aa0f9dce6dbbe256382c80a9121d8539"
+    qtown_api_endpoint : "https://api.openweathermap.org/data/2.5/weather?id=963516&APPID=aa0f9dce6dbbe256382c80a9121d8539",
+    nzd_currency_endpoint :"https://free.currconv.com/api/v7/convert?q=NZD_PHP,NZD_USD,NZD_AUD,NZD_SGD,PHP_NZD,USD_NZD,AUD_NZD,SGD_NZD&compact=ultra&apiKey=969ac8deaf5fc94982a9"
   }
 
 
@@ -53,6 +54,18 @@ export class WeatherService {
       }
       ,error => {return error});
   } 
+  getNZcurrencies(){
+    return this.http.get(
+      this.config.nzd_currency_endpoint).toPromise()
+      .then(data => 
+      {          
+        console.log(data)   
+        return data
+        
+      }
+      ,error => {return error});
+ 
+  }
   async ProcessWeather(forecast: any){     
     var filtered = await this.getDailyData(forecast)
       return {

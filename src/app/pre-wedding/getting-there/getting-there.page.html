@@ -4,7 +4,7 @@
           <ion-button  class="pre-wedding-menu-button" color="dark" (click)="this.homeMenu.openModal()">
               <ion-icon name="menu"></ion-icon>
           </ion-button>
-          <ion-badge (click)="sharedComps.openMenu()" *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse pulse-on-button" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
+          <ion-badge (click)="this.homeMenu.openModal()" *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse pulse-on-button" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
           <ion-menu-button></ion-menu-button>
       </ion-buttons>
     <ion-title>Getting There</ion-title>

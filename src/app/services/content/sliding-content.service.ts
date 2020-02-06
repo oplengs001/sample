@@ -24,6 +24,7 @@ export class SlidingContentService {
   private eventsColletion :AngularFirestoreCollection<Itinerary>
   private eventRef : DocumentReference
   eventItem : Itinerary
+  public dines : any =[]
   constructor(
     private afs: AngularFirestore,
     private imageServe : ImagesService,

@@ -28,6 +28,11 @@ export class HomeMenuPage implements OnInit {
   private userColor : string
   private diet_details : any
   appPages = [
+     {
+      title: 'About Queenstown',
+      url: '/queenstown',
+      icon: 'flag'
+    }, 
     {
       title: 'VISAS',
       url: '/visas',

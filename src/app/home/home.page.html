@@ -19,7 +19,7 @@
 </ion-fab>
 <ion-content class="card-background-page" *ngIf=!forRsvp forceOverscroll=false [scrollEvents]="true">
   <ion-card (click)="reRoute('weather')">   
-      <img class="card-image" src="/assets/images/weather.jpg"/>
+      <img class="card-image" src="/assets/images/homepage/q_weather.jpg"/>
       <div class="card-title weather">         
           <div class="country ion-text-center">QUEENSTOWN WEATHER</div>           
           <ion-row class="home-weather" *ngIf=weather>
@@ -37,13 +37,13 @@
       </div>      
   </ion-card> 
   <ion-card  (click)="reRouteActivity('Itinerary')" >
-      <img class="card-image" src="/assets/images/activities.jpg"/>
+      <img class="card-image" src="/assets/images/homepage/wed_itinerary.jpg"/>
       <div class="card-title">WEDDING ITINERARY<br>
         <ion-button color="primary" class="home_buttons">SEE MORE</ion-button>
       </div>
   </ion-card>
   <ion-card  (click)="reRoute('gallery')" >
-      <img class="card-image" src="/assets/images/events.jpg"/>
+      <img class="card-image" src="/assets/images/homepage/photos.jpg"/>
       <div class="card-title">PHOTOS<br>
         <ion-button color="primary" class="home_buttons">LIVE FEED</ion-button>
       </div>

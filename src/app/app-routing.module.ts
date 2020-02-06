@@ -44,6 +44,7 @@ const routes: Routes = [
   { path: 'diet-rest', loadChildren: './modals/diet-rest/diet-rest.module#DietRestPageModule' },
   { path: 'charity', loadChildren: './pre-wedding/charity/charity.module#CharityPageModule' },
   { path: 'gallery-post', loadChildren: './modals/gallery-post/gallery-post.module#GalleryPostPageModule' },
+  { path: 'queenstown', loadChildren: './pre-wedding/queenstown/queenstown.module#QueenstownPageModule' },
 ];
 
 @NgModule({

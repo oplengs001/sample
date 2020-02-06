@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-button class="pre-wedding-menu-button" color="dark" (click)="this.homeMenu.openModal()">
+            <ion-icon name="menu"></ion-icon>
+        </ion-button>
+        <ion-badge (click)="this.homeMenu.openModal()"*ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse pulse-on-button" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
+        <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>About Queenstown</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card >     
+  
+    <ion-card-content class="ion-text-left">
+      <h2 class="ion-text-justify"><b>ABOUT QUEENSTOWN</b></h2><br>
+      We chose Queenstown as our wedding destination for a number of reasons. Besides being a beautiful lakeside town 
+      surrounded by snow-capped mountains, we love this city for its adventurous soul. We fell in love with its quaint and charming towns, the ski resorts, 
+      the wine, the scenery and of course, the food! We love trading in skyscrapers
+      for the great outdoors and we are absolutely thrilled that you will be coming along this great adventure with us.
+      <br><br>
+      <h2 class="ion-text-left"><b>Interesting Facts:</b></h2>
+      <section>    
+        <ul>
+          <li>Queenstown is the birthplace of bungee jumping</li>
+          <li> They make some of the best Pinot Noirs in the world</li>
+          <li>  Queenstown is the adventure capital of the world: hiking trails, 
+            golf courses, shotover jet boat ride, paragliding, sky diving, canyoning, ATV, skiing and snowboarding to name a few.</li>
+          <li> The Hobbit House is in Auckland, not in Queenstown, so you may want to consider a stop over before or after our wedding!/li>
+        </ul>
+      </section>
+      <h2 class="ion-text-left"><b>Quick Facts: </b></h2>
+      <section>    
+        <ul>
+          <li>Airport code: ZQN </li>
+          <li>Queenstown airport is only 8km to the centre of Queenstown (approximately a 15 minute drive)</li>
+          <li>Left hand side of the road driving (driver’s seat on the right)</li>
+          <li>Currency is New Zealand dollars (NZD) </li>
+          <li>Voltage 230/240V (50 hertz)</li>
+          <li>Australasia power outlet</li>
+          <li>Country code: +64</li>
+          <li>Telco providers: Spark, Vodafone, and 2Degrees</li>
+          <li>ATM and foreign exchange widely available in town centre</li>
+          <li>Tipping is not expected. If service was great then by all means show your gratitude, but do not feel obliged to as the service industry is compensated well in New Zealand.</li>
+        </ul>
+      </section>
+      <h2 class="ion-text-left"><b>Groceries near town:</b></h2>
+      <section>    
+        <ul>
+          <li>FreshChoice Supermarket Queenstown</li>
+          <li>Raeward Fresh </li>
+          <li>PAK’nSAVE Queenstown</li>
+          <li>The Neat Meat Company</li>
+        </ul>
+      </section>
+      <br>
+      For more information on supermarkets please visit: <a href="https://www.queenstownnz.co.nz/things-to-do/shopping/supermarkets/">https://www.queenstownnz.co.nz/things-to-do/shopping/supermarkets/</a>
+      <br><br>
+      <h2 class="ion-text-left"><b>Ski Resorts (from town centre): </b></h2>
+      <section>    
+          <ul>
+            <li>Coronet Peak (25 mins)</li>
+            <li>The Remarkables (35 mins)</li>
+            <li>Cardrona (48 mins)</li>
+            <li>Treble Cone (90 mins)</li>
+            <li>Soho Basin (a private ski resort next to Cardrona Ski Resort)</li>
+          </ul>
+      </section>
+      <h2 class="ion-text-left"><b>Other Popular Sites (from town centre): </b></h2>
+      <section>    
+          <ul>
+            <li>Arrowtown (25 mins)</li>
+            <li>Wanaka (60 minutes)</li>
+            <li>Milford Sound (3h47m) </li>
+          </ul>
+      </section>
+      <h2 class="ion-text-left"><b>Wineries & Distillery (from town centre):  </b></h2>
+      <section>    
+          <ul>
+            <li>Amisfield Winery (17 mins)</li>
+            <li>Wet Jacket Winery (18 mins)</li>
+            <li>Gibbston Valley Winery (25 mins)</li>
+            <li>Peregrine Wines (27 mins)</li>
+            <li>Chared Farm Winery (29 mins)</li>
+            <li>Brennan Wines (30 mins)</li>
+            <li>Mount Rosa Wines (30 mins)</li>
+            <li>The Shed by Cloudy Bay (45 mins)</li>
+            <li>Cardrona Distillery (75 mins)</li>
+          </ul>
+      </section>
+      <br>
+      For information on wineries please visit: <a href="https://www.firstlighttravel.com/blog/best-wineries-near-queenstown">
+        https://www.firstlighttravel.com/blog/best-wineries-near-queenstown</a>
+      <br><br>
+      <h2 class="ion-text-left"><b>Currency Exchange <ion-icon name="refresh" (click)=changeFormat()></ion-icon></b> </h2>
+      <section [hidden]=hidder *ngIf=currency>    
+          <ul>
+            <li>1 AUD = {{currency.AUD_NZD}} NZD</li>
+            <li>1 PHP = {{currency.PHP_NZD}} NZD</li>
+            <li>1 SGD = {{currency.SGD_NZD}} NZD</li>
+            <li>1 USD = {{currency.USD_NZD}} NZD</li>
+          </ul>
+      </section>
+      <section [hidden]=!hidder *ngIf=currency>     
+          <ul>
+            <li>1 NZD = {{currency.NZD_AUD}} AUD</li>
+            <li>1 NZD = {{currency.NZD_PHP}} PHP</li>
+            <li>1 NZD = {{currency.NZD_SGD}} SGD</li>
+            <li>1 NZD = {{currency.NZD_USD}} USD</li>
+          </ul>
+      </section>
+      </ion-card-content>
+  </ion-card>  
+
+  
+
+
+</ion-content>

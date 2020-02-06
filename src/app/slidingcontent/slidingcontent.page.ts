@@ -43,7 +43,6 @@ export class SlidingcontentPage implements OnInit {
   info : any
   user_details : any
   divisions:any
-  dines : any = []
   private contentSubs : Subscription;
   private eventSubs : Subscription
   constructor(
@@ -63,25 +62,7 @@ export class SlidingcontentPage implements OnInit {
     private imageCompress: NgxImageCompressService,
   ) {   
     this.Dining = false
-    this.Itinerary = false   
-    this.divisions = [
-      { 
-        expanded: false,
-        title : "Fine Dining"
-      },
-      { 
-        expanded: false,
-        title : "Casual"
-      },
-      { 
-        expanded: false,
-        title : "Dessert & Sweet Shops"
-      },
-      { 
-        expanded: false,
-        title : "Drinks"
-      },
-    ]
+    this.Itinerary = false
   }
   doReorder(ev: any) {    
     var 
@@ -161,7 +142,13 @@ export class SlidingcontentPage implements OnInit {
     });          
     await modal.present();
   }
-  async OpenDining(diningPlace) {    
+  async OpenDining(diningPlace,index) {
+   
+    console.log( this.contentServe.dines[index])
+    setTimeout(()=>{
+      this.contentServe.dines[index].expanded = true
+    },500)
+    console.log( this.contentServe.dines[index])
     const modal: HTMLIonModalElement =
        await this.modalController.create({
           component: ViewingcontentPage,
@@ -231,7 +218,7 @@ export class SlidingcontentPage implements OnInit {
       this.isAdmin = data.isAdmin
       this.user_details = data
     })
-  
+    
     this.generalInfo.getWeddingInfoTakeOne().subscribe(data=>{      
       this.topResto = data[0].dining_list
       
@@ -241,9 +228,10 @@ export class SlidingcontentPage implements OnInit {
           return r;
       }, Object.create(null));
       var top_resto = this.topResto
+   
       for (var key of Object.keys(top_resto)) {
-        console.log(top_resto[key])
-        this.dines.push({
+     
+        this.contentServe.dines.push({
           title : key,
           restaurants : top_resto[key],
           expanded : false,
@@ -263,7 +251,7 @@ export class SlidingcontentPage implements OnInit {
     saveItemWeddingInfo(){    
       this.generalInfo.updateInfo(this.info.ref,this.info)
     }
-    expandItem(item): void {
+    expandItem(item,index): void {
       if (item.expanded) {
         item.expanded = false;
       } else {
@@ -277,6 +265,8 @@ export class SlidingcontentPage implements OnInit {
         //   return listItem;
         // });
       }
+
+ 
     }
     // openReception(){    
     //   var url = 'https://www.google.com/maps/search/?api=1&query=-45.033001,168.660799'
