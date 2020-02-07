@@ -11,6 +11,20 @@
     padding-top:0 !important;
     --background : #ffffff
 }
+.img-container{
+    height: 40vh;
+    width: 100vw;
+    -o-object-fit: cover;
+    object-fit: cover;
+    padding-top:10px
+  }
+.dining-entree{
+    padding-top:0px;
+    font-size:15px;
+}
+.recom-text{
+    font-size: 19px;
+}
 .schedule{
     font-size:10px
 }
