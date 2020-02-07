@@ -5,7 +5,12 @@
 .h1-text{
   // font-family: "notified-light";
   // text-align: center !important;
-  font-weight: bold
+  font-size:19px;
+  font-weight: bold;
+}
+.title-css{
+  padding-right: 0px;
+  padding-left: 0px;
 }
 .card-background-page {
 
@@ -26,9 +31,10 @@
     font-family: "notified-light";
     position: absolute;
     top: 0%;
-    font-size: 2.0em;
+    // font-size: 2.0em;
+    font-size: 20px;
     width: 100%;
-    font-weight: 100;
+    font-weight: bold;
     color: #fff;
     background:rgba(6, 87, 197, 0.27);
     padding-top: 60px;
@@ -52,21 +58,27 @@
     height: 2em !important;
     margin-top: 1rem;
     border: #ffffff 1px solid;
+    width: 50vw;  
   }
   
  
   .home-label{
-    font-size:10px
+    font-size:10px;
+   
   }
+  .custom-margin{
+    margin-top: 3px  !important;
+  }
+  
   .home-title{
     font-size: 30px;
     font-weight: 100;
     // margin-top: -30px;
   }
   .home-label-icon{
-    height: 35px;
+    height: 29px;
     width: 35px;
-    display: unset; 
+    display: unset;
     filter: brightness(0) invert(1);
     // margin-top: -45px;
   }
@@ -79,7 +91,7 @@
     padding-top: 32px !important; 
   }
   .country{
-    font-size: 20px
+    // font-size: 1.80em
   }
 }
 

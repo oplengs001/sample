@@ -1,8 +1,8 @@
 <!-- <div> -->
 <ion-header *ngIf=!forRsvp>
   <ion-toolbar  mode="ios">
-      <ion-title>
-          <h1 class="h1-text">WEDDING</h1>
+      <ion-title class="title-css">
+          <h1 class="h1-text">Tommy & Ingga's Wedding</h1>
       </ion-title>
     <ion-buttons slot="start">
       <ion-button  class="pre-wedding-menu-button" color="dark" (click)="openModal()">
@@ -26,14 +26,14 @@
             <ion-col>        
                   <!-- <ion-icon class="home-label-icon" name="partly-sunny"></ion-icon> -->
                   <ion-label > <img [src]="weather.weather" class="home-label-icon"></ion-label>
-                  <ion-label class="home-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEATHER</ion-label>         
+                  <ion-label class="home-label">WEATHER</ion-label>         
             </ion-col>
             <ion-col>      
                   <ion-label class="home-title">{{weather.temperature}} &deg;</ion-label>            
                   <ion-label class="home-label">TEMPERATURE</ion-label>
             </ion-col>                       
           </ion-row>     
-        <ion-button color="primary" class="home_buttons">SNOW REPORT</ion-button>
+        <ion-button color="primary" class="home_buttons custom-margin">SNOW REPORT</ion-button>
       </div>      
   </ion-card> 
   <ion-card  (click)="reRouteActivity('Itinerary')" >
