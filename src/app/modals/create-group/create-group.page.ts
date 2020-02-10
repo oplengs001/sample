@@ -46,10 +46,9 @@ export class CreateGroupPage implements OnInit {
       this.guests_array = data
       console.log(data)
     })
-
-    if(!this.EditingModal){     
+    if(!this.EditingModal){
       let {inbox} = this.group_details
-      for(var i in inbox){            
+      for(var i in inbox){
         let user = inbox[i]            
          this.AuthServ.getUserDataByID(user.user_id).then((data=>{
     
@@ -58,13 +57,16 @@ export class CreateGroupPage implements OnInit {
             this.group_array.push(data)
             this.original_array.push(data)
           }
-
+          
           console.log(this.group_array)
         }))         
       }
       this.GroupForm.controls['group_id'].setValue(this.group_details.id);
       this.GroupForm.controls['group_name'].setValue(this.group_details.group_name);
-    } 
+    }else{
+      this.group_array.push(this.AuthServ.userGuestDetails)
+    }
+    console.log(this.group_array)
   }
   membersChange(
   event: {
@@ -107,10 +109,10 @@ export class CreateGroupPage implements OnInit {
       var chat_group = {
         group_id : group_id,
         group_name : group_name
-      },group_members = this.group_array.map(data=>{
+      },group_members = 
+        this.group_array.map(data=>{
         return data.uid
-      })
-      
+        })
       if(forEdit){ 
         forEdit = true
         let unique = original.filter((o)=> new_array.indexOf(o) === -1),

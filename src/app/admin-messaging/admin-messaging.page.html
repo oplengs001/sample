@@ -14,7 +14,7 @@
 
 <ion-content>
   <ion-list>
-      <div *ngFor="let gc of (group_chats | async)">
+      <div *ngFor="let gc of group_chats">
           <ion-item (click)="presentActionSheet(gc)">
               <!-- <ion-avatar slot="start">
                   <img src="../../assets/icon/iconM.png">

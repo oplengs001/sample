@@ -4,6 +4,7 @@ import { AnnouncementSaveService } from 'src/app/services/announcements/announce
 import { SharedComponent } from 'src/app/shared-component/shared';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { ToastService } from 'src/app/services/toaster/toast-service';
 @Component({
   selector: 'app-accomodations',
   templateUrl: './accomodations.page.html',
@@ -16,7 +17,8 @@ export class AccomodationsPage implements OnInit {
     private annServe: AnnouncementSaveService,
     private sharedComps : SharedComponent,
     private calls : CallNumber,
-    private clipboard : Clipboard
+    private clipboard : Clipboard,
+    private toast : ToastService
     ) { }
 
   ngOnInit() {
@@ -28,7 +30,7 @@ export class AccomodationsPage implements OnInit {
   }
   copyClipboard(callerID:string){
     this.clipboard.copy(callerID)
-    .then(res => alert("copied to clipboard"))
+    .then(res => this.toast.showToast("copied to clipboard"))
     .catch(err => alert(err));
   }
   openLink(url){

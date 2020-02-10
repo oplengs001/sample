@@ -39,13 +39,13 @@ export class MessageListPage implements OnInit {
     if(this.authServ.userGuestDetails){
       isAdmin = this.authServ.userGuestDetails["isAdmin"]
       if(isAdmin){      
-        this.footer.getAllGC()
+        // this.footer.getAllGC()
       }
     }else{
       this.authServ.currentUserData().then(data=>{     
         isAdmin = data.isAdmin    
         if(isAdmin){
-          this.footer.getAllGC()
+          // this.footer.getAllGC()
         }
       })
     }       

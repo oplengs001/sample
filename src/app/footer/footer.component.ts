@@ -70,8 +70,8 @@ export class FooterComponent   {
       this.chatNotifSubs(chat_id)
       if(isAdmin){        
         this.fcm.subscribeToTopic("adminNotif")        
-        this.getAllGC()
-     
+        // this.getAllGC()
+        this.userDataSubscribe(chat_id,uid) 
         this.announcementServices.getNotifs().subscribe(data=>{                
           this.announcementServices.RsvpNotif = data     
           this.announcementServices.RsvpNotifCount = this.countUnreadAdminNotif(data);

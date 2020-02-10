@@ -5,6 +5,7 @@ import { ChatService , GroupChat} from '../services/chat/chat.service';
 import { NavController } from '@ionic/angular';
 import { NavigationExtras  } from '@angular/router';
 import { Observable } from 'rxjs';
+import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-admin-messaging',
   templateUrl: './admin-messaging.page.html',
@@ -17,8 +18,9 @@ export class AdminMessagingPage implements OnInit {
     private actionSheetController : ActionSheetController,
     private ChatServ : ChatService,
     private navCtrl : NavController,
+    private footer : FooterComponent
     ) {
-      this.group_chats = this.ChatServ.getAllChat();
+      this.group_chats = this.footer.currentChats;
   }
   async openModal() {
     const modal: HTMLIonModalElement =
