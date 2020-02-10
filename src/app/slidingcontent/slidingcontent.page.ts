@@ -91,7 +91,7 @@ export class SlidingcontentPage implements OnInit {
    this.contentSubs = this.route.queryParams.subscribe(params => {
      console.log(params)
       this.content = params["content"];    
-   
+      this.ioncontent.scrollToTop(0)
       if(this.content ==="Dining"){
         this.Dining = true
         this.Itinerary =false
@@ -105,6 +105,7 @@ export class SlidingcontentPage implements OnInit {
           if(data.length > this.event_data){  
             this.tba = true
             this.hideElements = false
+     
             this.ioncontent.scrollToBottom(1000);   
           }else{
             this.tba = false
@@ -126,8 +127,8 @@ export class SlidingcontentPage implements OnInit {
     }); 
   }
   ionViewDidLeave(){
-    this.contentSubs.unsubscribe()
-    this.eventSubs.unsubscribe()
+      this.eventSubs.unsubscribe()
+      this.contentSubs.unsubscribe()
   }
   async addEvent() {
 

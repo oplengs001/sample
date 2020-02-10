@@ -11,9 +11,13 @@ export class WeatherService {
   private config ={
     weather_url : "https://api.weatherunlocked.com/api/resortforecast",  
     app_id : "1da5d76c",
-    app_key : "517f65cb2270dd87f82bc1059680ec6e",
     app_id2 : "dfbbd7b2",
+    app_id3: "6a981d2c",
+    app_id4: "24004860",
+    app_key : "517f65cb2270dd87f82bc1059680ec6e",
     app_key2 : "acd9f9997c49af151e9727de8018d236",
+    app_key3: "416fdd525a58a06db7881d83749f800c",
+    app_key4: "a2ddf2dd38235df50a803aa76cd5f35a",
     qtown_api_endpoint : "https://api.openweathermap.org/data/2.5/weather?id=963516&APPID=aa0f9dce6dbbe256382c80a9121d8539",
     nzd_currency_endpoint :"https://free.currconv.com/api/v7/convert?q=NZD_PHP,NZD_USD,NZD_AUD,NZD_SGD,PHP_NZD,USD_NZD,AUD_NZD,SGD_NZD&compact=ultra&apiKey=969ac8deaf5fc94982a9"
   }
@@ -31,6 +35,10 @@ export class WeatherService {
     var config_url
     if( resort_key === "615013"){
       config_url  =`${this.config.weather_url}/${resort_key}?app_id=${this.config.app_id2}&app_key=${this.config.app_key2}`    
+    }else  if( resort_key === "411011"){
+      config_url  =`${this.config.weather_url}/${resort_key}?app_id=${this.config.app_id3}&app_key=${this.config.app_key3}`    
+    }else  if( resort_key === "4437443"){
+      config_url  =`${this.config.weather_url}/${resort_key}?app_id=${this.config.app_id4}&app_key=${this.config.app_key4}`    
     }else{
       config_url  =`${this.config.weather_url}/${resort_key}?app_id=${this.config.app_id}&app_key=${this.config.app_key}`    
     }

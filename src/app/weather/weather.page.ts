@@ -22,6 +22,16 @@ export class WeatherPage implements OnInit {
   rmark_hourly : any
   rmark_daily : any
   rmark_slide : boolean; 
+  cardrona_data : any
+  cardrona_today: any
+  cardrona_hourly : any
+  cardrona_daily : any
+  cardrona_slide : boolean; 
+  treble_data : any
+  treble_today: any
+  treble_hourly : any
+  treble_daily : any
+  treble_slide : boolean; 
   loaderToShow: any;
   constructor(
     private transServe: TransitionsService,
@@ -48,7 +58,22 @@ export class WeatherPage implements OnInit {
       this.rmark_hourly = data.hourly
       this.rmark_daily = data.daily
     })
-
+    this.cardrona_data = await this.weatherServ.getWeather("411011").then(data=>{
+      this.hideLoader();
+      console.log(data)
+      this.cardrona_slide  = false
+      this.cardrona_today = data.today
+      this.cardrona_hourly = data.hourly
+      this.cardrona_daily = data.daily
+    })
+    this.treble_data = await this.weatherServ.getWeather("4437443").then(data=>{
+      this.hideLoader();
+      console.log(data)
+      this.treble_slide  = false
+      this.treble_today = data.today
+      this.treble_hourly = data.hourly
+      this.treble_daily = data.daily
+    })
 
   } 
   extensionChange(item:string){

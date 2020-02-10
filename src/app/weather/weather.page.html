@@ -79,6 +79,74 @@
                   </ion-card-content>
             </ion-card>
         </ion-slide>
+        <ion-slide *ngIf="cardrona_today" [hidden]="cardrona_slide">
+            <ion-card class="content-card"> 
+                  <!-- <img src="/assets/images/weather/clear.jpg" alt="" /> -->
+                  <ion-card-header class="weather-head">
+                    <ion-card-subtitle class="location ion-text-center">Cardrona Alpine</ion-card-subtitle>
+                    <ion-card-title class="temp_class ion-text-center">{{cardrona_today.base.temp_c}}&deg;</ion-card-title>
+                    <!-- <img class="weather-icon" src="/assets/icon/set/{{extensionChange(cardrona_today.base.wx_icon)}}.png">  -->
+                    <span class="today_weather ion-text-center">{{cardrona_today.base.wx_desc}}</span><br>
+                    <span class="today_weather ion-text-center">{{cardrona_today.base.feelslike_c}}&deg; / {{cardrona_today.upper.feelslike_c}}&deg;</span><br>
+                    <span class="today_weather ion-text-center">Snow Fall Depth</span><br>
+                    <span class="today_weather ion-text-center">{{cardrona_today.snow_mm}}mm</span>
+                  </ion-card-header>
+                  <ion-card-content no-padding class="content-no-background">
+                    <ion-slides [options]="{slidesPerView: 5}"  *ngIf="cardrona_hourly" class="hourly-slides">
+                          <ion-slide *ngFor="let weather of cardrona_hourly">                                      
+                              <ion-item lines="none">                              
+                                  <ion-label class="slider-font ion-text-center">
+                                    <h2 class="slide-time">{{converTime(weather.time)}}</h2>
+                                    <h3><img  class="image-small" src="/assets/icon/set/{{extensionChange(weather.base.wx_icon)}}.png"/></h3>
+                                    <h2>{{weather.base.feelslike_c}}&deg;</h2>                            
+                                  </ion-label>
+                                </ion-item>                         
+                        </ion-slide>
+                    </ion-slides>               
+                    <ion-list lines="full" class="weather-card-list " *ngIf="cardrona_daily">
+                      <ion-item *ngFor="let weather of cardrona_daily" class="slider-font ion-text-center ion-align-items-center">
+                        <ion-label item-start>{{convertDate(weather.date)}}</ion-label>
+                        <ion-label item-center class="image-label"><img  class="image-smaller ion-align-self-center" src="/assets/icon/set/{{extensionChange(weather.base.wx_icon)}}.png"/></ion-label>
+                        <ion-label item-end side="left">{{weather.base.feelslike_c}}&deg;/{{weather.upper.feelslike_c}}&deg;</ion-label>
+                      </ion-item>            
+                    </ion-list>      
+                  </ion-card-content>
+            </ion-card>
+        </ion-slide>
+        <ion-slide *ngIf="treble_today" [hidden]="treble_slide">
+            <ion-card class="content-card"> 
+                  <!-- <img src="/assets/images/weather/clear.jpg" alt="" /> -->
+                  <ion-card-header class="weather-head">
+                    <ion-card-subtitle class="location ion-text-center">Treble Cone</ion-card-subtitle>
+                    <ion-card-title class="temp_class ion-text-center">{{treble_today.base.temp_c}}&deg;</ion-card-title>
+                    <!-- <img class="weather-icon" src="/assets/icon/set/{{extensionChange(treble_today.base.wx_icon)}}.png">  -->
+                    <span class="today_weather ion-text-center">{{treble_today.base.wx_desc}}</span><br>
+                    <span class="today_weather ion-text-center">{{treble_today.base.feelslike_c}}&deg; / {{treble_today.upper.feelslike_c}}&deg;</span><br>
+                    <span class="today_weather ion-text-center">Snow Fall Depth</span><br>
+                    <span class="today_weather ion-text-center">{{treble_today.snow_mm}}mm</span>
+                  </ion-card-header>
+                  <ion-card-content no-padding class="content-no-background">
+                    <ion-slides [options]="{slidesPerView: 5}"  *ngIf="treble_hourly" class="hourly-slides">
+                          <ion-slide *ngFor="let weather of treble_hourly">                                      
+                              <ion-item lines="none">                              
+                                  <ion-label class="slider-font ion-text-center">
+                                    <h2 class="slide-time">{{converTime(weather.time)}}</h2>
+                                    <h3><img  class="image-small" src="/assets/icon/set/{{extensionChange(weather.base.wx_icon)}}.png"/></h3>
+                                    <h2>{{weather.base.feelslike_c}}&deg;</h2>                            
+                                  </ion-label>
+                                </ion-item>                         
+                        </ion-slide>
+                    </ion-slides>               
+                    <ion-list lines="full" class="weather-card-list " *ngIf="treble_daily">
+                      <ion-item *ngFor="let weather of treble_daily" class="slider-font ion-text-center ion-align-items-center">
+                        <ion-label item-start>{{convertDate(weather.date)}}</ion-label>
+                        <ion-label item-center class="image-label"><img  class="image-smaller ion-align-self-center" src="/assets/icon/set/{{extensionChange(weather.base.wx_icon)}}.png"/></ion-label>
+                        <ion-label item-end side="left">{{weather.base.feelslike_c}}&deg;/{{weather.upper.feelslike_c}}&deg;</ion-label>
+                      </ion-item>            
+                    </ion-list>      
+                  </ion-card-content>
+            </ion-card>
+        </ion-slide>
         <!-- <ion-slide >
             <ion-card class="welcome-card">
                 <img src="/assets/images/weather.jpg" alt="" />

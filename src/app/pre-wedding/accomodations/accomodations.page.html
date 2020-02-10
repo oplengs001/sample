@@ -36,11 +36,16 @@
                     Contact: Michelle Arona   
                 </ion-item>
                 <ion-item>
-                    Email: michelle.arona@nzsir.com
+                    Email: <a href="mailto:michelle.arona@nzsir.com"> michelle.arona@nzsir.com </a>
+                    <ion-icon slot="end" color="medium" name="copy" (click)="copyClipboard('michelle.arona@nzsir.com')"></ion-icon>
                 </ion-item>
                 <ion-item>
-                    Mobile/Whatsapp: +64 2153 9114
+                  Mobile/Whatsapp: <div style="color:var(--ion-color-primary, #3880ff)" (click)="callNumber('6421539114')">+64 2153 9114 </div> 
+                  
+                  <ion-icon  slot="end" color="medium" name="ios-call" (click)="callNumber('6421539114')"></ion-icon>
+                  <ion-icon  slot="end" color="medium" name="copy" (click)="copyClipboard('6421539114')"></ion-icon>
                 </ion-item>  
+          
                 <ion-item>
                     <a href="http://nzsothebysrealty.com/luxury-rentals">http://nzsothebysrealty.com/luxury-rentals</a>
                 </ion-item>  

@@ -25,6 +25,8 @@
     "@ionic-native/app-version": "^5.0.0",
     "@ionic-native/badge": "^5.16.0",
     "@ionic-native/base64": "^5.20.0",
+    "@ionic-native/call-number": "^5.21.2",
+    "@ionic-native/clipboard": "^5.21.2",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/fcm": "^5.12.0",
     "@ionic-native/file": "^5.16.0",
@@ -44,8 +46,10 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.7.1",
     "angularfire2": "^5.2.1",
+    "call-number": "^1.0.1",
     "com.telerik.plugins.nativepagetransitions": "^0.6.5",
     "cordova-android": "^8.0.0",
+    "cordova-clipboard": "^1.3.0",
     "cordova-ios": "^5.1.1",
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-advanced-http": "^2.3.0",
@@ -138,7 +142,9 @@
         "OKHTTP_VERSION": "3.10.0"
       },
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-ionic-webview": {}
+      "cordova-plugin-ionic-webview": {},
+      "mx.ferreyra.callnumber": {},
+      "cordova-clipboard": {}
     },
     "platforms": [
       "android",

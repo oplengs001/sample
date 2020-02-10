@@ -44,7 +44,7 @@ export class MessageListPage implements OnInit {
     }else{
       this.authServ.currentUserData().then(data=>{     
         isAdmin = data.isAdmin    
-        if(isAdmin){      
+        if(isAdmin){
           this.footer.getAllGC()
         }
       })

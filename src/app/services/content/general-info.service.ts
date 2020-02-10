@@ -32,6 +32,7 @@ export interface Info {
   visas:any,
   rentals:any,
   getting_there: any
+  qtown
 }
 @Injectable({
   providedIn: 'root'

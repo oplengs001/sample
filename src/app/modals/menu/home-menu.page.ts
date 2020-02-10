@@ -80,12 +80,12 @@ export class HomeMenuPage implements OnInit {
       icon: 'images'
     },
     {
-      title: 'Itinerary',
+      title: 'Wedding Itinerary',
       url: 'itinerary',
       icon: 'list-box'
     },
     {
-      title: 'Messages',
+      title: 'Chat',
       url: 'messages',
       icon: 'chatboxes'
     },

@@ -7,7 +7,7 @@
           <ion-badge (click)="sharedComps.openMenu()" *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse pulse-on-button" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
       </ion-buttons>
       <ion-title>
-        {{content}}
+        {{content==='Itinerary'?'Wedding Itinerary':content}}
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -38,7 +38,6 @@
                   <ion-list>
                       <div *ngFor="let resto of dine.restaurants"> 
                           <ion-card class="content-card" (click)="OpenDining(resto,i)">
-                              
                               <ion-img src="{{resto.image_url}}"></ion-img>
                               <ion-card-header> 
                                 <ion-card-title>{{resto.name}}</ion-card-title>    
@@ -48,7 +47,6 @@
                       </div>
                     </ion-list>
               </div>
-              
             </app-expandable>
           </ion-card-content>
         </ion-card>
