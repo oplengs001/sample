@@ -130,6 +130,7 @@ export class SlidingcontentPage implements OnInit {
       this.eventSubs.unsubscribe()
       this.contentSubs.unsubscribe()
   }
+ 
   async addEvent() {
 
     const modal: HTMLIonModalElement =
@@ -160,6 +161,9 @@ export class SlidingcontentPage implements OnInit {
           }
     });          
     await modal.present();
+  }
+  showMore(this){
+
   }
   eventOptions(event){
     var {ref ,image_ref} = event
@@ -224,12 +228,13 @@ export class SlidingcontentPage implements OnInit {
       this.topResto = data[0].dining_list
       
       this.topResto = this.topResto.reduce(function (r, a) {
+        a.expanded = false
           r[a.type] = r[a.type] || [];
           r[a.type].push(a);
           return r;
       }, Object.create(null));
       var top_resto = this.topResto
-   
+      
       for (var key of Object.keys(top_resto)) {
      
         this.contentServe.dines.push({
@@ -253,10 +258,12 @@ export class SlidingcontentPage implements OnInit {
       this.generalInfo.updateInfo(this.info.ref,this.info)
     }
     expandItem(item,index): void {
+      // debugger
       if (item.expanded) {
         item.expanded = false;
       } else {
         item.expanded = true;
+        
         // this.dines.map(listItem => {
         //   if (item == listItem) {
         //     listItem.expanded = !listItem.expanded;
@@ -266,8 +273,15 @@ export class SlidingcontentPage implements OnInit {
         //   return listItem;
         // });
       }
-
- 
+    }
+    customExpand(item,index):void{
+      this.contentServe.dines[index].expanded = true
+      if (item.expanded) {
+        item.expanded = false;
+      } else {
+        item.expanded = true;
+        
+      }
     }
     // openReception(){    
     //   var url = 'https://www.google.com/maps/search/?api=1&query=-45.033001,168.660799'

@@ -6,10 +6,17 @@
     -webkit-margin-end: 0px;
     margin-inline-end: 0px;
     border-radius: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+    // margin-top: 0;
+    // margin-bottom: 0;
     padding-top:0 !important;
-    --background : #ffffff
+    --background : #ffffff;
+    padding-bottom: 10px;
+    ion-card-title{
+        padding-top:10px
+    }
+}
+.more-info{
+    
 }
 .img-container{
     height: 40vh;

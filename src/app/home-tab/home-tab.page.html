@@ -23,7 +23,7 @@
   <ion-card (click)="expandItem(this.items[0])" class="item-card">
       <ion-card-header class="item-header">  
           <ion-item lines="none">
-            <ion-icon slot="end" name="ios-arrow-down"></ion-icon>
+            <ion-icon slot="end" name="{{this.items[0].expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon>
             <ion-card-title class="item-title">Skiing & Snowboarding</ion-card-title>
           </ion-item>
       </ion-card-header>
@@ -96,7 +96,7 @@
         <ion-card (click)="expandItem(item)"  *ngIf="i!==0"class="item-card">
             <ion-card-header class="item-header" >  
                 <ion-item lines="none">
-                  <ion-icon slot="end" name="ios-arrow-down"></ion-icon>
+                  <ion-icon slot="end" name="{{item.expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon>
                   <ion-card-title class="item-title">{{item.title}}</ion-card-title>
                 </ion-item>
             </ion-card-header>

@@ -25,24 +25,47 @@
         </ion-card-content>
       </ion-card>   
       <div *ngFor="let dine of contentServe.dines;let i = index" >
-        <ion-card (click)="expandItem(dine)" class="item-card">
-          <ion-card-header class="item-header" >  
+        <ion-card class="item-card">
+          <ion-card-header class="item-header" (click)="expandItem(dine)"       >  
               <ion-item lines="none">
-                <ion-icon slot="end" name="ios-arrow-down"></ion-icon>
+                <ion-icon slot="end" name="{{dine.expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon>
                 <ion-card-title class="item-title">{{dine.title}}</ion-card-title>
               </ion-item>
           </ion-card-header>
           <ion-card-content class="ion-text-center item-content">
-            <app-expandable expandHeight="300vh" [expanded]="dine.expanded">
+            <app-expandable expandHeight="700vh" [expanded]="dine.expanded">
               <div scroll="true">
                   <ion-list>
                       <div *ngFor="let resto of dine.restaurants"> 
-                          <ion-card class="content-card" (click)="OpenDining(resto,i)">
+                          <!-- <ion-card class="content-card" (click)="OpenDining(resto,i)"> -->
+                            <ion-card class="content-card" (click)="customExpand(resto,i)" >
+                              <ion-card-title>{{resto.name}}</ion-card-title>    
+                              <ion-card-subtitle>{{resto.location}}</ion-card-subtitle>
                               <ion-img src="{{resto.image_url}}"></ion-img>
-                              <ion-card-header> 
-                                <ion-card-title>{{resto.name}}</ion-card-title>    
-                                <ion-card-subtitle>{{resto.location}}</ion-card-subtitle>
-                              </ion-card-header>
+                              <!-- <div class="ion-text-right more-info" (click)="customExpand(resto,i)" >See more information<ion-icon name="{{resto.expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon></div> -->
+                              <app-expandable expandHeight="100vh" [expanded]="resto.expanded" class="ion-text-left">
+                                  <ion-card-content>
+                                      {{resto.details? resto.details: "Keep close to Nature's heart... and break clear away, once in awhile,
+                                      and climb a mountain or spend a week in the woods. Wash your spirit clean.
+                                      This is content, without any paragraph or header tags,
+                                      within an ion-card-content element."}}
+                                      <div *ngIf="resto.custom_url=='madam'" >
+                                          <a  *ngIf="resto.custom_url=='madam'" href="https://www.foodonq.co.nz">  www.foodonq.co.nz </a>
+                                        for those who’d like to order in and eat in the comfort of their villa. 
+                                      </div>
+                                          <a  *ngIf="resto.custom_url=='card'" href="https://www.cardronadistillery.com/tours/">here</a>
+                                      <br>
+                                      <a href="{{resto.url}}"> 
+                                          See more
+                                      </a>
+                                    
+                                  </ion-card-content>
+                              </app-expandable>
+                              <ion-item class="ion-text-right" lines="none"  (click)="customExpand(resto,i)">
+                                  <ion-label (click)="customExpand(resto,i)" >{{resto.expanded?'Hide':'More'}}</ion-label>
+                                  <ion-icon (click)="customExpand(resto,i)" name="{{resto.expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon>
+                              </ion-item>
+                    
                           </ion-card>
                       </div>
                     </ion-list>
