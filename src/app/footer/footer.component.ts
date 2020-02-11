@@ -149,6 +149,9 @@ export class FooterComponent   {
       var chatSub = chat.subscribe(data=>{        
         this.dataSet(data,uid)  
         this.badge.set(this.inbox_count);  
+        if(this.isAdmin){
+          this.badge.set(this.inbox_count + this.announcementServices.RsvpNotifCount)
+        }
       })                   
       this.GCsubsList.push({
         subs : chatSub,
@@ -235,7 +238,9 @@ export class FooterComponent   {
           createdAt : createdAt,
           notifs :notifs,
           last_chat : last_chat,
-          last_chat_time:last_chat_time
+          last_chat_time:last_chat_time,
+          inbox : inbox,
+          id: id
         });
     } else {
         arr[index] =
