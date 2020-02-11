@@ -148,9 +148,9 @@ export class FooterComponent   {
     data.map((chat,index) =>{    
       var chatSub = chat.subscribe(data=>{        
         this.dataSet(data,uid)  
-        this.badge.set(this.inbox_count);  
+        this.badge.set(this.inbox_count + this.notif_count );  
         if(this.isAdmin){
-          this.badge.set(this.inbox_count + this.announcementServices.RsvpNotifCount)
+          this.badge.set(this.inbox_count + this.announcementServices.RsvpNotifCount + this.notif_count )
         }
       })                   
       this.GCsubsList.push({

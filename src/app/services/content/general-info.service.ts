@@ -32,7 +32,11 @@ export interface Info {
   visas:any,
   rentals:any,
   getting_there: any
-  qtown
+  qtown:any,
+  wedding_location_url:string,
+  wedding_location_url_name:string,
+  dinner_location_url:string,
+  dinner_location_name:string
 }
 @Injectable({
   providedIn: 'root'

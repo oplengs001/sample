@@ -223,7 +223,8 @@ export class ChatService {
         messages: firestore.FieldValue.arrayUnion(data),
         "inbox" : inbox_value,
       }).then(()=>{
-        this.notif.createNotif(chatId,group_name,uid,notifDetails)
+        
+        this.notif.createNotif(chatId,group_name,uid,notifDetails,image_url)
         console.log(data)
         return data
       }).catch(function(error) {

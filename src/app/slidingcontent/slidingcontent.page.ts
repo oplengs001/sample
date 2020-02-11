@@ -257,30 +257,45 @@ export class SlidingcontentPage implements OnInit {
     saveItemWeddingInfo(){    
       this.generalInfo.updateInfo(this.info.ref,this.info)
     }
-    expandItem(item,index): void {
+    expandItem(item,item_id): void {
       // debugger
       if (item.expanded) {
         item.expanded = false;
       } else {
-        item.expanded = true;
-        
-        // this.dines.map(listItem => {
-        //   if (item == listItem) {
-        //     listItem.expanded = !listItem.expanded;
-        //   } else {
-        //     listItem.expanded = false;
-        //   }
-        //   return listItem;
-        // });
+        this.contentServe.dines.map(listItem => {
+          if (item == listItem) {
+            listItem.expanded = !listItem.expanded;
+          } else {
+            listItem.expanded = false;
+          }
+          return listItem;
+        });
+
       }
+      this.scrollTo(item_id)
     }
-    customExpand(item,index):void{
-      this.contentServe.dines[index].expanded = true
+    scrollTo(elementId: string) {
+      
+      setTimeout(()=>{
+        let y = document.getElementById(elementId).offsetTop;
+        console.log(y)
+        this.ioncontent.scrollToPoint(0, y,500);
+      },500)  
+    }
+    customExpand(item,index,resto):void{
+  
+      // this.contentServe.dines[index].expanded = true
       if (item.expanded) {
         item.expanded = false;
       } else {
-        item.expanded = true;
-        
+        this.contentServe.dines[index].restaurants.map(listItem => {
+          if (item == listItem) {
+            listItem.expanded = !listItem.expanded;
+          } else {
+            listItem.expanded = false;
+          }
+          return listItem;
+        });
       }
     }
     // openReception(){    

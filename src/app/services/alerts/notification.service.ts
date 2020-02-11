@@ -17,14 +17,20 @@ export class NotificationService {
     public gInfo : GeneralInfoService,
     public authServ : AuthService
     ) { }    
-    createNotif(topic:string,group_name : string ,sender_id:string,content:any){    
+    createNotif(topic:string,group_name : string ,sender_id:string,content:any,image_url:string){    
       var object_returns : any
+      var content_text = content.content;
+      if(image_url.length){
+        content_text = "Sent a photo"
+      }
       let postData =  {
           "notification" :{
               "title": group_name,
-              "text": `${content.first_name} ${content.last_name}: ${content.content}`,
+              "text": `${content.first_name} ${content.last_name}: ${content_text}`,
               "click_action":"FCM_PLUGIN_ACTIVITY", 
               "sound": "2",
+              "image": image_url,
+              "mutable_content": true,
           },
           "data": 
           {
@@ -32,13 +38,16 @@ export class NotificationService {
             "group": topic,
             "title":group_name,
             "content" : `${content.first_name} ${content.last_name}: ${content.content}`,
+            "image": image_url,
             "vibrate": "300",
             "sender_id" : sender_id,
           },
           "tag " : topic,
           "priority" : "high",
-          "to" : `/topics/${topic}`
+         
+          "to" : `/topics/${topic}`,
       }
+      debugger
       this.httpIon.setDataSerializer("json")
       this.httpIon.sendRequest("https://fcm.googleapis.com/fcm/send",{
         method:"post",

@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IonSlides } from '@ionic/angular';
+import { Component, OnInit, OnDestroy,ViewChild } from '@angular/core';
+import { IonSlides, IonContent } from '@ionic/angular';
 import {  Router } from '@angular/router';
 import { TransitionsService } from '../services/native/transitions.service';
 import { FooterComponent } from '../footer/footer.component';
@@ -11,6 +11,7 @@ import { AnnouncementSaveService } from '../services/announcements/announcement-
   styleUrls: ['./home-tab.page.scss'],
 })
 export class HomeTabPage implements OnInit, OnDestroy {
+  @ViewChild(IonContent, {static: false}) ioncontent: IonContent;
   public items: any = [];
 
   slideOptions = {
@@ -118,7 +119,8 @@ export class HomeTabPage implements OnInit, OnDestroy {
     ) {
     slides.startAutoplay();
   }
-  expandItem(item): void {
+  expandItem(item,item_id): void {
+    console.log(item_id)
     if (item.expanded) {
       item.expanded = false;
     } else {
@@ -130,7 +132,14 @@ export class HomeTabPage implements OnInit, OnDestroy {
         }
         return listItem;
       });
+      this.scrollTo(item_id)
     }
+  }
+  scrollTo(elementId: string) {
+    setTimeout(()=>{
+      let y = document.getElementById(elementId).offsetTop;
+      this.ioncontent.scrollToPoint(0, y,500);
+    },500)  
   }
   ngOnInit() {
     

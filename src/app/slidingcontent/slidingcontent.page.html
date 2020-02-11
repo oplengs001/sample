@@ -25,51 +25,46 @@
         </ion-card-content>
       </ion-card>   
       <div *ngFor="let dine of contentServe.dines;let i = index" >
-        <ion-card class="item-card">
-          <ion-card-header class="item-header" (click)="expandItem(dine)"       >  
+        <ion-card class="item-card" id="item{{i}}">
+          <ion-card-header class="item-header" (click)="expandItem(dine,'item'+i)">  
               <ion-item lines="none">
                 <ion-icon slot="end" name="{{dine.expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon>
                 <ion-card-title class="item-title">{{dine.title}}</ion-card-title>
               </ion-item>
           </ion-card-header>
           <ion-card-content class="ion-text-center item-content">
-            <app-expandable expandHeight="700vh" [expanded]="dine.expanded">
-              <div scroll="true">
-                  <ion-list>
-                      <div *ngFor="let resto of dine.restaurants"> 
-                          <!-- <ion-card class="content-card" (click)="OpenDining(resto,i)"> -->
-                            <ion-card class="content-card" (click)="customExpand(resto,i)" >
-                              <ion-card-title>{{resto.name}}</ion-card-title>    
-                              <ion-card-subtitle>{{resto.location}}</ion-card-subtitle>
-                              <ion-img src="{{resto.image_url}}"></ion-img>
-                              <!-- <div class="ion-text-right more-info" (click)="customExpand(resto,i)" >See more information<ion-icon name="{{resto.expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon></div> -->
-                              <app-expandable expandHeight="100vh" [expanded]="resto.expanded" class="ion-text-left">
-                                  <ion-card-content>
-                                      {{resto.details? resto.details: "Keep close to Nature's heart... and break clear away, once in awhile,
-                                      and climb a mountain or spend a week in the woods. Wash your spirit clean.
-                                      This is content, without any paragraph or header tags,
-                                      within an ion-card-content element."}}
-                                      <div *ngIf="resto.custom_url=='madam'" >
-                                          <a  *ngIf="resto.custom_url=='madam'" href="https://www.foodonq.co.nz">  www.foodonq.co.nz </a>
-                                        for those who’d like to order in and eat in the comfort of their villa. 
-                                      </div>
-                                          <a  *ngIf="resto.custom_url=='card'" href="https://www.cardronadistillery.com/tours/">here</a>
-                                      <br>
-                                      <a href="{{resto.url}}"> 
-                                          See more
-                                      </a>
-                                    
-                                  </ion-card-content>
-                              </app-expandable>
-                              <ion-item class="ion-text-right" lines="none"  (click)="customExpand(resto,i)">
-                                  <ion-label (click)="customExpand(resto,i)" >{{resto.expanded?'Hide':'More'}}</ion-label>
-                                  <ion-icon (click)="customExpand(resto,i)" name="{{resto.expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon>
-                              </ion-item>
-                    
-                          </ion-card>
-                      </div>
-                    </ion-list>
-              </div>
+            <app-expandable expandHeight="500vh" [expanded]="dine.expanded">
+         
+                <div   *ngFor="let resto of dine.restaurants;let k = index"> 
+                      <ion-card class="content-card" (click)="customExpand(resto,i,k)" >
+                        <ion-card-title >{{resto.name}}</ion-card-title>    
+                        <ion-card-subtitle>{{resto.location}}</ion-card-subtitle>
+                        <ion-img src="{{resto.image_url}}" ></ion-img>
+                        <!-- <div class="ion-text-right more-info" (click)="customExpand(resto,i)" >See more information<ion-icon name="{{resto.expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon></div> -->
+                        <app-expandable expandHeight="100vh" [expanded]="resto.expanded" class="ion-text-left">
+                            <ion-card-content>
+                                {{resto.details? resto.details: "Keep close to Nature's heart... and break clear away, once in awhile,
+                                and climb a mountain or spend a week in the woods. Wash your spirit clean.
+                                This is content, without any paragraph or header tags,
+                                within an ion-card-content element."}}
+                                <div *ngIf="resto.custom_url=='madam'" >
+                                    <a  *ngIf="resto.custom_url=='madam'" href="https://www.foodonq.co.nz">  www.foodonq.co.nz </a>
+                                  for those who’d like to order in and eat in the comfort of their villa. 
+                                </div>
+                                    <a  *ngIf="resto.custom_url=='card'" href="https://www.cardronadistillery.com/tours/">here</a>
+                                <br>
+                                <a href="{{resto.url}}"> 
+                                    See more
+                                </a>
+                              
+                            </ion-card-content>
+                        </app-expandable>
+                        <ion-item class="ion-text-right" lines="none">
+                            <ion-label class="more-text" >{{resto.expanded?'Hide':'More'}}</ion-label>
+                            <ion-icon class="more-icon" name="{{resto.expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon>
+                        </ion-item>
+                    </ion-card>
+                </div>
             </app-expandable>
           </ion-card-content>
         </ion-card>
@@ -111,6 +106,10 @@
                       (ionBlur)="saveItemWeddingInfo()"    
                       readonly="{{!isAdmin}}"
                       ></ion-input>     
+                </ion-item>
+                <ion-item class="details-card">
+                    <ion-icon name="globe" slot="start"  color="medium"></ion-icon>        
+                    <label><a href={{info.wedding_location_url}}>{{info.wedding_location_url_name}}</a></label>
                 </ion-item>
                 <ion-item (click)=openMap() class="details-card">
                     <ion-icon name="car" slot="start"  color="medium"></ion-icon>        
@@ -154,7 +153,11 @@
                         readonly="{{!isAdmin}}"
                         autoGrow=true 
                         ></ion-textarea >     
-                </ion-item>                                      
+                </ion-item>   
+                <ion-item class="details-card" *ngIf="event.position === 5">
+                    <ion-icon name="globe" slot="start"  color="medium"></ion-icon>        
+                    <label><a href={{info.dinner_location_url}}>{{info.dinner_location_name}}</a></label>
+                </ion-item>                                   
                 <ion-card-content>        
                   <ion-textarea class="ion-text-justify"
                   class="card-details-input ion-text-justify" 

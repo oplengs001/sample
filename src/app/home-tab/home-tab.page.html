@@ -20,8 +20,8 @@
           Queenstown is a natural playground providing an incredible backdrop for a range of sights to see and things to do for adventurers of all persuasions.
       </ion-card-content>
   </ion-card >
-  <ion-card (click)="expandItem(this.items[0])" class="item-card">
-      <ion-card-header class="item-header">  
+  <ion-card id="actItem0"class="item-card">
+      <ion-card-header  (click)="expandItem(this.items[0],'actItem0')"   class="item-header">  
           <ion-item lines="none">
             <ion-icon slot="end" name="{{this.items[0].expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon>
             <ion-card-title class="item-title">Skiing & Snowboarding</ion-card-title>
@@ -93,11 +93,11 @@
       </ion-card-content>
     </ion-card>
     <div *ngFor="let item of items ;let i = index;" >
-        <ion-card (click)="expandItem(item)"  *ngIf="i!==0"class="item-card">
-            <ion-card-header class="item-header" >  
+        <ion-card  *ngIf="i!==0" id="actItem{{i}}" class="item-card">
+            <ion-card-header class="item-header" (click)="expandItem(item,'actItem'+i)"  >  
                 <ion-item lines="none">
                   <ion-icon slot="end" name="{{item.expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon>
-                  <ion-card-title class="item-title">{{item.title}}</ion-card-title>
+                  <ion-card-title   class="item-title">{{item.title}}</ion-card-title>
                 </ion-item>
             </ion-card-header>
             <ion-card-content class="ion-text-center item-content">

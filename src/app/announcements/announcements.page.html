@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar class="header-bg">
       <ion-buttons slot="start">
-        <ion-button  class="pre-wedding-menu-button" color="light" (click)="sharedComps.openMenu()">
+        <ion-button  class="pre-wedding-menu-button" color="dark"  (click)="sharedComps.openMenu()">
           <ion-icon name="menu"></ion-icon>
         </ion-button>
         <ion-badge *ngIf="this.announcementService.RsvpNotifCount>=1" slot="start" (click)="sharedComps.openMenu()" class="pulse pulse-on-button" color="danger">{{this.announcementService.RsvpNotifCount}}</ion-badge>
@@ -32,7 +32,7 @@
       <ion-card class="card-class">
           <ion-item class="item-class" lines="none">                
             <ion-label slot="start" style="overflow:visible;white-space:pre-wrap">{{ announcement.title }}</ion-label> 
-            <ion-icon slot="end" name="flash"  color="medium"></ion-icon>    
+            <ion-icon slot="end" name="flash"  color="light"></ion-icon>    
           </ion-item>          
           <ion-card-content class="ion-text-justify card-body">
               {{ announcement.body }} 
@@ -55,7 +55,7 @@
     <ng-template  #caughtup>
         <ion-card class="card-class">
             <ion-item class="item-class">         
-              <ion-label class="ion-text-center"><ion-icon name="checkmark-circle-outline" color="success"  class="icon-checkSize" ></ion-icon> </ion-label> 
+              <ion-label class="ion-text-center"><ion-icon name="checkmark-circle-outline" color="light"  class="icon-checkSize" ></ion-icon> </ion-label> 
             </ion-item>          
             <ion-card-content class="ion-text-center caught-body">
                All Caught up!
