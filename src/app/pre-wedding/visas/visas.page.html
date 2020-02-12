@@ -7,12 +7,54 @@
         <ion-badge (click)="this.homeMenu.openModal()" *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse pulse-on-button" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
         <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>VISAS</ion-title>
+    <ion-title>Visas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
-  <ion-card >     
+    <ion-card class="card-info">
+        <ion-img src="{{gInfo.general_info.visas.image_path}}"  alt="" ></ion-img>
+          <ion-card-header>
+            <ion-card-title class="cards">
+                Filipino Citizens
+              </ion-card-title>        
+          </ion-card-header>   
+          <ion-item  class="details-card">
+            <ion-icon name="card" slot="start"  color="medium"></ion-icon>          
+             Visa: Required 
+            </ion-item>
+            <ion-item class="details-card">
+                <ion-icon name="globe" slot="start"  color="medium"></ion-icon>        
+                <a href="https://visa.vfsglobal.com/phl/en/nzl">www.visa.vfsglobal.com</a>
+            </ion-item>
+          <ion-card-content class="ion-text-left">        
+            <br>
+              As of WedVite’s launch date, Philippine passport holders are required to apply for a visa to enter New Zealand.    
+          </ion-card-content>
+    </ion-card>
+    <ion-card class="card-info">
+        <ion-img src="{{gInfo.general_info.visas.other_pass}}"  alt="" ></ion-img>
+          <ion-card-header>
+            <ion-card-title class="cards">
+                Visa Waived Passports
+              </ion-card-title>        
+          </ion-card-header>   
+          <ion-item  class="details-card">
+              <ion-icon name="card" slot="start"  color="medium"></ion-icon>        
+             Entry requirement:<br> New Zealand Electronic Travel Authority (NZeTA) 
+            </ion-item>
+            <ion-item class="details-card">
+                <ion-icon name="globe" slot="start"  color="medium"></ion-icon>        
+                <a href="https://www.immigration.govt.nz/new-zealand-visas/apply-for-a-visa/about-visa/nzeta">www.immigration.govt.nz</a>
+            </ion-item>
+          <ion-card-content class="ion-text-left">    <br>    
+              As of 1 October 2019 the New Zealand government has implemented an electronic visa waiver application for eligible passport holders, which is required for entry. This means that all 60 visa waived countries (such as US, Canada, Singapore, Italy, Malaysia, Japan, Spain and many others) have to apply for this electronic travel authority (NZeTA) before they are allowed access to New Zealand. 
+              While this is not considered a visa application there is a small fee associated with the application. You can apply <a href="https://nzeta.immigration.govt.nz/">here</a>
+              <br><br>
+              If you are unsure whether your passport requires a visa or simply an NZeTA please visit New Zealand immigration’s passport wizard <a href="https://www.immigration.govt.nz/new-zealand-visas/options/visit/explore-visitor-visa-options">here</a>
+          </ion-card-content>
+    </ion-card>
+  <!-- <ion-card >     
     <ion-card-header >
       <ion-card-title  class="ion-text-center"></ion-card-title>
       <img class="img-container" [src]="gInfo.general_info.visas.image_path" />
@@ -32,6 +74,6 @@
           <br><br>
           If you are unsure whether your passport requires a visa or simply an NZeTA please visit New Zealand immigration’s passport wizard
           <a  href='https://www.immigration.govt.nz/new-zealand-visas/options/visit/explore-visitor-visa-options'> click here </a>
-      </ion-card-content>
-  </ion-card>  
+    </ion-card-content>
+  </ion-card>   -->
 </ion-content>

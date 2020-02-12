@@ -14,12 +14,12 @@
         <div class="snow snow--far"></div>
         <div class="snow snow--far snow--alt"></div>
       <ion-list class="modal-content">       
-        <div *ngFor="let p of appPages"  class="side-menu">
+        <div *ngFor="let p of appPages"  [class]="menuCSS">
           <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" color="primary" (click)="closeModal(p.url)" lines="none">
             <ion-icon slot="start" [name]="p.icon" ></ion-icon>
-            <ion-label>
+            <ion-text>
               {{p.title}}
-            </ion-label>
+            </ion-text>
           </ion-item>
         </div>
       </ion-list>      
@@ -30,28 +30,28 @@
   <ion-toolbar class="tool-bar">
       <ion-item *ngIf=isAdmin (click)="gotoRsvpList()" lines="none">      
           <ion-icon slot="start" color="success"name="checkmark-circle"></ion-icon>
-          <ion-label slot="start" color="success" >  
+          <ion-text slot="start" color="success" >  
               Admin Notification
-          </ion-label>       
+          </ion-text>       
           <ion-badge *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
       </ion-item>
       <ion-item *ngIf=isAdmin (click)="openBusReservations()" lines="none">      
           <ion-icon slot="start" color="primary"name="bus"></ion-icon>
-          <ion-label slot="start" color="primary" >  
+          <ion-text slot="start" color="primary" >  
               Bus Reservations
-          </ion-label>
+          </ion-text>
       </ion-item>
       <ion-item *ngIf=isAdmin (click)="openDietRestrictions()" lines="none">      
           <ion-icon slot="start" color="primary" name="restaurant"></ion-icon>
-          <ion-label slot="start" color="primary" >  
+          <ion-text slot="start" color="primary" >  
               Diet Restrictions
-          </ion-label>                 
+          </ion-text>                 
       </ion-item>
       <!-- <ion-item *ngIf="!isAdmin&&this.authServ.userGuestDetails.extra!==''&&this.authServ.userGuestDetails.extra!=='0'"  lines="none" (click)="plusOnePrompt('Do you want to Change you Plus Guest Count?')">      
             <ion-icon slot="start" color="primary" name="people"></ion-icon>
-            <ion-label slot="start" color="primary" >
+            <ion-text slot="start" color="primary" >
                 Plus Guests : <ion-text> {{this.authServ.userGuestDetails.extra}}</ion-text>
-            </ion-label>
+            </ion-text>
       </ion-item> -->   
       <ion-item *ngIf=!isAdmin lines="none" >       
 
@@ -59,61 +59,61 @@
                     (click)="this.actionSheet.busReservationPropmpt(authServ.userGuestDetails.bus_reservation)" 
                     *ngIf="this.authServ.userGuestDetails.reservation_status === 'pending'">
           </ion-icon>    
-          <ion-label 
+          <ion-text 
                     slot="start" 
                     *ngIf="this.authServ.userGuestDetails.reservation_status === 'pending'"
                     (click)="this.actionSheet.busReservationPropmpt(authServ.userGuestDetails.bus_reservation)" 
                     class="bus-seat"
                     color="warning">({{authServ.userGuestDetails.bus_reservation}}) Bus {{authServ.userGuestDetails.bus_reservation==1?'seat':'seats'}}:<ion-text color="warning" > Pending</ion-text>
-          </ion-label>   
+          </ion-text>   
           <ion-icon 
                    color="success" slot="start" name="bus"
                    (click)="this.actionSheet.busReservationPropmpt(authServ.userGuestDetails.bus_reservation,true)" 
                    *ngIf="this.authServ.userGuestDetails.reservation_status === 'approved'">
             </ion-icon>    
-          <ion-label 
+          <ion-text 
                   slot="start"
                   (click)="this.actionSheet.busReservationPropmpt(authServ.userGuestDetails.bus_reservation,true)" 
                   *ngIf="this.authServ.userGuestDetails.reservation_status === 'approved'"
                   class="bus-seat"
                   color="success">({{authServ.userGuestDetails.bus_reservation}}) Bus {{authServ.userGuestDetails.bus_reservation==1?'seat':'seats'}}: <ion-text color="success" >Approved </ion-text>
-          </ion-label>    
+          </ion-text>    
       </ion-item>
       <ion-item *ngIf=!isAdmin (click)="changeDecision()" lines="none" >        
           <ion-icon color="primary" slot="start" name="mail"></ion-icon>    
-          <ion-label slot="start"  color="primary" *ngIf="this.authServ.userGuestDetails.will_come;else notAttending">
+          <ion-text slot="start"  color="primary" *ngIf="this.authServ.userGuestDetails.will_come;else notAttending">
                 RSVP: 
                 <ion-text color="success" >
                 Accepted
                 </ion-text>
-          </ion-label>
+          </ion-text>
           <ng-template #notAttending>
-              <ion-label slot="start" color="primary">
+              <ion-text slot="start" color="primary">
                 RSVP: 
                 <ion-text color="danger" >
                 Declined
                 </ion-text>
-              </ion-label>           
+              </ion-text>           
           </ng-template>                  
       </ion-item>   
     <ion-item (click)="changePassword()" lines="none" >      
           <ion-icon slot="start" color="dark" name="unlock"></ion-icon>
-          <ion-label slot="start" color="dark" >
+          <ion-text slot="start" color="dark" >
               Reset Password
-          </ion-label>
+          </ion-text>
       </ion-item>
       <ion-item (click)="logout()" lines="none" >      
           <ion-icon slot="start" color="danger" name="arrow-back"></ion-icon>
-          <ion-label slot="start" color="danger" >
+          <ion-text slot="start" color="danger" >
               Log-Out
-          </ion-label>
+          </ion-text>
       </ion-item>
 
       <ion-item (click)="closeModal" lines="none">   
         <ion-icon slot="start"name="contact" [style.color]=userColor ></ion-icon>
-          <ion-label slot="start" [style.color]=userColor>          
+          <ion-text slot="start" [style.color]=userColor>          
               {{this.authServ.userGuestDetails["first_name"]}} {{this.authServ.userGuestDetails["last_name"]}}
-        </ion-label>
+        </ion-text>
       </ion-item>    
   </ion-toolbar>
 </ion-footer>

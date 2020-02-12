@@ -1,5 +1,5 @@
 import { Component, OnInit ,Injectable } from '@angular/core';
-import { ModalController, AlertController } from '@ionic/angular';
+import { ModalController, AlertController, Platform } from '@ionic/angular';
 import { myEnterAnimation, myLeaveAnimation } from "../../animations/animations"
 import { TransitionsService } from "../../services/native/transitions.service"
 import { ActionClass } from "../../gallery-action-sheet/actionsheet"
@@ -27,6 +27,7 @@ export class HomeMenuPage implements OnInit {
   private currentUID : string
   private userColor : string
   private diet_details : any
+  private menuCSS: string
   appPages = [
      {
       title: 'About Queenstown',
@@ -34,7 +35,7 @@ export class HomeMenuPage implements OnInit {
       icon: 'flag'
     }, 
     {
-      title: 'VISAS',
+      title: 'Visas',
       url: '/visas',
       icon: 'card'
     }, 
@@ -103,7 +104,8 @@ export class HomeMenuPage implements OnInit {
     private tranServe :TransitionsService,
     private footer : FooterComponent,
     private guestService : GuestAddService, 
-    private annServe  :AnnouncementSaveService,        
+    private annServe  :AnnouncementSaveService,    
+    private platform : Platform    
 
   ) {     
   
@@ -113,7 +115,12 @@ export class HomeMenuPage implements OnInit {
   }
   
   ngOnInit() {        
-
+    if(this.platform.is("android")){
+      this.menuCSS = "side-menu extra_head"
+    }else{
+      this.menuCSS = "side-menu"
+    }
+    console.log(this.menuCSS)
     this.isAdmin = this.authServ.isAdmin()    
     
     this.userColor = this.authServ.userGuestDetails["color"]

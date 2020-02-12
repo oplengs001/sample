@@ -11,3 +11,26 @@ ion-card-header{
 ion-card-content{
     padding-top:0px
 }
+.card-info{
+    ion-card-header{
+        padding-bottom: 0px !important
+    }
+    ion-card-content{
+       //  padding-top: 0px !important
+
+    }
+ }
+ .details-card{
+   font-size: 14px;
+   ion-text{
+    margin-right: 0px;
+   }
+ }
+ .qtowns{
+    font-size:18px
+ }
+ .qtown-image{
+    height: 30vh;
+    width:auto;
+    object-fit: cover
+ }

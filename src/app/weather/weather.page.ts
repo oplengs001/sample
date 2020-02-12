@@ -5,6 +5,7 @@ import { LoadingController } from '@ionic/angular';
 import * as moment from 'moment';
 import 'moment/locale/pt-br';
 import { min } from 'rxjs/operators';
+import { ToastService } from '../services/toaster/toast-service';
 
 @Component({
   selector: 'app-weather',
@@ -36,7 +37,8 @@ export class WeatherPage implements OnInit {
   constructor(
     private transServe: TransitionsService,
     private weatherServ : WeatherService,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private toaster : ToastService
   ) { 
     this.cpeak_slide  = true
   }
@@ -44,35 +46,40 @@ export class WeatherPage implements OnInit {
     this.showLoader()
     this.cpeak_data = await this.weatherServ.getWeather("4424660").then(data=>{
       this.hideLoader();
+      this.toaster.showToast("Coronet's Peak loaded")
       console.log(data)
       this.cpeak_slide  = false
       this.cpeak_today = data.today
       this.cpeak_hourly = data.hourly
       this.cpeak_daily = data.daily
+
     })
     this.rmark_data = await this.weatherServ.getWeather("615013").then(data=>{
       this.hideLoader();
-      console.log(data)
+      this.toaster.showToast("Remarkables loaded")
       this.rmark_slide  = false
       this.rmark_today = data.today
       this.rmark_hourly = data.hourly
       this.rmark_daily = data.daily
+   
     })
     this.cardrona_data = await this.weatherServ.getWeather("411011").then(data=>{
       this.hideLoader();
-      console.log(data)
+      this.toaster.showToast("Cardrona Alpine loaded")
       this.cardrona_slide  = false
       this.cardrona_today = data.today
       this.cardrona_hourly = data.hourly
       this.cardrona_daily = data.daily
+  
     })
     this.treble_data = await this.weatherServ.getWeather("4437443").then(data=>{
       this.hideLoader();
-      console.log(data)
+      this.toaster.showToast("Treble Cone loaded")
       this.treble_slide  = false
       this.treble_today = data.today
       this.treble_hourly = data.hourly
       this.treble_daily = data.daily
+
     })
 
   } 
@@ -81,7 +88,7 @@ export class WeatherPage implements OnInit {
   }
   showLoader() {
     this.loaderToShow = this.loadingController.create({
-      message: 'Loading Weather Data'
+      message: `Loading weather data`
     }).then((res) => {
       res.present();      
     });
@@ -90,7 +97,7 @@ export class WeatherPage implements OnInit {
   hideLoader() {
     setTimeout(() => {
       this.loadingController.dismiss();
-    }, 2000);
+    }, 5000);
   }
   converTime (time) {
     return moment(time,"HH:mm").format("hh:mm a")

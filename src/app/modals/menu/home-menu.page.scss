@@ -5,6 +5,7 @@
 .tool-bar{
   ion-item{
     --min-height: 10px;
+    height: 37px;
     ion-label{
       font-size:15px
     }
@@ -32,7 +33,7 @@ $ease--out-quad: cubic-bezier(.25,.46,.450,.94);
   font-family: "notified-medium";
   ion-item{
     --min-height: 10px;
-    height: 38px;
+    // height: 38px;
     ion-label{
       font-size: 15px;
     }
@@ -41,12 +42,18 @@ $ease--out-quad: cubic-bezier(.25,.46,.450,.94);
     }
   }
 }
+.extra_head{
+  ion-item{
+    --min-height: 10px;
+    height: 35px !important;
+  }
+}
 %on-top {
   z-index: 100;
   pointer-events: none;
 }
 .bus-seat{
-  font-size: 14px !important
+  // font-size: 16px !important/
 }
 
 .winter-is-coming {

@@ -12,7 +12,193 @@
 </ion-header>
 
 <ion-content>
-  <ion-card >     
+    <ion-card class="card-info" *ngIf=gInfo.general_info.qtown>
+        <ion-img  class="qtown-image" src="{{gInfo.general_info.qtown.image_path}}"  alt="" ></ion-img>
+          <ion-card-header>
+            <ion-card-title class="qtowns">
+               Why Queenstown 
+              </ion-card-title>        
+          </ion-card-header>   
+          <ion-list lines="none">
+                <ion-item  class="details-card">
+                  <ion-icon name="airplane" slot="start"  color="medium" ></ion-icon> 
+                    ZQN
+                </ion-item>
+                <ion-item  class="details-card">
+                    <ion-icon name="call" slot="start"  color="medium" ></ion-icon> 
+                    +64
+                </ion-item>
+                <ion-item  class="details-card">
+                    <ion-icon name="flash" slot="start"  color="medium" ></ion-icon> 
+                      230/240V (50 hertz)
+                </ion-item>
+                <ion-item  class="details-card">
+                    <ion-icon name="cash" slot="start"  color="medium" ></ion-icon> 
+                      New Zealand dollars (NZD)
+                </ion-item>
+                <ion-item  class="details-card">
+                    <ion-icon name="car" slot="start"  color="medium" ></ion-icon> 
+                      Airport to city 8km (15 min drive)
+                </ion-item>
+                <ion-item  class="details-card">
+                    <ion-icon name="thumbs-up" slot="start"  color="medium" ></ion-icon> 
+                      Tipping not expected
+                </ion-item>
+                <ion-item  class="details-card">
+                    <ion-icon name="globe" slot="start"  color="medium" ></ion-icon> 
+                      <a href="https://www.queenstownnz.co.nz">www.queenstownnz.co.nz/</a>
+                </ion-item>
+          </ion-list>
+         
+          <ion-card-content class="ion-text-left">        
+              We chose Queenstown as our wedding destination for a number of
+              reasons. Besides being a quick flight from Australia and Tommy’s family,
+              Queenstown is such a picturesque city with its lakeside position
+              surrounded by snow-capped mountains, making it look post card ready
+              from every angle. Being the adventure capital of world (fun fact:
+              Queenstown is the birthplace of bungee jumping) also meant that we could
+              keep ourselves busy with our favorite endorphin inducing activity:
+              snowboarding! Then, of course, there’s the amazing Pinot Noirs of Central
+              Otago, the local cheese and the talented chefs. It just had everything that
+              we would normally look for in a vacation: nature-driven activity, beautiful
+              scenery, amazing food and wine! And what better excuse than a wedding
+              to get all our loved ones to experience a place that we absolutely adore!
+              As you can see, we love trading in skyscrapers for the great outdoors and
+              we are absolutely thrilled that you will be coming along this great
+              adventure with us. Start getting excited about your upcoming trip by
+              checking out the top 20 things to do in Queenstown <a href="https://theculturetrip.com/pacific/new-zealand/articles/20-must-
+              visit-attractions-in-queenstown-new-zealand/">here</a>.   
+          </ion-card-content>
+    </ion-card>
+    <ion-card class="card-info">
+        <ion-img src="{{gInfo.general_info.qtown.groceries}}"  alt="" ></ion-img>
+          <ion-card-header>
+            <ion-card-title class="qtowns">
+              Groceries near town:
+              </ion-card-title>        
+          </ion-card-header>   
+          <ion-list lines="none">
+              <ion-item  class="details-card">
+                  <ion-icon name="basket" slot="start"  color="medium" ></ion-icon> 
+                    <a href="https://queenstown.store.freshchoice.co.nz/">
+                      FreshChoice Supermarket Queenstown
+                    </a> 
+              </ion-item>
+              <ion-item  class="details-card">
+                  <ion-icon name="basket" slot="start"  color="medium" ></ion-icon> 
+                    <a href="http://www.raewardfreshqueenstown.co.nz/"> 
+                      Raeward Fresh
+                    </a> 
+              </ion-item>
+              <ion-item  class="details-card">
+                  <ion-icon name="basket" slot="start"  color="medium" ></ion-icon> 
+                    <a href="https://www.paknsave.co.nz/">
+                      PAK’nSAVE Queenstown
+                    </a> 
+              </ion-item>
+              <ion-item  class="details-card">
+                  <ion-icon name="basket" slot="start"  color="medium" ></ion-icon> 
+                    <a href="https://www.neatmeat.com/">
+                      The Neat Meat Company
+                    </a> 
+              </ion-item>
+              <ion-item  class="details-card">
+                  <ion-icon name="basket" slot="start"  color="medium" ></ion-icon> 
+                    <a href="https://shop.countdown.co.nz">
+                      Countdown online
+                    </a> 
+              </ion-item>
+          </ion-list>
+    </ion-card>
+    <ion-card class="card-info">
+        <ion-img src="{{gInfo.general_info.qtown.lake}}"  alt="" ></ion-img>
+          <ion-card-header>
+            <ion-card-title class="qtowns">
+                Other Popular sites:
+              </ion-card-title>        
+          </ion-card-header>   
+          <ion-list lines="none">
+              <ion-item  class="details-card">
+                  <ion-icon name="ribbon" slot="start"  color="medium" ></ion-icon> 
+                    <a href="https://www.arrowtown.com/">
+                      arrowtown
+                    </a> 
+              </ion-item>
+              <ion-item  class="details-card">
+                  <ion-icon name="ribbon" slot="start"  color="medium" ></ion-icon> 
+                    <a href="https://www.lakewanaka.co.nz/"> 
+                      lake Wanaka
+                    </a> 
+              </ion-item>
+              <ion-item  class="details-card">
+                  <ion-icon name="ribbon" slot="start"  color="medium" ></ion-icon> 
+                    <a href="https://www.milford-sound.co.nz/">
+                      milford sound
+                    </a> 
+              </ion-item>
+          </ion-list>
+    </ion-card>
+    <ion-card class="card-info">
+        <ion-img src="{{gInfo.general_info.qtown.exchange}}"  alt="" ></ion-img>
+          <ion-card-header>
+            <ion-card-title class="qtowns">
+                Currency Exchange <ion-icon name="swap" (click)=changeFormat()></ion-icon>
+              </ion-card-title>        
+          </ion-card-header>   
+          <ion-list lines="none" [hidden]=hidder *ngIf=currency>  
+              <ion-item  class="details-card">
+                  <ion-icon name="cash" slot="start"  color="medium" ></ion-icon> 
+                   
+                      1 AUD = {{currency.AUD_NZD}} NZD
+                    
+              </ion-item>
+              <ion-item  class="details-card">
+                  <ion-icon name="cash" slot="start"  color="medium" ></ion-icon> 
+                    
+                      1 PHP = {{currency.PHP_NZD}} NZD
+                   
+              </ion-item>
+              <ion-item  class="details-card">
+                  <ion-icon name="cash" slot="start"  color="medium" ></ion-icon> 
+                  
+                      1 SGD = {{currency.SGD_NZD}} NZD
+                  
+              </ion-item>
+              <ion-item  class="details-card">
+                  <ion-icon name="cash" slot="start"  color="medium" ></ion-icon> 
+                   
+                      1 USD = {{currency.USD_NZD}} NZD
+                    
+              </ion-item>
+          </ion-list>
+          <ion-list lines="none" [hidden]=!hidder *ngIf=currency>
+              <ion-item  class="details-card">
+                  <ion-icon name="logo-usd" slot="start"  color="medium" ></ion-icon> 
+                    
+                      1 NZD = {{currency.NZD_AUD}} AUD
+                   
+              </ion-item>
+              <ion-item  class="details-card">
+                  <ion-icon name="logo-usd" slot="start"  color="medium" ></ion-icon> 
+                   
+                      1 NZD = {{currency.NZD_PHP}} PHP
+                    
+              </ion-item>
+              <ion-item  class="details-card">
+                  <ion-icon name="logo-usd" slot="start"  color="medium" ></ion-icon> 
+                   
+                      1 NZD = {{currency.NZD_SGD}} SGD
+                    
+              </ion-item>
+              <ion-item  class="details-card">
+                  <ion-icon name="logo-usd" slot="start"  color="medium" ></ion-icon> 
+                  
+                      1 NZD = {{currency.NZD_USD}} USD
+                    
+              </ion-item>
+          </ion-list>
+    </ion-card>
+  <!-- <ion-card >     
     <ion-card-header >
       <ion-card-title  class="ion-text-center"></ion-card-title>
       <img class="img-container" [src]="gInfo.general_info.qtown.image_path" />
@@ -115,7 +301,7 @@
           </ul>
       </section>
       </ion-card-content>
-  </ion-card>  
+  </ion-card>   -->
 
   
 
