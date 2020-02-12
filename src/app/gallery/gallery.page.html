@@ -10,10 +10,10 @@
     
   </ion-toolbar>
   <ion-segment [(ngModel)]="galleryType" color="primary">
-    <ion-segment-button value="regular">
+    <ion-segment-button value="regular" (click)=gotoTop()>
           <ion-icon name="image"></ion-icon>
       </ion-segment-button>  
-    <ion-segment-button value="pinterest">
+    <ion-segment-button value="pinterest" (click)=gotoTop()>
         <ion-icon name="grid"></ion-icon>
       </ion-segment-button>        
   </ion-segment>

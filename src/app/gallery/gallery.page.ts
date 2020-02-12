@@ -9,7 +9,7 @@ import { TransitionsService } from '../services/native/transitions.service';
 import { ImagePage } from '../modals/photos/image/image.page'
 import { GalleryPostPage } from '../modals/gallery-post/gallery-post.page'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
-import { LoadingController, IonInfiniteScroll } from '@ionic/angular';
+import { LoadingController, IonInfiniteScroll, IonContent } from '@ionic/angular';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { SharedComponent } from '../shared-component/shared';
 import { AnnouncementSaveService } from '../services/announcements/announcement-save.service';
@@ -21,6 +21,7 @@ import { AnnouncementSaveService } from '../services/announcements/announcement-
 })
 export class GalleryPage implements OnInit {
   @ViewChild(IonInfiniteScroll, {static: false}) infiniteScroll: IonInfiniteScroll;
+  @ViewChild(IonContent, {static: false}) ioncontent: IonContent;
   // private GalleryPosts: Observable<ImageItem[]>;
 
   fileUploads: any[];
@@ -69,6 +70,10 @@ export class GalleryPage implements OnInit {
         event.target.parentElement.parentElement.classList.remove('img-loaded');
     }
   }
+  gotoTop(){
+    this.ioncontent.scrollToTop(0)
+  }
+
   ngOnInit() {       
    const source = this.imageService.getReferences();
   //  this.GalleryPosts = this.imageService.joinUsers(source);
