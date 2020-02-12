@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HomeMenuPage } from '../../modals/menu/home-menu.page'
 import { GeneralInfoService} from "../../services/content/general-info.service"
 import { AnnouncementSaveService } from 'src/app/services/announcements/announcement-save.service';
 import { SharedComponent } from 'src/app/shared-component/shared';
+import { IonContent } from '@ionic/angular';
 @Component({
   selector: 'app-charity',
   templateUrl: './charity.page.html',
   styleUrls: ['./charity.page.scss'],
 })
 export class CharityPage implements OnInit {
+  @ViewChild(IonContent, {static: false}) ioncontent: IonContent;
   charity :any
   public items: any = [];
   constructor( 
@@ -63,7 +65,7 @@ export class CharityPage implements OnInit {
       this.charity = data[0]
     })
   }
-  expandItem(item): void {
+  expandItem(item,id): void {
     if (item.expanded) {
       item.expanded = false;
     } else {
@@ -75,9 +77,20 @@ export class CharityPage implements OnInit {
         }
         return listItem;
       });
+      this.scrollTo(id)
     }
+  }
+  scrollTo(elementId: string) {
+    setTimeout(()=>{
+      console.log(elementId)
+      let y = document.getElementById(elementId).offsetTop;
+      this.ioncontent.scrollToPoint(0, y,500);
+    },500)  
   }
   openLink(url){
     // window.open(url, '_system');
+  }
+  ionViewDidEnter(){
+    this.ioncontent.scrollToTop(0)
   }
 }

@@ -154,4 +154,7 @@ export class HomeTabPage implements OnInit, OnDestroy {
     console.log(page)
     this.router.navigateByUrl(page);
   }
+  ionViewDidEnter(){
+    this.ioncontent.scrollToTop(0)
+  }
 }

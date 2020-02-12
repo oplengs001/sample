@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { HomeMenuPage } from 'src/app/modals/menu/home-menu.page';
 import { AnnouncementSaveService } from 'src/app/services/announcements/announcement-save.service';
 import { GeneralInfoService } from 'src/app/services/content/general-info.service';
 import { WeatherService } from 'src/app/services/weather/weather.service';
-
+import { ModalController, IonContent } from '@ionic/angular';
 @Component({
   selector: 'app-queenstown',
   templateUrl: './queenstown.page.html',
   styleUrls: ['./queenstown.page.scss'],
 })
 export class QueenstownPage implements OnInit {
+  @ViewChild(IonContent, {static: false}) ioncontent: IonContent;
   currency:any
   hidder : boolean
   constructor(
@@ -17,6 +18,7 @@ export class QueenstownPage implements OnInit {
     private annServe: AnnouncementSaveService,
     private gInfo : GeneralInfoService,
     private weather : WeatherService
+    
   ) { 
     this.hidder=true
   }
@@ -25,6 +27,9 @@ export class QueenstownPage implements OnInit {
     
     this.reFormatCurrency()
     
+  }
+  ionViewDidEnter(){
+    this.ioncontent.scrollToTop(0)
   }
   changeFormat(){
     this.hidder = !this.hidder

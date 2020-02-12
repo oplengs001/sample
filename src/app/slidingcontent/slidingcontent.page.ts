@@ -270,9 +270,9 @@ export class SlidingcontentPage implements OnInit {
           }
           return listItem;
         });
-
+        this.scrollTo(item_id)
       }
-      this.scrollTo(item_id)
+ 
     }
     scrollTo(elementId: string) {
       

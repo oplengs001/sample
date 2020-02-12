@@ -89,15 +89,15 @@ export class FooterComponent   {
       }      
     })
   }   
-  getAllGC(){
-    this.chatServ.getAllChatOnce().then(data=>{   
-      data.map(chat=>{
-        console.log(chat)
-        this.fcm.subscribeToTopic(chat.id)
-        this.currentChats = this.pushToArray(this.currentChats,chat,this.authServ.currentUserId(),true)
-      })        
-    })  
-  }
+  // getAllGC(){
+  //   this.chatServ.getAllChatOnce().then(data=>{   
+  //     data.map(chat=>{
+  //       console.log(chat)
+  //       this.fcm.subscribeToTopic(chat.id)
+  //       this.currentChats = this.pushToArray(this.currentChats,chat,this.authServ.currentUserId(),true)
+  //     })        
+  //   })  
+  // }
   adminUnsubscribeAllChat():Promise<any>{
     return this.chatServ.getAllChatOnce().then(data=>{   
       data.map(chat=>{
@@ -132,7 +132,8 @@ export class FooterComponent   {
           this.removeSub(forRemoved)
         }
         if(forSubscription.length !==0){
-          this.chatServ.getUserChat(forSubscription).then(data=>{          
+          this.chatServ.getUserChat(forSubscription).then(data=>{         
+         
             this.resubs(forSubscription,data,uid)    
           })  
         }
@@ -146,8 +147,10 @@ export class FooterComponent   {
  
   resubs(entered,data,uid){   
     data.map((chat,index) =>{    
-      var chatSub = chat.subscribe(data=>{        
-        this.dataSet(data,uid)  
+      var chatSub = chat.subscribe(data=>{    
+        if(data.uid){
+          this.dataSet(data,uid)  
+        }
         this.badge.set(this.inbox_count + this.notif_count );  
         if(this.isAdmin){
           this.badge.set(this.inbox_count + this.announcementServices.RsvpNotifCount + this.notif_count )
@@ -222,11 +225,11 @@ export class FooterComponent   {
     // console.log("leave")
     // this.GCsubs.unsubscribe()
   }
-  pushToArray(arr:any, obj:any,uid:string,admin:boolean) {    
-    
-    const index = arr.findIndex((e) => e.name === obj.id);       
+  pushToArray(arr:any, chat_data:any,uid:string,admin:boolean) {    
+    const index = arr.findIndex((e) => e.name === chat_data.id);       
     //looking if new data does exist in the current chat
-    const {id ,inbox,group_name,messages,createdAt} = obj        
+    const {id ,inbox,group_name,messages,createdAt} = chat_data
+ 
     const notifs = admin ? 0 : inbox.find(({user_id})=> user_id === uid).message_count
 
     const last_chat = messages.length === 0 ? "" : messages[messages.length-1].content

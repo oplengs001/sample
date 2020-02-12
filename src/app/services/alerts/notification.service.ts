@@ -47,7 +47,6 @@ export class NotificationService {
          
           "to" : `/topics/${topic}`,
       }
-      debugger
       this.httpIon.setDataSerializer("json")
       this.httpIon.sendRequest("https://fcm.googleapis.com/fcm/send",{
         method:"post",

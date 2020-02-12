@@ -14,20 +14,21 @@
   <ion-content *ngIf=charity>
     <ion-card>     
       <ion-card-header>
+          <img src="../../assets/images/gifts.jpg"  class="img-container"/><br>
         <ion-card-title  class="ion-text-left recom-text">{{charity.charity_title}} </ion-card-title>          
       </ion-card-header>
-      <ion-card-content>
-          <div class="ion-text-justify">{{charity.charity_text}} </div><br>  
+      <ion-card-content class="content-char">
+          <div class="ion-text-left">{{charity.charity_text}} </div><br>  
       </ion-card-content>      
     </ion-card>
-    <ion-card (click)="expandItem(item)" *ngFor="let item of items" class="item-card">
-        <ion-card-header class="item-header">  
+    <ion-card (click)="expandItem(item,'charity'+n)" *ngFor="let item of items ;let n= index" class="item-card"  id="charity{{n}}">
+        <ion-card-header  class="item-header">  
             <ion-item lines="none">
-              <ion-icon slot="end" name="ios-arrow-down"></ion-icon>
+              <ion-icon slot="end" name="{{item.expanded?'ios-arrow-up':'ios-arrow-down'}}">></ion-icon>
               <ion-card-title class="item-title">{{item.title}}</ion-card-title>
             </ion-item>
         </ion-card-header>
-        <ion-card-content class="ion-text-justify item-content">
+        <ion-card-content class="ion-text-left item-content">
           <app-expandable expandHeight="100vh" [expanded]="item.expanded">
               <img src="{{item.image_link}}" alt="" class="img-container"/>
               <br>
