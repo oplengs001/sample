@@ -8,3 +8,23 @@
 .recom-text{
     font-size: 19px;
 }
+.card-info{
+   ion-card-header{
+       padding-bottom: 0px !important
+   }
+   ion-card-content{
+      //  padding-top: 0px !important
+   }
+}
+.details-card{
+  font-size: 14px   
+ 
+}
+.header-custom{
+  ion-card-header{
+    padding-bottom: 10px !important
+}
+}
+.flights{
+  font-size:15px
+}

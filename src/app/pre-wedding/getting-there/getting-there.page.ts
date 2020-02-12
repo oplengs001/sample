@@ -18,6 +18,7 @@ export class GettingTherePage implements OnInit {
     ) { }
 
   ngOnInit() {
+    console.log(this.gInfo.general_info[0])
   }
   openMap (){
     this.flightMap.openModal()

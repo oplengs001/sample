@@ -124,7 +124,7 @@
                 readonly="{{!isAdmin}}"
                 ></ion-textarea>        
               </ion-card-content>
-          </ion-card>
+        </ion-card>
         <div *ngIf="(events|async)?.length !== 0;else items">
           <ion-card class="wedding-info" *ngFor="let event of (event_data   | sort :'asc':'position')" >          
               <img src="{{event.image_url}}" alt="" />

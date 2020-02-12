@@ -12,12 +12,127 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>     
+    <ion-card class="card-info">
+        <img src="{{gInfo.general_info.getting_there.pal_image}}"  alt="" />
+          <ion-card-header>
+            <ion-card-title class="flights">
+                Flights from Manila 
+              </ion-card-title>        
+          </ion-card-header>   
+          <ion-item  class="details-card">
+              <ion-icon name="globe" slot="start"  color="medium" ></ion-icon> 
+               <a href="https://www.philippineairlines.com/en/ph/home">www.philippineairlines.com</a>             
+            </ion-item>
+            <ion-item class="details-card">
+              <ion-icon name="calendar" slot="start"  color="medium"></ion-icon>        
+              Non-stop flight to Auckland <br>Sun-Wed-Thurs 
+            </ion-item>
+            <ion-item class="details-card">
+                <ion-icon name="airplane" slot="start"  color="medium"></ion-icon>        
+                9h45m ~ 10h45m
+            </ion-item>
+          <ion-card-content class="ion-text-left">        
+              Although there are no direct flights from Manila to Queenstown, 
+              an alternative would be to fly non-stop to Auckland and get a domestic flight from Auckland to Queenstown. As of Wedvite’s application, 
+              flights from Manila to Auckland leaves at 23:15 and arrives the following day at 13:00, while Auckland to Manila 
+              leaves at 23:25 and arrives the following morning at 6:10. Please make sure to check with the airline for any sudden flight changes.     
+          </ion-card-content>
+    </ion-card>
+    <ion-card class="card-info">
+        <img src="{{gInfo.general_info.getting_there.air_new_image}}"  alt="" />
+          <ion-card-header>
+            <ion-card-title class="flights">
+                Flights from Auckland to Queenstown 
+              </ion-card-title>        
+          </ion-card-header>   
+          <ion-item  class="details-card">
+              <ion-icon name="globe" slot="start"  color="medium" ></ion-icon> 
+               <a href="https://www.airnewzealand.co.nz/">www.airnewzealand.co.nz</a>             
+            </ion-item>
+            <ion-row>
+              <ion-col>
+                  <ion-item class="details-card">
+              
+                      <ion-icon name="calendar" slot="start"  color="medium"></ion-icon>        
+                      Daily 
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                  <ion-item class="details-card">
+              
+                      <ion-icon name="airplane" slot="start"  color="medium"></ion-icon>        
+                      1h55m
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          <ion-card-content class="ion-text-left">        
+              Air New Zealand would be the most convenient airline to fly domestic from Auckland to Queenstown. 
+              They have daily departing flights at different hours. If you plan on taking Philippine Airlines to Auckland,
+              the ideal domestic flight to take would be NZ625 departing at 5:20pm and arriving Queenstown at 7:15pm.
+              This will give you enough time to go through immigration and customs in Auckland then transfer to the domestic terminal and check-in for your flight to Queenstown.
+              Please check for differences in baggage allowance if you are flying Business Class to Auckland and taking a domestic flight.   
+          </ion-card-content>
+    </ion-card>
+    <ion-card class="card-info header-custom">
+        <ion-card-header>
+            <ion-card-title class="flights">
+                Flights from Asia
+              </ion-card-title>        
+          </ion-card-header>
+        <img src="{{gInfo.general_info.getting_there.qantas_image}}"  alt="" />
+          <ion-item class="details-card">
+              <ion-icon name="globe" slot="start"  color="medium" ></ion-icon> 
+               <a href="https://www.qantas.com/ph/en.html">www.qantas.com</a>             
+            </ion-item>
+        <img src="{{gInfo.general_info.getting_there.singapore}}"  alt="" />  
+          <ion-item  class="details-card">
+              <ion-icon name="globe" slot="start"  color="medium" ></ion-icon> 
+               <a href="https://www.singaporeair.com/en_UK/ph/home#/book/bookflight">www.singaporeair.com</a>             
+          </ion-item>
+          <ion-card-content class="ion-text-left">        
+              Alternatively if you would like to fly directly to Queenstown and are okay with having multiple layovers,
+              you may look at flights via Qantas and Singapore Airlines.        
+          </ion-card-content>
+    </ion-card>
+    <ion-card class="card-info">
+        <img src="{{gInfo.general_info.getting_there.air_new_image}}"  alt="" />
+          <ion-card-header>
+            <ion-card-title class="flights">
+                Flights from US and Canada 
+              </ion-card-title>        
+          </ion-card-header>   
+          <ion-item  class="details-card">
+              <ion-icon name="globe" slot="start"  color="medium" ></ion-icon> 
+               <a href="https://www.airnewzealand.co.nz/">www.airnewzealand.co.nz</a>             
+            </ion-item>
+          <ion-card-content class="ion-text-left">        
+              Air New Zealand is the most convenient airline to take if you’re travelling from North America.      
+          </ion-card-content>
+    </ion-card>
+    <ion-card class="card-info">
+        <img src="{{gInfo.general_info.getting_there.sky_scan}}"  alt="" />
+          <ion-card-header>
+            <ion-card-title class="flights">
+                Useful Sites
+              </ion-card-title>        
+          </ion-card-header>   
+          <ion-item  class="details-card">
+              <ion-icon name="globe" slot="start"  color="medium" ></ion-icon> 
+               <a href="https://www.skyscanner.net/">www.skyscanner.net</a>             
+            </ion-item>
+          <ion-card-content class="ion-text-left">        
+              Skyscanner is our favorite site to use if you’d like to check the availability of different airlines that fly to a particular destination. 
+              This can help you sort through different times as well as different price points.    
+          </ion-card-content>
+    </ion-card>
+  <!-- <ion-card>     
     <ion-card-header>
       <ion-card-title  class="ion-text-center recom-text">Flying to Queenstown</ion-card-title>  
-      <img [src]="gInfo.general_info.getting_there.image_path" class="img-container" />
     </ion-card-header>
+  
     <ion-card-content class="ion-text-left">
+  
+
         <h2 class="ion-text-justify"><b>Flights from Manila</b></h2>
         There are no direct flights from Manila to Queenstown, however Philippine Airlines has non-stop
         flights to Auckland, New Zealand that flies three times a week and leaves at night and lands at 13:00 the following day. 
@@ -42,6 +157,6 @@
             For those in the US <br><a  href='https://www.skyscanner.com'>www.skyscanner.com </a>  
             <br>
             For those in the Philippines<br> <a  href='https://www.skyscanner.com.ph'>www.skyscanner.com.ph </a>   
-        </ion-card-content>
-  </ion-card>  
+    </ion-card-content>
+  </ion-card>   -->
 </ion-content>

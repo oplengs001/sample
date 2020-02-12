@@ -1,11 +1,25 @@
 .img-container{
-    height: 30vh;
+    height: auto;
     width: 100vw;
-    -o-object-fit: cover;
-    object-fit: cover;
-    padding-top:10px
+
+    padding-top:10px;
+    padding-bottom:0px
 }
 
 .recom-text{
     font-size: 19px;
 }
+.notes{
+    font-size:15px
+}
+.image-content{
+
+    padding-top: 10px  !important
+}
+
+    ion-card-header{
+        padding-bottom: 0px !important
+    }
+    ion-card-content{
+        padding-top: 0px 
+    }
