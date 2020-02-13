@@ -28,6 +28,8 @@
     object-fit: cover;
   }
   .card-title {
+    	
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
     font-family: "notified-light";
     position: absolute;
     top: 0%;
@@ -36,7 +38,7 @@
     width: 100%;
     font-weight: bold;
     color: #fff;
-    background:rgba(6, 87, 197, 0.27);
+    // background:rgba(6, 87, 197, 0.27);
     padding-top: 60px;
     padding-bottom: 120px;
   }
@@ -57,8 +59,10 @@
     --padding-end: 3em;
     height: 2em !important;
     margin-top: 1rem;
-    border: #ffffff 1px solid;
+    // border: #ffffff 1px solid;
+    border: var(--ion-color-dark) 1px solid;
     width: 50vw;  
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
   }
   
  

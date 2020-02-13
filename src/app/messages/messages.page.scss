@@ -35,7 +35,7 @@ ion-content{
 }
 .message-bg{
   // background: url(../../assets/images/chat_bg.jpg);
-  --background: url("/assets/images/chat_bg.jpg") ;
+  --background: url("/assets/images/chat_bg3.jpg") ;
   --background-size: cover;  
   // bottom:
 
@@ -58,18 +58,21 @@ ion-content{
   bottom: 13vh;
 }
 .my-message {
-  background: #6099ff;
-  color:#ffffff;
+  // background: #6099ff;
+  // background: var( --ion-color-primary);
+  // color:#ffffff;
+  background: #fff;
+  color: var(--ion-color-dark);
   box-shadow: 4px 4px 2px -2px rgba(0,0,0,0.4);
 } 
 .other-message {
-  background: #fff;
   color: var(--ion-color-dark);
+  background: #DCF8C6;
   box-shadow: 4px 4px 2px -2px rgba(0,0,0,0.4);
 }
  
 .time {
-  color: #dfdfdf;
+  // color: #dfdfdf;
   float: right;
   font-size: 10px;
 }

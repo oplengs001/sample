@@ -41,10 +41,10 @@ export class CharityPage implements OnInit {
         { 
           expanded: false,
           text: `The Koala Hospital is a licensed Wildlife Rehabilitation Facility carrying out on-site procedures. All procedures and treatments are done at the Koala Hospital except for major surgeries and
-                 X rays which are undertaken at the Port Macquarie Veterinary Hospital. Being a research/study centre it not only has a strong affiliation with University Sydney, University Technology Queensland and the Australian Museum, but also networks with many institutions, zoos, wildlife researchers, wildlife veterinarians and numerous wildlife rehabilitation groups worldwide.`,
+                 x-rays which are undertaken at the Port Macquarie Veterinary Hospital. Being a research/study centre it not only has a strong affiliation with University Sydney, University Technology Queensland and the Australian Museum, but also networks with many institutions, zoos, wildlife researchers, wildlife veterinarians and numerous wildlife rehabilitation groups worldwide.`,
           url: "https://www.koalahospital.org.au/shop/donation",
           url_tag: "Donate Now",
-          image_link : "/assets/images/charity/koala.png",
+          image_link : "/assets/images/charity/koala.jpg",
           title : "Koala Hospital Port Macquarie "
         },    
         { 

@@ -1,12 +1,19 @@
 ion-content{  
-    --background: url("/assets/images/messages.jpg");
+    --background: url("/assets/images/chat_bg3.jpg");
     --background-repeat: no-repeat !important;
     --background-size: cover;  
     // --ion-background-color:#DEEEEF;
 }
 
+.header-bg{
+    --background: var( --ion-color-primary);
+  color:#ffffff
+}
 ion-list{
     background: none !important;
+}
+.items{
+    --background: none !important;
 }
 .item-gc{
     border-bottom: solid 2px #80808029;
@@ -18,9 +25,16 @@ ion-list{
 .chat_name{
     font-family: notified-medium;
     font-size: 20px;
+    margin-bottom: -10px;
+}
+.last-chat-time{
+    font-size:14px
+}
+.gcnames{
+    margin-top:0px;
+    margin-bottom:0px;
+    
 }
 .item-last-chat{
-    margin-top: 10px;
-    width: 80%;
     word-wrap: break-word;    
 }

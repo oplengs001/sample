@@ -1,7 +1,7 @@
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar class="header-bg" >
       <ion-buttons slot="start">
-        <ion-button  class="pre-wedding-menu-button" color="dark" (click)="sharedComps.openMenu()">
+        <ion-button  class="pre-wedding-menu-button" color="light" (click)="sharedComps.openMenu()">
           <ion-icon name="menu"></ion-icon>
         </ion-button>
         <ion-badge (click)="sharedComps.openMenu()" *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse pulse-on-button" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>     
@@ -17,16 +17,22 @@
       <div *ngFor="let gc of (currentChats)">      
         <br>           
             <ion-item (click)="goToChat(gc.name)" color="none" lines="none" class="item-gc">                    
-                <ion-label>
+                <ion-label class="gcnames">
                     <div class="badge-style">
                       <ion-badge class="pulse" *ngIf="(gc.notifs!==0)" slot="end" color="danger" >
                         {{gc.notifs}} {{gc.notifs==1?'New Message':'New Messages'}}                      
                       </ion-badge>
                       <ion-ripple-effect type="bounded"></ion-ripple-effect>
                     </div>
-                    <h2 class="chat_name">{{gc.group_name}} </h2>                                             
-                    <p class="item-last-chat">{{gc.last_chat}}</p>                   
-                    <p class="ion-text-right">{{gc.last_chat_time | date:'h:mm a'}}</p>                  
+                    <h2 class="chat_name">{{gc.group_name}} </h2>    
+                    <ion-item lines="none" class="items">
+                      <ion-label slot="start" class="item-last-chat">
+                        {{gc.last_chat}}
+                      </ion-label>
+                      <ion-label slot="end" class="ion-text-right last-chat-time">
+                          {{gc.last_chat_time | date:'h:mm a'}}
+                        </ion-label>
+                    </ion-item>                                                        
                   </ion-label>
               </ion-item>
         </div>
