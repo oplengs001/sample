@@ -211,11 +211,12 @@ export class HomePage {
   scrollToBottom(){
     this.content.scrollToBottom(500);
   }
+  scrollToTop(){
+    this.content.scrollToTop(500);
+  }
   async logScrolling($event) {
     // only send the event once
-    if(this.scrollDepthTriggered) {
-      return;
-    }
+  
     
     console.log(this.scrollDepthTriggered);
     const scrollElement = await $event.target.getScrollElement();
@@ -224,13 +225,12 @@ export class HomePage {
     // the top screen can get to 80% total document height
     const scrollHeight = scrollElement.scrollHeight - scrollElement.clientHeight;
     const currentScrollDepth = $event.detail.scrollTop;
-    const targetPercent = 80;
+    const targetPercent = 65;
     let triggerDepth = ((scrollHeight / 100) * targetPercent); 
     if(currentScrollDepth > triggerDepth) {
-      console.log(`Scrolled to ${targetPercent}%`);
       // this ensures that the event only triggers once
       // this.scrollDepthTriggered = true;
-      this.scrollDepthTriggered = false;
+      this.scrollDepthTriggered = true;
       // do your analytics tracking here
     }else{
       this.scrollDepthTriggered = false;

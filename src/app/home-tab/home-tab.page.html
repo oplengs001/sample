@@ -16,7 +16,7 @@
         <ion-card-title class="ion-text-center recom-text"> Things to do in Queenstown </ion-card-title>
         <img src="/assets/images/see_and_do.jpg" alt="" class="img-container"/>
       </ion-card-header>   
-      <ion-card-content  class="ion-text-left">
+      <ion-card-content  class="ion-text-justify title-card">
           Queenstown is a natural playground providing an incredible backdrop for a range of sights to see and things to do for adventurers of all persuasions.
       </ion-card-content>
   </ion-card >
@@ -27,7 +27,7 @@
             <ion-card-title class="item-title">Skiing & Snowboarding</ion-card-title>
           </ion-item>
       </ion-card-header>
-      <ion-card-content class="ion-text-left item-content">
+      <ion-card-content class="ion-text-justify item-content">
         <app-expandable expandHeight="140vh" [expanded]="this.items[0].expanded">
             <img src="/assets/images/activities/ski1.jpg" alt="" class="img-container"/>
             <br>
@@ -100,7 +100,7 @@
                   <ion-card-title   class="item-title">{{item.title}}</ion-card-title>
                 </ion-item>
             </ion-card-header>
-            <ion-card-content class="ion-text-left item-content">
+            <ion-card-content class="ion-text-justify item-content">
               <app-expandable expandHeight="70vh" [expanded]="item.expanded">
                   <img src="{{item.image_link}}" alt="" class="img-container"/>
                   <br>

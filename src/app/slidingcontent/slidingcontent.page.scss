@@ -31,7 +31,10 @@
   }
 .dining-entree{
     padding-top:0px;
-    font-size:15px;
+    font-size:14px;
+}
+.resto-details{
+    font-size:14px
 }
 .recom-text{
     font-size: 19px;
@@ -53,6 +56,8 @@
     height:30vh
 }
 .card-details-input{
+    white-space: normal;
+    text-align: justify;
     font-size: 14px !important
 
 }

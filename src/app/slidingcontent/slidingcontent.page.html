@@ -19,7 +19,7 @@
             <ion-card-title  class="ion-text-center recom-text"> Tommy & Ingga<br> Recommends </ion-card-title>   
             <img src="../../assets/images/homepage/food.jpg" class="img-container" />           
           </ion-card-header>   
-          <ion-card-content  class="ion-text-left dining-entree">
+          <ion-card-content  class="ion-text-justify dining-entree">
             There’s no better way to end your adventure filled day than with a delicious meal. We’ve narrowed down some of our favourite haunts that will fit every budget, from 3 Hats Cuisine 2019 awardee Amisfield Bistro to food-truck 
             style Erik’s Fish & Chips. I think you’ll find that the food and wine in Queenstown will not disappoint!
         </ion-card-content>
@@ -41,8 +41,8 @@
                         <ion-card-subtitle>{{resto.location}}</ion-card-subtitle>
                         <ion-img src="{{resto.image_url}}" ></ion-img>
                         <!-- <div class="ion-text-right more-info" (click)="customExpand(resto,i)" >See more information<ion-icon name="{{resto.expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon></div> -->
-                        <app-expandable expandHeight="100vh" [expanded]="resto.expanded" class="ion-text-left">
-                            <ion-card-content>
+                        <app-expandable expandHeight="100vh" [expanded]="resto.expanded" class="ion-text-justify">
+                            <ion-card-content class="resto-details">
                                 {{resto.details? resto.details: "Keep close to Nature's heart... and break clear away, once in awhile,
                                 and climb a mountain or spend a week in the woods. Wash your spirit clean.
                                 This is content, without any paragraph or header tags,
@@ -117,7 +117,7 @@
                     <ion-icon  slot="end" style="background: #00000000" color="medium"  name="eye"></ion-icon> 
                 </ion-item>
               <ion-card-content>        
-                <ion-textarea class="ion-text-justify" 
+                <ion-textarea class="card-details-input" 
                 autoGrow=true  
                 [(ngModel)]="info.place_description"  
                 (ionBlur)="saveItemWeddingInfo()"    
@@ -158,14 +158,13 @@
                     <ion-icon name="globe" slot="start"  color="medium"></ion-icon>        
                     <label><a href={{info.dinner_location_url}}>{{info.dinner_location_name}}</a></label>
                 </ion-item>                                   
-                <ion-card-content>        
-                  <ion-textarea class="ion-text-justify"
-                  class="card-details-input ion-text-justify" 
+                <ion-card-content class="ion-text-justify">        
+                  <ion-textarea  
+                  class="card-details-input"
                   [(ngModel)]="event.details"
                   (ionBlur)="saveItem(event)"
                   readonly="{{!isAdmin}}"
                   autoGrow=true 
-                  
                   ></ion-textarea>      
                   <div *ngIf="event.name === 'Pick Up'" class="ion-text-justify"> 
                       <section class="buttons-pick-up">   
@@ -180,7 +179,7 @@
                         <ion-button expand="block" fill="outline" color="dark" (click)=openRestrictions(authServ.userGuestDetails.diet_restriction)>DIETARY RESTRICTONS</ion-button>                                             
                       </section>                                
                   </div>                    
-                </ion-card-content>        
+              </ion-card-content>        
           </ion-card>                                                                   
         </div>   
       <!-- <div *ngIf="(events|async)?.length !== 0;else items"> 

@@ -17,7 +17,12 @@
     <ion-icon name="ios-arrow-down"></ion-icon>
   </ion-fab-button>
 </ion-fab>
-<ion-content class="card-background-page" *ngIf=!forRsvp forceOverscroll=false [scrollEvents]="true">
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" [hidden]=!scrollDepthTriggered>
+  <ion-fab-button class="bounce-2" (click)=scrollToTop()>
+    <ion-icon name="ios-arrow-up"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<ion-content class="card-background-page" *ngIf=!forRsvp forceOverscroll=false [scrollEvents]="true" (ionScroll)="logScrolling($event)">
   <ion-card (click)="reRoute('weather')">   
       <img class="card-image" src="/assets/images/homepage/q_weather.jpg"/>
       <div class="card-title weather">         
