@@ -60,6 +60,7 @@ export class SlidingcontentPage implements OnInit {
     private webview : WebView,
     public loadingController: LoadingController,
     private imageCompress: NgxImageCompressService,
+    private footer : FooterComponent
   ) {   
     this.Dining = false
     this.Itinerary = false
@@ -96,7 +97,8 @@ export class SlidingcontentPage implements OnInit {
         this.Dining = true
         this.Itinerary =false
       }else if(this.content === "Itinerary"){
-        this.Dining =false
+        // this =true
+        this.footer.onItinerary = true
         this.Itinerary = true
         this.events = this.contentServe.getEvents()
     
@@ -129,6 +131,7 @@ export class SlidingcontentPage implements OnInit {
   ionViewDidLeave(){
       this.eventSubs.unsubscribe()
       this.contentSubs.unsubscribe()
+      this.footer.onItinerary = false
   }
  
   async addEvent() {

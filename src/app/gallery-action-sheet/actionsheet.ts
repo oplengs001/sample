@@ -291,6 +291,7 @@ export class ActionClass implements OnInit {
     this.socialSharing.share(null,null, ImageFile).then((res) => {
       // Success
     }).catch((e) => {
+      this.loadingController.dismiss();
       console.log(e)
       alert(e)
     });
@@ -378,10 +379,11 @@ export class ActionClass implements OnInit {
         }, 500);
       }).catch((e) => {
           console.log(e)
+          this.loadingController.dismiss();
           if(e==="not available"){
             
           }else{
-            alert(e)
+            this.toaster.showToast("Please use the share button for now")
           }
         });
       })

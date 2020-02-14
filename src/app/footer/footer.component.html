@@ -19,13 +19,13 @@
     </ion-tab-button>
 
     <ion-tab-button (click)="goToItinerary()">
-      <ion-icon name="list-box"></ion-icon>
-      <ion-label>Itinerary</ion-label>
+      <ion-icon name="list-box" color="{{onItinerary?'dark':'medium'}}"></ion-icon>
+      <ion-label color="{{onItinerary?'dark':'medium'}}"> Itinerary </ion-label>
     </ion-tab-button>
     <ion-tab-button tab="message-list">
       <div [hidden]="inbox_hide" > <ion-badge class="pulse" color="danger">{{inbox_count}}</ion-badge></div>
-      <ion-icon name="chatboxes"></ion-icon>
-      <ion-label>Chat</ion-label>
+      <ion-icon name="chatboxes" color="{{onChat?'dark':'medium'}}"></ion-icon>
+      <ion-label color="{{onChat?'dark':'medium'}}"> Chat </ion-label>
     </ion-tab-button>
     
   </ion-tab-bar>

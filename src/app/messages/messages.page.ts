@@ -161,10 +161,13 @@ export class MessagesPage implements OnInit {
   }
   ionViewDidLeave(){
     // this.current_length   
- 
+    this.footerFunc.onChat =false
   }
   ionViewDidEnter (){ 
-
+    setTimeout(()=>{
+      this.footerFunc.onChat =true
+    },300)
+    
   }
   ionViewWillLeave() {
 

@@ -33,6 +33,8 @@ export class FooterComponent   {
   public GCsubsList : any =[] 
   public currentChats : any = []
   public rsvpList : any =[]
+  public onItinerary : boolean
+  public onChat : boolean
   constructor(
     private fcm: FCM, 
     private router: Router,
@@ -52,7 +54,7 @@ export class FooterComponent   {
 
   ngOnInit() {
     this.SubrcibeToOwnTopics()    
-
+  
   }
 
   SubrcibeToOwnTopics() {

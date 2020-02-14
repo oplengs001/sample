@@ -35,8 +35,10 @@ export class MessageListPage implements OnInit {
 
   ionViewDidLeave (){  
     this.AllChatSubs.unsubscribe()    
+    this.footer.onChat =false
   }
   ionViewDidEnter(){
+    this.footer.onChat =true
     var isAdmin
     if(this.authServ.userGuestDetails){
       isAdmin = this.authServ.userGuestDetails["isAdmin"]

@@ -85,7 +85,7 @@ export class HomeTabPage implements OnInit, OnDestroy {
         expanded: false,
         text: `Venture off road or into the bush to learn about the region's astounding natural heritage, 
               or explore the old farm homesteads and historic gold mining villages for a peek into early settler life. There are also numerous heritage walks 
-              to be had in and around Queenstown, exploring the unforgettable natural scenery that forms the backbone to this region's fascinating history`,
+              to be had in and around Queenstown, exploring the unforgettable natural scenery that forms the backbone to this region's fascinating history.`,
         url: "https://www.queenstownnz.co.nz/things-to-do/culture-and-heritage/",
         url_tag: "Queenstown Culture & Heritage",
         image_link : "/assets/images/activities/culture.jpg",
