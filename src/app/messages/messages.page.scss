@@ -111,7 +111,7 @@ ion-content{
 
 .image_container{
   ion-skeleton-text {
-    height: 24vh;
+    height: 180px;
     width: 50vw;
     object-fit: inherit;
     object-position: inherit;
@@ -121,7 +121,7 @@ ion-content{
   } 
 
   .loader-image{
-    height: 25vh;
+    height: 200px;
     width: 50vw;
     object-fit: inherit;
     object-position: inherit;
@@ -146,7 +146,7 @@ ion-content{
     max-width: 50vw !important;
 
     ion-img {
-      height: 25vh !important;
+      height: 200px !important;
       object-fit: cover;
       object-position: inherit;
       opacity: 1;

@@ -180,7 +180,12 @@ export class ActionClass implements OnInit {
 
   }
   async generalPostShare(post) {
-    const {id,images} = post    
+    var images
+    if(post.images){
+       images = post.images
+    }else{
+      images = [post]
+    }
     this.showLoader()
     let array = [];
     for (var _i = 0; _i < images.length; _i++) {
@@ -361,6 +366,25 @@ export class ActionClass implements OnInit {
         }
       });
     
+  }
+  async downloadToPhone(post){
+    this.showLoader()
+    await this.imageService.downloadImageMultiple(post.url,post.file_name)
+      .then(async ImgFile => {
+      this.socialSharing.saveToPhotoAlbum(ImgFile).then((res)=>{
+        this.toaster.showToast("Image saved to gallery")
+        setTimeout(() => {
+          this.loadingController.dismiss();
+        }, 500);
+      }).catch((e) => {
+          console.log(e)
+          if(e==="not available"){
+            
+          }else{
+            alert(e)
+          }
+        });
+      })
   }
   showLoader() {
     this.loaderToShow = this.loadingController.create({

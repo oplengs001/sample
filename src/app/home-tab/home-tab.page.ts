@@ -55,8 +55,7 @@ export class HomeTabPage implements OnInit, OnDestroy {
       },    
       { 
         expanded: false,
-        text: `Take to the air on a scenic flight, cruise across Lake Wakatipu and see the mountains from a new perspective
-               ,or be carried high over Queenstown in a gondola and take in the views, there are activities for all travellers.`,
+        text: `Take to the air on a scenic flight, cruise across Lake Wakatipu and see the mountains from a new perspective or be carried high over Queenstown in a gondola and take in the views, there are activities for all travellers.`,
         url: "https://www.queenstownnz.co.nz/things-to-do/sightseeing/",
         url_tag: "Sightseeing",
         image_link : "/assets/images/activities/sight.jpg",

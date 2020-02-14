@@ -34,8 +34,8 @@ export class ImagePage implements OnInit {
     post:any,
     hideFooter?:boolean,
     currentUser?:string,
-    hideDelete?:boolean
-    
+    hideDelete?:boolean,
+    sentPhoto?:boolean
     ) {
 
       const modal: HTMLIonModalElement =
@@ -45,7 +45,8 @@ export class ImagePage implements OnInit {
            image_post : post,
            hideFooter : hideFooter,
            current_user : currentUser,
-           hideDelete : hideDelete
+           hideDelete : hideDelete,
+           sentPhoto :sentPhoto
          },
          cssClass:"customModalClass",
       });          

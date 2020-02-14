@@ -102,7 +102,7 @@ export class CreateGroupPage implements OnInit {
       if(group_id){
         group_id = group_id
       }else{
-        debugger
+        
         group_id = "fcm"+Date.now()+"fcm"
       }
       var chat_group = {
@@ -112,7 +112,7 @@ export class CreateGroupPage implements OnInit {
         this.group_array.map(data=>{
         return data.uid
         })
-        debugger
+        
       if(forEdit){ 
         forEdit = true
         let unique = original.filter((o)=> new_array.indexOf(o) === -1),

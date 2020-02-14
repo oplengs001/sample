@@ -15,7 +15,7 @@
 <ion-content  forceOverscroll=false>
     <ion-list>
       <div *ngFor="let gc of (currentChats)">      
-        <br>           
+        <br>
             <ion-item (click)="goToChat(gc.name)" color="none" lines="none" class="item-gc">                    
                 <ion-label class="gcnames">
                     <div class="badge-style">
@@ -27,7 +27,8 @@
                     <h2 class="chat_name">{{gc.group_name}} </h2>    
                     <ion-item lines="none" class="items">
                       <ion-label slot="start" class="item-last-chat">
-                        {{gc.last_chat}}
+                          <ion-icon *ngIf='gc.last_chat===" "' class="item-camera" name="image"></ion-icon>
+                        {{gc.last_chat===" "?'Photo':gc.last_chat}}
                       </ion-label>
                       <ion-label slot="end" class="ion-text-right last-chat-time">
                           {{gc.last_chat_time | date:'h:mm a'}}

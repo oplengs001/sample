@@ -137,7 +137,7 @@ export class MessagesPage implements OnInit {
   scrollToBottom(value) {
     setTimeout(()=>{
       this.content.scrollToBottom(value);
-    },150)
+    },300)
   }
   ionViewWillEnter() {
    
@@ -145,8 +145,8 @@ export class MessagesPage implements OnInit {
   seen_chat(){
     console.log("focused")
     setTimeout(()=>{
-      this.scrollToBottom(0)
-    },500)
+    this.scrollToBottom(250)
+    },750)
     this.cs.seen_chat(this.chat_id).then(seen =>{        
       if(seen.continue){
         this.footerFunc.SubrcibeToOwnTopics()
@@ -171,9 +171,11 @@ export class MessagesPage implements OnInit {
   }
   imageClick(post){
     var image_post={
-        url:post
+        url:post,
+        file_name: Date.now()
     }
-    this.imageModal.openImageModal(image_post,true,null,true)
+    
+    this.imageModal.openImageModal(image_post,true,null,true,true)
   } 
   async showChat(){
     

@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { FooterComponent } from '../footer/footer.component'
 import { SharedComponent } from '../shared-component/shared';
 import { AnnouncementSaveService } from '../services/announcements/announcement-save.service';
+import { GuestAddService } from '../services/guest-add/guest-add.service';
 @Component({
   selector: 'app-message-list',
   templateUrl: './message-list.page.html',
@@ -23,14 +24,15 @@ export class MessageListPage implements OnInit {
     private chatServ : ChatService,
     private footer : FooterComponent,
     private sharedComps : SharedComponent,
-    private annServe : AnnouncementSaveService
+    private annServe : AnnouncementSaveService,
+    private guestServe : GuestAddService
   ) { }
 
 
   ngOnInit(){
    this.currentChats = this.footer.currentChats
-
   }
+
   ionViewDidLeave (){  
     this.AllChatSubs.unsubscribe()    
   }
