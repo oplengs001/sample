@@ -374,7 +374,9 @@ export class ActionClass implements OnInit {
       await this.imageService.downloadtoDirectory(post.url,post.file_name)
       .then(imgFile=>{
         this.toaster.showToast("Image saved to gallery")
+        this.loadingController.dismiss();
       }).catch(e=>{
+        this.loadingController.dismiss();
         alert(e)
       })
     }else{
@@ -388,8 +390,8 @@ export class ActionClass implements OnInit {
               }, 500);
               }).catch((e) => {
                 console.log(e)
-                this.loadingController.dismiss();
-                if(e==="not available"){
+              this.loadingController.dismiss();
+              if(e==="not available"){
                   
                 }else{
                   this.toaster.showToast("Download not avaiable on your device please use the share button for now")
