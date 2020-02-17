@@ -34,6 +34,15 @@
      top:40vh !important;
      z-index: -1 !important;
  }
+ .wedcast-pager .swiper-pagination {
+  bottom: 0px !important;
+  z-index: -1 !important;
+}
+.wedcast-pager .swiper-pagination-bullet-active {
+
+  --bullet-background-active: #1e2023 !important
+} 
+
 
  .logins .swiper-pagination-bullet-active {
 

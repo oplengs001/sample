@@ -51,11 +51,6 @@ export class HomeMenuPage implements OnInit {
       icon: 'pricetag'
     },   
     {
-      title: 'What to Wear',
-      url: '/wedding-weather',
-      icon: 'rainy'
-    },
-    {
       title: 'Accommodation',
       url: '/accomodations',
       icon: 'bed'
@@ -71,6 +66,26 @@ export class HomeMenuPage implements OnInit {
       icon: 'walk'
     },
     {
+      title: 'Wedding Itinerary',
+      url: 'itinerary',
+      icon: 'list-box'
+    },
+    {
+      title: 'Wedding Party',
+      url: 'wedcast',
+      icon: 'rose'
+    },
+    {
+      title: 'What to Wear',
+      url: '/wedding-weather',
+      icon: 'rainy'
+    },
+    {
+      title: 'Wedding Gift',
+      url: 'charity',
+      icon: 'gift'
+    },
+    {
       title: 'Announcements',
       url: 'notifs',
       icon: 'notifications'
@@ -81,20 +96,11 @@ export class HomeMenuPage implements OnInit {
       icon: 'images'
     },
     {
-      title: 'Wedding Itinerary',
-      url: 'itinerary',
-      icon: 'list-box'
-    },
-    {
       title: 'Chat',
       url: 'messages',
       icon: 'chatboxes'
-    },
-    {
-      title: 'Wedding Gift',
-      url: 'charity',
-      icon: 'gift'
     }
+
   ]; 
 
   constructor(

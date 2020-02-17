@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar mode="ios">
+      <ion-buttons slot="start">
+        <ion-button  class="pre-wedding-menu-button" color="dark" (click)="sharedComps.openMenu()">
+            <ion-icon name="menu"></ion-icon>
+          </ion-button>
+          <ion-badge (click)="sharedComps.openMenu()" *ngIf="this.annServe.RsvpNotifCount>=1" slot="start" class="pulse pulse-on-button" color="danger">{{this.annServe.RsvpNotifCount}}</ion-badge>
+      </ion-buttons>
+      <ion-title>
+       Wedding Party
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+  
+    <div *ngFor="let category of categories;let i = index" >
+      <ion-card class="item-card" id="cat{{i}}">
+        <ion-card-header class="item-header"  (click)="expandItem(category,'cat'+i)">  
+            <ion-item lines="none">
+              <ion-icon slot="end" name="{{category.expanded?'ios-arrow-up':'ios-arrow-down'}}"></ion-icon>
+              <ion-card-title class="item-title">{{category.title}}</ion-card-title>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content class="ion-text-center item-content">
+          <app-expandable expandHeight="500vh"  [expanded]="category.expanded">
+            <ion-slides pager="true" class="wedcast-pager">
+                  <ion-slide *ngFor="let cast of category.casts">
+                      <ion-card>
+                          <ion-card-header > 
+                            <img class="face-image" [src]="cast.image"  />        
+                            <br>
+                            <ion-card-title  class="ion-text-center recom-text"> {{cast.name}}</ion-card-title>      
+                          </ion-card-header>   
+                          <ion-card-content  class="ion-text-center intro-text">
+                            {{cast.desc}}
+                        </ion-card-content>
+                      </ion-card>  
+                  </ion-slide>
+            </ion-slides>
+          </app-expandable>
+        </ion-card-content>
+      </ion-card>
+    </div>
+</ion-content>

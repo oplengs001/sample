@@ -96,8 +96,10 @@ export class SlidingcontentPage implements OnInit {
       if(this.content ==="Dining"){
         this.Dining = true
         this.Itinerary =false
+        this.footer.onItinerary = false
       }else if(this.content === "Itinerary"){
         // this =true
+        this.Dining = false
         this.footer.onItinerary = true
         this.Itinerary = true
         this.events = this.contentServe.getEvents()

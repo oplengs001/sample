@@ -24,6 +24,16 @@
   font-family: 'sail-regular';
   src: url("../assets/fonts/Sail-Regular.ttf") format('truetype');    
 };
+@font-face {
+  font-family: 'libre';
+  src: url("../assets/fonts/LibreBaskerville-Regular.otf") format('opentype');    
+};
+
+@font-face {
+  font-family: 'monsterrat';
+  src: url("../assets/fonts/Montserrat-Regular.otf") format('opentype');    
+};
+
 .icon-container{
   border-radius: 50%;
   width: 40vw;

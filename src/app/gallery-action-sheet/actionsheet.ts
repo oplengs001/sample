@@ -32,7 +32,7 @@ export class ActionClass implements OnInit {
     private announcements : AnnouncementSaveService,
     private notifService : NotificationService,
     private platform : Platform,
-    public httpIon : HTTP,
+    public httpIon : HTTP
   ) { }
 
   ngOnInit() {      
@@ -370,23 +370,34 @@ export class ActionClass implements OnInit {
   }
   async downloadToPhone(post){
     this.showLoader()
-    await this.imageService.downloadImageMultiple(post.url,post.file_name)
-      .then(async ImgFile => {
-      this.socialSharing.saveToPhotoAlbum(ImgFile).then((res)=>{
+    if(this.platform.is("android")){
+      await this.imageService.downloadtoDirectory(post.url,post.file_name)
+      .then(imgFile=>{
         this.toaster.showToast("Image saved to gallery")
-        setTimeout(() => {
-          this.loadingController.dismiss();
-        }, 500);
-      }).catch((e) => {
-          console.log(e)
-          this.loadingController.dismiss();
-          if(e==="not available"){
-            
-          }else{
-            this.toaster.showToast("Please use the share button for now")
-          }
-        });
+      }).catch(e=>{
+        alert(e)
       })
+    }else{
+      await this.imageService.downloadImageMultiple(post.url,post.file_name)
+        .then(async ImgFile => {
+        
+            this.socialSharing.saveToPhotoAlbum(ImgFile).then((res)=>{
+              this.toaster.showToast("Image saved to gallery")
+              setTimeout(() => {
+                this.loadingController.dismiss();
+              }, 500);
+              }).catch((e) => {
+                console.log(e)
+                this.loadingController.dismiss();
+                if(e==="not available"){
+                  
+                }else{
+                  this.toaster.showToast("Download not avaiable on your device please use the share button for now")
+                }
+            });
+          }
+        )
+    }
   }
   showLoader() {
     this.loaderToShow = this.loadingController.create({

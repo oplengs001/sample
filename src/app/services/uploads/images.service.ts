@@ -209,6 +209,21 @@ export class ImagesService {
       });
     })
   }
+  downloadtoDirectory(url,file_name:string):Promise<any>{
+    return new Promise<any>((resolve, reject) => {
+      var storagePath = this.file.externalDataDirectory+'wedvite_images'
+      const fileTransfer = this.transfer.create();
+      return fileTransfer.download(url, storagePath + file_name+".jpg").then((entry) => {
+          console.log(entry);
+          console.log('download complete: ' + entry.toURL());
+          resolve(entry.toURL())
+      }, (error) => {
+          console.log(error);
+          reject(error);
+          // handle error
+      });
+    })
+  }
   downloadImageMultiple(url,file_name:string):Promise<any>{        
     return new Promise<any>((resolve, reject) => {
       const fileTransfer = this.transfer.create();

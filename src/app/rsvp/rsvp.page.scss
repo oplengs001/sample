@@ -2,9 +2,24 @@
 
 
   .wc-text{
-    font-family: "sail-regular";
-    font-size: 7.5vh !important;
+    font-family: "libre";
+    font-size: 5vh !important;
+    text-transform: capitalize
   }  
+  .image-container{
+    --background: url("/assets/images/wed.jpg") ;
+    background-repeat: no-repeat;
+    background-size: auto;
+    position: absolute;
+    height: 94vh;
+    width: 100vw
+  }
+  ion-content{
+  
+  }
+  .ands{
+    text-transform: lowercase
+  }
   .under-text{    
     // font-family: "roboto";
     // font-size: 1.5vh !important;
@@ -12,13 +27,14 @@
   }
   p{
     margin-bottom: 0px !important;
-    font-family: "roboto" !important;
+    font-size:10px;
+    font-family: "monsterrat" !important;
   }
   ion-button{
-    font-family: "roboto" !important;
+    font-family: "monsterrat" !important;
   }
   .rsvpbutton{
-    font-family: "roboto";
+    font-family: "monsterrat";
     font-size:20px
   }
   ion-slides {
@@ -41,7 +57,7 @@
         p {
           margin-top: 0px;
           font-family: notified-light;
-          font-size:15px ;
+          font-size:11px ;
           text-transform: uppercase
           
         }             
@@ -54,15 +70,20 @@
       margin-left: -10px;
     }
     ion-slide:first-child{
-      background : url("../../assets/images/church.jpg") no-repeat center center;
-      background-size: cover;;
+      background : url("../../assets/images/nrsvp.png") no-repeat center center fixed; ;
+      background-size: contain
     }     
     .slider .slider-pager {
       text-align: right;
     } 
     .buttons{
+      ion-button{
+        width: 40vw;
+        height: 35px;
+      }
       font-style : "roboto";
-        margin-top:30px
+      position: absolute;
+      bottom:11vh
     }
   }  
   .cross-img1{
@@ -76,6 +97,6 @@
     height: 14px;
     position: absolute;
     text-align: left;
-    margin-left: 5px;
+    margin-left: 3px;
     margin-top: 0px;
   }

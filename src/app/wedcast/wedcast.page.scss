@@ -1,0 +1,34 @@
+.item-card{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: unset;
+    margin-right: unset;
+    -webkit-margin-start: 0px;
+    margin-inline-start: 0px;
+    -webkit-margin-end: 0px;
+    margin-inline-end: 0px;
+    border-radius: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.face-image{
+    height: 30vh;
+    width: 80vw;
+    object-fit:cover
+}
+.item-header{
+    padding-bottom: 0px !important;
+}
+.item-title{
+    font-size: 18px !important;
+    font-weight: 550
+}
+.item-content{
+    padding-top: 0px !important;
+}
+.intro-text{
+    padding-top: 0px !important;
+}
+.recom-text{
+    font-size: 16px !important;
+}

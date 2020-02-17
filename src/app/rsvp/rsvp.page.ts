@@ -26,6 +26,7 @@ export class RsvpPage implements OnInit {
   ngOnInit() {  
      
     this.isAdmin = this.authServ.userGuestDetails["isAdmin"]
+    
     console.log(this.isAdmin)
   }  
   ionViewDidEnter (){

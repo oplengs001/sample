@@ -1,7 +1,7 @@
 <ion-content force-overscroll="false" >
   <ion-slides class="swiper-no-swiping" [hidden]="hideSlide" *ngIf=info  >
       <ion-slide>
-        <div class="slide-content" >
+        <div class="slide-content" [hidden]=true>
             <!-- <p> {{info.b_father_name}} & {{info.b_mother_name}} </p> -->   
             <ion-row>
                 <ion-col>
@@ -15,8 +15,11 @@
                     <p> {{info.b_father_name}} <img [src]=cross_src class="cross-img2"></p> 
                 </ion-col>            
             </ion-row>               
-            <p class=under-text> {{info.invitation_f_text}} </p>
-            <h1 class="wc-text">{{info.groom_name}} & {{info.bride_name}}</h1>
+            <p class=under-text>
+                 <!-- {{info.invitation_f_text}}  -->
+                Request the honor of your presence at the <br> marriage of their children
+            </p>
+            <h1 class="wc-text">{{info.bride_name}} <br><div class="ands">and</div>  {{info.groom_name}}</h1>
             <br><br>
             <p> {{info.weddingDateText}}</p>
             <!-- <br> {{info.weddingYearText}}</p>           -->
@@ -31,12 +34,16 @@
        
             <!-- <p> {{info.invitation_last_text}}</p> -->
             
-            <section class="buttons">
+            <!-- <div class="buttons">
                 <header class="rsvpbutton">R S V P</header>              
                 <ion-button size="large" fill=outline color="success" (click)="home.updateStatus(true,true)" [disabled]="isAdmin" > Accept </ion-button>      
                 <ion-button size="large" fill=outline color="danger" (click)="home.updateStatus(false,true)" [disabled]="isAdmin"> Decline </ion-button>
-            </section>            
+            </div>             -->
         </div>
+        <div class="buttons">
+            <ion-button size="large" fill=solid color="success" (click)="home.updateStatus(true,true)" [disabled]="isAdmin" > Accept </ion-button>      
+            <ion-button size="large" fill=solid color="danger" (click)="home.updateStatus(false,true)" [disabled]="isAdmin"> Decline </ion-button>
+        </div>   
       </ion-slide>       
   </ion-slides>    
 </ion-content>  
