@@ -154,6 +154,14 @@
                         autoGrow=true 
                         ></ion-textarea >     
                 </ion-item>   
+                <ion-item class="details-card" *ngIf="event.position === 0">
+                    <ion-icon name="ios-call" slot="start"  color="medium"></ion-icon>        
+                    <label><div style="color:var(--ion-color-primary, #3880ff)" (click)="callNumber('64800866666')">+64 800 866 666</div></label>
+                </ion-item>  
+                <ion-item class="details-card" *ngIf="event.position === 0">
+                    <ion-icon name="globe" slot="start"  color="medium"></ion-icon>        
+                    <label><a href="https://goo.gl/maps/kuB9KUT7dK1uc3WW8">Show Map</a></label>
+                </ion-item> 
                 <ion-item class="details-card" *ngIf="event.position === 5">
                     <ion-icon name="globe" slot="start"  color="medium"></ion-icon>        
                     <label><a href={{info.dinner_location_url}}>{{info.dinner_location_name}}</a></label>
@@ -166,7 +174,7 @@
                   readonly="{{!isAdmin}}"
                   autoGrow=true 
                   ></ion-textarea>      
-                  <div *ngIf="event.name === 'Pick Up'" class="ion-text-justify"> 
+                  <div *ngIf="event.position === 0" class="ion-text-justify"> 
                       <section class="buttons-pick-up">   
                         <ion-button expand="block" fill="outline" color="dark" (click)=openMap()>  <ion-icon name="map"></ion-icon> Get Directions</ion-button>
                         <ion-button *ngIf="authServ.userGuestDetails.reservation_status === '' ||authServ.userGuestDetails.reservation_status === 'declined'" expand="block" fill="outline" color="dark" (click)=openReservation(authServ.userGuestDetails.bus_reservation)>  <ion-icon name="bus"></ion-icon>Bus Reservation</ion-button>

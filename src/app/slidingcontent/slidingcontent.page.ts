@@ -19,6 +19,9 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { AnnouncementSaveService } from '../services/announcements/announcement-save.service';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+import { ToastService } from '../services/toaster/toast-service';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 
 @Component({
   selector: 'app-slidingcontent',
@@ -60,7 +63,10 @@ export class SlidingcontentPage implements OnInit {
     private webview : WebView,
     public loadingController: LoadingController,
     private imageCompress: NgxImageCompressService,
-    private footer : FooterComponent
+    private footer : FooterComponent,
+    private calls : CallNumber,
+    private clipboard : Clipboard,
+    private toast : ToastService
   ) {   
     this.Dining = false
     this.Itinerary = false
@@ -184,6 +190,16 @@ export class SlidingcontentPage implements OnInit {
           })
       }
     })
+  }
+  callNumber(callerID:string){
+    this.calls.callNumber(callerID,true) 
+     .then(res => console.log('Launched dialer!', res))
+     .catch(err => console.log('Error launching dialer', err));
+  }
+  copyClipboard(callerID:string){
+    this.clipboard.copy(callerID)
+    .then(res => this.toast.showToast("copied to clipboard"))
+    .catch(err => alert(err));
   }
   async openMap() {    
     const modal: HTMLIonModalElement =
