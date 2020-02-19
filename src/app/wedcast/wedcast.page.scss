@@ -22,7 +22,7 @@
 }
 .img-container{
     height: 50vh;
-    width: 80vw;
+    width: 100%;
     object-fit:contain
 }
 .face-image{
@@ -42,6 +42,7 @@
 }
 .intro-text{
     padding-top: 0px !important;
+    padding-bottom: 3vh  !important;
 }
 .wed-cast-card{
     margin-top:0px !important;
@@ -49,8 +50,9 @@
 
 }
 .image-holder{
+    padding-bottom: 0px !important;
     ion-skeleton-text {
-        height: 30vh;
+        height: 44vh;
         width: 70vw;
         object-fit: inherit;
         object-position: inherit;
@@ -71,7 +73,7 @@
     &.img-loaded {
 
         ion-img {
-            height: 30vh !important;
+            height: 45vh !important;
             object-fit: contain;
             object-position: inherit;
             opacity: 1;

@@ -64,6 +64,9 @@ private categories : any =[]
     }
 
   }
+  ionViewDidEnter(){
+    this.ioncontent.scrollToTop(0)
+  }
   imageLoaded(event,isLoaded: boolean) {    
     if (isLoaded) {
         event.target.parentElement.classList.add('img-loaded');
