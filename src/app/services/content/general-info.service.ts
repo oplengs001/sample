@@ -37,7 +37,9 @@ export interface Info {
   wedding_location_url_name:string,
   dinner_location_url:string,
   dinner_location_name:string,
-  wedcast:any
+  wedcast:any,
+  wed_cast_message :string,
+  wed_cast_title : string
 }
 @Injectable({
   providedIn: 'root'

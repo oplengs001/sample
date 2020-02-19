@@ -11,10 +11,24 @@
     margin-top: 0;
     margin-bottom: 0;
 }
-.face-image{
-    height: 30vh;
+.welcome-title{
+    font-size:16px
+}
+.welcome-message{
+    font-size: 14px;
+}
+.intro-title{
+    padding-top:0px
+}
+.img-container{
+    height: 50vh;
     width: 80vw;
-    object-fit:cover
+    object-fit:contain
+}
+.face-image{
+    height: 30vh !important; 
+    width: 100% !important;
+    object-fit:contain
 }
 .item-header{
     padding-bottom: 0px !important;
@@ -31,6 +45,45 @@
 }
 .wed-cast-card{
     margin-top:0px !important;
+ 
+
+}
+.image-holder{
+    ion-skeleton-text {
+        height: 30vh;
+        width: 70vw;
+        object-fit: inherit;
+        object-position: inherit;
+        // position: absolute;
+        visibility: visible;
+        opacity : 1
+    } 
+    ion-img {
+    
+        opacity: 1;
+        visibility: hidden;
+        // max-width: 50vw !important;
+        height: 0vh ;
+        
+        position: absolute
+    }
+  
+    &.img-loaded {
+
+        ion-img {
+            height: 30vh !important;
+            object-fit: contain;
+            object-position: inherit;
+            opacity: 1;
+            visibility: visible;
+            position: relative
+            // height: 100% !important;
+            }
+        ion-skeleton-text {
+        display: none;
+        visibility: hidden;
+        }
+    }
 }
 .recom-text{
     font-size: 16px !important;

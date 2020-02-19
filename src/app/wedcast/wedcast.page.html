@@ -17,10 +17,10 @@
       <ion-card-header >
         <img src="../../assets/images/tommy-ingga.jpg"  class="img-container" />
       </ion-card-header>
-      <ion-card-content>
-      <div class="ion-text-center"><b>Tommy and Ingga's Entourage</b></div><br>
-      <div class="notes" class="ion-text-justify">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+      <ion-card-content class="intro-title">
+      <div class="ion-text-center welcome-title"><b>{{gTitle}}</b></div><br>
+      <div class="ion-text-justify welcome-message">
+        {{gMessage}}
       </div>
     
       </ion-card-content>
@@ -38,8 +38,13 @@
             <ion-slides pager="true" class="wedcast-pager">
                   <ion-slide *ngFor="let cast of category.casts">
                       <ion-card class=wed-cast-card>
-                          <ion-card-header > 
-                            <img class="face-image" [src]="cast.image"  />        
+                          <ion-card-header class="image-holder"> 
+                            <ion-img class="face-image" [src]="cast.image"
+
+                            (ionImgDidLoad)="imageLoaded($event,true)"
+                            
+                            > </ion-img>   
+                            <ion-skeleton-text animated></ion-skeleton-text>    
                             <br>
                             <ion-card-title  class="ion-text-center recom-text"> {{cast.name}}</ion-card-title>      
                           </ion-card-header>   

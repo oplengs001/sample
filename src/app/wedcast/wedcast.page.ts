@@ -13,6 +13,8 @@ import { SharedComponent } from '../shared-component/shared';
 export class WedcastPage implements OnInit {
 @ViewChild(IonContent, {static: false}) ioncontent: IonContent;
 private cast
+private gMessage: string
+private gTitle : string
 private categories : any =[]
   constructor(
     private homeMenu: HomeMenuPage,
@@ -22,7 +24,9 @@ private categories : any =[]
   ) { }
 
   ngOnInit() {
-    this.gInfo.getWeddingInfoTakeOne().subscribe(data=>{      
+    this.gInfo.getWeddingInfoTakeOne().subscribe(data=>{
+      this.gMessage = data[0].wed_cast_message
+      this.gTitle = data[0].wed_cast_title
       this.cast = data[0].wedcast
       this.cast = this.cast.reduce(function (r, a) {
         a.expanded = false
@@ -59,6 +63,14 @@ private categories : any =[]
       this.scrollTo(item_id)
     }
 
+  }
+  imageLoaded(event,isLoaded: boolean) {    
+    if (isLoaded) {
+        event.target.parentElement.classList.add('img-loaded');
+      // }, 500);      
+    } else {
+        event.target.parentElement.classList.remove('img-loaded');
+    }
   }
   scrollTo(elementId: string) {
       

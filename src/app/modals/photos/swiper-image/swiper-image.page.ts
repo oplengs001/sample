@@ -38,7 +38,8 @@ export class SwiperImagePage implements OnInit {
           toggle:true,
           maxRatio: 3,
           minRatio: 2
-        }
+        },
+        preventInteractionOnTransition : true,
        
        }
 
