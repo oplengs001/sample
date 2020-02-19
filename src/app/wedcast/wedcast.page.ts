@@ -26,8 +26,8 @@ private categories : any =[]
       this.cast = data[0].wedcast
       this.cast = this.cast.reduce(function (r, a) {
         a.expanded = false
-          r[a.type] = r[a.type] || [];
-          r[a.type].push(a);
+          r[a.category] = r[a.category] || [];
+          r[a.category].push(a);
           return r;
       }, Object.create(null));
       var cast_items = this.cast

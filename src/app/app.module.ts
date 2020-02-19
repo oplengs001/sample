@@ -43,11 +43,11 @@ import { DietRestPageModule } from '../app/modals/diet-rest/diet-rest.module'
 import { BusReservationsPageModule } from '../app/modals/bus-reservations/bus-reservations.module'
 import { GalleryPostPageModule } from '../app/modals/gallery-post/gallery-post.module'
 import { ImagePageModule } from '../app/modals/photos/image/image.module'
+import { SwiperImagePageModule } from '../app/modals/photos/swiper-image/swiper-image.module';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { ComponentsModule } from "../app/componenthandler/components.module"
 import { HTTP } from '@ionic-native/http/ngx';
 import {NgxImageCompressService} from 'ngx-image-compress';
-import 'gl-ionic-background-video';
 
 @NgModule({
   declarations: [AppComponent],
@@ -76,8 +76,8 @@ import 'gl-ionic-background-video';
     MessagesDetailsPageModule,
     DietRestPageModule,
     BusReservationsPageModule,
+    SwiperImagePageModule,
     GalleryPostPageModule
-   
   ],
   providers: [
 

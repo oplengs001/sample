@@ -39,6 +39,8 @@ export class ImagesService {
   private AppGalleryCollection: AngularFirestoreCollection<ImageItem>;
   public GalleryPosts : any []
   public currentPost : any []
+  public all_images : any
+  public currentSelected_index : number
   storageRef = firebase.storage().ref();
   storagePath: string
   itemRef : ImageItem =

@@ -46,6 +46,7 @@ const routes: Routes = [
   { path: 'gallery-post', loadChildren: './modals/gallery-post/gallery-post.module#GalleryPostPageModule' },
   { path: 'queenstown', loadChildren: './pre-wedding/queenstown/queenstown.module#QueenstownPageModule' },
   { path: 'wedcast', loadChildren: './wedcast/wedcast.module#WedcastPageModule' },
+  { path: 'swiper-image', loadChildren: './modals/photos/swiper-image/swiper-image.module#SwiperImagePageModule' },
 ];
 
 @NgModule({

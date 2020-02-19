@@ -276,6 +276,33 @@ export class SlidingcontentPage implements OnInit {
       // 
     }
     saveItemWeddingInfo(){    
+      debugger
+      this.info.wedcast = [
+        {
+            "image": "image",
+            "name": "Amb Antonio L. Cabangon Chua",
+            "category": "Bride's Family",
+            "title": "Father (deceased)"
+        },
+        {
+            "image": "image",
+            "name": "Ana Patricia Songco",
+            "category": "Bride's Family",
+            "title": "Cousin"
+        },
+        {
+            "image": "image",
+            "name": "Janelle Woudwyk",
+            "category": "Groom's Family ",
+            "title": "Mother"
+        },
+        {
+            "image": "image",
+            "name": "John Woudwyk (deceased)",
+            "category": "Groom's Family ",
+            "title": "Mother"
+        }
+    ]
       this.generalInfo.updateInfo(this.info.ref,this.info)
     }
     expandItem(item,item_id): void {

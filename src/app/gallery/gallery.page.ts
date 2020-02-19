@@ -7,6 +7,7 @@ import { ToastService } from '../services/toaster/toast-service';
 import { Observable } from 'rxjs';
 import { TransitionsService } from '../services/native/transitions.service';
 import { ImagePage } from '../modals/photos/image/image.page'
+import { SwiperImagePage } from '../modals/photos/swiper-image/swiper-image.page'
 import { GalleryPostPage } from '../modals/gallery-post/gallery-post.page'
 import { ActionClass} from '../gallery-action-sheet/actionsheet'
 import { LoadingController, IonInfiniteScroll, IonContent } from '@ionic/angular';
@@ -42,6 +43,7 @@ export class GalleryPage implements OnInit {
     private webview : WebView,
     private transServe : TransitionsService,
     private imageModal: ImagePage,
+    private swiperImage : SwiperImagePage,
     private postModal : GalleryPostPage,
     private loadingCtrl : LoadingController,
     private actions : ActionClass ,
@@ -82,10 +84,12 @@ export class GalleryPage implements OnInit {
       data.subscribe( data=>{
         this.imageService.GalleryPosts = []
         this.all_images = data
+        this.imageService.all_images = data
         this.images_length = data.length
         // this.GalleryPosts = data
+        var _sorted_data = this.sortByDate(data)
         var groupi = this.groupBy('post_id')
-        var posts = groupi(data)
+        var posts = groupi(_sorted_data)
         for (var key of Object.keys(posts)) {
           this.imageService.GalleryPosts.push({
                 post_id : key,
@@ -103,15 +107,17 @@ export class GalleryPage implements OnInit {
     this.currentUser = this.authServ.currentUserId();
   }
   groupBy = key => array =>
-      array.reduce((objectsByKeyValue, obj) => {     
+      array.reduce((objectsByKeyValue, obj,i) => {     
+
           const value = obj[key];
+          obj["index"] = i
           objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);   
           return objectsByKeyValue;
       }, []);
 
-
-  
-
+  sortByDate (array:any){
+   return array.sort((a, b) => Number(b.date_uploaded) - Number(a.date_uploaded));
+  }
   openImagePicker(){
     this.imagePicker.hasReadPermission().then(
       (result) => {
@@ -162,11 +168,25 @@ export class GalleryPage implements OnInit {
     return post.date_uploaded;
   }
   imageClick(post){
-    this.imageModal.openImageModal(
+    console.log(post.index)
+    console.log(post)
+    this.imageService.currentSelected_index = post.index
+    this.swiperImage.swiperModal(
       post,
-      false,
       this.currentUser,
-      false
+    )
+    // this.imageModal.openImageModal(
+    //   post,
+    //   false,
+    //   this.currentUser,
+    //   false
+    // )
+  }
+  imageClickSwipper(post,image_index){
+    this.imageService.currentSelected_index = image_index
+    this.swiperImage.swiperModal(
+      post,
+      this.currentUser,
     )
   }
   seeMoreClick(post){

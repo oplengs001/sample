@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { PinchZoomModule } from 'ngx-pinch-zoom';
+
 import { IonicModule } from '@ionic/angular';
 
-import { GalleryPage } from './gallery.page';
-import { PipesModule } from '../pipe/sort/sort.pipe.module'
+import { SwiperImagePage } from './swiper-image.page';
+import { PinchZoomModule } from 'ngx-pinch-zoom';
+import { PipesModule } from '../../../pipe/sort/sort.pipe.module'
+
 const routes: Routes = [
   {
     path: '',
-    component: GalleryPage
+    component: SwiperImagePage
   }
 ];
 
@@ -19,11 +21,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    PipesModule,
     PinchZoomModule,
-  
+    PipesModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [GalleryPage]
+  declarations: [SwiperImagePage]
 })
-export class GalleryPageModule {}
+export class SwiperImagePageModule {}

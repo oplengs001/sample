@@ -1,0 +1,101 @@
+
+.icon-footer{
+    ion-icon{
+        font-size: 30px;
+    }
+  }
+ion-card{
+    height :100% !important;
+}
+.download-icons{
+    font-size: 25px !important;
+}
+.close-button{
+    font-size: 30px;
+}
+.pincher {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+   
+}
+.blocker{
+    width: 100% !important;  
+    height: 100% !important;     
+}
+.single-count-image .profile-img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+ion-content{
+    --background : transparent
+}
+ion-modal{
+    --background : transparent
+}
+
+.image-container{
+    --background: #fff;
+    --color: #000;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    --padding-start: 0px;
+    --padding-end: 0px;
+    --keyboard-offset: 0px;
+    --offset-top: 0px;
+    --offset-bottom: 0px;
+    --overflow: auto;
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-family: var(--ion-font-family,inherit);
+    // contain: size style;
+    // flex: 1 1 0%;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+.card-contents{
+    border-radius: 0 !important;
+    margin:0px !important;
+    width: 100vw !important;
+    height: 92vh !important;
+}
+.card-footer{
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    ion-label{
+        margin-bottom: 3vh !important;
+    }
+}
+.post-content{
+    padding:0px !important;
+    display: unset !important;
+    
+}
+.slider-height{
+    height: 92vh  !important;
+}
+.img-on-zoom{
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    margin-bottom: 10vh !important;
+}

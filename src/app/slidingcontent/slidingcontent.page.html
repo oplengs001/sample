@@ -147,12 +147,19 @@
                   </ion-item> 
                 <ion-item class="details-card">
                     <ion-icon name="map" slot="start"  color="medium"></ion-icon>        
-                        <ion-textarea    
+                        <ion-textarea    [hidden]="event.position === 0"
                         [(ngModel)]="event.location"    
                         (ionBlur)="saveItem(event)"              
                         readonly="{{!isAdmin}}"
                         autoGrow=true 
-                        ></ion-textarea >     
+                        ></ion-textarea>   
+                        <ion-input *ngIf="event.position === 0"
+                        [(ngModel)]="event.location"    
+                        (ionBlur)="saveItem(event)"              
+                        readonly="{{!isAdmin}}"
+                        autoGrow=false 
+                        ></ion-input>   
+                          
                 </ion-item>   
                 <ion-item class="details-card" *ngIf="event.position === 0">
                     <ion-icon name="ios-call" slot="start"  color="medium"></ion-icon>        
@@ -160,7 +167,7 @@
                 </ion-item>  
                 <ion-item class="details-card" *ngIf="event.position === 0">
                     <ion-icon name="globe" slot="start"  color="medium"></ion-icon>        
-                    <label><a href="https://goo.gl/maps/kuB9KUT7dK1uc3WW8">Show Map</a></label>
+                    <label><a href="https://goo.gl/maps/kuB9KUT7dK1uc3WW8">Show in Google Maps</a></label>
                 </ion-item> 
                 <ion-item class="details-card" *ngIf="event.position === 5">
                     <ion-icon name="globe" slot="start"  color="medium"></ion-icon>        
