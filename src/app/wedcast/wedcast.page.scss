@@ -28,7 +28,7 @@
 .face-image{
     height: 30vh !important; 
     width: 100% !important;
-    object-fit:contain
+    object-fit:cover
 }
 .item-header{
     padding-bottom: 0px !important;
@@ -74,7 +74,7 @@
 
         ion-img {
             height: 45vh !important;
-            object-fit: contain;
+            object-fit: cover;
             object-position: inherit;
             opacity: 1;
             visibility: visible;
