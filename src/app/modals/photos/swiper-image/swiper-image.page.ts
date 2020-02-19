@@ -75,6 +75,16 @@ export class SwiperImagePage implements OnInit {
   callThis(item){
     console.log(item)
   }
+  imageLoaded(event,isLoaded: boolean) {    
+    if (isLoaded) {
+      // setTimeout(() => {        
+        
+        event.target.parentElement.classList.add('img-loaded');
+      // }, 500);
+    } else {
+        event.target.parentElement.classList.remove('img-loaded');
+    }
+  }
   async swiperModal(
     post:any,
     currentUser?:string,

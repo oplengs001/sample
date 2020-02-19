@@ -22,9 +22,12 @@
                               disablePan=true
                               #myPinchZoom="pinchZoom"
                               class="pincher" >
-                                  <ion-img [src]="image_post.url"class="img-on-zoom"></ion-img>
+                              <div class="image-loader">
+                                  <ion-skeleton-text animated></ion-skeleton-text>
+                                  <ion-img [src]="image_post.url" (ionImgDidLoad)="imageLoaded($event,true)" class="img-on-zoom"></ion-img>
+                              </div>
                               </pinch-zoom>
-                          </div>                                                      
+                          </div>
                         </div>
                   
                 <div class="card-footer">

@@ -50,8 +50,9 @@
 
 }
 .image-holder{
+  
     padding-bottom: 0px !important;
-    ion-skeleton-text {
+    ion-skeleton-text{
         height: 44vh;
         width: 70vw;
         object-fit: inherit;
@@ -59,33 +60,32 @@
         // position: absolute;
         visibility: visible;
         opacity : 1
-    } 
+    }
     ion-img {
-    
         opacity: 1;
         visibility: hidden;
         // max-width: 50vw !important;
         height: 0vh ;
         
-        position: absolute
-    }
-  
+        position: absolute  
+    }   
     &.img-loaded {
-
+      
         ion-img {
             height: 45vh !important;
             object-fit: cover;
-            object-position: inherit;
+            // object-position: 50% 50%; /* default value: image is centered*/
+            
             opacity: 1;
             visibility: visible;
             position: relative
             // height: 100% !important;
             }
         ion-skeleton-text {
-        display: none;
-        visibility: hidden;
+            display: none;
+            visibility: hidden;
         }
-    }
+      }
 }
 .recom-text{
     font-size: 16px !important;

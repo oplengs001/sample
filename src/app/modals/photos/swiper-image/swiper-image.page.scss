@@ -46,7 +46,39 @@ ion-content{
 ion-modal{
     --background : transparent
 }
+.image-loader{
+    display:unset;
+    ion-skeleton-text{
+        height: 90vh;
+        width : 100vw;
+        // position: absolute;
+        visibility: visible;
+        opacity : 1
+    }
+    ion-img {
+        opacity: 0;
+        visibility: hidden;
+        // max-width: 50vw !important;
 
+        
+        // position: absolute  
+    }   
+    &.img-loaded {
+      
+        ion-img {
+
+            opacity: 1;
+            visibility: visible;
+            // height: 100% !important;
+            }
+        ion-skeleton-text {
+         
+            opacity : 0;
+            display: none;
+            visibility: hidden;
+        }
+      }
+}
 .image-container{
     --background: #fff;
     --color: #000;
