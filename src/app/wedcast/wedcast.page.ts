@@ -16,6 +16,7 @@ private cast
 private gMessage: string
 private gTitle : string
 private categories : any =[]
+private sliderOptions : any;
   constructor(
     private homeMenu: HomeMenuPage,
     private annServe : AnnouncementSaveService,
@@ -45,7 +46,6 @@ private categories : any =[]
         })
       }
     })
-    
   }
   expandItem(item,item_id): void {
     // debugger
@@ -65,6 +65,7 @@ private categories : any =[]
 
   }
   ionViewDidEnter(){
+    this.ioncontent.forceOverscroll = true
     this.ioncontent.scrollToTop(0)
   }
   imageLoaded(event,isLoaded: boolean) {    

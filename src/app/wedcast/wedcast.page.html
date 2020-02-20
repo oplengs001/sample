@@ -12,7 +12,7 @@
     </ion-toolbar>
   </ion-header>
 
-<ion-content mode="ios">
+<ion-content mode="ios" force-overscroll="false">
     <ion-card mode="ios">
       <ion-card-header >
         <img src="../../assets/images/tommy-ingga.jpg"  class="img-container" />
@@ -34,19 +34,15 @@
             </ion-item>
         </ion-card-header>
         <ion-card-content class="ion-text-center item-content">
-          <app-expandable expandHeight="100vh"  [expanded]="category.expanded">
-            <ion-slides pager="true" class="wedcast-pager">
-                  <ion-slide *ngFor="let cast of category.casts">
+          <app-expandable expandHeight="100vh"  [expanded]="category.expanded" force-overscroll="false">
+            <ion-slides pager="true" class="wedcast-pager" force-overscroll="false">
+                  <ion-slide *ngFor="let cast of category.casts" >
                       <ion-card class=wed-cast-card mode="ios">
                           <ion-card-header class="image-holder"> 
-                            <ion-img class="face-image" [src]="cast.image"
-
-                            (ionImgDidLoad)="imageLoaded($event,true)"
-                            
-                            > </ion-img>   
+                            <ion-img class="face-image" [src]="cast.image" (ionImgDidLoad)="imageLoaded($event,true)" > </ion-img>   
                             <ion-skeleton-text animated></ion-skeleton-text>    
                             <br>
-                            <ion-card-title  class="ion-text-center recom-text"> {{cast.name}}</ion-card-title>      
+                            <ion-card-title  class="ion-text-center recom-text"><div [innerHTML]="cast.name"></div> </ion-card-title>      
                           </ion-card-header> 
                           <ion-card-content  class="ion-text-center intro-text">
                             {{cast.title}}
