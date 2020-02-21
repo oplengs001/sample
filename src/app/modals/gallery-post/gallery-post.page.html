@@ -17,7 +17,7 @@
                 <ion-card-content class="img-container">
                     <div (click)="imageClick(image)" class="post-image">           
                         <ion-skeleton-text animated></ion-skeleton-text>
-                        <ion-img [src]="image.url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                        <ion-img [src]="image.url"(ionImgDidLoad)="imageLoaded($event,true,image)"></ion-img>               
                     </div> 
                 </ion-card-content>
               </ion-card>

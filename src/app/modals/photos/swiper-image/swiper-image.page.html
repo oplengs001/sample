@@ -8,8 +8,9 @@
   </ion-header>
   <ion-content no-bounce has-bouncing="false" forceOverscroll="false">
     
-    <ion-slides #dslide [options]="slideOps">
-      <ion-slide *ngFor="let image_post of imageService.all_images | sort :'desc':'date_uploaded'; trackBy: trackByCreated" class="slider-height">
+    <ion-slides #dslide [options]="slideOps"
+    ionSlideWillChange>
+      <ion-slide *ngFor="let image_post of imageService.all_images | sort :'desc':'date_uploaded'; trackBy: trackByCreate ,let loaded_index = index" class="slider-height">
             <ion-card class="card-contents">
                 <ion-card-content class="post-content">
                             <div class="pincher" >
@@ -25,7 +26,7 @@
                                   <div class="image-loader">
                                     <!-- image imag ima giamg iam fi aodijsdfijsdofijsdmofijs,odfijs,ofijsdfiojs,ofijsd,ofijso,fijs,ofijosdi,j -->
                                       <ion-skeleton-text animated></ion-skeleton-text>
-                                      <ion-img [src]="image_post.url" (ionImgDidLoad)="imageLoaded($event,true)" class="img-on-zoom"></ion-img>
+                                      <ion-img [src]="image_post.b_url" (ionImgDidLoad)="imageLoaded($event,true,loaded_index)" class="img-on-zoom"></ion-img>
                                   </div>
                                   </pinch-zoom>
                               </div>

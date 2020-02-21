@@ -33,6 +33,8 @@ export class SwiperImagePage implements OnInit {
     ) { 
       this.slideOps =  {
         initialSlide: imageService.currentSelected_index,
+        preloadImages : true,
+        lazy:true,
           on: {
             beforeInit() {
               const swiper = this;
@@ -117,6 +119,18 @@ export class SwiperImagePage implements OnInit {
   // this.ioncontent.forceOverscroll = true
    this.isAdmin = this.authServ.isAdmin()
   }
+  ionViewDidEnter(){
+    console.log("entered")
+    this.imageService.all_images[this.imageService.currentSelected_index].b_url =    this.imageService.all_images[this.imageService.currentSelected_index].url
+    this.slider.ionSlideDidChange.subscribe(data=>{
+      console.log(data)
+      this.slider.getActiveIndex().then(data=>{
+        console.log(data)
+        this.imageService.all_images[data].b_url =    this.imageService.all_images[data].url
+        this.imageService.all_images[data].m_url =    this.imageService.all_images[data].url
+      })
+    })
+  }
   swipeEvent(event){
     console.log(event)
   }
@@ -126,10 +140,10 @@ export class SwiperImagePage implements OnInit {
   callThis(item){
     console.log(item)
   }
-  imageLoaded(event,isLoaded: boolean) {    
+  imageLoaded(event,isLoaded: boolean,loaded_index?:number) {    
     if (isLoaded) {
       // setTimeout(() => {        
-        
+        this.imageService.all_images[loaded_index].m_url =    this.imageService.all_images[loaded_index].url
         event.target.parentElement.classList.add('img-loaded');
       // }, 500);
     } else {

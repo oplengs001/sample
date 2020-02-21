@@ -26,10 +26,10 @@ export class GalleryPostPage implements OnInit {
     this.currentUser = this.authServ.currentUserId();
   }
 
-  imageLoaded(event,isLoaded: boolean) {    
+  imageLoaded(event,isLoaded: boolean,image:any) {    
     if (isLoaded) {
       // setTimeout(() => {        
-        
+        this.imageService.all_images[image.index].m_url =    this.imageService.all_images[image.index].url
         event.target.parentElement.classList.add('img-loaded');
       // }, 500);
     } else {

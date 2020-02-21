@@ -53,10 +53,12 @@ export class GalleryPage implements OnInit {
     private annServe : AnnouncementSaveService
     
   ) { } 
-  imageLoaded(event,isLoaded: boolean) {    
+  imageLoaded(event,isLoaded: boolean,image?:any) {    
     if (isLoaded) {
-      // setTimeout(() => {        
-        
+      // setTimeout(() => {       
+
+        this.imageService.all_images[image.index].m_url =    this.imageService.all_images[image.index].url
+        this.imageService.all_images[image.index].b_url =    this.imageService.all_images[image.index].url
         event.target.parentElement.classList.add('img-loaded');
       // }, 500);
     } else {

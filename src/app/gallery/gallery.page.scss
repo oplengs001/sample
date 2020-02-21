@@ -144,19 +144,20 @@ ion-card{
         width: 30vw;
         object-fit: inherit;
         object-position: inherit;
-        position: absolute;
+        position: relative;
         visibility: visible;
-        opacity : 1
+        opacity : 1;
+        margin: 6px;
     }
     ion-img{
-        margin: 6px;
-        height: 20vh;
-        width: 30vw;
+  
+        height: 0px;
         animation: fadein .5s;
         transition: visibility 0s linear, opacity .5s linear;
         opacity: 0;
         visibility:hidden;
         object-fit: cover;
+        // display: none
     }
     &.img-loaded {
         background-color: transparent;
@@ -165,6 +166,10 @@ ion-card{
         ion-img {
           opacity: 1;
           visibility: visible;
+          // display:block;
+          margin: 6px;
+          height: 20vh;
+          width: 30vw;
         }
     
         ion-skeleton-text {

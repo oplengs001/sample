@@ -73,7 +73,7 @@
                               <div (click)="imageClick(post.images[0])" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
                                   
-                                  <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                  <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[0])"></ion-img>               
                               </div>  
                             </ion-col>
                           </ion-row>
@@ -83,13 +83,13 @@
                             <ion-col size="6">
                               <div (click)="imageClick(post.images[0])" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
-                                  <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                  <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[0])"></ion-img>               
                               </div>  
                             </ion-col>
                             <ion-col size="6">
                                 <div (click)="imageClick(post.images[1])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[1])"></ion-img>               
                                 </div>  
                             </ion-col>
                         </ion-row>
@@ -99,7 +99,7 @@
                               <ion-col size="12">
                                 <div (click)="imageClick(post.images[0])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[0])"></ion-img>               
                                 </div>  
                               </ion-col>
                           </ion-row>
@@ -107,13 +107,13 @@
                             <ion-col size="6">
                               <div (click)="imageClick(post.images[1])" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
-                                  <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                  <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[1])"></ion-img>               
                               </div>  
                             </ion-col>
                             <ion-col size="6">
                                 <div (click)="imageClick(post.images[2])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[2])"></ion-img>               
                                 </div>  
                             </ion-col>
                         </ion-row>
@@ -123,13 +123,13 @@
                             <ion-col size="6">
                               <div (click)="imageClick(post.images[0])" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
-                                  <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                  <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[0])"></ion-img>               
                               </div>  
                             </ion-col>
                             <ion-col size="6">
                               <div (click)="imageClick(post.images[1])" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
-                                  <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                  <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[1])"></ion-img>               
                               </div> 
                             </ion-col>
                           </ion-row>
@@ -137,13 +137,13 @@
                               <ion-col size="6">
                                 <div (click)="imageClick(post.images[2])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[2])"></ion-img>               
                                 </div> 
                               </ion-col>
                               <ion-col size="6">
                                 <div (click)="imageClick(post.images[3])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[3].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[3].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[3])"></ion-img>               
                                 </div> 
                               </ion-col>
                           </ion-row>
@@ -153,7 +153,7 @@
                           <ion-col size="12">
                             <div (click)="imageClick(post.images[0])" class="post-image">           
                                 <ion-skeleton-text animated></ion-skeleton-text>
-                                <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[0])"></ion-img>               
                             </div>  
                           </ion-col>
                         </ion-row>
@@ -161,26 +161,26 @@
                             <ion-col size="4">
                                 <div (click)="imageClick(post.images[1])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[1])"></ion-img>               
                                 </div> 
                               </ion-col>
                             <ion-col size="4">
                               <div (click)="imageClick(post.images[2])" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
-                                  <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                  <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[2])"></ion-img>               
                               </div> 
                             </ion-col>
                             <ion-col size="4">
                               <div (click)="seeMoreClick(post)" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
                                   <div class="count_click"><span>{{post.images.length - 4}}+</span></div>
-                                  <ion-img [src]="post.images[3].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                  <ion-img [src]="post.images[3].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[3])"></ion-img>               
                               </div> 
                             </ion-col>
                         </ion-row>
                           <!-- <div *ngFor="let image of post.images| sort :'desc':'date_uploaded'; trackBy: trackByCreated"  class="image-card">
                               <ion-skeleton-text animated></ion-skeleton-text>
-                              <ion-img-viewer  src="{{image.url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                              <ion-img-viewer  src="{{image.url}}" (ionImgDidLoad)="customImageLoaded($event,true,post.images[0])" ></ion-img-viewer>
                           </div> -->
                       </ion-card-content>
                       <ion-item class="icon-footer" lines="none">                                                                                            
@@ -209,7 +209,7 @@
                           <ion-col size="12">
                             <div (click)="imageClick(post.images[0])" class="post-image">           
                                 <ion-skeleton-text animated></ion-skeleton-text>
-                                <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[0])"></ion-img>               
                             </div>  
                           </ion-col>
                         </ion-row>
@@ -219,13 +219,13 @@
                             <ion-col size="6">
                               <div (click)="imageClick(post.images[0])" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
-                                  <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                  <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[0])"></ion-img>               
                               </div>  
                             </ion-col>
                             <ion-col size="6">
                                 <div (click)="imageClick(post.images[1])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[1])"></ion-img>               
                                 </div>  
                             </ion-col>
                         </ion-row>
@@ -235,7 +235,7 @@
                               <ion-col size="12">
                                 <div (click)="imageClick(post.images[0])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[0])"></ion-img>               
                                 </div>  
                               </ion-col>
                           </ion-row>
@@ -243,13 +243,13 @@
                             <ion-col size="6">
                               <div (click)="imageClick(post.images[1])" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
-                                  <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                  <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[1])"></ion-img>               
                               </div>  
                             </ion-col>
                             <ion-col size="6">
                                 <div (click)="imageClick(post.images[2])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[2])"></ion-img>               
                                 </div>  
                             </ion-col>
                         </ion-row>
@@ -259,13 +259,13 @@
                             <ion-col size="6">
                               <div (click)="imageClick(post.images[0])" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
-                                  <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                  <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[0])"></ion-img>               
                               </div>  
                             </ion-col>
                             <ion-col size="6">
                               <div (click)="imageClick(post.images[1])" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
-                                  <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                  <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[1])"></ion-img>               
                               </div> 
                             </ion-col>
                           </ion-row>
@@ -273,13 +273,13 @@
                               <ion-col size="6">
                                 <div (click)="imageClick(post.images[2])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[2])"></ion-img>               
                                 </div> 
                               </ion-col>
                               <ion-col size="6">
                                 <div (click)="imageClick(post.images[3])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[3].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[3].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[3])"></ion-img>               
                                 </div> 
                               </ion-col>
                           </ion-row>
@@ -289,7 +289,7 @@
                           <ion-col size="12">
                             <div (click)="imageClick(post.images[0])" class="post-image">           
                                 <ion-skeleton-text animated></ion-skeleton-text>
-                                <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                <ion-img [src]="post.images[0].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[0])"></ion-img>               
                             </div>  
                           </ion-col>
                         </ion-row>
@@ -297,26 +297,26 @@
                             <ion-col size="4">
                                 <div (click)="imageClick(post.images[1])" class="post-image">           
                                     <ion-skeleton-text animated></ion-skeleton-text>
-                                    <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                    <ion-img [src]="post.images[1].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[1])"></ion-img>               
                                 </div> 
                               </ion-col>
                             <ion-col size="4">
                               <div (click)="imageClick(post.images[2])" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
-                                  <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                  <ion-img [src]="post.images[2].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[2])"></ion-img>               
                               </div> 
                             </ion-col>
                             <ion-col size="4">
                               <div (click)="seeMoreClick(post)" class="post-image">           
                                   <ion-skeleton-text animated></ion-skeleton-text>
                                   <div class="count_click"><span>{{post.images.length - 4}}+</span></div>
-                                  <ion-img [src]="post.images[3].url"(ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                                  <ion-img [src]="post.images[3].url"(ionImgDidLoad)="imageLoaded($event,true,post.images[3])"></ion-img>               
                               </div> 
                             </ion-col>
                         </ion-row>
                           <!-- <div *ngFor="let image of post.images| sort :'desc':'date_uploaded'; trackBy: trackByCreated"  class="image-card">
                               <ion-skeleton-text animated></ion-skeleton-text>
-                              <ion-img-viewer  src="{{image.url}}" (ionImgDidLoad)="customImageLoaded($event,true)" ></ion-img-viewer>
+                              <ion-img-viewer  src="{{image.url}}" (ionImgDidLoad)="customImageLoaded($event,true,post.images[0])" ></ion-img-viewer>
                           </div> -->
                       </ion-card-content>
                       <ion-item class="icon-footer" lines="none">
@@ -344,18 +344,18 @@
                 </div>
                 <ng-template #filteredImage>
                     <div (click)="imageClickSwipper(post,image_index)" *ngIf="post.user.uid ===  this.currentUser" class="frame-image">                
-                        <ion-skeleton-text animated></ion-skeleton-text>
-                        <ion-img [src]="post.url"
-                        (ionImgDidLoad)="imageLoaded($event,true)"                      
+                        <ion-skeleton-text ></ion-skeleton-text>
+                        <ion-img [src]="post.m_url"
+                        (ionImgDidLoad)="imageLoaded($event,true,post)"                      
                         ></ion-img>
                     </div>  
                 </ng-template>
                 <ng-template #allUser>
                     <div (click)="imageClickSwipper(post,image_index)" class="frame-image">           
-                          <ion-skeleton-text animated></ion-skeleton-text>
-                          <ion-img [src]="post.url"
+                          <ion-skeleton-text ></ion-skeleton-text>
+                          <ion-img [src]="post.m_url"
                           
-                          (ionImgDidLoad)="imageLoaded($event,true)"></ion-img>               
+                          (ionImgDidLoad)="imageLoaded($event,true,post)"></ion-img>               
                     </div>  
                 </ng-template>
               </div>
