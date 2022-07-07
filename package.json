@@ -69,7 +69,7 @@
     "es6-promise-plugin": "^4.2.2",
     "firebase": "^6.5.0",
     "ionic-selectable": "^4.4.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ngx-autosize": "^1.6.4",
     "ngx-image-compress": "^8.0.3",
     "ngx-pinch-zoom": "^2.3.4",
